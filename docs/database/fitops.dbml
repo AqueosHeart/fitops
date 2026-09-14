@@ -1,0 +1,146 @@
+Project FitOps {
+  database_type: 'PostgreSQL'
+  Note: 'Conceptual FitOps MVP model. Prisma schema and committed migrations become authoritative during implementation.'
+}
+
+Enum user_role {
+  member
+  trainer
+  administrator
+}
+
+Enum member_status {
+  active
+  inactive
+}
+
+Enum session_status {
+  scheduled
+  cancelled
+  completed
+}
+
+Enum booking_status {
+  confirmed
+  cancelled
+}
+
+Enum waitlist_status {
+  waiting
+  promoted
+  cancelled
+  expired
+}
+
+Table users {
+  id uuid [pk]
+  email varchar(320) [not null, unique, note: 'Stored normalized']
+  name varchar(120) [not null]
+  role user_role [not null]
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+}
+
+Table member_profiles {
+  id uuid [pk]
+  user_id uuid [not null, unique]
+  status member_status [not null]
+  created_at timestamptz [not null]
+}
+
+Table trainer_profiles {
+  id uuid [pk]
+  user_id uuid [not null, unique]
+  bio text [not null]
+  specialties text [not null, note: 'Physical representation may become a related table after requirements review']
+}
+
+Table programs {
+  id uuid [pk]
+  slug varchar(100) [not null, unique]
+  name varchar(120) [not null]
+  description text [not null]
+  intensity varchar(30) [not null]
+  duration_minutes integer [not null]
+  is_published boolean [not null, default: true]
+}
+
+Table class_sessions {
+  id uuid [pk]
+  program_id uuid [not null]
+  trainer_id uuid [not null]
+  starts_at timestamptz [not null]
+  ends_at timestamptz [not null]
+  capacity integer [not null]
+  booking_cutoff_minutes integer [not null, default: 60]
+  status session_status [not null, default: 'scheduled']
+  version integer [not null, default: 1]
+
+  indexes {
+    (starts_at, status) [name: 'class_sessions_start_status_idx']
+    (program_id, starts_at) [name: 'class_sessions_program_start_idx']
+    (trainer_id, starts_at) [name: 'class_sessions_trainer_start_idx']
+  }
+}
+
+Table bookings {
+  id uuid [pk]
+  member_id uuid [not null]
+  session_id uuid [not null]
+  status booking_status [not null, default: 'confirmed']
+  booked_at timestamptz [not null]
+  cancelled_at timestamptz
+
+  indexes {
+    (session_id, status) [name: 'bookings_session_status_idx']
+    (member_id, status) [name: 'bookings_member_status_idx']
+    (member_id, session_id) [name: 'bookings_member_session_idx', note: 'A partial unique index for confirmed rows will be added in a reviewed SQL migration']
+  }
+}
+
+Table waitlist_entries {
+  id uuid [pk]
+  member_id uuid [not null]
+  session_id uuid [not null]
+  status waitlist_status [not null, default: 'waiting']
+  position_key bigint [not null]
+  joined_at timestamptz [not null]
+  resolved_at timestamptz
+
+  indexes {
+    (session_id, status, position_key) [name: 'waitlist_session_order_idx']
+    (member_id, session_id) [name: 'waitlist_member_session_idx', note: 'A partial unique index for waiting rows will be added in a reviewed SQL migration']
+  }
+}
+
+Ref member_profile_user {
+  users.id - member_profiles.user_id [delete: cascade, update: no action]
+}
+
+Ref trainer_profile_user {
+  users.id - trainer_profiles.user_id [delete: cascade, update: no action]
+}
+
+Ref session_program {
+  programs.id < class_sessions.program_id [delete: restrict, update: no action]
+}
+
+Ref session_trainer {
+  trainer_profiles.id < class_sessions.trainer_id [delete: restrict, update: no action]
+}
+
+Ref booking_member {
+  member_profiles.id < bookings.member_id [delete: restrict, update: no action]
+}
+
+Ref booking_session {
+  class_sessions.id < bookings.session_id [delete: restrict, update: no action]
+}
+
+Ref waitlist_member {
+  member_profiles.id < waitlist_entries.member_id [delete: restrict, update: no action]
+}
+
+Ref waitlist_session {
+  class_sessions.id < waitlist_entries.session_id [delete: restrict, update: no action]
+}
