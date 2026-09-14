@@ -17,3 +17,4 @@ updated: 2026-09-14
 - Conceptual database source: `docs/database/fitops.dbml`.
 - Executable database source after implementation: Prisma schema plus complete committed migrations.
 - Data policy: fictional demo data only; no production or personal records.
+- Continuity rule: tasks opened from this repository must follow `AGENTS.md`, read the second brain before work, and update material project context before completion.

@@ -39,3 +39,5 @@ updated: 2026-09-14
 ## Activity
 
 - [[log]]
+- [[wiki/logs/2026-09-14-fitops-foundation-session|FitOps foundation session]]
+- [[raw/06-flash_notes/2026-09-14-conversation-record|Planning conversation record]]

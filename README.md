@@ -31,6 +31,8 @@ The repository is also an Obsidian-compatible vault. Open the repository root in
 
 See [second-brain setup and safety](second-brain/README.md) and [references and attribution](NOTICE.md).
 
+Repository-level continuity instructions live in [AGENTS.md](AGENTS.md). Codex tasks opened from this repository read the current second-brain context before project work and update it after material changes.
+
 ## Proposed stack
 
 - Next.js with React and TypeScript
