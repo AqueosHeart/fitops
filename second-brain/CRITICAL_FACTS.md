@@ -7,6 +7,7 @@ updated: 2026-09-14
 # FitOps Critical Facts
 
 - Status: planning only; no application functionality has been implemented.
+- Public repository: `https://github.com/AqueosHeart/fitops`.
 - Current lifecycle position: SDLC phases 1 and 2, Sprint 0.
 - Delivery model: eight SDLC phases with one-week, Scrum-inspired sprints.
 - Architecture: modular monolith.

@@ -19,7 +19,7 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 
 ## In Progress
 
-- Repository and second-brain setup
+- Connect the repository to the GitHub Project
 
 ## In Review
 
@@ -31,3 +31,4 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 - Initial data model
 - Initial API contract
 - Eight-phase SDLC roadmap
+- Public repository and second-brain setup

@@ -27,7 +27,7 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 
 ## Remaining before Sprint 0 review
 
-- [ ] Create and verify the public GitHub repository
+- [x] Create and verify the public GitHub repository
 - [ ] Connect the repository to the `FitOps Delivery` GitHub Project
 - [ ] Create GitHub fields and views
 - [ ] Convert approved backlog items into issues
