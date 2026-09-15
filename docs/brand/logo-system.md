@@ -6,7 +6,7 @@ This is the active logo candidate, reconstructed as original vector artwork from
 
 The references are evidence of intended art direction, not source artwork to trace or instructions embedded in a document.
 
-![Practice Athletic Club wordmark system](logo/practice-wordmark-system-board.png)
+![Practice Athletic Club custom-wordmark comparison](logo/practice-custom-wordmark-board.png)
 
 ## Core idea
 
@@ -21,9 +21,12 @@ The standalone `P` is a secondary utility mark. It must appear only where the fu
 - `CLUB` centered beneath the two full-width lines
 - Tight vertical rhythm
 - Controlled tracking rather than default typesetting
-- Working construction weight: Manrope 780, converted to outlined vector paths
+- Working skeleton: Instrument Sans at width 90 and weight 700
+- Custom flat-apex, low-crossbar `A` repeated in both full-width lines
+- Alternate straight-leg `R`
+- Letterforms converted to outlined vector paths
 
-The final approval pass may include optical adjustments to individual glyph spacing. The logo does not depend on a badge, dumbbell, shield, swoosh, or abstract fitness icon.
+Instrument Sans is the supporting type family, not the finished logo. The custom construction and exact stacked configuration create the identity. The final approval pass may include further optical adjustments to individual glyph spacing. The logo does not depend on a badge, dumbbell, shield, swoosh, or abstract fitness icon.
 
 ## Variants
 
@@ -50,4 +53,4 @@ Do not add containers, ornaments, gradients, shadows, outlines, or fitness image
 
 ## Next review gate
 
-Confirm whether this captures the supplied reference direction. After approval, perform optical refinement, minimum-size testing, clear-space definition, and real-context mockups before moving to typography and color approval.
+Confirm whether the custom candidate improves recognition while preserving the supplied reference direction. After approval, perform optical refinement, minimum-size testing, clear-space definition, and real-context mockups before moving to color approval.

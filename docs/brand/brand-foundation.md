@@ -113,4 +113,4 @@ This branding stage does not include application code, website implementation, U
 
 ## Next review gate
 
-Approve or revise the reference-led stacked wordmark candidate. After approval, complete optical refinement, minimum-size tests, clear-space rules, and context mockups before applying color.
+Approve or revise the custom stacked wordmark recognition pass. After approval, complete optical refinement, minimum-size tests, clear-space rules, and context mockups before applying color.

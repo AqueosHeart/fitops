@@ -49,15 +49,16 @@ The lime acts as a signal, not a text color or dominant surface. Exact values re
 
 ### Typography direction
 
-- Display and wordmark exploration: **Manrope Variable**, with custom spacing and letterform modifications
-- Reading and functional copy: **Source Sans 3 Variable**
+- Supporting brand and interface family: **Instrument Sans Variable**
+- Custom wordmark skeleton: Instrument Sans width 90 and weight 700, converted to outlines and modified
+- Reading and functional copy: Instrument Sans at weights 400–500
 - Character: contemporary, precise, open, and readable without becoming a technology brand
 
 ### Logo approach
 
-- A custom `PRACTICE` wordmark with broad, stable proportions
-- Compact mark derived from repeated intervals in the letter `P`, expressing practice through rhythm rather than literal gym equipment
-- `ATHLETIC CLUB` used as a quiet descriptor, never equal in prominence to `PRACTICE`
+- A compact three-line `PRACTICE / ATHLETIC / CLUB` wordmark with optically equalized first two lines
+- Custom flat-apex `A`, alternate straight-leg `R`, and controlled tracking provide restrained recognition
+- The standalone `P` is a secondary utility mark, never the primary identity
 
 ### Photography
 

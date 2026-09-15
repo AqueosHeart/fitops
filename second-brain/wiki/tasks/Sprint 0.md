@@ -31,6 +31,8 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 - [x] Reject the generic icon-led logo round
 - [x] Create and compact-test three typography-first logo directions
 - [x] Translate the supplied visual references into an original stacked vector wordmark candidate
+- [x] Select custom logo lettering with Instrument Sans as the supporting type family
+- [x] Create a source-versus-custom wordmark recognition pass
 
 ## Remaining before Sprint 0 review
 
@@ -39,7 +41,7 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 - [ ] Create GitHub fields and views
 - [ ] Convert approved backlog items into issues
 - [ ] Review the Sprint 0 exit gate
-- [ ] Approve or revise the Practice Athletic Club stacked wordmark candidate
+- [ ] Approve or revise the Practice Athletic Club custom stacked wordmark candidate
 
 ## Connections
 

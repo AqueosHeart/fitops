@@ -25,6 +25,8 @@ Create a complete identity for the fictional gym before designing or implementin
 - Three typography-first replacement directions were created: Foundation, Standard, and Editorial Club.
 - The user then supplied two visual references clarifying that the desired identity is a compact stacked sans-serif wordmark rather than a decorative logo concept.
 - A reference-led stacked wordmark system is now the active candidate; it is not yet approved.
+- The user accepted the strategy of custom logo lettering with Instrument Sans as the supporting brand and interface family.
+- A custom recognition pass now adds a repeated flat-apex `A`, alternate straight-leg `R`, and optical line-width corrections; logo approval remains pending.
 
 ## Evidence created
 
@@ -32,14 +34,14 @@ Create a complete identity for the fictional gym before designing or implementin
 - Product-requirement clarification distinguishing the public brand from the repository codename
 - Updated project, sprint, board, index, critical-facts, and activity-log context
 - `docs/brand/visual-territories.md` and three original concept moodboards
-- `docs/brand/logo-system.md`, an inspection board, and outlined SVG variants for stacked, inverse, horizontal, and compact use
-- Manrope variable font and its SIL Open Font License source record
+- `docs/brand/logo-system.md`, a source-versus-custom comparison board, and outlined SVG variants for stacked, inverse, horizontal, and compact use
+- Instrument Sans variable font and its SIL Open Font License source record
 
 ## Unresolved work
 
-- Approve or revise the reference-led stacked wordmark before finalizing the palette, typography, and visual system.
+- Approve or revise the custom stacked wordmark before finalizing the palette and remaining visual system.
 - Perform manual trademark and relevant jurisdiction checks before treating the name as commercially cleared.
 
 ## Next safe action
 
-Confirm whether the stacked wordmark captures the supplied references. If approved, complete optical refinement, size rules, and real-context tests before applying color.
+Confirm whether the custom wordmark improves recognition without departing from the supplied references. If approved, complete optical refinement, size rules, and real-context tests before applying color.

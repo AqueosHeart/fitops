@@ -1,10 +1,11 @@
 # Brand Font Sources
 
-## Manrope
+## Instrument Sans
 
-- Source: Google Fonts repository
-- Working use: Practice Athletic Club logo concepts and Territory A typography exploration
-- License: SIL Open Font License 1.1, stored at `manrope/OFL.txt`
-- Variable font file: `manrope/Manrope-VariableFont_wght.ttf`
+- Source: official Instrument repository and Google Fonts
+- Working use: Practice Athletic Club supporting brand family, booking interface, and custom-wordmark skeleton
+- License: SIL Open Font License 1.1, stored at `instrument-sans/OFL.txt`
+- Variable font file: `instrument-sans/InstrumentSans-Variable.ttf`
+- Axes used for the wordmark skeleton: width 90, weight 700
 
-The presence of a font in this folder records the source and permits reproducible concept review. It does not make the typeface final until the typography system is approved.
+The wordmark is stored as custom outlined SVG artwork and must not be recreated by typing the name in Instrument Sans. The font remains editable supporting typography for headlines, interface text, schedules, labels, and body copy.

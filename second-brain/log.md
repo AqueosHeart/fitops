@@ -21,6 +21,8 @@ updated: 2026-09-15
 - Replaced it with three typography-first directions: Foundation, Standard, and Editorial Club; recommended Editorial Club without marking it approved.
 - Reviewed two user-supplied visual references and identified the stacked name, not an emblem, as the intended identity.
 - Superseded the exploratory logo rounds with a reference-led stacked wordmark system containing primary, inverse, horizontal, and compact vector variants; approval remains pending.
+- Selected the strategy of custom logo lettering with Instrument Sans as the supporting brand and booking-interface family.
+- Created a recognition comparison and updated the vector candidate with a custom flat-apex `A`, alternate straight-leg `R`, and optically equalized stacked lines; logo approval remains pending.
 
 ## 2026-09-14
 

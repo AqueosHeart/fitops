@@ -16,7 +16,7 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 
 - Create the `FitOps Delivery` project fields and views
 - Convert the Sprint 0 backlog into GitHub Issues
-- Approve or revise the Practice Athletic Club stacked wordmark candidate
+- Approve or revise the Practice Athletic Club custom stacked wordmark candidate
 
 ## In Progress
 
@@ -37,3 +37,4 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 - Three Practice Athletic Club visual territories
 - Quiet Strength territory selection
 - Rejected the generic icon-led logo round and superseded later explorations with a reference-led stacked wordmark candidate
+- Selected custom logo lettering with Instrument Sans as the supporting brand and interface family
