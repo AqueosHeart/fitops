@@ -23,6 +23,7 @@ updated: 2026-09-15
 - Superseded the exploratory logo rounds with a reference-led stacked wordmark system containing primary, inverse, horizontal, and compact vector variants; approval remains pending.
 - Selected the strategy of custom logo lettering with Instrument Sans as the supporting brand and booking-interface family.
 - Created a recognition comparison and updated the vector candidate with a custom flat-apex `A`, alternate straight-leg `R`, and optically equalized stacked lines; logo approval remains pending.
+- Created an unapproved Mona Sans font-character exploration with point, progress-bar, and register-bar lime signatures; the progress bar is recommended for review.
 
 ## 2026-09-14
 

@@ -33,6 +33,7 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 - [x] Translate the supplied visual references into an original stacked vector wordmark candidate
 - [x] Select custom logo lettering with Instrument Sans as the supporting type family
 - [x] Create a source-versus-custom wordmark recognition pass
+- [x] Create Mona Sans plus lime-marker alternatives
 
 ## Remaining before Sprint 0 review
 
@@ -42,6 +43,7 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 - [ ] Convert approved backlog items into issues
 - [ ] Review the Sprint 0 exit gate
 - [ ] Approve or revise the Practice Athletic Club custom stacked wordmark candidate
+- [ ] Select or reject the Mona Sans plus lime progress-bar option
 
 ## Connections
 

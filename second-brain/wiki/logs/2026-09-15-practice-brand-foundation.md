@@ -27,6 +27,7 @@ Create a complete identity for the fictional gym before designing or implementin
 - A reference-led stacked wordmark system is now the active candidate; it is not yet approved.
 - The user accepted the strategy of custom logo lettering with Instrument Sans as the supporting brand and interface family.
 - A custom recognition pass now adds a repeated flat-apex `A`, alternate straight-leg `R`, and optical line-width corrections; logo approval remains pending.
+- The user requested a stronger font with a green differentiator. Mona Sans plus a short lime progress bar is now documented as an unapproved recommended option.
 
 ## Evidence created
 
@@ -36,10 +37,12 @@ Create a complete identity for the fictional gym before designing or implementin
 - `docs/brand/visual-territories.md` and three original concept moodboards
 - `docs/brand/logo-system.md`, a source-versus-custom comparison board, and outlined SVG variants for stacked, inverse, horizontal, and compact use
 - Instrument Sans variable font and its SIL Open Font License source record
+- Mona Sans source, OFL record, and three vector lime-marker options
 
 ## Unresolved work
 
 - Approve or revise the custom stacked wordmark before finalizing the palette and remaining visual system.
+- Select or reject the Mona Sans plus lime progress-bar option.
 - Perform manual trademark and relevant jurisdiction checks before treating the name as commercially cleared.
 
 ## Next safe action

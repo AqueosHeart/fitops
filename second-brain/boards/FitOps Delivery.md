@@ -17,6 +17,7 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 - Create the `FitOps Delivery` project fields and views
 - Convert the Sprint 0 backlog into GitHub Issues
 - Approve or revise the Practice Athletic Club custom stacked wordmark candidate
+- Select or reject the Mona Sans plus lime progress-bar option
 
 ## In Progress
 
