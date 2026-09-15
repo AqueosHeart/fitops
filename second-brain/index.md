@@ -21,6 +21,7 @@ updated: 2026-09-15
 - [Product requirements](../docs/product-requirements.md)
 - [UX plan](../docs/ux-plan.md)
 - [Practice Athletic Club brand foundation](../docs/brand/brand-foundation.md)
+- [Practice Athletic Club visual territories](../docs/brand/visual-territories.md)
 - [Architecture](../docs/architecture.md)
 - [Data model](../docs/data-model.md)
 - [REST API](../docs/api.md)

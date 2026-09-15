@@ -16,7 +16,7 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 
 - Create the `FitOps Delivery` project fields and views
 - Convert the Sprint 0 backlog into GitHub Issues
-- Create three Practice Athletic Club visual territories
+- Select one Practice Athletic Club visual territory
 
 ## In Progress
 
@@ -34,3 +34,4 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 - Eight-phase SDLC roadmap
 - Public repository and second-brain setup
 - Practice Athletic Club name and initial brand foundation
+- Three Practice Athletic Club visual territories

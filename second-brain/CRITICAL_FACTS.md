@@ -9,6 +9,7 @@ updated: 2026-09-15
 - Status: planning only; no application functionality has been implemented.
 - Public-facing fictional gym brand: `Practice Athletic Club`; `FitOps` remains the repository and internal project codename.
 - Branding scope is identity only for the current stage; no website or application implementation is authorized by the branding work.
+- Three Practice Athletic Club visual territories are documented; Territory A, Quiet Strength, is recommended but no territory is approved yet.
 - Public repository: `https://github.com/AqueosHeart/fitops`.
 - Current lifecycle position: SDLC phases 1 and 2, Sprint 0.
 - Delivery model: eight SDLC phases with one-week, Scrum-inspired sprints.
