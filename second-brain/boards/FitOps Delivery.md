@@ -1,7 +1,7 @@
 ---
 type: board-mirror
 project: FitOps
-updated: 2026-09-14
+updated: 2026-09-15
 ---
 
 # FitOps Delivery Board Mirror
@@ -16,6 +16,7 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 
 - Create the `FitOps Delivery` project fields and views
 - Convert the Sprint 0 backlog into GitHub Issues
+- Create three Practice Athletic Club visual territories
 
 ## In Progress
 
@@ -32,3 +33,4 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 - Initial API contract
 - Eight-phase SDLC roadmap
 - Public repository and second-brain setup
+- Practice Athletic Club name and initial brand foundation

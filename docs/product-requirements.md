@@ -2,7 +2,9 @@
 
 ## Decision summary
 
-FitOps will be a portfolio-grade full-stack product, not a static gym landing page. The first release will prove one complete business flow: a visitor discovers the gym, signs into a demo member account, finds a class, books it, and later cancels it while capacity and waitlist rules remain correct.
+The public-facing fictional gym is **Practice Athletic Club**. `FitOps` remains the repository and internal project codename.
+
+The project will be a portfolio-grade full-stack product, not a static gym landing page. The first release will prove one complete business flow: a visitor discovers Practice Athletic Club, signs into a demo member account, finds a class, books it, and later cancels it while capacity and waitlist rules remain correct.
 
 ## Pre-build risk review
 

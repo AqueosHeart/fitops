@@ -1,10 +1,17 @@
 ---
 type: activity-log
 project: FitOps
-updated: 2026-09-14
+updated: 2026-09-15
 ---
 
 # FitOps Activity Log
+
+## 2026-09-15
+
+- Replaced `FitOps` as the fictional gym's customer-facing name with **Practice Athletic Club**; retained `FitOps` as the repository and internal project codename.
+- Limited the current branding work to brand identity and its artifacts, with no application or website implementation.
+- Documented the initial positioning, audience, promise, personality, voice, naming rules, visual principles, required outputs, and next visual-territory review gate.
+- Kept `Progress is a practice.` as a working tagline pending explicit approval.
 
 ## 2026-09-14
 

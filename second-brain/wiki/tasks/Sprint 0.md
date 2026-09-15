@@ -3,7 +3,7 @@ type: sprint
 project: FitOps
 sprint: Sprint 0
 status: active
-updated: 2026-09-14
+updated: 2026-09-15
 ---
 
 # Sprint 0 Product Foundation
@@ -24,6 +24,8 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 - [x] SDLC and sprint plan
 - [x] Tool ownership map
 - [x] Obsidian-compatible second brain
+- [x] Approve the public gym name `Practice Athletic Club`
+- [x] Document the initial brand foundation and voice boundaries
 
 ## Remaining before Sprint 0 review
 
@@ -32,6 +34,7 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 - [ ] Create GitHub fields and views
 - [ ] Convert approved backlog items into issues
 - [ ] Review the Sprint 0 exit gate
+- [ ] Review three Practice Athletic Club visual territories and select one
 
 ## Connections
 

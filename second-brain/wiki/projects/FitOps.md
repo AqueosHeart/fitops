@@ -3,16 +3,16 @@ type: project
 status: active
 phase: requirements
 sprint: Sprint 0
-updated: 2026-09-14
+updated: 2026-09-15
 ---
 
 # FitOps
 
-FitOps helps gym members discover and reserve classes while giving staff a dependable way to manage schedules, capacity, cancellations, and waitlists.
+FitOps is the repository and internal project codename. The public-facing fictional gym is **Practice Athletic Club**, which helps members discover and reserve classes while giving staff a dependable way to manage schedules, capacity, cancellations, and waitlists.
 
 ## Current outcome
 
-The planning foundation exists. Implementation must not begin until the Sprint 0 requirements review and Sprint 1 low-fidelity design gate are complete.
+The planning foundation exists and the public brand name is approved. The brand foundation is documented, while its tagline and visual identity remain under review. Implementation must not begin until the Sprint 0 requirements review and Sprint 1 low-fidelity design gate are complete.
 
 ## Critical journey
 
@@ -34,3 +34,4 @@ Visitor discovers FitOps, browses the schedule, signs into a fictional demo acco
 - [[../concepts/Database Source of Truth]]
 - [[../decisions/Decision Index]]
 - [Product requirements](../../../docs/product-requirements.md)
+- [Brand foundation](../../../docs/brand/brand-foundation.md)

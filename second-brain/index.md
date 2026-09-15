@@ -2,7 +2,7 @@
 type: index
 project: FitOps
 status: active
-updated: 2026-09-14
+updated: 2026-09-15
 ---
 
 # FitOps Knowledge Index
@@ -20,6 +20,7 @@ updated: 2026-09-14
 - [Project overview](../README.md)
 - [Product requirements](../docs/product-requirements.md)
 - [UX plan](../docs/ux-plan.md)
+- [Practice Athletic Club brand foundation](../docs/brand/brand-foundation.md)
 - [Architecture](../docs/architecture.md)
 - [Data model](../docs/data-model.md)
 - [REST API](../docs/api.md)
@@ -40,4 +41,5 @@ updated: 2026-09-14
 
 - [[log]]
 - [[wiki/logs/2026-09-14-fitops-foundation-session|FitOps foundation session]]
+- [[wiki/logs/2026-09-15-practice-brand-foundation|Practice Athletic Club brand foundation]]
 - [[raw/06-flash_notes/2026-09-14-conversation-record|Planning conversation record]]
