@@ -20,7 +20,9 @@ Create a complete identity for the fictional gym before designing or implementin
 - The working brand character is disciplined, precise, welcoming, and energetic without macho, militaristic, or transformation-hype conventions.
 - `Progress is a practice.` remains a working tagline and is not yet approved.
 - Three visual territories were created: Quiet Strength, Kinetic Editorial, and Modern Club.
-- Quiet Strength is recommended but no visual territory is approved yet.
+- The user selected Quiet Strength as the approved visual territory.
+- Three monochrome logo concepts were created and favicon-tested: Interval P, Continuous P, and Session Mark.
+- Interval P is recommended but no logo concept is approved yet.
 
 ## Evidence created
 
@@ -28,12 +30,14 @@ Create a complete identity for the fictional gym before designing or implementin
 - Product-requirement clarification distinguishing the public brand from the repository codename
 - Updated project, sprint, board, index, critical-facts, and activity-log context
 - `docs/brand/visual-territories.md` and three original concept moodboards
+- `docs/brand/logo-concepts.md`, editable SVG concepts, PNG previews, and favicon test evidence
+- Manrope variable font and its SIL Open Font License source record
 
 ## Unresolved work
 
-- Select one territory before finalizing the logo, palette, typography, and visual system.
+- Select one logo concept before finalizing the mark, palette, typography, and visual system.
 - Perform manual trademark and relevant jurisdiction checks before treating the name as commercially cleared.
 
 ## Next safe action
 
-Select one of the three documented visual territories, then develop three monochrome logo concepts within the approved direction.
+Select one of the three monochrome logo concepts. Refine only that concept into the initial responsive logo system before applying color.

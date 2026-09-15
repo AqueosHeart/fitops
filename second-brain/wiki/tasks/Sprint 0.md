@@ -27,6 +27,8 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 - [x] Approve the public gym name `Practice Athletic Club`
 - [x] Document the initial brand foundation and voice boundaries
 - [x] Create three Practice Athletic Club visual territories
+- [x] Select visual territory A, Quiet Strength
+- [x] Create and favicon-test three monochrome logo concepts
 
 ## Remaining before Sprint 0 review
 
@@ -35,7 +37,7 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 - [ ] Create GitHub fields and views
 - [ ] Convert approved backlog items into issues
 - [ ] Review the Sprint 0 exit gate
-- [ ] Select one Practice Athletic Club visual territory
+- [ ] Select one Practice Athletic Club monochrome logo concept
 
 ## Connections
 

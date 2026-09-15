@@ -12,7 +12,7 @@ FitOps is the repository and internal project codename. The public-facing fictio
 
 ## Current outcome
 
-The planning foundation exists and the public brand name is approved. The brand foundation and three visual territories are documented. Territory A, Quiet Strength, is recommended, while the territory, tagline, and visual identity remain under review. Implementation must not begin until the Sprint 0 requirements review and Sprint 1 low-fidelity design gate are complete.
+The planning foundation exists, the public brand name is approved, and visual territory A, Quiet Strength, is selected. Three monochrome logo concepts are documented; Interval P is recommended but not yet approved. The tagline, palette, typography, and final identity remain under review. Implementation must not begin until the Sprint 0 requirements review and Sprint 1 low-fidelity design gate are complete.
 
 ## Critical journey
 
@@ -36,3 +36,4 @@ Visitor discovers FitOps, browses the schedule, signs into a fictional demo acco
 - [Product requirements](../../../docs/product-requirements.md)
 - [Brand foundation](../../../docs/brand/brand-foundation.md)
 - [Visual territories](../../../docs/brand/visual-territories.md)
+- [Monochrome logo concepts](../../../docs/brand/logo-concepts.md)

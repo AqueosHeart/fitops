@@ -16,7 +16,7 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 
 - Create the `FitOps Delivery` project fields and views
 - Convert the Sprint 0 backlog into GitHub Issues
-- Select one Practice Athletic Club visual territory
+- Select one Practice Athletic Club monochrome logo concept
 
 ## In Progress
 
@@ -35,3 +35,4 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 - Public repository and second-brain setup
 - Practice Athletic Club name and initial brand foundation
 - Three Practice Athletic Club visual territories
+- Quiet Strength territory selection and three monochrome logo concepts

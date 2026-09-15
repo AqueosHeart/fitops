@@ -22,6 +22,7 @@ updated: 2026-09-15
 - [UX plan](../docs/ux-plan.md)
 - [Practice Athletic Club brand foundation](../docs/brand/brand-foundation.md)
 - [Practice Athletic Club visual territories](../docs/brand/visual-territories.md)
+- [Practice Athletic Club monochrome logo concepts](../docs/brand/logo-concepts.md)
 - [Architecture](../docs/architecture.md)
 - [Data model](../docs/data-model.md)
 - [REST API](../docs/api.md)

@@ -2,7 +2,7 @@
 
 ## Status
 
-The public-facing name **Practice Athletic Club** is approved. The visual identity, tagline, and asset system remain in development and require explicit review before they are treated as final.
+The public-facing name **Practice Athletic Club** and the Quiet Strength visual territory are approved. The logo, tagline, palette, typography system, and asset system remain in development and require explicit review before they are treated as final.
 
 `FitOps` remains the repository and internal project codename. It must not appear as the fictional gym's customer-facing name.
 
@@ -113,4 +113,4 @@ This branding stage does not include application code, website implementation, U
 
 ## Next review gate
 
-Create three clearly differentiated visual territories for Practice Athletic Club. Each territory must include typography, color atmosphere, logo approach, photography, materiality, and rationale. No territory becomes the identity until one is explicitly selected.
+Select one of the three monochrome logo concepts created inside the approved Quiet Strength territory. Refine only the selected concept before applying color.

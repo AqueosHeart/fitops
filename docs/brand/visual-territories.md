@@ -2,7 +2,7 @@
 
 ## Review status
 
-These three territories are concept directions, not approved identity systems. Their palettes, type choices, and logo ideas are intentionally provisional. Select one territory before logo development or detailed brand-guide production begins.
+Territory A, **Quiet Strength**, was approved on 2026-09-15. Territories B and C remain documented as rejected alternatives. The approved territory's palette and typography are still provisional until their dedicated review stages.
 
 The moodboards use original AI-generated imagery for private art-direction exploration. They are not final campaign photographs, proof of a real facility, or approved brand assets.
 
@@ -207,6 +207,6 @@ It can drift toward a private club, wellness studio, or lifestyle brand if perfo
 
 If selected, borrow only one trait from Territory C: its warmer depiction of member connection. Do not merge the palettes or typography systems. Territory B should remain a distinct alternative, not a source of arbitrary energetic decoration.
 
-## Selection gate
+## Selection outcome
 
-Choose A, B, or C. After selection, the next stage is logo exploration within that territory: three monochrome concepts, evaluated through favicon, silhouette, inverse, physical-scale, and wordmark-legibility tests.
+Territory A was selected. The next gate is selection of one of the three monochrome logo concepts documented in `logo-concepts.md`.
