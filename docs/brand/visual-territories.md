@@ -209,4 +209,4 @@ If selected, borrow only one trait from Territory C: its warmer depiction of mem
 
 ## Selection outcome
 
-Territory A was selected. The next gate is selection of one of the three monochrome logo concepts documented in `logo-concepts.md`.
+Territory A was selected. After rejecting two exploratory logo rounds, the active candidate is the reference-led stacked wordmark documented in `logo-system.md`. It still requires explicit approval.

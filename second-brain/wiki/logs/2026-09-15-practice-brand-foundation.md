@@ -23,7 +23,8 @@ Create a complete identity for the fictional gym before designing or implementin
 - The user selected Quiet Strength as the approved visual territory.
 - The first monochrome, icon-led logo round was rejected as generic and insufficiently premium.
 - Three typography-first replacement directions were created: Foundation, Standard, and Editorial Club.
-- Editorial Club is recommended but no logo direction is approved yet.
+- The user then supplied two visual references clarifying that the desired identity is a compact stacked sans-serif wordmark rather than a decorative logo concept.
+- A reference-led stacked wordmark system is now the active candidate; it is not yet approved.
 
 ## Evidence created
 
@@ -31,14 +32,14 @@ Create a complete identity for the fictional gym before designing or implementin
 - Product-requirement clarification distinguishing the public brand from the repository codename
 - Updated project, sprint, board, index, critical-facts, and activity-log context
 - `docs/brand/visual-territories.md` and three original concept moodboards
-- `docs/brand/logo-concepts.md`, editable typography-first SVG directions, PNG previews, and compact-mark test evidence
-- Manrope, Archivo Black, Archivo Narrow, and Cormorant Garamond font sources with SIL Open Font License records
+- `docs/brand/logo-system.md`, an inspection board, and outlined SVG variants for stacked, inverse, horizontal, and compact use
+- Manrope variable font and its SIL Open Font License source record
 
 ## Unresolved work
 
-- Select one revised logo direction before finalizing the mark, palette, typography, and visual system.
+- Approve or revise the reference-led stacked wordmark before finalizing the palette, typography, and visual system.
 - Perform manual trademark and relevant jurisdiction checks before treating the name as commercially cleared.
 
 ## Next safe action
 
-Select one of the three typography-first logo directions. Refine only that direction into the initial responsive logo system before applying color.
+Confirm whether the stacked wordmark captures the supplied references. If approved, complete optical refinement, size rules, and real-context tests before applying color.

@@ -19,6 +19,8 @@ updated: 2026-09-15
 - Recommended Interval P for refinement without marking the logo concept approved.
 - Recorded the user's rejection of the icon-led logo round as generic and insufficiently premium.
 - Replaced it with three typography-first directions: Foundation, Standard, and Editorial Club; recommended Editorial Club without marking it approved.
+- Reviewed two user-supplied visual references and identified the stacked name, not an emblem, as the intended identity.
+- Superseded the exploratory logo rounds with a reference-led stacked wordmark system containing primary, inverse, horizontal, and compact vector variants; approval remains pending.
 
 ## 2026-09-14
 

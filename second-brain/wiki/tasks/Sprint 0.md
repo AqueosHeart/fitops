@@ -30,6 +30,7 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 - [x] Select visual territory A, Quiet Strength
 - [x] Reject the generic icon-led logo round
 - [x] Create and compact-test three typography-first logo directions
+- [x] Translate the supplied visual references into an original stacked vector wordmark candidate
 
 ## Remaining before Sprint 0 review
 
@@ -38,7 +39,7 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 - [ ] Create GitHub fields and views
 - [ ] Convert approved backlog items into issues
 - [ ] Review the Sprint 0 exit gate
-- [ ] Select one revised Practice Athletic Club typography-first logo direction
+- [ ] Approve or revise the Practice Athletic Club stacked wordmark candidate
 
 ## Connections
 

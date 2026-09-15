@@ -113,4 +113,4 @@ This branding stage does not include application code, website implementation, U
 
 ## Next review gate
 
-Select one of the three revised typography-first logo directions created inside the approved Quiet Strength territory. Refine only the selected direction before applying color.
+Approve or revise the reference-led stacked wordmark candidate. After approval, complete optical refinement, minimum-size tests, clear-space rules, and context mockups before applying color.
