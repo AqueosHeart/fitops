@@ -28,7 +28,8 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 - [x] Document the initial brand foundation and voice boundaries
 - [x] Create three Practice Athletic Club visual territories
 - [x] Select visual territory A, Quiet Strength
-- [x] Create and favicon-test three monochrome logo concepts
+- [x] Reject the generic icon-led logo round
+- [x] Create and compact-test three typography-first logo directions
 
 ## Remaining before Sprint 0 review
 
@@ -37,7 +38,7 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 - [ ] Create GitHub fields and views
 - [ ] Convert approved backlog items into issues
 - [ ] Review the Sprint 0 exit gate
-- [ ] Select one Practice Athletic Club monochrome logo concept
+- [ ] Select one revised Practice Athletic Club typography-first logo direction
 
 ## Connections
 

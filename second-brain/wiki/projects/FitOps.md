@@ -12,7 +12,7 @@ FitOps is the repository and internal project codename. The public-facing fictio
 
 ## Current outcome
 
-The planning foundation exists, the public brand name is approved, and visual territory A, Quiet Strength, is selected. Three monochrome logo concepts are documented; Interval P is recommended but not yet approved. The tagline, palette, typography, and final identity remain under review. Implementation must not begin until the Sprint 0 requirements review and Sprint 1 low-fidelity design gate are complete.
+The planning foundation exists, the public brand name is approved, and visual territory A, Quiet Strength, is selected. The first icon-led logo round was rejected and replaced with three typography-first directions; Editorial Club is recommended but not yet approved. The tagline, palette, typography, and final identity remain under review. Implementation must not begin until the Sprint 0 requirements review and Sprint 1 low-fidelity design gate are complete.
 
 ## Critical journey
 

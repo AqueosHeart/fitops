@@ -17,6 +17,8 @@ updated: 2026-09-15
 - Recorded the user's approval of Quiet Strength as the Practice Athletic Club visual territory.
 - Created three deterministic monochrome vector logo concepts and compared their favicon legibility at 128, 32, and 16 pixels.
 - Recommended Interval P for refinement without marking the logo concept approved.
+- Recorded the user's rejection of the icon-led logo round as generic and insufficiently premium.
+- Replaced it with three typography-first directions: Foundation, Standard, and Editorial Club; recommended Editorial Club without marking it approved.
 
 ## 2026-09-14
 

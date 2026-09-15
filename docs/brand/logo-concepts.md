@@ -1,110 +1,76 @@
-# Practice Athletic Club Monochrome Logo Concepts
+# Practice Athletic Club Typography-First Logo Directions
 
 ## Status
 
-Territory A, **Quiet Strength**, is approved. These logo concepts are a selection set inside that territory; none is the final logo until explicitly selected and refined.
+Quiet Strength remains the approved visual territory. The first icon-led logo round was rejected on 2026-09-15 because it felt generic, software-like, and insufficiently premium.
 
-The concepts are intentionally monochrome. A mark that depends on the signal-lime accent to communicate its idea is not strong enough to advance.
+This second round starts with the name rather than a symbol. The routes are monochrome and use open-license type sources converted to vector outlines. None is approved yet.
 
-## Comparison
+## Revised comparison
 
-![Practice Athletic Club logo concept comparison](logo-concepts/practice-logo-concepts-comparison.png)
+![Practice Athletic Club typography-first logo directions](logo-concepts/practice-logo-round2-comparison.png)
 
-## Concept 01 — Interval P
+## 01 — Foundation
 
-![Interval P lockup](logo-concepts/practice-01-interval-lockup.png)
+![Foundation wordmark](logo-concepts/practice-r2-01-foundation.png)
 
-### Idea
+A broad, architectural wordmark intended to feel permanent and confident on a building, training kit, or membership card. The compact `P / AC` field is subordinate to the name.
 
-A stable uppercase `P` is intersected by three measured entry strokes. The repetition represents sessions, sets, and steady progress without depicting equipment.
+**Strengths:** immediate, robust, highly legible.
 
-### Character
+**Risk:** without deeper letter customization it can still feel like a premium apparel label rather than a proprietary club identity.
 
-- Precise
-- Athletic
-- Structured
-- Compact
-- Recognizable without being aggressive
+## 02 — Standard
 
-### Refinement needs
+![Standard wordmark](logo-concepts/practice-r2-02-standard.png)
 
-- Optically balance the three interval strokes against the bowl
-- Test whether two or three strokes produce the stronger micro mark
-- Refine the join so the detail feels rhythmic rather than like speed lines
-- Customize the wordmark spacing and selected letterforms after mark approval
+A condensed athletic wordmark with the descriptor treated as a disciplined utility label. It has the strongest performance character of the set.
 
-## Concept 02 — Continuous P
+**Strengths:** athletic, space-efficient, effective on signage and apparel.
 
-![Continuous P lockup](logo-concepts/practice-02-continuous-lockup.png)
+**Risk:** the framed `P` can drift toward institutional or varsity language if overused.
 
-### Idea
+## 03 — Editorial Club
 
-A single continuous construction expresses practice as an ongoing process rather than a finish line.
+![Editorial Club wordmark](logo-concepts/practice-r2-03-editorial-club.png)
 
-### Character
+A high-contrast serif wordmark paired with restrained sans-serif information typography. It presents Practice as a contemporary club and cultural space, not only a room of equipment.
 
-- Calm
-- Fluid
-- Minimal
-- Approachable
+**Strengths:** distinctive within fitness, premium, calm, international.
 
-### Refinement needs
+**Risk:** the identity will need forceful photography, direct language, and athletic layout behavior so it never becomes delicate or spa-like.
 
-- Resolve the lowercase appearance
-- Create a more proprietary relationship between stem and bowl
-- Prevent resemblance to generic monoline `P` symbols
+## Compact-mark evidence
 
-## Concept 03 — Session Mark
+![Practice compact-mark stress test](logo-concepts/practice-logo-round2-compact-tests.png)
 
-![Session Mark lockup](logo-concepts/practice-03-session-mark-lockup.png)
-
-### Idea
-
-A stable `P` is paired with a square completion mark. The square can become a recurring graphic device for completed sessions and calls to action.
-
-### Character
-
-- Direct
-- Modular
-- Digital-friendly
-- Deliberate
-
-### Refinement needs
-
-- Reduce parking-sign associations
-- Decide whether punctuation belongs in the formal name
-- Ensure the square remains visible without dominating at small sizes
-- Avoid repeating the device so often that it becomes a gimmick
-
-## Favicon evidence
-
-![Favicon legibility tests](logo-concepts/practice-favicon-legibility-tests.png)
-
-The preview compares the marks at 128, 32, and 16 pixels. This is a visual screening test, not a claim that rasterized previews replace final pixel-grid adjustment.
-
-| Test | 01 Interval P | 02 Continuous P | 03 Session Mark |
-| --- | --- | --- | --- |
-| 16 px recognition | Strong | Legible but generic | Legible; dot is fragile |
-| Monochrome | Pass | Pass | Pass |
-| Distinctive silhouette | Strongest | Weak | Medium |
-| Quiet Strength fit | Strong | Medium | Medium |
-| Primary risk | Speed-line reading | Generic lowercase `p` | Parking/punctuation reading |
+The simple `P` marks were rendered at actual 128, 32, and 16-pixel sizes and enlarged without smoothing for inspection. These are stress tests, not final favicon drawings; the selected mark will receive size-specific optical correction.
 
 ## Recommendation
 
-Advance **Concept 01 — Interval P**. It has the clearest connection to repetition, retains its identity at favicon scale, and fits Quiet Strength without relying on a literal gym symbol.
+Advance **03 — Editorial Club**.
 
-The next pass should refine only Concept 01 into:
+The premium athletic category is crowded with heavy sans-serif wordmarks and literal performance symbols. The serif route gives Practice a more ownable voice while remaining disciplined. This follows the strategic lesson, not the artwork, of Third Space's documented use of typography atypical to the fitness sector.
 
-- Primary horizontal lockup
-- Wordmark-only version
-- Compact mark
-- Black-on-white and white-on-black variants
-- 16, 24, and 32-pixel optical corrections
-- Initial clear-space and minimum-size rules
+If approved, the next pass will refine only this route into:
 
-Color should be applied only after the monochrome geometry is approved.
+- A custom PRACTICE wordmark rather than untouched font output
+- Primary and compact lockups
+- A corrected standalone `P`
+- Black-on-bone, bone-on-black, and one-color production variants
+- Clear-space and minimum-size rules
+- Signage, training-kit, membership-card, and booking-interface context tests
+
+Color remains excluded until the wordmark construction is approved.
+
+## Research references
+
+- [Third Space official site](https://www.thirdspace.london/)
+- [Third Space rebrand effectiveness case study](https://effectivedesign.org.uk/sites/default/files/419%20-%20Third%20Space%20Rebrand.pdf)
+- [Equinox official site](https://www.equinox.com/)
+
+These sources were used to understand category conventions. No third-party logo artwork was copied or included.
 
 ## Source files
 
-Each concept includes an editable SVG lockup and SVG favicon test. PNG files are review previews. Manrope is used as an open-source working typeface; its font file and OFL license are stored with the brand materials. The final wordmark will require optical customization rather than relying on untouched font output.
+Each route has an editable SVG with outlined letterforms and a PNG review preview. The working type sources and SIL Open Font License files are stored under `fonts/` for reproducibility.

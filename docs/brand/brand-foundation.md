@@ -113,4 +113,4 @@ This branding stage does not include application code, website implementation, U
 
 ## Next review gate
 
-Select one of the three monochrome logo concepts created inside the approved Quiet Strength territory. Refine only the selected concept before applying color.
+Select one of the three revised typography-first logo directions created inside the approved Quiet Strength territory. Refine only the selected direction before applying color.
