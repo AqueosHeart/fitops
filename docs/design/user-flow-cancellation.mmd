@@ -1,0 +1,17 @@
+flowchart TD
+    StartCancel([Member opens 'My Bookings']) --> ViewActivePasses[View Active Confirmed Reservations]
+    ViewActivePasses --> ClickCancel[Click 'Cancel Booking']
+    ClickCancel --> CheckCutoff{Is cancellation within 2h Cutoff Window?}
+
+    CheckCutoff -- "Yes (Past Cutoff)" --> LockCancel[❌ Cancellation Locked<br/>Policy: Free cancellations close 2h before start]
+    CheckCutoff -- "No (Eligible)" --> OpenDialog[Open Cancellation Warning Dialog<br/>Notice: Spot will transfer to next in line]
+
+    OpenDialog --> Decision{User Choice}
+    Decision -- "Keep Spot" --> AbortCancel[Close Dialog • Reservation Retained]
+    Decision -- "Confirm Cancel" --> ServerTransaction[Execute Atomic Database Transaction]
+
+    ServerTransaction --> CheckQueue{Is Waitlist Queue > 0?}
+    CheckQueue -- "Yes (Members Waiting)" --> AutoPromote[⚡ Automatically Promote #1 in Waitlist to Confirmed Spot]
+    CheckQueue -- "No (Queue Empty)" --> IncrementCapacity[+1 Spot Released to General Schedule Capacity]
+
+    AutoPromote & IncrementCapacity --> UpdateUI[Update My Bookings List & Show Success Toast]

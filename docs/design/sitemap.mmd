@@ -1,0 +1,53 @@
+graph TD
+    classDef public fill:#F2F0E8,stroke:#111310,stroke-width:1.5px,color:#111310;
+    classDef member fill:#E2E0D8,stroke:#111310,stroke-width:1.5px,color:#111310;
+    classDef admin fill:#111310,stroke:#C7F134,stroke-width:1.5px,color:#F2F0E8;
+    classDef modal fill:#FFFFFF,stroke:#8B5CF6,stroke-dasharray: 4 4,stroke-width:1.5px,color:#111310;
+
+    subgraph PublicSpace ["01. Public Experience (Visitor)"]
+        Home["🏠 Home (Landing Page)<br/>• Hero & Value Prop<br/>• Program Taxonomy Guide<br/>• Live Schedule Preview"]:::public
+        Programs["📋 Programs Guide (/programs)<br/>• Strength, Pace, Reset, Open Floor<br/>• Intensity Ratings & Equipment"]:::public
+        PublicSchedule["📅 Public Schedule (/schedule)<br/>• 7-Day Date Strip<br/>• Program Filter & Legend"]:::public
+        Trainers["🏋️ Trainers Roster (/trainers)<br/>• Coach Bios & Specialties"]:::public
+    end
+
+    subgraph GlobalOverlays ["02. Global Overlays & Drawers"]
+        AuthModal["🔑 Demo Auth & Role Switcher<br/>• Fictional Demo Profiles<br/>• Preserves Selected Session Intent"]:::modal
+        SessionDrawer["📄 Session Details Drawer (/sessions/:id)<br/>• Workout Focus & Intensity<br/>• 2h Cutoff Policy Notice<br/>• Membership Gating & Single CTA"]:::modal
+        CancelModal["⚠️ Cancellation Confirmation Dialog<br/>• Cutoff Check & Warning<br/>• Waitlist Auto-Transfer Notice"]:::modal
+    end
+
+    subgraph MemberSpace ["03. Member Experience (Authenticated)"]
+        MemberSchedule["📅 Interactive Schedule (/schedule)<br/>• Live Occupancy Meters<br/>• Real-time Booking Engine"]:::member
+        MyBookings["🎫 My Bookings (/my-bookings)"]:::member
+        ConfirmedPasses["• Confirmed Passes & Pass QR"]:::member
+        WaitlistQueue["• FIFO Waitlist Position Tracker"]:::member
+        MembershipStatus["💳 Membership & Passes Tab<br/>• Active All-Access Status"]:::member
+    end
+
+    subgraph AdminSpace ["04. Operations & Admin (Staff)"]
+        AdminOverview["📊 Operations Overview (/admin)<br/>• Occupancy % & Active Waitlists"]:::admin
+        AdminSessions["🗓️ Session Manager (/admin/sessions)<br/>• High-Density Schedule Table<br/>• Quick Capacity & Trainer Editor"]:::admin
+        AdminRoster["👥 Attendee & Waitlist Roster (/admin/sessions/:id/roster)<br/>• Check-in & Promotion History"]:::admin
+    end
+
+    Home --> Programs
+    Home --> PublicSchedule
+    Home --> Trainers
+
+    PublicSchedule --> SessionDrawer
+    MemberSchedule --> SessionDrawer
+    SessionDrawer --> AuthModal
+
+    AuthModal --> MemberSchedule
+    AuthModal --> MyBookings
+    AuthModal --> AdminOverview
+
+    MyBookings --> ConfirmedPasses
+    MyBookings --> WaitlistQueue
+    MyBookings --> MembershipStatus
+
+    ConfirmedPasses --> CancelModal
+
+    AdminOverview --> AdminSessions
+    AdminSessions --> AdminRoster

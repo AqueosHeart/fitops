@@ -1,0 +1,32 @@
+flowchart TD
+    Start([Visitor lands on Home or Schedule]) --> Educate[Explore Program Taxonomy & Intensity on Landing Page]
+    Educate --> Browse[Open Schedule & Filter by Date / Program]
+    Browse --> SelectClass[Click on 07:00 AM Lower Body Tempo]
+    SelectClass --> OpenDrawer[Open Session Details Drawer with Class Info]
+
+    OpenDrawer --> CheckAuth{Is Visitor Authenticated?}
+
+    CheckAuth -- "No (Guest)" --> OpenAuthModal[Open Demo Auth Modal<br/>Preserve selected session ID]
+    OpenAuthModal --> SelectDemoUser[Select Demo Profile: Alex Rivera]
+    SelectDemoUser --> CheckMembership
+
+    CheckAuth -- "Yes (Logged In)" --> CheckMembership{Has Active Gym Membership?}
+
+    CheckMembership -- "No / Expired" --> ShowPaywall[Show 'Active Membership Required'<br/>CTA: Activate Demo Pass]
+    ShowPaywall --> ActivatePass[Click 'Activate Demo Pass'] --> CheckSpots
+
+    CheckMembership -- "Yes (Active)" --> CheckSpots{Are Spots Available?}
+
+    CheckSpots -- "Yes (Spots > 0)" --> ClickBook[Click 'Book Session']
+    ClickBook --> CheckOverlap{Time Conflict with Existing Booking?}
+
+    CheckOverlap -- "Conflict (Overlap)" --> ShowOverlapError[❌ Show Error: Time Overlap with another reservation]
+    CheckOverlap -- "No Conflict" --> ConfirmBooking[✅ Booking Confirmed in Database]
+    ConfirmBooking --> ShowSuccessToast[Show Success Modal & Add to My Bookings]
+    ShowSuccessToast --> RedirectConfirmed[View in My Bookings • Confirmed Tab]
+
+    CheckSpots -- "No (Capacity Full)" --> ClickWaitlist[Click 'Join FIFO Waitlist']
+    ClickWaitlist --> CheckInWaitlist{Already in Queue?}
+    CheckInWaitlist -- "Yes" --> ShowAlreadyInQueue[Notice: Already in Waitlist queue]
+    CheckInWaitlist -- "No" --> ConfirmWaitlist[⏳ Joined Waitlist: Position #X assigned]
+    ConfirmWaitlist --> RedirectWaitlist[View in My Bookings • Waitlist Tab]

@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="750" viewBox="0 0 1800 750" style="background:#F2F0E8; font-family:'Mona Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#111310" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <text x="80" y="60" font-size="22" font-weight="800" fill="#111310">FLOW 01: VISITOR DISCOVERY, AUTH, MEMBERSHIP &amp; BOOKING</text>
+  <text x="80" y="86" font-size="13" fill="#5C6159">Solves: Program taxonomy education, context-preserving demo auth, membership verification, and FIFO waitlisting</text>
+
+  <!-- Step 1: Entry -->
+  <g transform="translate(80, 130)" filter="url(#shadow)">
+    <rect width="200" height="90" rx="8" fill="#111310" stroke="#C7F134" stroke-width="1.5"/>
+    <text x="16" y="24" font-size="9" font-weight="700" fill="#C7F134">01. ENTRY</text>
+    <text x="16" y="46" font-size="13" font-weight="700" fill="#F2F0E8">Visitor on Home</text>
+    <text x="16" y="68" font-size="11" fill="#D7D4CA">Explores program guide</text>
+  </g>
+
+  <!-- Arrow -->
+  <path d="M 280 175 L 340 175" fill="none" stroke="#6B7068" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 2: Schedule -->
+  <g transform="translate(340, 130)" filter="url(#shadow)">
+    <rect width="200" height="90" rx="8" fill="#FFFFFF" stroke="#D7D4CA" stroke-width="1.5"/>
+    <text x="16" y="24" font-size="9" font-weight="700" fill="#6B7068">02. BROWSE</text>
+    <text x="16" y="46" font-size="13" font-weight="700" fill="#111310">Filter Schedule</text>
+    <text x="16" y="68" font-size="11" fill="#5C6159">Filters by [STRENGTH] &amp; date</text>
+  </g>
+
+  <path d="M 540 175 L 600 175" fill="none" stroke="#6B7068" stroke-width="2"/>
+
+  <!-- Step 3: Drawer -->
+  <g transform="translate(600, 130)" filter="url(#shadow)">
+    <rect width="220" height="90" rx="8" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5"/>
+    <text x="16" y="24" font-size="9" font-weight="700" fill="#8B5CF6">03. DETAILS DRAWER</text>
+    <text x="16" y="46" font-size="13" font-weight="700" fill="#111310">Open Session Drawer</text>
+    <text x="16" y="68" font-size="11" fill="#5C6159">Inspects intensity &amp; cutoff rule</text>
+  </g>
+
+  <path d="M 820 175 L 880 175" fill="none" stroke="#6B7068" stroke-width="2"/>
+
+  <!-- Decision 1: Auth -->
+  <g transform="translate(880, 120)">
+    <polygon points="110,0 220,55 110,110 0,55" fill="#1A1E19" stroke="#EAB308" stroke-width="1.5"/>
+    <text x="110" y="48" font-size="11" font-weight="700" fill="#F2F0E8" text-anchor="middle">Is Visitor</text>
+    <text x="110" y="66" font-size="11" font-weight="700" fill="#F2F0E8" text-anchor="middle">Authenticated?</text>
+  </g>
+
+  <!-- Branch No Auth -> Demo Auth Modal -->
+  <path d="M 990 230 L 990 310" fill="none" stroke="#6B7068" stroke-width="2"/>
+  <rect x="965" y="255" width="50" height="20" rx="4" fill="#111310"/>
+  <text x="990" y="268" font-size="9" font-weight="700" fill="#C7F134" text-anchor="middle">NO</text>
+
+  <g transform="translate(880, 310)" filter="url(#shadow)">
+    <rect width="220" height="90" rx="8" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5"/>
+    <text x="16" y="24" font-size="9" font-weight="700" fill="#8B5CF6">CONTEXT-PRESERVING MODAL</text>
+    <text x="16" y="46" font-size="12" font-weight="700" fill="#111310">Demo Sign-In Modal</text>
+    <text x="16" y="68" font-size="11" fill="#5C6159">Select Alex Rivera • Retains Session</text>
+  </g>
+
+  <!-- Return from Auth Modal to Decision 2 -->
+  <path d="M 1100 355 L 1220 355 L 1220 230" fill="none" stroke="#6B7068" stroke-width="2"/>
+  <path d="M 1100 175 L 1180 175" fill="none" stroke="#6B7068" stroke-width="2"/>
+  <rect x="1120" y="155" width="40" height="20" rx="4" fill="#111310"/>
+  <text x="1140" y="168" font-size="9" font-weight="700" fill="#C7F134" text-anchor="middle">YES</text>
+
+  <!-- Decision 2: Membership -->
+  <g transform="translate(1180, 120)">
+    <polygon points="100,0 200,55 100,110 0,55" fill="#1A1E19" stroke="#EAB308" stroke-width="1.5"/>
+    <text x="100" y="48" font-size="11" font-weight="700" fill="#F2F0E8" text-anchor="middle">Active Gym</text>
+    <text x="100" y="66" font-size="11" font-weight="700" fill="#F2F0E8" text-anchor="middle">Membership?</text>
+  </g>
+
+  <path d="M 1380 175 L 1440 175" fill="none" stroke="#6B7068" stroke-width="2"/>
+
+  <!-- Decision 3: Spots Available -->
+  <g transform="translate(1440, 120)">
+    <polygon points="90,0 180,55 90,110 0,55" fill="#1A1E19" stroke="#EAB308" stroke-width="1.5"/>
+    <text x="90" y="48" font-size="11" font-weight="700" fill="#F2F0E8" text-anchor="middle">Spots</text>
+    <text x="90" y="66" font-size="11" font-weight="700" fill="#F2F0E8" text-anchor="middle">Available?</text>
+  </g>
+
+  <!-- Branch Spots > 0 (Book) -->
+  <path d="M 1530 120 L 1530 50 L 1640 50" fill="none" stroke="#6B7068" stroke-width="2"/>
+  <rect x="1545" y="30" width="70" height="20" rx="4" fill="#111310"/>
+  <text x="1580" y="44" font-size="9" font-weight="700" fill="#C7F134" text-anchor="middle">YES (>0)</text>
+
+  <g transform="translate(1640, 10)" filter="url(#shadow)">
+    <rect width="220" height="80" rx="8" fill="#111310" stroke="#C7F134" stroke-width="1.5"/>
+    <text x="16" y="24" font-size="9" font-weight="700" fill="#C7F134">CONFIRMED RESERVATION</text>
+    <text x="16" y="46" font-size="13" font-weight="700" fill="#F2F0E8">✅ Booking Confirmed</text>
+    <text x="16" y="66" font-size="11" fill="#D7D4CA">Spot reserved in My Bookings</text>
+  </g>
+
+  <!-- Branch Full = 0 (Waitlist) -->
+  <path d="M 1530 230 L 1530 300 L 1640 300" fill="none" stroke="#6B7068" stroke-width="2"/>
+  <rect x="1545" y="280" width="70" height="20" rx="4" fill="#111310"/>
+  <text x="1580" y="294" font-size="9" font-weight="700" fill="#C7F134" text-anchor="middle">FULL (=0)</text>
+
+  <g transform="translate(1640, 260)" filter="url(#shadow)">
+    <rect width="220" height="80" rx="8" fill="#111310" stroke="#C7F134" stroke-width="1.5"/>
+    <text x="16" y="24" font-size="9" font-weight="700" fill="#C7F134">FIFO WAITLIST QUEUE</text>
+    <text x="16" y="46" font-size="13" font-weight="700" fill="#F2F0E8">⏳ Joined Waitlist #X</text>
+    <text x="16" y="66" font-size="11" fill="#D7D4CA">Eligible for auto-promotion</text>
+  </g>
+</svg>

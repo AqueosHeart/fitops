@@ -2,7 +2,7 @@
 
 ## Status
 
-The public-facing name **Practice Athletic Club**, Quiet Strength visual territory, and Mona Sans plus lime progress-bar logo system are approved. The tagline, complete accessible palette, typography hierarchy, and remaining asset system remain in development and require explicit review before they are treated as final.
+`Practice Athletic Club`, Quiet Strength, the Mona Sans plus lime progress-bar wordmark, and the palette/type material are working inputs. The brand is **not defined or approved yet**. They remain available for evaluation in the [brand definition guide](brand-definition-guide.md), and may be revised or replaced after the strategic work is complete.
 
 `FitOps` remains the repository and internal project codename. It must not appear as the fictional gym's customer-facing name.
 
@@ -113,4 +113,4 @@ This branding stage does not include application code, website implementation, U
 
 ## Next review gate
 
-Define the complete accessible palette and Mona Sans hierarchy, then test the approved logo in signage, apparel, social, and booking-context mockups.
+Complete the brand-definition workshop and decide the audience, positioning, promise, offer architecture, personality, and voice. Only then should we select or revise the visual territory, logo, palette, and type system.

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="340" viewBox="0 0 1600 340" style="background:#F2F0E8; font-family:'Mona Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#111310" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <text x="80" y="60" font-size="22" font-weight="800" fill="#111310">FLOW 03: ADMINISTRATOR OPERATIONS &amp; ROSTER SYNC</text>
+  <text x="80" y="86" font-size="13" fill="#5C6159">Solves: Real-time schedule management, trainer assignment, capacity adjustment, and roster oversight</text>
+
+  <!-- Step 1 -->
+  <g transform="translate(80, 130)" filter="url(#shadow)">
+    <rect width="220" height="85" rx="8" fill="#111310" stroke="#DC2626" stroke-width="1.5"/>
+    <text x="16" y="24" font-size="9" font-weight="700" fill="#DC2626">01. AUTH</text>
+    <text x="16" y="46" font-size="13" font-weight="700" fill="#F2F0E8">Sign in as Admin</text>
+    <text x="16" y="66" font-size="11" fill="#D7D4CA">Morgan Vance profile</text>
+  </g>
+
+  <path d="M 300 172 L 360 172" fill="none" stroke="#6B7068" stroke-width="2"/>
+
+  <!-- Step 2 -->
+  <g transform="translate(360, 130)" filter="url(#shadow)">
+    <rect width="220" height="85" rx="8" fill="#FFFFFF" stroke="#DC2626" stroke-width="1.5"/>
+    <text x="16" y="24" font-size="9" font-weight="700" fill="#DC2626">02. DASHBOARD</text>
+    <text x="16" y="46" font-size="13" font-weight="700" fill="#111310">Operations Overview</text>
+    <text x="16" y="66" font-size="11" fill="#5C6159">Inspects capacity % &amp; waitlists</text>
+  </g>
+
+  <path d="M 580 172 L 640 172" fill="none" stroke="#6B7068" stroke-width="2"/>
+
+  <!-- Step 3 -->
+  <g transform="translate(640, 130)" filter="url(#shadow)">
+    <rect width="220" height="85" rx="8" fill="#FFFFFF" stroke="#DC2626" stroke-width="1.5"/>
+    <text x="16" y="24" font-size="9" font-weight="700" fill="#DC2626">03. SESSIONS TABLE</text>
+    <text x="16" y="46" font-size="13" font-weight="700" fill="#111310">Open Session Table</text>
+    <text x="16" y="66" font-size="11" fill="#5C6159">Selects session for management</text>
+  </g>
+
+  <path d="M 860 172 L 920 172" fill="none" stroke="#6B7068" stroke-width="2"/>
+
+  <!-- Step 4 -->
+  <g transform="translate(920, 130)" filter="url(#shadow)">
+    <rect width="220" height="85" rx="8" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5"/>
+    <text x="16" y="24" font-size="9" font-weight="700" fill="#8B5CF6">04. ROSTER DRAWER</text>
+    <text x="16" y="46" font-size="13" font-weight="700" fill="#111310">Edit Capacity / Trainer</text>
+    <text x="16" y="66" font-size="11" fill="#5C6159">Adjusts max spots or coach</text>
+  </g>
+
+  <path d="M 1140 172 L 1200 172" fill="none" stroke="#6B7068" stroke-width="2"/>
+
+  <!-- Step 5 -->
+  <g transform="translate(1200, 130)" filter="url(#shadow)">
+    <rect width="220" height="85" rx="8" fill="#111310" stroke="#C7F134" stroke-width="1.5"/>
+    <text x="16" y="24" font-size="9" font-weight="700" fill="#C7F134">05. LIVE SYNC</text>
+    <text x="16" y="46" font-size="13" font-weight="700" fill="#F2F0E8">⚡ Real-Time Sync</text>
+    <text x="16" y="66" font-size="11" fill="#D7D4CA">Public schedule updated live</text>
+  </g>
+</svg>

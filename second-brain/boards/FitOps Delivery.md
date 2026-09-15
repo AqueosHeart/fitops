@@ -8,34 +8,27 @@ updated: 2026-09-15
 
 GitHub Projects becomes the execution source of truth after setup. This note is an Obsidian navigation aid and must not contradict GitHub issue status.
 
-## Current Sprint
+## Current Sprint (Sprint 0 -> Transition to Sprint 1)
 
 - [[../wiki/tasks/Sprint 0]]
 
-## Ready
+## Ready for Sprint 1
 
-- Create the `FitOps Delivery` project fields and views
-- Convert the Sprint 0 backlog into GitHub Issues
-- Define the complete accessible color palette and Mona Sans hierarchy
-- Test the approved logo in signage, apparel, social, and booking-context mockups
-
-## In Progress
-
-- Connect the repository to the GitHub Project
+- [#6 [DESIGN] Low-Fidelity Desktop & Mobile Booking Flow Wireframes](https://github.com/AqueosHeart/fitops/issues/6)
+- [#7 [ARCH] Domain Boundary & Use-Case Specification](https://github.com/AqueosHeart/fitops/issues/7)
+- [#8 [DATA] Physical Database Schema & Migration Strategy (Prisma)](https://github.com/AqueosHeart/fitops/issues/8)
+- [#9 [SEC] Threat Model & Server-Side Access Control Specification](https://github.com/AqueosHeart/fitops/issues/9)
 
 ## In Review
 
-- Product requirements and business rules
+- None (Sprint 0 Exit Gate Review)
 
-## Done
+## Done (Sprint 0 Completed)
 
-- Initial architecture decision
-- Initial data model
-- Initial API contract
-- Eight-phase SDLC roadmap
+- [#1 [DOCS] Define Product Requirements and Core Booking Rules](https://github.com/AqueosHeart/fitops/issues/1)
+- [#2 [ARCH] Modular Monolith Architecture & Technology Selection](https://github.com/AqueosHeart/fitops/issues/2)
+- [#3 [BRAND] Practice Athletic Club Brand Identity & Design System Guidelines](https://github.com/AqueosHeart/fitops/issues/3)
+- [#4 [DATA] Conceptual Data Model & Entity Relationships (DBML)](https://github.com/AqueosHeart/fitops/issues/4)
+- [#5 [API] Initial REST Contract & Response Shapes](https://github.com/AqueosHeart/fitops/issues/5)
 - Public repository and second-brain setup
-- Practice Athletic Club name and initial brand foundation
-- Three Practice Athletic Club visual territories
-- Quiet Strength territory selection
-- Rejected the generic icon-led logo round and the custom-lettering follow-up
-- Approved the Mona Sans stacked wordmark with a short lime progress bar, including primary, inverse, horizontal, compact, and small-size assets
+- Generated 8 vector presentation slide SVGs in `docs/brand/figma/`

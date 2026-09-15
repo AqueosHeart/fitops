@@ -2,7 +2,7 @@
 
 ## Status
 
-Approved logo direction on 2026-09-15: **Mona Sans Display 800 with a short lime progress bar beneath `CLUB`**. It replaces the rejected custom-lettering and marker explorations.
+Working logo direction: **Mona Sans Display 800 with a short lime progress bar beneath `CLUB`**. It is an exploratory candidate, not an approved final logo. Its fit must be evaluated against the eventual positioning through the [brand definition guide](brand-definition-guide.md).
 
 ![Practice Athletic Club final logo system](logo/practice-logo-system-final-board.png)
 
@@ -37,7 +37,7 @@ Use the compact mark only in recognized contexts: an app icon, social avatar, fa
 | Bone | `#F2F0E8` | Preferred quiet light field |
 | Signal lime | `#C7F134` | Progress bar only |
 
-The identity colors are approved for the mark. They are not yet a complete accessible interface palette; that requires the next color-system review.
+These colors are working choices for the current direction. They are not an approved identity or complete accessible interface palette.
 
 ## Clear space and size
 
@@ -55,6 +55,12 @@ The identity colors are approved for the mark. They are not yet a complete acces
 - Use lime as body text, a dominant surface, or an arbitrary underline elsewhere in the identity.
 - Add dumbbells, shields, wings, flames, or a separate fitness icon to the logo.
 
+## Context validation
+
+Candidate palette and Mona Sans hierarchy are documented in [the color and type system](../color-and-type-system.md). The current mark has been tested in [signage, apparel, social-avatar, and booking-interface contexts](practice-context-tests.svg). This is evaluation material, not a finalized usage system.
+
+![Practice Athletic Club context tests](logo/practice-context-tests.png)
+
 ## Next review gate
 
-Define the complete accessible color palette and Mona Sans typography hierarchy, then test the mark in signage, apparel, social avatar, and booking-context mockups.
+Use the [brand definition guide](brand-definition-guide.md) to establish strategy, then retain, revise, or replace this candidate before preparing final usage rules.

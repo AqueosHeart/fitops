@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice Athletic Club — Brand Identity Guidelines Presentation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #111310;
+      --bone: #F2F0E8;
+      --lime: #C7F134;
+      --surface-muted: #D7D4CA;
+      --text-muted: #5C6159;
+      --dark-card: #1A1E19;
+      --dark-border: #2D332B;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #0B0C0A;
+      color: var(--bone);
+      font-family: 'Mona Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Top Control Bar */
+    header {
+      background-color: var(--ink);
+      border-bottom: 1px solid var(--dark-border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-title h1 {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      color: var(--bone);
+    }
+
+    .tag-badge {
+      background-color: #222620;
+      color: var(--lime);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .controls-center {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-nav {
+      background-color: #1E221D;
+      border: 1px solid var(--dark-border);
+      color: var(--bone);
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-nav:hover {
+      background-color: #282E26;
+      border-color: var(--lime);
+      color: var(--lime);
+    }
+
+    .btn-nav:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      border-color: var(--dark-border);
+      color: var(--text-muted);
+    }
+
+    .counter {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--lime);
+      font-weight: 600;
+      min-width: 80px;
+      text-align: center;
+    }
+
+    .actions-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-action {
+      background-color: var(--lime);
+      color: var(--ink);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.15s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-action:hover {
+      opacity: 0.9;
+    }
+
+    /* Main Stage */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .slide-viewport {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background-color: var(--ink);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      border: 1px solid var(--dark-border);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-viewport img,
+    .slide-viewport object,
+    .slide-viewport iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      object-fit: contain;
+    }
+
+    /* Thumbnails Strip */
+    .thumbnails-container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 24px auto 40px;
+      padding: 0 24px;
+    }
+
+    .thumbnails-title {
+      font-size: 13px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .thumbnails-track {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 12px;
+    }
+
+    .thumb-card {
+      aspect-ratio: 16 / 9;
+      background-color: var(--dark-card);
+      border: 2px solid var(--dark-border);
+      border-radius: 6px;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.15s ease;
+    }
+
+    .thumb-card:hover {
+      border-color: #555;
+      transform: translateY(-2px);
+    }
+
+    .thumb-card.active {
+      border-color: var(--lime);
+      box-shadow: 0 0 0 2px rgba(199, 241, 52, 0.3);
+    }
+
+    .thumb-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+    }
+
+    .thumb-number {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      background-color: rgba(17, 19, 16, 0.85);
+      color: var(--lime);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+
+    .thumb-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+      padding: 4px;
+      font-size: 9px;
+      color: #FFF;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Keyboard Shortcuts Footer */
+    footer {
+      border-top: 1px solid var(--dark-border);
+      padding: 16px 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    footer kbd {
+      background-color: #222620;
+      border: 1px solid #333;
+      color: var(--bone);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-title">
+      <h1>Practice Athletic Club</h1>
+      <span class="tag-badge">BRAND GUIDELINES PRESENTATION</span>
+    </div>
+
+    <div class="controls-center">
+      <button class="btn-nav" id="btnPrev" onclick="prevSlide()">← Prev</button>
+      <div class="counter" id="slideCounter">01 / 08</div>
+      <button class="btn-nav" id="btnNext" onclick="nextSlide()">Next →</button>
+    </div>
+
+    <div class="actions-right">
+      <a class="btn-action" id="btnOpenRaw" href="01_cover.svg" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Open Vector SVG
+      </a>
+      <a class="btn-action" href="practice-brand-presentation-master-board.svg" target="_blank" style="background-color: #222620; color: var(--bone); border: 1px solid var(--dark-border);">
+        All 8 Slides Canvas
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="slide-viewport" id="slideViewport">
+      <img id="currentSlideImg" src="01_cover.svg" alt="Practice Brand Presentation Slide">
+    </div>
+  </main>
+
+  <div class="thumbnails-container">
+    <div class="thumbnails-title">Slide Navigator</div>
+    <div class="thumbnails-track" id="thumbnailsTrack"></div>
+  </div>
+
+  <footer>
+    <span>Navigation: <kbd>←</kbd> <kbd>→</kbd> or <kbd>Space</kbd></span>
+    <span>Fullscreen: <kbd>F</kbd></span>
+    <span>FitOps Design System • 2026</span>
+  </footer>
+
+  <script>
+    const slides = [
+      { file: '01_cover.svg', title: 'Cover & Title' },
+      { file: '02_key_elements_strategy.svg', title: 'Brand Strategy & Tension' },
+      { file: '03_logo_system.svg', title: 'Logo System & Lockups' },
+      { file: '04_color_palette.svg', title: 'Core Colour Palette' },
+      { file: '05_shades_and_semantic_states.svg', title: 'Semantic Status States' },
+      { file: '06_typography_family.svg', title: 'Mona Sans Typeface' },
+      { file: '07_type_hierarchy.svg', title: 'Type Hierarchy & Sizing' },
+      { file: '08_offer_and_ui_context.svg', title: 'Offer & UI Components' }
+    ];
+
+    let currentIndex = 0;
+
+    const imgElement = document.getElementById('currentSlideImg');
+    const counterElement = document.getElementById('slideCounter');
+    const prevBtn = document.getElementById('btnPrev');
+    const nextBtn = document.getElementById('btnNext');
+    const rawLink = document.getElementById('btnOpenRaw');
+    const track = document.getElementById('thumbnailsTrack');
+
+    // Build thumbnails
+    slides.forEach((s, idx) => {
+      const card = document.createElement('div');
+      card.className = `thumb-card ${idx === 0 ? 'active' : ''}`;
+      card.onclick = () => goToSlide(idx);
+      card.innerHTML = `
+        <span class="thumb-number">0${idx + 1}</span>
+        <img src="${s.file}" alt="${s.title}">
+        <div class="thumb-label">${s.title}</div>
+      `;
+      track.appendChild(card);
+    });
+
+    function updateSlide() {
+      imgElement.src = slides[currentIndex].file;
+      counterElement.textContent = `0${currentIndex + 1} / 0${slides.length}`;
+      rawLink.href = slides[currentIndex].file;
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === slides.length - 1;
+
+      // Update active thumb
+      document.querySelectorAll('.thumb-card').forEach((card, idx) => {
+        card.classList.toggle('active', idx === currentIndex);
+      });
+    }
+
+    function prevSlide() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateSlide();
+      }
+    }
+
+    function nextSlide() {
+      if (currentIndex < slides.length - 1) {
+        currentIndex++;
+        updateSlide();
+      }
+    }
+
+    function goToSlide(index) {
+      currentIndex = index;
+      updateSlide();
+    }
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key.toLowerCase() === 'f') {
+        toggleFullScreen();
+      }
+    });
+
+    function toggleFullScreen() {
+      const elem = document.getElementById('slideViewport');
+      if (!document.fullscreenElement) {
+        elem.requestFullscreen().catch(err => console.log(err));
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    updateSlide();
+  </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+
+<defs>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,300..900;1,300..900&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap');
+    .font-sans { font-family: 'Mona Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</defs>
+
+  <rect width="1920" height="1080" fill="#F2F0E8"/>
+
+  <!-- Top Header -->
+  <text x="120" y="90" fill="#5C6159" class="font-mono" font-size="14" font-weight="600" letter-spacing="2">04 / SEMANTIC STATES &amp; BADGES</text>
+  <text x="1800" y="90" fill="#5C6159" class="font-mono" font-size="14" text-anchor="end">PAGE 05 / 08</text>
+  <line x1="120" y1="120" x2="1800" y2="120" stroke="#D7D4CA" stroke-width="1.5"/>
+
+  <!-- Section Title -->
+  <text x="120" y="190" fill="#111310" class="font-sans" font-size="44" font-weight="800" letter-spacing="-1">Operational Status Palette</text>
+  <text x="120" y="235" fill="#5C6159" class="font-sans" font-size="20">Functional cues for bookings, waitlists, cutoffs, and cancellations with accessible contrast.</text>
+
+  <!-- 4 State Cards -->
+  <!-- State 1: Confirmed / Success -->
+  <g transform="translate(120, 290)">
+    <rect width="390" height="480" rx="16" fill="#FFFFFF" stroke="#D7D4CA" stroke-width="1.5"/>
+    <rect x="30" y="30" width="330" height="140" rx="12" fill="#1F4D32"/>
+    <text x="60" y="110" fill="#FFFFFF" class="font-sans" font-size="28" font-weight="700">BOOKED</text>
+    <text x="30" y="220" fill="#111310" class="font-sans" font-size="22" font-weight="700">Success Forest</text>
+    <text x="30" y="255" fill="#5C6159" class="font-mono" font-size="14">HEX: #1F4D32</text>
+    <text x="30" y="285" fill="#5C6159" class="font-mono" font-size="14">RGB: 31, 77, 50</text>
+    <text x="30" y="330" fill="#111310" class="font-sans" font-size="15" font-weight="600">Usage:</text>
+    <text x="30" y="360" fill="#5C6159" class="font-sans" font-size="15">Confirmed reservation badge,</text>
+    <text x="30" y="385" fill="#5C6159" class="font-sans" font-size="15">spot promotion success toast.</text>
+    <rect x="30" y="420" width="130" height="28" rx="6" fill="#1F4D32"/>
+    <text x="45" y="439" fill="#FFFFFF" class="font-mono" font-size="12" font-weight="700">CONTRAST 9.7:1</text>
+  </g>
+
+  <!-- State 2: Waitlist / Warning -->
+  <g transform="translate(550, 290)">
+    <rect width="390" height="480" rx="16" fill="#FFFFFF" stroke="#D7D4CA" stroke-width="1.5"/>
+    <rect x="30" y="30" width="330" height="140" rx="12" fill="#7A4B00"/>
+    <text x="60" y="110" fill="#FFFFFF" class="font-sans" font-size="28" font-weight="700">WAITLIST #2</text>
+    <text x="30" y="220" fill="#111310" class="font-sans" font-size="22" font-weight="700">Warning Amber</text>
+    <text x="30" y="255" fill="#5C6159" class="font-mono" font-size="14">HEX: #7A4B00</text>
+    <text x="30" y="285" fill="#5C6159" class="font-mono" font-size="14">RGB: 122, 75, 0</text>
+    <text x="30" y="330" fill="#111310" class="font-sans" font-size="15" font-weight="600">Usage:</text>
+    <text x="30" y="360" fill="#5C6159" class="font-sans" font-size="15">Full capacity notice, waitlist queue,</text>
+    <text x="30" y="385" fill="#5C6159" class="font-sans" font-size="15">approaching booking cutoff.</text>
+    <rect x="30" y="420" width="130" height="28" rx="6" fill="#7A4B00"/>
+    <text x="45" y="439" fill="#FFFFFF" class="font-mono" font-size="12" font-weight="700">CONTRAST 7.4:1</text>
+  </g>
+
+  <!-- State 3: Cancelled / Danger -->
+  <g transform="translate(980, 290)">
+    <rect width="390" height="480" rx="16" fill="#FFFFFF" stroke="#D7D4CA" stroke-width="1.5"/>
+    <rect x="30" y="30" width="330" height="140" rx="12" fill="#9E2E25"/>
+    <text x="60" y="110" fill="#FFFFFF" class="font-sans" font-size="28" font-weight="700">CANCELLED</text>
+    <text x="30" y="220" fill="#111310" class="font-sans" font-size="22" font-weight="700">Danger Red</text>
+    <text x="30" y="255" fill="#5C6159" class="font-mono" font-size="14">HEX: #9E2E25</text>
+    <text x="30" y="285" fill="#5C6159" class="font-mono" font-size="14">RGB: 158, 46, 37</text>
+    <text x="30" y="330" fill="#111310" class="font-sans" font-size="15" font-weight="600">Usage:</text>
+    <text x="30" y="360" fill="#5C6159" class="font-sans" font-size="15">Cancellation confirmation,</text>
+    <text x="30" y="385" fill="#5C6159" class="font-sans" font-size="15">destructive action triggers.</text>
+    <rect x="30" y="420" width="130" height="28" rx="6" fill="#9E2E25"/>
+    <text x="45" y="439" fill="#FFFFFF" class="font-mono" font-size="12" font-weight="700">CONTRAST 7.3:1</text>
+  </g>
+
+  <!-- State 4: Focus & Active Outline -->
+  <g transform="translate(1410, 290)">
+    <rect width="390" height="480" rx="16" fill="#FFFFFF" stroke="#D7D4CA" stroke-width="1.5"/>
+    <rect x="30" y="30" width="330" height="140" rx="12" fill="#23613F"/>
+    <text x="60" y="110" fill="#FFFFFF" class="font-sans" font-size="28" font-weight="700">FOCUS RING</text>
+    <text x="30" y="220" fill="#111310" class="font-sans" font-size="22" font-weight="700">Focus Forest</text>
+    <text x="30" y="255" fill="#5C6159" class="font-mono" font-size="14">HEX: #23613F</text>
+    <text x="30" y="285" fill="#5C6159" class="font-mono" font-size="14">RGB: 35, 97, 63</text>
+    <text x="30" y="330" fill="#111310" class="font-sans" font-size="15" font-weight="600">Usage:</text>
+    <text x="30" y="360" fill="#5C6159" class="font-sans" font-size="15">Accessible 2px focus outlines,</text>
+    <text x="30" y="385" fill="#5C6159" class="font-sans" font-size="15">keyboard navigation state.</text>
+    <rect x="30" y="420" width="130" height="28" rx="6" fill="#23613F"/>
+    <text x="45" y="439" fill="#FFFFFF" class="font-mono" font-size="12" font-weight="700">CONTRAST 6.5:1</text>
+  </g>
+
+  <!-- Rule Note -->
+  <g transform="translate(120, 810)">
+    <rect width="1680" height="180" rx="16" fill="#111310"/>
+    <text x="50" y="50" fill="#C7F134" class="font-mono" font-size="14" font-weight="700">ACCESSIBILITY RULE:</text>
+    <text x="50" y="90" fill="#F2F0E8" class="font-sans" font-size="20" font-weight="600">Color is never the sole indicator of status.</text>
+    <text x="50" y="130" fill="#D7D4CA" class="font-sans" font-size="16">Every semantic state badge must always combine color with an explicit textual label (e.g. [BOOKED] or [WAITLIST]).</text>
+  </g>
+</svg>

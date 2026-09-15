@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+
+<defs>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,300..900;1,300..900&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap');
+    .font-sans { font-family: 'Mona Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</defs>
+
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#111310"/>
+
+  <!-- Subtle Grid Pattern -->
+  <line x1="120" y1="0" x2="120" y2="1080" stroke="#222620" stroke-width="1"/>
+  <line x1="1800" y1="0" x2="1800" y2="1080" stroke="#222620" stroke-width="1"/>
+  <line x1="0" y1="120" x2="1920" y2="120" stroke="#222620" stroke-width="1"/>
+  <line x1="0" y1="960" x2="1920" y2="960" stroke="#222620" stroke-width="1"/>
+
+  <!-- Top Metadata -->
+  <text x="120" y="80" fill="#C7F134" class="font-mono" font-size="14" font-weight="600" letter-spacing="2">PRACTICE ATHLETIC CLUB • BRAND IDENTITY MANUAL</text>
+  <text x="1800" y="80" fill="#5C6159" class="font-mono" font-size="14" font-weight="600" text-anchor="end">VERSION 1.0 • 2026</text>
+
+  <!-- Big Title Lockup -->
+  <g transform="translate(120, 280)">
+    <text x="0" y="0" fill="#F2F0E8" class="font-sans" font-size="110" font-weight="800" letter-spacing="-3">PRACTICE</text>
+    <text x="0" y="110" fill="#F2F0E8" class="font-sans" font-size="110" font-weight="800" letter-spacing="-3">ATHLETIC CLUB</text>
+    <rect x="0" y="150" width="180" height="12" fill="#C7F134"/>
+  </g>
+
+  <!-- Subtitle and Scope -->
+  <g transform="translate(120, 560)">
+    <text x="0" y="0" fill="#D7D4CA" class="font-sans" font-size="32" font-weight="500">Brand Identity Guidelines, Design System &amp; Strategic Foundations</text>
+    <text x="0" y="48" fill="#5C6159" class="font-sans" font-size="22" font-weight="400">Treating fitness as a repeatable daily practice rather than an extreme performance.</text>
+  </g>
+
+  <!-- Bottom Details -->
+  <g transform="translate(120, 920)">
+    <text x="0" y="0" fill="#5C6159" class="font-mono" font-size="14">CORE TERRITORY: QUIET STRENGTH</text>
+    <text x="400" y="0" fill="#5C6159" class="font-mono" font-size="14">TYPEFACE: MONA SANS</text>
+    <text x="750" y="0" fill="#5C6159" class="font-mono" font-size="14">PALETTE: INK / BONE / SIGNAL LIME</text>
+    <text x="1680" y="0" fill="#C7F134" class="font-mono" font-size="14" text-anchor="end">PAGE 01 / 08</text>
+  </g>
+</svg>

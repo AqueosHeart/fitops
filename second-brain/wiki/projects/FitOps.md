@@ -12,7 +12,7 @@ FitOps is the repository and internal project codename. The public-facing fictio
 
 ## Current outcome
 
-The planning foundation exists, the public brand name is approved, and visual territory A, Quiet Strength, is selected. The logo system is approved: a Mona Sans stacked wordmark with a short lime progress bar beneath `CLUB`. The tagline, complete accessible palette, typography hierarchy, and application examples remain under review. Implementation must not begin until the Sprint 0 requirements review and Sprint 1 low-fidelity design gate are complete.
+The planning foundation exists. `Practice Athletic Club`, Quiet Strength, the Mona Sans lime-bar wordmark, and its palette/type materials are working brand inputs, not a defined or approved brand. An extended brand-definition guide now governs the strategy process. Implementation must not begin until the Sprint 0 requirements review and Sprint 1 low-fidelity design gate are complete.
 
 ## Critical journey
 
@@ -35,5 +35,7 @@ Visitor discovers FitOps, browses the schedule, signs into a fictional demo acco
 - [[../decisions/Decision Index]]
 - [Product requirements](../../../docs/product-requirements.md)
 - [Brand foundation](../../../docs/brand/brand-foundation.md)
+- [Brand definition guide](../../../docs/brand/brand-definition-guide.md)
 - [Visual territories](../../../docs/brand/visual-territories.md)
 - [Logo system](../../../docs/brand/logo-system.md)
+- [Color and type system](../../../docs/brand/color-and-type-system.md)

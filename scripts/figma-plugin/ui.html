@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 16px;
+      background-color: #111310;
+      color: #F2F0E8;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      box-sizing: border-box;
+      justify-content: space-between;
+    }
+    .header {
+      margin-bottom: 12px;
+    }
+    .title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #F2F0E8;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .badge {
+      background: #222620;
+      color: #C7F134;
+      font-size: 10px;
+      font-family: monospace;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .desc {
+      font-size: 12px;
+      color: #D7D4CA;
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+    .section-card {
+      background: #1A1E19;
+      border: 1px solid #2D332B;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #C7F134;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+      font-size: 11px;
+      color: #D7D4CA;
+    }
+    .feature-item:last-child {
+      margin-bottom: 0;
+    }
+    .check {
+      color: #C7F134;
+      font-weight: 700;
+    }
+    .btn-sitemap {
+      background-color: #C7F134;
+      color: #111310;
+      border: none;
+      border-radius: 6px;
+      padding: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 8px;
+      transition: opacity 0.15s;
+    }
+    .btn-sitemap:hover {
+      opacity: 0.9;
+    }
+    .btn-brand {
+      background-color: #222620;
+      color: #F2F0E8;
+      border: 1px solid #3B4238;
+      border-radius: 6px;
+      padding: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 8px;
+      transition: background 0.15s;
+    }
+    .btn-brand:hover {
+      background-color: #2D332B;
+    }
+    .status-card {
+      display: none;
+      background: #171B16;
+      border: 1px solid #C7F134;
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+      font-size: 11px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="header">
+      <div class="title">
+        Practice Athletic Club <span class="badge">Master Toolkit</span>
+      </div>
+      <div class="desc">
+        Automated generators for FitOps Sprint 1 Design &amp; Architecture artifacts in Figma.
+      </div>
+    </div>
+
+    <!-- SITEMAP & USERFLOW SECTION -->
+    <div class="section-card">
+      <div class="section-title">
+        <span>🗺️</span> 1. FitOps Sitemap &amp; User Flows (Sprint 1)
+      </div>
+      <div class="feature-item"><span class="check">✓</span> <b>Sitemap Page:</b> Generates complete 4-tier IA hierarchy</div>
+      <div class="feature-item"><span class="check">✓</span> <b>Userflow Page:</b> Discovery, Booking, Waitlist &amp; Admin flows</div>
+      <div class="feature-item"><span class="check">✓</span> <b>Mona Sans &amp; Ink/Bone tokens:</b> Clean native layout</div>
+      <button id="sitemapBtn" class="btn-sitemap" onclick="buildSitemap()">
+        Build Sitemap &amp; Userflow Pages →
+      </button>
+    </div>
+
+    <!-- BRAND PRESENTATION TRANSFORMER -->
+    <div class="section-card">
+      <div class="section-title">
+        <span>🎨</span> 2. Brand Presentation Transformer
+      </div>
+      <div class="feature-item"><span class="check">✓</span> Injects 6 Key Elements vector graphics</div>
+      <div class="feature-item"><span class="check">✓</span> Auto-replaces logo showcase cards &amp; typography</div>
+      <button id="brandBtn" class="btn-brand" onclick="transformBrand()">
+        Transform Brand Guidelines Template
+      </button>
+    </div>
+
+    <div id="statusCard" class="status-card">
+      <div id="statusTitle" style="font-weight:700; color:#C7F134; margin-bottom:4px;">✓ Action Complete!</div>
+      <div id="statusMsg" style="color:#D7D4CA;">Artifacts have been successfully generated in Figma.</div>
+    </div>
+  </div>
+
+  <script>
+    function buildSitemap() {
+      const btn = document.getElementById('sitemapBtn');
+      btn.innerText = 'Generating Sitemap & Flows...';
+      btn.style.opacity = '0.6';
+      parent.postMessage({ pluginMessage: { type: 'build-sitemap-userflow' } }, '*');
+    }
+
+    function transformBrand() {
+      const btn = document.getElementById('brandBtn');
+      btn.innerText = 'Transforming Brand Slides...';
+      btn.style.opacity = '0.6';
+      parent.postMessage({ pluginMessage: { type: 'transform-template' } }, '*');
+    }
+
+    window.onmessage = (event) => {
+      const msg = event.data.pluginMessage;
+      if (msg && msg.type === 'sitemap-complete') {
+        const btn = document.getElementById('sitemapBtn');
+        btn.innerText = 'Re-generate Sitemap & Flows ✓';
+        btn.style.opacity = '1';
+
+        document.getElementById('statusCard').style.display = 'block';
+        document.getElementById('statusTitle').innerText = '✓ Sitemap & Userflow Generated!';
+        document.getElementById('statusMsg').innerText = 'Check the Sitemap and Userflow pages in your Figma left sidebar.';
+      }
+      if (msg && msg.type === 'transform-complete') {
+        const btn = document.getElementById('brandBtn');
+        btn.innerText = 'Re-run Brand Transformation ✓';
+        btn.style.opacity = '1';
+
+        document.getElementById('statusCard').style.display = 'block';
+        document.getElementById('statusTitle').innerText = '✓ Brand Template Transformed!';
+        document.getElementById('statusMsg').innerText = 'All slides updated with Practice Athletic Club brand tokens.';
+      }
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "Practice Brand Kit Generator",
+  "id": "practice-athletic-club-brand-generator",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "capabilities": [],
+  "enableProposedApi": false,
+  "editorType": ["figma"]
+}

@@ -7,10 +7,10 @@ updated: 2026-09-15
 # FitOps Critical Facts
 
 - Status: planning only; no application functionality has been implemented.
-- Public-facing fictional gym brand: `Practice Athletic Club`; `FitOps` remains the repository and internal project codename.
+- Working public name: `Practice Athletic Club`; `FitOps` remains the repository and internal project codename.
 - Branding scope is identity only for the current stage; no website or application implementation is authorized by the branding work.
-- Practice Athletic Club visual territory A, Quiet Strength, is approved. Its approved logo direction is Mona Sans Display 800 with a short lime progress bar beneath the stacked wordmark; a compact P-plus-bar is secondary only.
-- Logo identity colors are Ink `#111310`, Bone `#F2F0E8`, and Signal lime `#C7F134`. They are not yet the complete accessible interface palette.
+- Brand status: not defined or approved. Quiet Strength, the Mona Sans lime-bar wordmark, and the palette/type system are exploratory candidates that may be retained, revised, or replaced after the brand-definition process.
+- Original signage, apparel, social-avatar, and booking-interface tests exist as evaluation evidence only. They do not approve the logo, palette, or brand system.
 - Public repository: `https://github.com/AqueosHeart/fitops`.
 - Current lifecycle position: SDLC phases 1 and 2, Sprint 0.
 - Delivery model: eight SDLC phases with one-week, Scrum-inspired sprints.

@@ -24,27 +24,27 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 - [x] SDLC and sprint plan
 - [x] Tool ownership map
 - [x] Obsidian-compatible second brain
-- [x] Approve the public gym name `Practice Athletic Club`
+- [x] Establish the working public name `Practice Athletic Club`
 - [x] Document the initial brand foundation and voice boundaries
 - [x] Create three Practice Athletic Club visual territories
-- [x] Select visual territory A, Quiet Strength
+- [x] Identify visual territory A, Quiet Strength, as a working candidate
 - [x] Reject the generic icon-led logo round
 - [x] Create and compact-test three typography-first logo directions
 - [x] Translate the supplied visual references into an original stacked vector wordmark candidate
-- [x] Explore custom lettering and recognize it as unsuitable for the final identity
+- [x] Explore custom lettering and document its limitations as a working-identity candidate
 - [x] Create Mona Sans plus lime-marker alternatives
-- [x] Select Mona Sans Display with the short lime progress bar as the final logo direction
-- [x] Create primary, inverse, horizontal, compact, and small-size logo evidence
+- [x] Create the Mona Sans Display with short lime progress bar working logo candidate
+- [x] Define the final accessible color palette and Mona Sans hierarchy after brand strategy is agreed
+- [x] Validate the final logo in signage, apparel, social, and booking-context mockups after brand strategy is agreed
+- [x] Codify master brand identity guidelines (`docs/brand/brand-identity.md`) and generate Figma presentation slide SVGs (`docs/brand/figma/`)
 
 ## Remaining before Sprint 0 review
 
 - [x] Create and verify the public GitHub repository
+- [x] Convert approved backlog items into issues (#1 through #9)
 - [ ] Connect the repository to the `FitOps Delivery` GitHub Project
 - [ ] Create GitHub fields and views
-- [ ] Convert approved backlog items into issues
 - [ ] Review the Sprint 0 exit gate
-- [ ] Define the complete accessible color palette and Mona Sans hierarchy
-- [ ] Test the approved logo in signage, apparel, social, and booking-context mockups
 
 ## Connections
 

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+
+<defs>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,300..900;1,300..900&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap');
+    .font-sans { font-family: 'Mona Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</defs>
+
+  <rect width="1920" height="1080" fill="#F2F0E8"/>
+
+  <!-- Top Header -->
+  <text x="120" y="90" fill="#5C6159" class="font-mono" font-size="14" font-weight="600" letter-spacing="2">03 / COLOUR PALETTE &amp; TOKENS</text>
+  <text x="1800" y="90" fill="#5C6159" class="font-mono" font-size="14" text-anchor="end">PAGE 04 / 08</text>
+  <line x1="120" y1="120" x2="1800" y2="120" stroke="#D7D4CA" stroke-width="1.5"/>
+
+  <!-- Section Title -->
+  <text x="120" y="190" fill="#111310" class="font-sans" font-size="44" font-weight="800" letter-spacing="-1">Core Brand Swatches</text>
+  <text x="120" y="235" fill="#5C6159" class="font-sans" font-size="20">Calibrated for deep contrast, calm reading comfort, and high-visibility status cues.</text>
+
+  <!-- Swatch 1: INK -->
+  <g transform="translate(120, 290)">
+    <rect width="310" height="380" rx="16" fill="#111310"/>
+    <rect x="0" y="380" width="310" height="200" rx="0" fill="#FFFFFF" stroke="#D7D4CA" stroke-width="1.5"/>
+    <text x="24" y="420" fill="#111310" class="font-sans" font-size="22" font-weight="700">Ink</text>
+    <text x="24" y="450" fill="#5C6159" class="font-mono" font-size="14">HEX: #111310</text>
+    <text x="24" y="475" fill="#5C6159" class="font-mono" font-size="14">RGB: 17, 19, 16</text>
+    <text x="24" y="500" fill="#5C6159" class="font-mono" font-size="14">CMYK: 75, 68, 67, 85</text>
+    <text x="24" y="540" fill="#111310" class="font-sans" font-size="13" font-weight="600">Primary text &amp; dark surface</text>
+  </g>
+
+  <!-- Swatch 2: BONE -->
+  <g transform="translate(460, 290)">
+    <rect width="310" height="380" rx="16" fill="#F2F0E8" stroke="#D7D4CA" stroke-width="1.5"/>
+    <rect x="0" y="380" width="310" height="200" rx="0" fill="#FFFFFF" stroke="#D7D4CA" stroke-width="1.5"/>
+    <text x="24" y="420" fill="#111310" class="font-sans" font-size="22" font-weight="700">Bone</text>
+    <text x="24" y="450" fill="#5C6159" class="font-mono" font-size="14">HEX: #F2F0E8</text>
+    <text x="24" y="475" fill="#5C6159" class="font-mono" font-size="14">RGB: 242, 240, 232</text>
+    <text x="24" y="500" fill="#5C6159" class="font-mono" font-size="14">CMYK: 3, 2, 6, 0</text>
+    <text x="24" y="540" fill="#111310" class="font-sans" font-size="13" font-weight="600">Primary light field (warm white)</text>
+  </g>
+
+  <!-- Swatch 3: SIGNAL LIME -->
+  <g transform="translate(800, 290)">
+    <rect width="310" height="380" rx="16" fill="#C7F134"/>
+    <rect x="0" y="380" width="310" height="200" rx="0" fill="#FFFFFF" stroke="#D7D4CA" stroke-width="1.5"/>
+    <text x="24" y="420" fill="#111310" class="font-sans" font-size="22" font-weight="700">Signal Lime</text>
+    <text x="24" y="450" fill="#5C6159" class="font-mono" font-size="14">HEX: #C7F134</text>
+    <text x="24" y="475" fill="#5C6159" class="font-mono" font-size="14">RGB: 199, 241, 52</text>
+    <text x="24" y="500" fill="#5C6159" class="font-mono" font-size="14">CMYK: 25, 0, 85, 0</text>
+    <text x="24" y="540" fill="#111310" class="font-sans" font-size="13" font-weight="600">Progress indicator &amp; signature</text>
+  </g>
+
+  <!-- Swatch 4: SURFACE MUTED -->
+  <g transform="translate(1140, 290)">
+    <rect width="310" height="380" rx="16" fill="#D7D4CA"/>
+    <rect x="0" y="380" width="310" height="200" rx="0" fill="#FFFFFF" stroke="#D7D4CA" stroke-width="1.5"/>
+    <text x="24" y="420" fill="#111310" class="font-sans" font-size="22" font-weight="700">Surface Muted</text>
+    <text x="24" y="450" fill="#5C6159" class="font-mono" font-size="14">HEX: #D7D4CA</text>
+    <text x="24" y="475" fill="#5C6159" class="font-mono" font-size="14">RGB: 215, 212, 202</text>
+    <text x="24" y="500" fill="#5C6159" class="font-mono" font-size="14">CMYK: 15, 12, 18, 0</text>
+    <text x="24" y="540" fill="#111310" class="font-sans" font-size="13" font-weight="600">Card borders &amp; quiet panels</text>
+  </g>
+
+  <!-- Swatch 5: TEXT MUTED -->
+  <g transform="translate(1480, 290)">
+    <rect width="320" height="380" rx="16" fill="#5C6159"/>
+    <rect x="0" y="380" width="320" height="200" rx="0" fill="#FFFFFF" stroke="#D7D4CA" stroke-width="1.5"/>
+    <text x="24" y="420" fill="#111310" class="font-sans" font-size="22" font-weight="700">Text Muted</text>
+    <text x="24" y="450" fill="#5C6159" class="font-mono" font-size="14">HEX: #5C6159</text>
+    <text x="24" y="475" fill="#5C6159" class="font-mono" font-size="14">RGB: 92, 97, 89</text>
+    <text x="24" y="500" fill="#5C6159" class="font-mono" font-size="14">CMYK: 55, 45, 52, 25</text>
+    <text x="24" y="540" fill="#111310" class="font-sans" font-size="13" font-weight="600">Secondary helper &amp; coach labels</text>
+  </g>
+
+  <!-- Bottom WCAG Contrast Matrix Note -->
+  <g transform="translate(120, 910)">
+    <rect width="1680" height="90" rx="12" fill="#111310"/>
+    <text x="40" y="52" fill="#C7F134" class="font-mono" font-size="14" font-weight="700">WCAG 2.1 AA/AAA CONTRAST VERIFIED:</text>
+    <text x="390" y="52" fill="#F2F0E8" class="font-sans" font-size="15">Ink on Bone (16.37:1) • Muted on Bone (5.56:1) • Ink on Signal Lime (14.28:1) • Focus Forest on Bone (6.45:1)</text>
+  </g>
+</svg>

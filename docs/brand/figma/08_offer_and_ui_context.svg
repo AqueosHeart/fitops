@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+
+<defs>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,300..900;1,300..900&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap');
+    .font-sans { font-family: 'Mona Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</defs>
+
+  <rect width="1920" height="1080" fill="#F2F0E8"/>
+
+  <!-- Top Header -->
+  <text x="120" y="90" fill="#5C6159" class="font-mono" font-size="14" font-weight="600" letter-spacing="2">07 / OFFER ARCHITECTURE &amp; UI CONTEXT</text>
+  <text x="1800" y="90" fill="#5C6159" class="font-mono" font-size="14" text-anchor="end">PAGE 08 / 08</text>
+  <line x1="120" y1="120" x2="1800" y2="120" stroke="#D7D4CA" stroke-width="1.5"/>
+
+  <!-- Section Title -->
+  <text x="120" y="190" fill="#111310" class="font-sans" font-size="44" font-weight="800" letter-spacing="-1">Programs &amp; Live UI Components</text>
+  <text x="120" y="235" fill="#5C6159" class="font-sans" font-size="20">How the brand personality translates into clear, scannable class cards and interface components.</text>
+
+  <!-- Left: Program Taxonomy -->
+  <g transform="translate(120, 280)">
+    <rect width="780" height="710" rx="16" fill="#FFFFFF" stroke="#D7D4CA" stroke-width="1.5"/>
+    <text x="40" y="55" fill="#5C6159" class="font-mono" font-size="13" font-weight="700">CORE PROGRAM TAXONOMY</text>
+
+    <!-- Program 1 -->
+    <g transform="translate(40, 95)">
+      <rect width="700" height="125" rx="12" fill="#F2F0E8"/>
+      <rect x="20" y="20" width="100" height="24" rx="4" fill="#111310"/>
+      <text x="32" y="36" fill="#C7F134" class="font-mono" font-size="11" font-weight="700">STRENGTH</text>
+      <text x="135" y="37" fill="#111310" class="font-sans" font-size="20" font-weight="700">Practice Strength</text>
+      <text x="590" y="37" fill="#5C6159" class="font-mono" font-size="13">45–50 MIN</text>
+      <text x="20" y="75" fill="#5C6159" class="font-sans" font-size="14">Compound barbell and dumbbell mechanics with structured progressive overload.</text>
+      <text x="20" y="100" fill="#111310" class="font-sans" font-size="13" font-weight="600">Intensity: Moderate to High • All levels</text>
+    </g>
+
+    <!-- Program 2 -->
+    <g transform="translate(40, 240)">
+      <rect width="700" height="125" rx="12" fill="#F2F0E8"/>
+      <rect x="20" y="20" width="70" height="24" rx="4" fill="#111310"/>
+      <text x="33" y="36" fill="#C7F134" class="font-mono" font-size="11" font-weight="700">PACE</text>
+      <text x="105" y="37" fill="#111310" class="font-sans" font-size="20" font-weight="700">Practice Pace</text>
+      <text x="590" y="37" fill="#5C6159" class="font-mono" font-size="13">45 MIN</text>
+      <text x="20" y="75" fill="#5C6159" class="font-sans" font-size="14">Aerobic capacity intervals, rowers, ski ergs, and dynamic bodyweight circuits.</text>
+      <text x="20" y="100" fill="#111310" class="font-sans" font-size="13" font-weight="600">Intensity: High • Cardiovascular stamina</text>
+    </g>
+
+    <!-- Program 3 -->
+    <g transform="translate(40, 385)">
+      <rect width="700" height="125" rx="12" fill="#F2F0E8"/>
+      <rect x="20" y="20" width="75" height="24" rx="4" fill="#111310"/>
+      <text x="32" y="36" fill="#C7F134" class="font-mono" font-size="11" font-weight="700">RESET</text>
+      <text x="110" y="37" fill="#111310" class="font-sans" font-size="20" font-weight="700">Practice Reset</text>
+      <text x="590" y="37" fill="#5C6159" class="font-mono" font-size="13">40 MIN</text>
+      <text x="20" y="75" fill="#5C6159" class="font-sans" font-size="14">Joint mobility, posterior chain decompression, and nervous system down-regulation.</text>
+      <text x="20" y="100" fill="#111310" class="font-sans" font-size="13" font-weight="600">Intensity: Low • Active recovery</text>
+    </g>
+
+    <!-- Program 4 -->
+    <g transform="translate(40, 530)">
+      <rect width="700" height="125" rx="12" fill="#F2F0E8"/>
+      <rect x="20" y="20" width="120" height="24" rx="4" fill="#111310"/>
+      <text x="32" y="36" fill="#C7F134" class="font-mono" font-size="11" font-weight="700">OPEN FLOOR</text>
+      <text x="155" y="37" fill="#111310" class="font-sans" font-size="20" font-weight="700">Practice Open Floor</text>
+      <text x="590" y="37" fill="#5C6159" class="font-mono" font-size="13">60 MIN</text>
+      <text x="20" y="75" fill="#5C6159" class="font-sans" font-size="14">Supervised open practice session under coach guidance for individual programs.</text>
+      <text x="20" y="100" fill="#111310" class="font-sans" font-size="13" font-weight="600">Intensity: Self-paced • Independent work</text>
+    </g>
+  </g>
+
+  <!-- Right: Live Class Card Mockup -->
+  <g transform="translate(940, 280)">
+    <rect width="860" height="710" rx="16" fill="#111310"/>
+    <text x="50" y="55" fill="#C7F134" class="font-mono" font-size="13" font-weight="700">INTERACTIVE CLASS CARD COMPONENT</text>
+
+    <!-- Sample Card 1: Available -->
+    <g transform="translate(50, 95)">
+      <rect width="760" height="250" rx="16" fill="#1A1E19" stroke="#2D332B" stroke-width="1.5"/>
+      <rect x="30" y="28" width="95" height="24" rx="4" fill="#111310"/>
+      <text x="42" y="44" fill="#C7F134" class="font-mono" font-size="11" font-weight="700">STRENGTH</text>
+      <text x="640" y="45" fill="#C7F134" class="font-mono" font-size="15" font-weight="700">07:00 AM (45M)</text>
+
+      <text x="30" y="95" fill="#F2F0E8" class="font-sans" font-size="26" font-weight="700">Practice Strength</text>
+      <text x="30" y="130" fill="#D7D4CA" class="font-sans" font-size="16">Coach Marcus Vance • Floor A</text>
+
+      <line x1="30" y1="165" x2="730" y2="165" stroke="#2D332B" stroke-width="1"/>
+
+      <circle cx="40" cy="205" r="5" fill="#C7F134"/>
+      <text x="55" y="210" fill="#C7F134" class="font-mono" font-size="14" font-weight="600">3 SPOTS REMAINING</text>
+
+      <!-- Button -->
+      <rect x="580" y="180" width="150" height="48" rx="8" fill="#C7F134"/>
+      <text x="615" y="210" fill="#111310" class="font-sans" font-size="15" font-weight="800">Book Session</text>
+    </g>
+
+    <!-- Sample Card 2: Full / Waitlist -->
+    <g transform="translate(50, 380)">
+      <rect width="760" height="250" rx="16" fill="#1A1E19" stroke="#2D332B" stroke-width="1.5"/>
+      <rect x="30" y="28" width="65" height="24" rx="4" fill="#111310"/>
+      <text x="42" y="44" fill="#C7F134" class="font-mono" font-size="11" font-weight="700">PACE</text>
+      <text x="640" y="45" fill="#D7D4CA" class="font-mono" font-size="15" font-weight="700">08:00 AM (45M)</text>
+
+      <text x="30" y="95" fill="#F2F0E8" class="font-sans" font-size="26" font-weight="700">Practice Pace</text>
+      <text x="30" y="130" fill="#D7D4CA" class="font-sans" font-size="16">Coach Sarah Chen • Turf 1</text>
+
+      <line x1="30" y1="165" x2="730" y2="165" stroke="#2D332B" stroke-width="1"/>
+
+      <circle cx="40" cy="205" r="5" fill="#7A4B00"/>
+      <text x="55" y="210" fill="#D7D4CA" class="font-mono" font-size="14" font-weight="600">FULL • 2 ON WAITLIST</text>
+
+      <!-- Button -->
+      <rect x="570" y="180" width="160" height="48" rx="8" fill="#222620" stroke="#7A4B00" stroke-width="1.5"/>
+      <text x="600" y="210" fill="#F2F0E8" class="font-sans" font-size="15" font-weight="700">Join Waitlist</text>
+    </g>
+  </g>
+</svg>

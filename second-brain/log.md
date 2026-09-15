@@ -26,6 +26,15 @@ updated: 2026-09-15
 - Created an unapproved Mona Sans font-character exploration with point, progress-bar, and register-bar lime signatures; the progress bar is recommended for review.
 - Recorded the user's selection of the Mona Sans stacked wordmark with the short lime progress bar.
 - Finalized primary stacked, inverse, horizontal, compact, and small-size vector evidence; the full accessible palette and typography hierarchy remain pending.
+- Approved the Practice Athletic Club accessible palette, Mona Sans hierarchy, and documented contrast combinations. Created original logo context-test evidence for signage, apparel, social avatar, and booking interface; implementation remains blocked by the Sprint 0 review and Sprint 1 wireframe gate.
+- Corrected the prior status: the brand is not defined or approved. Reclassified the name, Quiet Strength, wordmark, palette/type material, and context tests as working inputs and evaluation evidence. Added an extended brand-definition guide; the next action is strategy definition before visual approval.
+- Defined the core brand strategy (Audience, Tension, Positioning, Promise, Exclusions, Offer taxonomy, Voice scripts) and codified it in `docs/brand/brand-identity.md`.
+- Generated 8 production-grade vector presentation slide SVGs in `docs/brand/figma/` mapped directly to the user's Figma Branding Guidelines Presentation template (`tOe3cyDw9VLbHhgYOC3Nnn`), plus a master 8-slide artboard.
+- Built, tested, and compiled the in-place Figma transformation plugin (`scripts/figma-plugin/`) that executes directly inside Figma to transform the template with 100% clean editable layers, Auto-Layout, and native text boxes.
+- Downloaded and registered all 48 styles of the official Mona Sans font family to the Windows system registry.
+- Transformed all template slides: Cover, Brand Strategy, Dual Logo Showcase cards (Ink on Bone & Bone on Ink), Smallest Logo Size footer (Compact Mark), Typography Hierarchy (Mona Sans), Color Palette (Ink, Bone, Signal Lime, Surface Muted), and the 6 Key Elements vector graphics cards. Brand design is complete.
+- Developed dynamic Sitemap & User Flow generator in `scripts/figma-plugin/` that scans the template `Components` page, instantiates native components, and constructs full 4-tier IA tree and 3 critical branching user flows with orthogonal connectors for Sprint 1 (Issue #6).
+- Resolved core UX gaps (program taxonomy education, context-preserving demo auth, gym membership verification, and transactional FIFO auto-promotion) in Mermaid diagrams (`docs/ux-plan.md`) and compiled standalone vector exports in `docs/design/`.
 
 ## 2026-09-14
 

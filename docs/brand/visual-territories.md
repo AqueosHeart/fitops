@@ -2,7 +2,7 @@
 
 ## Review status
 
-Territory A, **Quiet Strength**, was approved on 2026-09-15. Territories B and C remain documented as rejected alternatives. The approved territory's palette and typography are still provisional until their dedicated review stages.
+Quiet Strength is the active working candidate. Territories B and C remain available alternatives, not rejected directions. No territory, palette, or typography system is approved until the brand-definition process establishes the strategic direction.
 
 The moodboards use original AI-generated imagery for private art-direction exploration. They are not final campaign photographs, proof of a real facility, or approved brand assets.
 
@@ -204,10 +204,10 @@ It can drift toward a private club, wellness studio, or lifestyle brand if perfo
 
 ## Recommendation
 
-**Territory A — Quiet Strength** is the strongest starting point. It aligns most closely with the approved positioning: structured without rigidity, premium without exclusion, and athletic without macho conventions.
+**Territory A — Quiet Strength** is a strong starting point. It aligns with the current working hypothesis: structured without rigidity, premium without exclusion, and athletic without macho conventions. That hypothesis must be tested through the brand-definition guide before selection.
 
 If selected, borrow only one trait from Territory C: its warmer depiction of member connection. Do not merge the palettes or typography systems. Territory B should remain a distinct alternative, not a source of arbitrary energetic decoration.
 
-## Selection outcome
+## Current outcome
 
-Territory A was selected. After rejecting two exploratory logo rounds, the approved logo direction is the Mona Sans stacked wordmark with its restrained lime progress bar, documented in `logo-system.md`.
+Quiet Strength and the Mona Sans lime-bar wordmark are linked working candidates. They are evaluation material, not final brand decisions. Use the [brand definition guide](brand-definition-guide.md) to retain, revise, or replace them after strategy is established.
