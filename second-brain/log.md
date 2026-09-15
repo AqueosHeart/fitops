@@ -24,6 +24,8 @@ updated: 2026-09-15
 - Selected the strategy of custom logo lettering with Instrument Sans as the supporting brand and booking-interface family.
 - Created a recognition comparison and updated the vector candidate with a custom flat-apex `A`, alternate straight-leg `R`, and optically equalized stacked lines; logo approval remains pending.
 - Created an unapproved Mona Sans font-character exploration with point, progress-bar, and register-bar lime signatures; the progress bar is recommended for review.
+- Recorded the user's selection of the Mona Sans stacked wordmark with the short lime progress bar.
+- Finalized primary stacked, inverse, horizontal, compact, and small-size vector evidence; the full accessible palette and typography hierarchy remain pending.
 
 ## 2026-09-14
 

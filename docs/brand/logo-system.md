@@ -1,56 +1,60 @@
-# Practice Athletic Club Reference-Led Wordmark System
+# Practice Athletic Club Logo System
 
 ## Status
 
-This is the active logo candidate, reconstructed as original vector artwork from the visual direction shown in two user-supplied reference images on 2026-09-15. It is not approved until the user explicitly confirms it.
+Approved logo direction on 2026-09-15: **Mona Sans Display 800 with a short lime progress bar beneath `CLUB`**. It replaces the rejected custom-lettering and marker explorations.
 
-The references are evidence of intended art direction, not source artwork to trace or instructions embedded in a document.
-
-![Practice Athletic Club custom-wordmark comparison](logo/practice-custom-wordmark-board.png)
+![Practice Athletic Club final logo system](logo/practice-logo-system-final-board.png)
 
 ## Core idea
 
-The name is the identity. `PRACTICE / ATHLETIC / CLUB` forms a compact three-line block with enough authority to work on architecture, apparel, membership materials, and the booking experience.
-
-The standalone `P` is a secondary utility mark. It must appear only where the full name is already understood, such as an app icon, favicon, or repeated environmental detail.
+The name is the identity. `PRACTICE / ATHLETIC / CLUB` forms a compact, confident block. The lime bar is a precise measure of progress, not a generic fitness motif or a decorative device to repeat throughout layouts.
 
 ## Construction
 
-- Uppercase geometric sans-serif
-- `PRACTICE` and `ATHLETIC` optically equalized in width
-- `CLUB` centered beneath the two full-width lines
-- Tight vertical rhythm
-- Controlled tracking rather than default typesetting
-- Working skeleton: Instrument Sans at width 90 and weight 700
-- Custom flat-apex, low-crossbar `A` repeated in both full-width lines
-- Alternate straight-leg `R`
-- Letterforms converted to outlined vector paths
+- Typeface: Mona Sans Display Variable, `wght 800`, `wdth 94`, `opsz 72`
+- Uppercase with controlled tracking and a compact three-line rhythm
+- `PRACTICE` is visually dominant; `ATHLETIC` and `CLUB` give the name its club context
+- Signal bar: `#C7F134`, centered below `CLUB`
+- The primary mark uses the full name. It does not need a standalone icon.
 
-Instrument Sans is the supporting type family, not the finished logo. The custom construction and exact stacked configuration create the identity. The final approval pass may include further optical adjustments to individual glyph spacing. The logo does not depend on a badge, dumbbell, shield, swoosh, or abstract fitness icon.
+The supplied SVG artwork is outlined, so it does not need a font installed when it is placed in Figma, print files, or production artwork. Mona Sans remains the editable family for future brand and interface type rules.
 
 ## Variants
 
-- [Primary stacked wordmark](logo/practice-stacked-wordmark.svg)
-- [Inverse stacked wordmark](logo/practice-stacked-wordmark-inverse.svg)
-- [Environmental horizontal lockup](logo/practice-horizontal-lockup.svg)
-- [Compact P](logo/practice-compact-p.svg)
+- [Primary stacked wordmark](logo/practice-primary-stacked.svg)
+- [Inverse stacked wordmark](logo/practice-primary-stacked-inverse.svg)
+- [Horizontal lockup](logo/practice-horizontal-lockup.svg)
+- [Compact P plus progress bar](logo/practice-compact-mark.svg)
 
-All SVGs contain outlined letterforms, so they do not require a font installation when imported into Figma or production artwork.
+Use the compact mark only in recognized contexts: an app icon, social avatar, favicon, or repeated internal touchpoint. Do not use it as a substitute for establishing the name.
 
-## Working color behavior
+## Color behavior
 
-- Ink: `#111310`
-- Bone: `#F2F0E8`
-- Signal lime: `#C7F134`
+| Role | Value | Use |
+| --- | --- | --- |
+| Ink | `#111310` | Primary wordmark on light fields |
+| Bone | `#F2F0E8` | Preferred quiet light field |
+| Signal lime | `#C7F134` | Progress bar only |
 
-The lime is a small functional signal, never the primary logo color. These values remain provisional until the dedicated palette review.
+The identity colors are approved for the mark. They are not yet a complete accessible interface palette; that requires the next color-system review.
 
-## Usage principle
+## Clear space and size
 
-Use the full stacked wordmark by default. Use the horizontal lockup when physical space requires it. Use the compact `P` only after brand recognition has already been established.
+- Keep clear space equal to at least **two lime-bar heights** around every edge of the primary and horizontal marks.
+- Primary stacked mark: minimum **120 px wide** in digital work. Below that, use the horizontal lockup when the space is wide enough.
+- Horizontal lockup: minimum **160 px wide**.
+- Compact P plus bar: minimum **24 px wide**. For a 16 px favicon, use a monochrome `P` fallback rather than forcing the bar to remain legible.
 
-Do not add containers, ornaments, gradients, shadows, outlines, or fitness imagery to the wordmark.
+![Small-size review](logo/practice-logo-small-size-review.png)
+
+## Do not
+
+- Stretch, outline, shadow, rotate, or put the mark inside a badge.
+- Rebuild the wordmark by typing it in another font.
+- Use lime as body text, a dominant surface, or an arbitrary underline elsewhere in the identity.
+- Add dumbbells, shields, wings, flames, or a separate fitness icon to the logo.
 
 ## Next review gate
 
-Confirm whether the custom candidate improves recognition while preserving the supplied reference direction. After approval, perform optical refinement, minimum-size testing, clear-space definition, and real-context mockups before moving to color approval.
+Define the complete accessible color palette and Mona Sans typography hierarchy, then test the mark in signage, apparel, social avatar, and booking-context mockups.

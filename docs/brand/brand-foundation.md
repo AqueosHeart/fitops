@@ -2,7 +2,7 @@
 
 ## Status
 
-The public-facing name **Practice Athletic Club** and the Quiet Strength visual territory are approved. The logo, tagline, palette, typography system, and asset system remain in development and require explicit review before they are treated as final.
+The public-facing name **Practice Athletic Club**, Quiet Strength visual territory, and Mona Sans plus lime progress-bar logo system are approved. The tagline, complete accessible palette, typography hierarchy, and remaining asset system remain in development and require explicit review before they are treated as final.
 
 `FitOps` remains the repository and internal project codename. It must not appear as the fictional gym's customer-facing name.
 
@@ -87,7 +87,7 @@ This is a working recommendation, not yet an approved final tagline.
 
 ## Visual principles
 
-These principles constrain the future moodboards without prematurely selecting a logo, typeface, or palette:
+These principles constrain the future system without diluting the selected logo direction:
 
 1. **Purposeful form:** layouts and marks should feel intentional rather than decorated.
 2. **Controlled energy:** movement should be visible through rhythm, cropping, and composition instead of visual noise.
@@ -113,4 +113,4 @@ This branding stage does not include application code, website implementation, U
 
 ## Next review gate
 
-Approve or revise the custom stacked wordmark recognition pass. After approval, complete optical refinement, minimum-size tests, clear-space rules, and context mockups before applying color.
+Define the complete accessible palette and Mona Sans hierarchy, then test the approved logo in signage, apparel, social, and booking-context mockups.

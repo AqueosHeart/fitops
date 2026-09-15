@@ -16,8 +16,8 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 
 - Create the `FitOps Delivery` project fields and views
 - Convert the Sprint 0 backlog into GitHub Issues
-- Approve or revise the Practice Athletic Club custom stacked wordmark candidate
-- Select or reject the Mona Sans plus lime progress-bar option
+- Define the complete accessible color palette and Mona Sans hierarchy
+- Test the approved logo in signage, apparel, social, and booking-context mockups
 
 ## In Progress
 
@@ -37,5 +37,5 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 - Practice Athletic Club name and initial brand foundation
 - Three Practice Athletic Club visual territories
 - Quiet Strength territory selection
-- Rejected the generic icon-led logo round and superseded later explorations with a reference-led stacked wordmark candidate
-- Selected custom logo lettering with Instrument Sans as the supporting brand and interface family
+- Rejected the generic icon-led logo round and the custom-lettering follow-up
+- Approved the Mona Sans stacked wordmark with a short lime progress bar, including primary, inverse, horizontal, compact, and small-size assets

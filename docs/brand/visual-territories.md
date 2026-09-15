@@ -49,16 +49,16 @@ The lime acts as a signal, not a text color or dominant surface. Exact values re
 
 ### Typography direction
 
-- Supporting brand and interface family: **Instrument Sans Variable**
-- Custom wordmark skeleton: Instrument Sans width 90 and weight 700, converted to outlines and modified
-- Reading and functional copy: Instrument Sans at weights 400–500
-- Character: contemporary, precise, open, and readable without becoming a technology brand
+- Brand and interface family: **Mona Sans Variable**
+- Wordmark construction: Mona Sans Display at `wdth 94`, `wght 800`, `opsz 72`
+- Reading and functional copy: Mona Sans at weights 400–500, subject to the final hierarchy review
+- Character: strong, contemporary, precise, and readable without becoming a technology brand
 
 ### Logo approach
 
-- A compact three-line `PRACTICE / ATHLETIC / CLUB` wordmark with optically equalized first two lines
-- Custom flat-apex `A`, alternate straight-leg `R`, and controlled tracking provide restrained recognition
-- The standalone `P` is a secondary utility mark, never the primary identity
+- A compact three-line `PRACTICE / ATHLETIC / CLUB` wordmark with a short lime progress bar beneath `CLUB`
+- The lime bar is a controlled signature, not a recurring decoration
+- The standalone `P` plus bar is a secondary utility mark, never the primary identity
 
 ### Photography
 
@@ -210,4 +210,4 @@ If selected, borrow only one trait from Territory C: its warmer depiction of mem
 
 ## Selection outcome
 
-Territory A was selected. After rejecting two exploratory logo rounds, the active candidate is the reference-led stacked wordmark documented in `logo-system.md`. It still requires explicit approval.
+Territory A was selected. After rejecting two exploratory logo rounds, the approved logo direction is the Mona Sans stacked wordmark with its restrained lime progress bar, documented in `logo-system.md`.

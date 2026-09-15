@@ -23,7 +23,6 @@ updated: 2026-09-15
 - [Practice Athletic Club brand foundation](../docs/brand/brand-foundation.md)
 - [Practice Athletic Club visual territories](../docs/brand/visual-territories.md)
 - [Practice Athletic Club logo system](../docs/brand/logo-system.md)
-- [Practice Athletic Club Mona Sans marker exploration](../docs/brand/logo-exploration/mona-marker-options.md)
 - [Architecture](../docs/architecture.md)
 - [Data model](../docs/data-model.md)
 - [REST API](../docs/api.md)

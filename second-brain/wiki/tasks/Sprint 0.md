@@ -31,9 +31,10 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 - [x] Reject the generic icon-led logo round
 - [x] Create and compact-test three typography-first logo directions
 - [x] Translate the supplied visual references into an original stacked vector wordmark candidate
-- [x] Select custom logo lettering with Instrument Sans as the supporting type family
-- [x] Create a source-versus-custom wordmark recognition pass
+- [x] Explore custom lettering and recognize it as unsuitable for the final identity
 - [x] Create Mona Sans plus lime-marker alternatives
+- [x] Select Mona Sans Display with the short lime progress bar as the final logo direction
+- [x] Create primary, inverse, horizontal, compact, and small-size logo evidence
 
 ## Remaining before Sprint 0 review
 
@@ -42,8 +43,8 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 - [ ] Create GitHub fields and views
 - [ ] Convert approved backlog items into issues
 - [ ] Review the Sprint 0 exit gate
-- [ ] Approve or revise the Practice Athletic Club custom stacked wordmark candidate
-- [ ] Select or reject the Mona Sans plus lime progress-bar option
+- [ ] Define the complete accessible color palette and Mona Sans hierarchy
+- [ ] Test the approved logo in signage, apparel, social, and booking-context mockups
 
 ## Connections
 

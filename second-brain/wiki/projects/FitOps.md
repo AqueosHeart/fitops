@@ -12,7 +12,7 @@ FitOps is the repository and internal project codename. The public-facing fictio
 
 ## Current outcome
 
-The planning foundation exists, the public brand name is approved, and visual territory A, Quiet Strength, is selected. An Instrument Sans custom-wordmark candidate and a Mona Sans plus lime progress-bar replacement option are ready for review; neither logo route is approved. The tagline, palette, and final identity remain under review. Implementation must not begin until the Sprint 0 requirements review and Sprint 1 low-fidelity design gate are complete.
+The planning foundation exists, the public brand name is approved, and visual territory A, Quiet Strength, is selected. The logo system is approved: a Mona Sans stacked wordmark with a short lime progress bar beneath `CLUB`. The tagline, complete accessible palette, typography hierarchy, and application examples remain under review. Implementation must not begin until the Sprint 0 requirements review and Sprint 1 low-fidelity design gate are complete.
 
 ## Critical journey
 
