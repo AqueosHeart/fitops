@@ -28,6 +28,8 @@ Thumbs.db
 desktop.ini
 *.swp
 *.tmp
+.$*
+*.bkp
 
 # Local agent/runtime output
 .claude-runs/

@@ -1,17 +1,37 @@
 flowchart TD
-    StartCancel([Member opens 'My Bookings']) --> ViewActivePasses[View Active Confirmed Reservations]
-    ViewActivePasses --> ClickCancel[Click 'Cancel Booking']
-    ClickCancel --> CheckCutoff{Is cancellation within 2h Cutoff Window?}
+    classDef success fill:#DDEBD8,stroke:#1F4D32,color:#111310;
+    classDef error fill:#F7DFDC,stroke:#9E2E25,color:#111310;
+    classDef decision fill:#FFF4D6,stroke:#7A4B00,color:#111310;
 
-    CheckCutoff -- "Yes (Past Cutoff)" --> LockCancel[❌ Cancellation Locked<br/>Policy: Free cancellations close 2h before start]
-    CheckCutoff -- "No (Eligible)" --> OpenDialog[Open Cancellation Warning Dialog<br/>Notice: Spot will transfer to next in line]
+    Start([Member opens My bookings]) --> Select[Select confirmed reservation]
+    Select --> CutoffDisplay{Before the session's configured cancellation cutoff?}
+    CutoffDisplay -- No --> Locked["Cancellation unavailable<br/>Reservation remains confirmed"]:::error
+    CutoffDisplay -- Yes --> Dialog["Open confirmation dialog<br/>Explain that an eligible waiting member may receive the spot"]
+    Dialog --> Choice{Member choice}
+    Choice -- Keep reservation --> Retain([Close dialog; reservation retained])
+    Choice -- Confirm cancellation --> Submit[Submit cancellation request]
 
-    OpenDialog --> Decision{User Choice}
-    Decision -- "Keep Spot" --> AbortCancel[Close Dialog • Reservation Retained]
-    Decision -- "Confirm Cancel" --> ServerTransaction[Execute Atomic Database Transaction]
+    Submit --> Validate["Server verifies identity, ownership, confirmed status, and configured cutoff"]
+    Validate --> Valid{Still eligible to cancel?}
+    Valid -- No --> Rejected["Show stable domain error<br/>Refresh reservation state"]:::error
+    Valid -- Yes --> Transaction[Begin one database transaction]
+    Transaction --> CancelBooking[Mark booking cancelled]
+    CancelBooking --> NextEntry[Select earliest waiting entry by FIFO order]
+    NextEntry --> Queue{Waiting entry found?}
+    Queue -- No --> CommitOpen["Commit cancellation<br/>Maximum capacity is unchanged; available spots increase by one"]
+    Queue -- Yes --> Eligible{Entry eligible under current booking rules?}
+    Eligible -- No --> ResolveIneligible[Mark entry expired using the agreed status rule]
+    ResolveIneligible --> NextEntry
+    Eligible -- Yes --> Promote["Atomically mark waitlist entry promoted and create confirmed booking"]
 
-    ServerTransaction --> CheckQueue{Is Waitlist Queue > 0?}
-    CheckQueue -- "Yes (Members Waiting)" --> AutoPromote[⚡ Automatically Promote #1 in Waitlist to Confirmed Spot]
-    CheckQueue -- "No (Queue Empty)" --> IncrementCapacity[+1 Spot Released to General Schedule Capacity]
+    Promote --> CommitPromotion[Commit cancellation and promotion]
+    CommitOpen --> CancelSuccess[Original member sees cancellation confirmed]:::success
+    CommitPromotion --> CancelSuccess
+    CommitPromotion --> PromotedResult[Promoted member sees a confirmed reservation on next refresh]:::success
 
-    AutoPromote & IncrementCapacity --> UpdateUI[Update My Bookings List & Show Success Toast]
+    Transaction -. transaction failure .-> Rollback["Roll back every change<br/>Reservation remains confirmed; show retry"]:::error
+
+    EligibilityNote["Promotion eligibility: active membership, no confirmed duplicate, no overlapping confirmed booking, and session still bookable under the configured cutoff"]
+    EligibilityNote -.-> Eligible
+
+    class CutoffDisplay,Choice,Valid,Queue,Eligible decision;

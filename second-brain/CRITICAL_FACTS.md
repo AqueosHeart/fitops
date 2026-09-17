@@ -1,7 +1,7 @@
 ---
 type: critical-facts
 project: FitOps
-updated: 2026-09-15
+updated: 2026-09-17
 ---
 
 # FitOps Critical Facts
@@ -21,4 +21,9 @@ updated: 2026-09-15
 - Conceptual database source: `docs/database/fitops.dbml`.
 - Executable database source after implementation: Prisma schema plus complete committed migrations.
 - Data policy: fictional demo data only; no production or personal records.
+- Canonical UX architecture is maintained as six Mermaid sources in `docs/design/`: sitemap, booking, waitlist, cancellation, trainer, and administrator flows. Low-fidelity wireframes are still pending.
+- SVG previews in `docs/design/` are derived from those Mermaid sources and must be regenerated whenever a source changes.
+- The active Obsidian vault is `second-brain`; `wiki/design/FitOps User Flows.md` is its embedded Mermaid review hub.
+- `wiki/design/FitOps User Flows.drawio` is the native editable draw.io companion, with seven pages, 281 editable shapes, 222 connectors, and embedded visual color keys. It models sitemap, booking, waitlist, cancellation, trainer, administrator, and dedicated authentication/onboarding/security flows with complete terms, privacy, waiver, and RBAC guardrails.
+- Booking and cancellation diagrams use each session's configured cutoff; they do not hardcode a global two-hour rule or treat released availability as a capacity increase.
 - Continuity rule: tasks opened from this repository must follow `AGENTS.md`, read the second brain before work, and update material project context before completion.

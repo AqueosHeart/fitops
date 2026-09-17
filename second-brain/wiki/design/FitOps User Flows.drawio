@@ -1,0 +1,1741 @@
+<mxfile host="Electron" agent="Codex" pages="7">
+  <diagram id="01Sitemap" name="01 Sitemap">
+    <mxGraphModel dx="1900" dy="1300" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="1800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#111310;" value="PRACTICE ATHLETIC CLUB - INFORMATION ARCHITECTURE" vertex="1">
+          <mxGeometry x="40" y="25" width="1300" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#5C6159;" value="Public, legal, authentication, member, trainer, and administrator experience" vertex="1">
+          <mxGeometry x="40" y="60" width="1300" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="root" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#111310;strokeColor=#C7F134;fontColor=#F2F0E8;fontSize=13;spacing=8;" value="Practice Athletic Club" vertex="1">
+          <mxGeometry x="800" y="90" width="300" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="cookieBanner" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;stroke-dasharray=4 4;fontColor=#111310;fontSize=12;spacing=8;" value="Cookie &amp; Demo privacy banner&lt;br&gt;Fictional demo data notice &amp; minimal session cookies" vertex="1">
+          <mxGeometry x="60" y="220" width="320" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="publicNav" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Public navigation&lt;br&gt;Available from every public page" vertex="1">
+          <mxGeometry x="500" y="220" width="300" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="authHub" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=13;spacing=8;" value="Authentication &amp; Onboarding Hub&lt;br&gt;Entry via Nav, Schedule, or Direct link" vertex="1">
+          <mxGeometry x="1340" y="220" width="300" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="home" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Home /&lt;br&gt;Value proposition, program summary, schedule preview" vertex="1">
+          <mxGeometry x="40" y="370" width="220" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="programs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Programs /programs&lt;br&gt;Intensity, duration, equipment" vertex="1">
+          <mxGeometry x="280" y="370" width="220" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="schedule" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Schedule /schedule&lt;br&gt;Filter by date, program, trainer, availability" vertex="1">
+          <mxGeometry x="520" y="370" width="220" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="trainers" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Trainers /trainers&lt;br&gt;Fictional bios and specialties" vertex="1">
+          <mxGeometry x="760" y="370" width="220" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="pricing" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Pricing /pricing&lt;br&gt;Clearly labeled fictional plans" vertex="1">
+          <mxGeometry x="1000" y="370" width="220" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="terms" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Terms of Service /terms&lt;br&gt;Membership rules, cutoff policy, etiquette" vertex="1">
+          <mxGeometry x="40" y="500" width="220" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="privacy" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Privacy Policy /privacy&lt;br&gt;Fictional demo disclosures, session cookies" vertex="1">
+          <mxGeometry x="280" y="500" width="220" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="waiver" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Liability Waiver /waiver&lt;br&gt;Physical readiness declaration &amp; injury release" vertex="1">
+          <mxGeometry x="520" y="500" width="220" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="login" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=13;spacing=8;" value="Sign In &amp; Demo switcher /login&lt;br&gt;Credentials or 1-click persona switch" vertex="1">
+          <mxGeometry x="1260" y="370" width="250" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="register" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=13;spacing=8;" value="Member registration /register&lt;br&gt;Zod validation, terms &amp; waiver consent" vertex="1">
+          <mxGeometry x="1540" y="370" width="250" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="recovery" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=13;spacing=8;" value="Account recovery /auth/forgot-password&lt;br&gt;Rate-limited, email-safe reset link" vertex="1">
+          <mxGeometry x="1400" y="500" width="260" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="details" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;stroke-dasharray=4 4;fontColor=#111310;fontSize=12;spacing=8;" value="Session details /sessions/:id&lt;br&gt;Time, trainer, capacity, availability, configured cutoff" vertex="1">
+          <mxGeometry x="520" y="640" width="240" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="auth" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;stroke-dasharray=4 4;fontColor=#111310;fontSize=12;spacing=8;" value="Demo sign-in modal&lt;br&gt;Fictional profiles; preserve selected session" vertex="1">
+          <mxGeometry x="800" y="640" width="240" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="waiverModal" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;stroke-dasharray=4 4;fontColor=#111310;fontSize=12;spacing=8;" value="Liability waiver modal&lt;br&gt;Mandatory before first class booking" vertex="1">
+          <mxGeometry x="1080" y="640" width="240" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="expiryModal" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;stroke-dasharray=4 4;fontColor=#111310;fontSize=12;spacing=8;" value="Session expiry modal&lt;br&gt;Re-auth without losing booking intent" vertex="1">
+          <mxGeometry x="1360" y="640" width="240" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="myBookings" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="My bookings /my-bookings&lt;br&gt;Upcoming confirmed and waiting entries" vertex="1">
+          <mxGeometry x="240" y="800" width="250" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="confirmed" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Confirmed reservations&lt;br&gt;Session details and cancellation action" vertex="1">
+          <mxGeometry x="240" y="950" width="250" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="cancelDialog" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;stroke-dasharray=4 4;fontColor=#111310;fontSize=12;spacing=8;" value="Cancellation confirmation&lt;br&gt;Configured cutoff and outcome" vertex="1">
+          <mxGeometry x="240" y="1100" width="250" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="waiting" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Waitlist entries&lt;br&gt;Current position and leave action" vertex="1">
+          <mxGeometry x="540" y="950" width="250" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="profileSecurity" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Profile &amp; Security /profile/security&lt;br&gt;Membership status, signed waiver, sign out" vertex="1">
+          <mxGeometry x="540" y="1100" width="250" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="trainer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8E3F3;strokeColor=#4C3B73;fontColor=#111310;fontSize=13;spacing=8;" value="Assigned sessions /trainer/sessions&lt;br&gt;Upcoming assigned sessions" vertex="1">
+          <mxGeometry x="860" y="800" width="250" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="trainerSession" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8E3F3;strokeColor=#4C3B73;fontColor=#111310;fontSize=13;spacing=8;" value="Assigned session /trainer/sessions/:id&lt;br&gt;Session details and attendee count" vertex="1">
+          <mxGeometry x="860" y="950" width="250" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="admin" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#111310;strokeColor=#C7F134;fontColor=#F2F0E8;fontSize=13;spacing=8;" value="Operations overview /admin&lt;br&gt;Session occupancy and waitlist counts" vertex="1">
+          <mxGeometry x="1300" y="800" width="250" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="sessions" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#111310;strokeColor=#C7F134;fontColor=#F2F0E8;fontSize=13;spacing=8;" value="Session manager /admin/sessions&lt;br&gt;List and filter scheduled sessions" vertex="1">
+          <mxGeometry x="1300" y="950" width="250" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="create" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#111310;strokeColor=#C7F134;fontColor=#F2F0E8;fontSize=13;spacing=8;" value="Create session /admin/sessions/new&lt;br&gt;Program, trainer, time, capacity, cutoff" vertex="1">
+          <mxGeometry x="1020" y="1100" width="250" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="edit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#111310;strokeColor=#C7F134;fontColor=#F2F0E8;fontSize=13;spacing=8;" value="Edit session /admin/sessions/:id/edit&lt;br&gt;Validated scheduling changes" vertex="1">
+          <mxGeometry x="1300" y="1100" width="250" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="participants" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#111310;strokeColor=#C7F134;fontColor=#F2F0E8;fontSize=13;spacing=8;" value="Participants /admin/sessions/:id/participants&lt;br&gt;Fictional bookings and ordered waitlist" vertex="1">
+          <mxGeometry x="1580" y="1100" width="250" height="74" as="geometry" />
+        </mxCell>
+
+        
+        <!-- COLOR & ARCHITECTURE TAXONOMY KEY -->
+        <mxCell id="leg1_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111310;strokeWidth=1.5;shadow=0;" value="" vertex="1">
+          <mxGeometry x="1850" y="25" width="500" height="710" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontStyle=1;fontColor=#111310;" value="COLOR &amp; ARCHITECTURE TAXONOMY" vertex="1">
+          <mxGeometry x="1870" y="40" width="460" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1_subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#5C6159;" value="Visual system guide: Practice Athletic Club design language" vertex="1">
+          <mxGeometry x="1870" y="64" width="460" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1_div1" parent="1" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;strokeColor=#E2E0D8;" value="" vertex="1">
+          <mxGeometry x="1870" y="86" width="460" height="10" as="geometry" />
+        </mxCell>
+
+        <!-- Item 1: Public & Legal Space -->
+        <mxCell id="leg1_sw1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=10;fontStyle=1;" value="Public &amp; Legal" vertex="1">
+          <mxGeometry x="1870" y="105" width="110" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1_tx1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#111310;" value="&lt;b&gt;Public &amp; Legal Experience (Unauthenticated)&lt;/b&gt;&lt;br&gt;Visitor access: Home, Programs, Schedule, Pricing, Terms of Service, Privacy Policy, Liability Waiver." vertex="1">
+          <mxGeometry x="1990" y="103" width="340" height="46" as="geometry" />
+        </mxCell>
+
+        <!-- Item 2: Member Protected Space -->
+        <mxCell id="leg1_sw2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2E0D8;strokeColor=#111310;fontColor=#111310;fontSize=10;fontStyle=1;" value="Member Space" vertex="1">
+          <mxGeometry x="1870" y="165" width="110" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1_tx2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#111310;" value="&lt;b&gt;Member Experience (Protected)&lt;/b&gt;&lt;br&gt;Authenticated members: My Bookings, Confirmed reservations, Waitlist entries, Profile &amp; Security." vertex="1">
+          <mxGeometry x="1990" y="163" width="340" height="46" as="geometry" />
+        </mxCell>
+
+        <!-- Item 3: Auth & Security Hub -->
+        <mxCell id="leg1_sw3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=10;fontStyle=1;" value="Auth &amp; Security" vertex="1">
+          <mxGeometry x="1870" y="225" width="110" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1_tx3" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#111310;" value="&lt;b&gt;Authentication &amp; Security Hub&lt;/b&gt;&lt;br&gt;Sign In, 1-click Demo Persona Switcher, Register with Zod validation, Account Recovery, CSRF &amp; Rate limits." vertex="1">
+          <mxGeometry x="1990" y="223" width="340" height="46" as="geometry" />
+        </mxCell>
+
+        <!-- Item 4: Contextual Overlays & Modals -->
+        <mxCell id="leg1_sw4" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;stroke-dasharray=4 4;fontColor=#111310;fontSize=10;fontStyle=1;" value="Overlay / Modal" vertex="1">
+          <mxGeometry x="1870" y="285" width="110" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1_tx4" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#111310;" value="&lt;b&gt;Contextual Overlays &amp; Ephemeral Modals&lt;/b&gt;&lt;br&gt;Cookie notice, Session Details sheet, Demo Auth modal, Liability Waiver signing, 401 Session Expiry recovery." vertex="1">
+          <mxGeometry x="1990" y="283" width="340" height="48" as="geometry" />
+        </mxCell>
+
+        <!-- Item 5: Trainer Space -->
+        <mxCell id="leg1_sw5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8E3F3;strokeColor=#4C3B73;fontColor=#111310;fontSize=10;fontStyle=1;" value="Trainer Space" vertex="1">
+          <mxGeometry x="1870" y="347" width="110" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1_tx5" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#111310;" value="&lt;b&gt;Trainer Space (Protected Read-Only)&lt;/b&gt;&lt;br&gt;Staff trainers: Assigned upcoming classes, schedule overview, attendee counts (restricted to TRAINER role)." vertex="1">
+          <mxGeometry x="1990" y="345" width="340" height="46" as="geometry" />
+        </mxCell>
+
+        <!-- Item 6: Administrator Operations -->
+        <mxCell id="leg1_sw6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#111310;strokeColor=#C7F134;fontColor=#F2F0E8;fontSize=10;fontStyle=1;" value="Admin Ops" vertex="1">
+          <mxGeometry x="1870" y="407" width="110" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1_tx6" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#111310;" value="&lt;b&gt;Administrator Space (Privileged Operations)&lt;/b&gt;&lt;br&gt;Operations managers: Schedule creation, class editing, capacity overrides, participant roster (ADMIN role)." vertex="1">
+          <mxGeometry x="1990" y="405" width="340" height="46" as="geometry" />
+        </mxCell>
+
+        <!-- Item 7: Success / Confirmed State -->
+        <mxCell id="leg1_sw7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#1F4D32;fontSize=10;fontStyle=1;" value="Confirmed / Success" vertex="1">
+          <mxGeometry x="1870" y="467" width="110" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1_tx7" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#111310;" value="&lt;b&gt;Success &amp; Confirmed States (Flows)&lt;/b&gt;&lt;br&gt;Confirmed booking created, spot opened, FIFO promotion executed, waiver signed on file." vertex="1">
+          <mxGeometry x="1990" y="465" width="340" height="46" as="geometry" />
+        </mxCell>
+
+        <!-- Item 8: Alert / Rejection State -->
+        <mxCell id="leg1_sw8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#9E2E25;fontSize=10;fontStyle=1;" value="Blocked / Alert" vertex="1">
+          <mxGeometry x="1870" y="527" width="110" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1_tx8" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#111310;" value="&lt;b&gt;Rejections, Cutoff &amp; Errors (Flows)&lt;/b&gt;&lt;br&gt;Cutoff window elapsed, session full, overlap conflict, rate-limit tripped, 401 expired, 403 forbidden." vertex="1">
+          <mxGeometry x="1990" y="525" width="340" height="46" as="geometry" />
+        </mxCell>
+
+        <!-- Item 9: Decision Gateway -->
+        <mxCell id="leg1_sw9" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=10;fontStyle=1;" value="Decision" vertex="1">
+          <mxGeometry x="1870" y="587" width="110" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1_tx9" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#111310;" value="&lt;b&gt;Decision Gateways (Flows)&lt;/b&gt;&lt;br&gt;Authoritative conditions: Capacity check, active membership, signed waiver, role eligibility, duplicate guard." vertex="1">
+          <mxGeometry x="1990" y="585" width="340" height="46" as="geometry" />
+        </mxCell>
+
+        <!-- Item 10: Connector Styles -->
+        <mxCell id="leg1_div2" parent="1" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;strokeColor=#E2E0D8;" value="" vertex="1">
+          <mxGeometry x="1870" y="641" width="460" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1_txConnectors" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#5C6159;" value="&lt;b&gt;Connectors:&lt;/b&gt; — Solid grey: Synchronous route / Nav &amp;nbsp;|&amp;nbsp; - - - Purple: Overlay trigger &amp;nbsp;|&amp;nbsp; - - - Red: Auth intercept" vertex="1">
+          <mxGeometry x="1870" y="655" width="460" height="24" as="geometry" />
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell id="e-root-public" edge="1" parent="1" source="root" target="publicNav" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-root-auth" edge="1" parent="1" source="root" target="authHub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-root-bookings" edge="1" parent="1" source="root" target="myBookings" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-root-trainer" edge="1" parent="1" source="root" target="trainer" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-root-admin" edge="1" parent="1" source="root" target="admin" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-nav-cookie" edge="1" parent="1" source="publicNav" target="cookieBanner" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=none;strokeColor=#8B5CF6;fontSize=11;fontColor=#8B5CF6;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-nav-home" edge="1" parent="1" source="publicNav" target="home" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-nav-prog" edge="1" parent="1" source="publicNav" target="programs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-nav-sched" edge="1" parent="1" source="publicNav" target="schedule" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-nav-trainers" edge="1" parent="1" source="publicNav" target="trainers" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-nav-pricing" edge="1" parent="1" source="publicNav" target="pricing" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-nav-terms" edge="1" parent="1" source="publicNav" target="terms" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="650" y="470" />
+              <mxPoint x="150" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-nav-privacy" edge="1" parent="1" source="publicNav" target="privacy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="650" y="470" />
+              <mxPoint x="390" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-nav-waiver" edge="1" parent="1" source="publicNav" target="waiver" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-hub-login" edge="1" parent="1" source="authHub" target="login" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-hub-reg" edge="1" parent="1" source="authHub" target="register" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-login-rec" edge="1" parent="1" source="login" target="recovery" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-sched-details" edge="1" parent="1" source="schedule" target="details" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-details-auth" value="Unauthenticated booking attempt" edge="1" parent="1" source="details" target="auth" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-auth-details" value="Return to selected session" edge="1" parent="1" source="auth" target="details" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-details-waiver" value="Check signed waiver" edge="1" parent="1" source="details" target="waiverModal" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#8B5CF6;fontSize=11;fontColor=#8B5CF6;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-details-expiry" value="Session expired" edge="1" parent="1" source="details" target="expiryModal" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-book-conf" edge="1" parent="1" source="myBookings" target="confirmed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-book-wait" edge="1" parent="1" source="myBookings" target="waiting" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-conf-cancel" edge="1" parent="1" source="confirmed" target="cancelDialog" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-book-sec" edge="1" parent="1" source="myBookings" target="profileSecurity" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="365" y="1060" />
+              <mxPoint x="665" y="1060" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e-train-session" edge="1" parent="1" source="trainer" target="trainerSession" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-admin-sess" edge="1" parent="1" source="admin" target="sessions" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-sess-create" edge="1" parent="1" source="sessions" target="create" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-sess-edit" edge="1" parent="1" source="sessions" target="edit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-sess-parts" edge="1" parent="1" source="sessions" target="participants" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="02BookingandWaitlist" name="02 Booking and Waitlist">
+    <mxGraphModel dx="1900" dy="1300" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2200" pageHeight="2800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#111310;" value="BOOKING AND WAITLIST ENTRY" vertex="1">
+          <mxGeometry x="40" y="25" width="1300" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#5C6159;" value="Server-authoritative eligibility, waiver verification, capacity, and conflict checks" vertex="1">
+          <mxGeometry x="40" y="60" width="1300" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="start" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Visitor or member opens schedule" vertex="1">
+          <mxGeometry x="650" y="90" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="filters" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Filter by date, program, trainer, and availability" vertex="1">
+          <mxGeometry x="650" y="190" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="results" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Any matching sessions?" vertex="1">
+          <mxGeometry x="650" y="290" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="empty" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Empty state&lt;br&gt;Clear filters or choose another date" vertex="1">
+          <mxGeometry x="1020" y="290" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="select" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Select a session" vertex="1">
+          <mxGeometry x="650" y="400" width="250" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="termsNote" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Booking terms &amp; cutoff notice:&lt;br&gt;Late cancellations forfeit spot; auto-promotion is binding" vertex="1">
+          <mxGeometry x="280" y="490" width="250" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="details" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="View time, trainer, remaining availability, status, and configured cutoff" vertex="1">
+          <mxGeometry x="650" y="490" width="250" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="intent" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Choose Book session" vertex="1">
+          <mxGeometry x="650" y="590" width="250" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="auth" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Authenticated?" vertex="1">
+          <mxGeometry x="650" y="680" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="signIn" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Demo sign-in&lt;br&gt;Preserve selected session" vertex="1">
+          <mxGeometry x="280" y="680" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="profile" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Has member profile?" vertex="1">
+          <mxGeometry x="650" y="790" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="roleBlocked" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Member-only action unavailable&lt;br&gt;Trainer or admin needs member profile" vertex="1">
+          <mxGeometry x="1020" y="790" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="membership" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Membership active?" vertex="1">
+          <mxGeometry x="650" y="900" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="inactive" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Booking blocked&lt;br&gt;Explain inactive demo membership" vertex="1">
+          <mxGeometry x="1020" y="900" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="waiverCheck" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Liability waiver signed on file?" vertex="1">
+          <mxGeometry x="650" y="1010" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="waiverModal" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Liability waiver &amp; PAR-Q modal&lt;br&gt;Review fitness readiness &amp; sign release" vertex="1">
+          <mxGeometry x="1020" y="1010" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="waiverSign" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Store timestamped waiver in profile" vertex="1">
+          <mxGeometry x="1340" y="1010" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="eligible" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Session scheduled and before configured cutoff?" vertex="1">
+          <mxGeometry x="650" y="1120" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="cutoffOrStatus" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Booking unavailable&lt;br&gt;Show current session status or cutoff" vertex="1">
+          <mxGeometry x="1020" y="1120" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="submitBooking" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Submit booking request" vertex="1">
+          <mxGeometry x="650" y="1230" width="250" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="securityCheck" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=13;spacing=8;" value="Security &amp; rate check&lt;br&gt;Valid CSRF token, session token, and rate limit OK" vertex="1">
+          <mxGeometry x="650" y="1320" width="250" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="sessionExpired" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="401 Session expired&lt;br&gt;Prompt re-auth modal; preserve session &amp; intent" vertex="1">
+          <mxGeometry x="1020" y="1320" width="250" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="transactionNote" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Authoritative rules run on server;&lt;br&gt;UI checks are guidance only" vertex="1">
+          <mxGeometry x="280" y="1420" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="transaction" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Server transaction rechecks identity, membership, waiver, status, cutoff, duplicates, overlap, capacity" vertex="1">
+          <mxGeometry x="650" y="1420" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="failure" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Preserve selected session&lt;br&gt;Show request ID and retry action" vertex="1">
+          <mxGeometry x="1400" y="1420" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="existingBooking" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Already has confirmed booking?" vertex="1">
+          <mxGeometry x="650" y="1530" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="alreadyBooked" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Show existing reservation&lt;br&gt;No duplicate created" vertex="1">
+          <mxGeometry x="1020" y="1530" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="existingWaitlist" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Already waiting?" vertex="1">
+          <mxGeometry x="650" y="1640" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="alreadyWaiting" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Show current waitlist position&lt;br&gt;No duplicate entry created" vertex="1">
+          <mxGeometry x="1020" y="1640" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="overlap" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Overlaps another confirmed booking?" vertex="1">
+          <mxGeometry x="650" y="1750" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="conflict" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Booking conflict&lt;br&gt;Link to conflicting reservation" vertex="1">
+          <mxGeometry x="1020" y="1750" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="capacity" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Capacity available at commit time?" vertex="1">
+          <mxGeometry x="650" y="1860" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="confirm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Create confirmed booking atomically" vertex="1">
+          <mxGeometry x="280" y="1970" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bookingSuccess" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Booking confirmed&lt;br&gt;Show in My bookings" vertex="1">
+          <mxGeometry x="280" y="2070" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="full" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Session full&lt;br&gt;Offer Join waitlist" vertex="1">
+          <mxGeometry x="650" y="1970" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="joinChoice" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Join waitlist?" vertex="1">
+          <mxGeometry x="650" y="2080" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="submitWaitlist" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Submit waitlist request" vertex="1">
+          <mxGeometry x="650" y="2190" width="250" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="waitlistSec" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=13;spacing=8;" value="Security &amp; rate check&lt;br&gt;Validate CSRF token &amp; rate limit" vertex="1">
+          <mxGeometry x="650" y="2280" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="waitlistRecheck" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Server rechecks eligibility, duplicate entry, and capacity" vertex="1">
+          <mxGeometry x="650" y="2380" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="stillFull" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Session still full?" vertex="1">
+          <mxGeometry x="650" y="2480" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="spotOpened" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Spot opened&lt;br&gt;Refresh and offer booking" vertex="1">
+          <mxGeometry x="280" y="2480" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="createEntry" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Create one FIFO entry" vertex="1">
+          <mxGeometry x="650" y="2590" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="waitlistSuccess" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Waitlist joined&lt;br&gt;Show current position" vertex="1">
+          <mxGeometry x="650" y="2690" width="250" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- BOOKING FLOW SEMANTICS KEY -->
+        <mxCell id="leg2_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111310;strokeWidth=1.5;shadow=0;" value="" vertex="1">
+          <mxGeometry x="1450" y="25" width="480" height="500" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontStyle=1;fontColor=#111310;" value="BOOKING FLOW SEMANTICS &amp; COLOR KEY" vertex="1">
+          <mxGeometry x="1470" y="40" width="440" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2_subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#5C6159;" value="Execution guide: Client interactions, server guards &amp; state transitions" vertex="1">
+          <mxGeometry x="1470" y="64" width="440" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2_div1" parent="1" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;strokeColor=#E2E0D8;" value="" vertex="1">
+          <mxGeometry x="1470" y="86" width="440" height="10" as="geometry" />
+        </mxCell>
+
+        <!-- Item 1: User / Server Action -->
+        <mxCell id="leg2_sw1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=10;fontStyle=1;" value="Standard Action" vertex="1">
+          <mxGeometry x="1470" y="105" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2_tx1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#111310;" value="&lt;b&gt;User Action / Server Step&lt;/b&gt;&lt;br&gt;Browsing, filtering, session selection, or transaction execution." vertex="1">
+          <mxGeometry x="1590" y="103" width="320" height="44" as="geometry" />
+        </mxCell>
+
+        <!-- Item 2: Decision Gateway -->
+        <mxCell id="leg2_sw2" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=10;fontStyle=1;" value="Decision" vertex="1">
+          <mxGeometry x="1470" y="160" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2_tx2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#111310;" value="&lt;b&gt;Authoritative Decision Gateway&lt;/b&gt;&lt;br&gt;Branching evaluation: Capacity, signed waiver, role, duplicate, overlap." vertex="1">
+          <mxGeometry x="1590" y="158" width="320" height="44" as="geometry" />
+        </mxCell>
+
+        <!-- Item 3: Security & Rate Check -->
+        <mxCell id="leg2_sw3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=10;fontStyle=1;" value="Security Check" vertex="1">
+          <mxGeometry x="1470" y="215" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2_tx3" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#111310;" value="&lt;b&gt;Security &amp; Rate Limiting Gate&lt;/b&gt;&lt;br&gt;CSRF double-submit token, session validation, brute-force limits." vertex="1">
+          <mxGeometry x="1590" y="213" width="320" height="44" as="geometry" />
+        </mxCell>
+
+        <!-- Item 4: Contextual Modal / Note -->
+        <mxCell id="leg2_sw4" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;stroke-dasharray=4 4;fontColor=#111310;fontSize=10;fontStyle=1;" value="Modal / Notice" vertex="1">
+          <mxGeometry x="1470" y="270" width="110" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2_tx4" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#111310;" value="&lt;b&gt;Contextual Modal / Legal Notice&lt;/b&gt;&lt;br&gt;Liability waiver signing modal, demo auth, cutoff rules disclaimer." vertex="1">
+          <mxGeometry x="1590" y="268" width="320" height="46" as="geometry" />
+        </mxCell>
+
+        <!-- Item 5: Success State -->
+        <mxCell id="leg2_sw5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#1F4D32;fontSize=10;fontStyle=1;" value="Success State" vertex="1">
+          <mxGeometry x="1470" y="327" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2_tx5" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#111310;" value="&lt;b&gt;Confirmed Reservation / Success&lt;/b&gt;&lt;br&gt;Atomic booking commit, spot opened, waiver stored in profile." vertex="1">
+          <mxGeometry x="1590" y="325" width="320" height="44" as="geometry" />
+        </mxCell>
+
+        <!-- Item 6: Failure / Blocked -->
+        <mxCell id="leg2_sw6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#9E2E25;fontSize=10;fontStyle=1;" value="Blocked / Full" vertex="1">
+          <mxGeometry x="1470" y="382" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2_tx6" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#111310;" value="&lt;b&gt;Rejection / Blocked / Conflict&lt;/b&gt;&lt;br&gt;Cutoff passed, session full, overlap detected, 401 session expired." vertex="1">
+          <mxGeometry x="1590" y="380" width="320" height="44" as="geometry" />
+        </mxCell>
+
+        <!-- Item 7: Connectors -->
+        <mxCell id="leg2_div2" parent="1" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;strokeColor=#E2E0D8;" value="" vertex="1">
+          <mxGeometry x="1470" y="437" width="440" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2_txConn" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#5C6159;" value="&lt;b&gt;Connectors:&lt;/b&gt; — Solid: Authoritative flow &amp;nbsp;|&amp;nbsp; - - - Purple: Modal trigger &amp;nbsp;|&amp;nbsp; - - - Red: Auth/Expiry intercept" vertex="1">
+          <mxGeometry x="1470" y="450" width="440" height="24" as="geometry" />
+        </mxCell>
+
+
+        <!-- Edges -->
+        <mxCell id="e-b-01" edge="1" parent="1" source="start" target="filters" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-02" edge="1" parent="1" source="filters" target="results" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-03" value="No" edge="1" parent="1" source="results" target="empty" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-04" edge="1" parent="1" source="empty" target="filters" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1300" y="325" />
+              <mxPoint x="1300" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-b-05" value="Yes" edge="1" parent="1" source="results" target="select" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-06" edge="1" parent="1" source="select" target="details" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-terms" edge="1" parent="1" source="details" target="termsNote" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=none;strokeColor=#8B5CF6;fontSize=11;fontColor=#8B5CF6;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-07" edge="1" parent="1" source="details" target="intent" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-08" edge="1" parent="1" source="intent" target="auth" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-09" value="No" edge="1" parent="1" source="auth" target="signIn" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-10" edge="1" parent="1" source="signIn" target="profile" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="405" y="825" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-b-11" value="Yes" edge="1" parent="1" source="auth" target="profile" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-12" value="No" edge="1" parent="1" source="profile" target="roleBlocked" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-13" value="Yes" edge="1" parent="1" source="profile" target="membership" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-14" value="No" edge="1" parent="1" source="membership" target="inactive" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-waiver" value="Yes" edge="1" parent="1" source="membership" target="waiverCheck" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-waiver-no" value="No" edge="1" parent="1" source="waiverCheck" target="waiverModal" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-waiver-sign" edge="1" parent="1" source="waiverModal" target="waiverSign" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-waiver-loop" edge="1" parent="1" source="waiverSign" target="eligible" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1450" y="1155" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-b-waiver-yes" value="Yes" edge="1" parent="1" source="waiverCheck" target="eligible" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-16" value="No" edge="1" parent="1" source="eligible" target="cutoffOrStatus" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-17" value="Yes" edge="1" parent="1" source="eligible" target="submitBooking" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-sec" edge="1" parent="1" source="submitBooking" target="securityCheck" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-sec-exp" value="Expired" edge="1" parent="1" source="securityCheck" target="sessionExpired" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-sec-pass" value="Valid" edge="1" parent="1" source="securityCheck" target="transaction" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-18" edge="1" parent="1" source="transactionNote" target="transaction" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=none;strokeColor=#8B5CF6;fontSize=11;fontColor=#8B5CF6;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-19" value="unexpected failure" edge="1" parent="1" source="transaction" target="failure" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-20" edge="1" parent="1" source="transaction" target="existingBooking" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-21" value="Yes" edge="1" parent="1" source="existingBooking" target="alreadyBooked" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-22" value="No" edge="1" parent="1" source="existingBooking" target="existingWaitlist" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-23" value="Yes" edge="1" parent="1" source="existingWaitlist" target="alreadyWaiting" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-24" value="No" edge="1" parent="1" source="existingWaitlist" target="overlap" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-25" value="Yes" edge="1" parent="1" source="overlap" target="conflict" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-26" value="No" edge="1" parent="1" source="overlap" target="capacity" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-27" value="Yes" edge="1" parent="1" source="capacity" target="confirm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-28" edge="1" parent="1" source="confirm" target="bookingSuccess" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-29" value="No" edge="1" parent="1" source="capacity" target="full" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-30" edge="1" parent="1" source="full" target="joinChoice" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-31" value="No" edge="1" parent="1" source="joinChoice" target="details" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="180" y="2115" />
+              <mxPoint x="180" y="522" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-b-32" value="Yes" edge="1" parent="1" source="joinChoice" target="submitWaitlist" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-wsec" edge="1" parent="1" source="submitWaitlist" target="waitlistSec" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-33" edge="1" parent="1" source="waitlistSec" target="waitlistRecheck" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-34" value="unexpected failure" edge="1" parent="1" source="waitlistRecheck" target="failure" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1525" y="2410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-b-35" edge="1" parent="1" source="waitlistRecheck" target="stillFull" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-36" value="No" edge="1" parent="1" source="stillFull" target="spotOpened" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-37" edge="1" parent="1" source="spotOpened" target="details" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="405" y="522" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-b-38" value="Yes" edge="1" parent="1" source="stillFull" target="createEntry" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-39" edge="1" parent="1" source="createEntry" target="waitlistSuccess" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="03WaitlistManagement" name="03 Waitlist Management">
+    <mxGraphModel dx="1900" dy="1300" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2200" pageHeight="1800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#111310;" value="WAITLIST MANAGEMENT" vertex="1">
+          <mxGeometry x="40" y="25" width="1300" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#5C6159;" value="View position, leave the queue, and handle concurrent promotion with server verification" vertex="1">
+          <mxGeometry x="40" y="60" width="1300" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="start" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Member opens My bookings" vertex="1">
+          <mxGeometry x="600" y="90" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="load" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Load confirmed reservations and waiting entries" vertex="1">
+          <mxGeometry x="600" y="200" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="loadState" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Request result" vertex="1">
+          <mxGeometry x="600" y="320" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="loading" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Show stable loading skeleton" vertex="1">
+          <mxGeometry x="200" y="320" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="retry" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Show recoverable error and retry" vertex="1">
+          <mxGeometry x="1000" y="320" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="empty" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="No upcoming bookings or waitlist entries" vertex="1">
+          <mxGeometry x="1000" y="460" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="select" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Select a waiting entry" vertex="1">
+          <mxGeometry x="600" y="460" width="250" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="details" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Show details, FIFO position, and Leave waitlist action" vertex="1">
+          <mxGeometry x="600" y="550" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="choice" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Member choice" vertex="1">
+          <mxGeometry x="600" y="660" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="keep" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Remain on waitlist" vertex="1">
+          <mxGeometry x="200" y="790" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="submit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Submit removal request" vertex="1">
+          <mxGeometry x="600" y="790" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="secNote" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Security guard:&lt;br&gt;CSRF token verified, rate limit checked, no cross-member tampering" vertex="1">
+          <mxGeometry x="200" y="910" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="serverCheck" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Server verifies session, CSRF token, rate limit, identity, ownership, and entry status" vertex="1">
+          <mxGeometry x="600" y="910" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="removeFailure" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Keep entry visible&lt;br&gt;Show request ID and retry" vertex="1">
+          <mxGeometry x="1000" y="910" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="status" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Current status" vertex="1">
+          <mxGeometry x="600" y="1040" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="remove" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Atomically mark entry cancelled" vertex="1">
+          <mxGeometry x="200" y="1180" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="removed" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Removed from waitlist&lt;br&gt;Refresh My bookings" vertex="1">
+          <mxGeometry x="200" y="1280" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="promoted" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Entry was already promoted&lt;br&gt;Show confirmed reservation and policy" vertex="1">
+          <mxGeometry x="600" y="1180" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="resolved" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Entry already resolved&lt;br&gt;Refresh My bookings" vertex="1">
+          <mxGeometry x="1000" y="1180" width="250" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell id="e-w-01" edge="1" parent="1" source="start" target="load" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-w-02" edge="1" parent="1" source="load" target="loadState" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-w-03" value="Loading" edge="1" parent="1" source="loadState" target="loading" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-w-04" edge="1" parent="1" source="loading" target="loadState" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-w-05" value="Failure" edge="1" parent="1" source="loadState" target="retry" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-w-06" edge="1" parent="1" source="retry" target="load" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-w-07" value="Empty" edge="1" parent="1" source="loadState" target="empty" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-w-08" value="Ready" edge="1" parent="1" source="loadState" target="select" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-w-09" edge="1" parent="1" source="select" target="details" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-w-10" edge="1" parent="1" source="details" target="choice" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-w-11" value="Keep waiting" edge="1" parent="1" source="choice" target="keep" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-w-12" value="Leave waitlist" edge="1" parent="1" source="choice" target="submit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-w-13" edge="1" parent="1" source="submit" target="serverCheck" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-w-sec" edge="1" parent="1" source="secNote" target="serverCheck" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=none;strokeColor=#8B5CF6;fontSize=11;fontColor=#8B5CF6;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-w-14" value="unexpected failure" edge="1" parent="1" source="serverCheck" target="removeFailure" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-w-15" edge="1" parent="1" source="serverCheck" target="status" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-w-16" value="Waiting" edge="1" parent="1" source="status" target="remove" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-w-17" edge="1" parent="1" source="remove" target="removed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-w-18" value="Promoted" edge="1" parent="1" source="status" target="promoted" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-w-19" value="Cancelled or expired" edge="1" parent="1" source="status" target="resolved" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="04CancellationandPromotion" name="04 Cancellation and Promotion">
+    <mxGraphModel dx="1900" dy="1300" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2200" pageHeight="2200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#111310;" value="CANCELLATION AND FIFO PROMOTION" vertex="1">
+          <mxGeometry x="40" y="25" width="1300" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#5C6159;" value="Cutoff enforcement, transactional promotion, and audit trail without capacity drift" vertex="1">
+          <mxGeometry x="40" y="60" width="1300" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="start" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Member opens My bookings" vertex="1">
+          <mxGeometry x="650" y="90" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="select" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Select confirmed reservation" vertex="1">
+          <mxGeometry x="650" y="200" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="cutoffDisplay" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Before configured cancellation cutoff?" vertex="1">
+          <mxGeometry x="650" y="310" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="locked" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Cancellation unavailable&lt;br&gt;Cutoff passed; reservation retained" vertex="1">
+          <mxGeometry x="1020" y="310" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="dialog" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Confirm cancellation&lt;br&gt;Explain possible waitlist promotion" vertex="1">
+          <mxGeometry x="650" y="420" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="choice" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Member choice" vertex="1">
+          <mxGeometry x="650" y="530" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="retain" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Close dialog; reservation retained" vertex="1">
+          <mxGeometry x="200" y="660" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="submit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Submit cancellation request" vertex="1">
+          <mxGeometry x="650" y="660" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="secNoteCancel" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Security &amp; policy guard:&lt;br&gt;CSRF token verified, rate limit enforced, cutoff verified on server" vertex="1">
+          <mxGeometry x="200" y="770" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="validate" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Server verifies session identity, ownership, CSRF token, rate limit, confirmed status, and cutoff" vertex="1">
+          <mxGeometry x="650" y="770" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="valid" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Still eligible to cancel?" vertex="1">
+          <mxGeometry x="650" y="880" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="rejected" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Show stable domain error&lt;br&gt;Refresh current booking state" vertex="1">
+          <mxGeometry x="1020" y="880" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="transaction" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Begin one database transaction" vertex="1">
+          <mxGeometry x="650" y="990" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rollback" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Roll back all changes&lt;br&gt;Reservation remains confirmed" vertex="1">
+          <mxGeometry x="1020" y="990" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="cancelBooking" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Mark booking cancelled" vertex="1">
+          <mxGeometry x="650" y="1100" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nextEntry" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Select earliest FIFO waiting entry" vertex="1">
+          <mxGeometry x="650" y="1210" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="queue" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Waiting entry found?" vertex="1">
+          <mxGeometry x="650" y="1320" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="commitOpen" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Commit cancellation&lt;br&gt;Maximum capacity unchanged; availability increases" vertex="1">
+          <mxGeometry x="200" y="1430" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="cancelSuccess" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Original member sees cancellation confirmed" vertex="1">
+          <mxGeometry x="200" y="1540" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eligible" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Entry eligible under current rules?" vertex="1">
+          <mxGeometry x="650" y="1430" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="resolveIneligible" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Mark entry expired using agreed status rule" vertex="1">
+          <mxGeometry x="1020" y="1430" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="promote" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Mark entry promoted and create confirmed booking atomically" vertex="1">
+          <mxGeometry x="650" y="1540" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="commitPromotion" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Commit cancellation and promotion" vertex="1">
+          <mxGeometry x="650" y="1650" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="auditLog" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Structured audit log:&lt;br&gt;Record cancellation, availability change, or FIFO promotion with request ID" vertex="1">
+          <mxGeometry x="1020" y="1650" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="promotedResult" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Promoted member sees confirmed reservation on refresh" vertex="1">
+          <mxGeometry x="650" y="1760" width="250" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell id="e-c-01" edge="1" parent="1" source="start" target="select" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-02" edge="1" parent="1" source="select" target="cutoffDisplay" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-03" value="No" edge="1" parent="1" source="cutoffDisplay" target="locked" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-04" value="Yes" edge="1" parent="1" source="cutoffDisplay" target="dialog" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-05" edge="1" parent="1" source="dialog" target="choice" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-06" value="Keep reservation" edge="1" parent="1" source="choice" target="retain" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-07" value="Confirm cancellation" edge="1" parent="1" source="choice" target="submit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-sec" edge="1" parent="1" source="secNoteCancel" target="validate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=none;strokeColor=#8B5CF6;fontSize=11;fontColor=#8B5CF6;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-08" edge="1" parent="1" source="submit" target="validate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-09" edge="1" parent="1" source="validate" target="valid" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-10" value="No" edge="1" parent="1" source="valid" target="rejected" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-11" value="Yes" edge="1" parent="1" source="valid" target="transaction" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-12" value="transaction failure" edge="1" parent="1" source="transaction" target="rollback" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-13" edge="1" parent="1" source="transaction" target="cancelBooking" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-14" edge="1" parent="1" source="cancelBooking" target="nextEntry" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-15" edge="1" parent="1" source="nextEntry" target="queue" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-16" value="No" edge="1" parent="1" source="queue" target="commitOpen" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-17" edge="1" parent="1" source="commitOpen" target="cancelSuccess" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-18" value="Yes" edge="1" parent="1" source="queue" target="eligible" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-19" value="No" edge="1" parent="1" source="eligible" target="resolveIneligible" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-20" edge="1" parent="1" source="resolveIneligible" target="nextEntry" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1300" y="1465" />
+              <mxPoint x="1300" y="1240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-c-21" value="Yes" edge="1" parent="1" source="eligible" target="promote" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-22" edge="1" parent="1" source="promote" target="commitPromotion" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-23" edge="1" parent="1" source="commitPromotion" target="cancelSuccess" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="325" y="1680" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-c-24" edge="1" parent="1" source="commitPromotion" target="promotedResult" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-audit" edge="1" parent="1" source="commitPromotion" target="auditLog" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=none;strokeColor=#8B5CF6;fontSize=11;fontColor=#8B5CF6;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="05TrainerAccess" name="05 Trainer Access">
+    <mxGraphModel dx="1900" dy="1300" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2200" pageHeight="1800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#111310;" value="TRAINER READ-ONLY ACCESS" vertex="1">
+          <mxGeometry x="40" y="25" width="1300" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#5C6159;" value="Server-side RBAC token verification, assigned sessions, and attendee counts" vertex="1">
+          <mxGeometry x="40" y="60" width="1300" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="start" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="User signs in" vertex="1">
+          <mxGeometry x="600" y="90" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="secNoteTrainer" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Server-side RBAC guard:&lt;br&gt;Token inspected in middleware; no client-only security" vertex="1">
+          <mxGeometry x="220" y="200" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="role" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Trainer role verified in server session?" vertex="1">
+          <mxGeometry x="600" y="200" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="forbidden" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Access denied (403)&lt;br&gt;Security event logged; no trainer data exposed" vertex="1">
+          <mxGeometry x="970" y="200" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="load" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Load assigned upcoming sessions" vertex="1">
+          <mxGeometry x="600" y="330" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="result" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Request result" vertex="1">
+          <mxGeometry x="600" y="440" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="loading" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Show stable loading skeleton" vertex="1">
+          <mxGeometry x="220" y="440" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="retry" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Show request ID and retry" vertex="1">
+          <mxGeometry x="970" y="440" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="empty" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="No assigned upcoming sessions" vertex="1">
+          <mxGeometry x="970" y="570" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="list" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Show assigned sessions and attendee counts" vertex="1">
+          <mxGeometry x="600" y="570" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="select" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Select an assigned session" vertex="1">
+          <mxGeometry x="600" y="680" width="250" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="authorized" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Assigned to this trainer?" vertex="1">
+          <mxGeometry x="600" y="780" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="forbidden2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Access denied" vertex="1">
+          <mxGeometry x="970" y="780" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="detail" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Read-only session details and attendee count&lt;br&gt;No trainer editing in version one" vertex="1">
+          <mxGeometry x="600" y="910" width="250" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell id="e-t-sec" edge="1" parent="1" source="secNoteTrainer" target="role" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=none;strokeColor=#8B5CF6;fontSize=11;fontColor=#8B5CF6;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-t-01" edge="1" parent="1" source="start" target="role" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-t-02" value="No" edge="1" parent="1" source="role" target="forbidden" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-t-03" value="Yes" edge="1" parent="1" source="role" target="load" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-t-04" edge="1" parent="1" source="load" target="result" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-t-05" value="Loading" edge="1" parent="1" source="result" target="loading" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-t-06" edge="1" parent="1" source="loading" target="result" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-t-07" value="Failure" edge="1" parent="1" source="result" target="retry" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-t-08" edge="1" parent="1" source="retry" target="load" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-t-09" value="Empty" edge="1" parent="1" source="result" target="empty" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-t-10" value="Ready" edge="1" parent="1" source="result" target="list" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-t-11" edge="1" parent="1" source="list" target="select" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-t-12" edge="1" parent="1" source="select" target="authorized" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-t-13" value="No" edge="1" parent="1" source="authorized" target="forbidden2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-t-14" value="Yes" edge="1" parent="1" source="authorized" target="detail" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="06AdministratorOperations" name="06 Administrator Operations">
+    <mxGraphModel dx="1900" dy="1300" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2200" pageHeight="1800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#111310;" value="ADMINISTRATOR OPERATIONS" vertex="1">
+          <mxGeometry x="40" y="25" width="1300" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#5C6159;" value="Server-authorized session creation, editing, and participant review with audit trail" vertex="1">
+          <mxGeometry x="40" y="60" width="1300" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="start" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="User signs in" vertex="1">
+          <mxGeometry x="650" y="90" width="250" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="role" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Administrator role verified in server session?" vertex="1">
+          <mxGeometry x="650" y="190" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="forbidden" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Access denied (403)&lt;br&gt;Security event logged; return to permitted experience" vertex="1">
+          <mxGeometry x="1020" y="190" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="authorityNote" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Every admin read &amp; mutation enforces CSRF, session validation, and structured audit logging with request ID" vertex="1">
+          <mxGeometry x="270" y="310" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="overview" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#111310;strokeColor=#C7F134;fontColor=#F2F0E8;fontSize=13;spacing=8;" value="Operations overview&lt;br&gt;Session occupancy and waitlist counts" vertex="1">
+          <mxGeometry x="650" y="310" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="sessions" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#111310;strokeColor=#C7F134;fontColor=#F2F0E8;fontSize=13;spacing=8;" value="Open session manager" vertex="1">
+          <mxGeometry x="650" y="430" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="loadState" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Session-list result" vertex="1">
+          <mxGeometry x="650" y="540" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="loading" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Show table loading state" vertex="1">
+          <mxGeometry x="270" y="540" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="retry" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Show request ID and retry" vertex="1">
+          <mxGeometry x="1020" y="540" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="empty" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="No scheduled sessions&lt;br&gt;Offer Create session" vertex="1">
+          <mxGeometry x="270" y="670" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="action" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Administrator action" vertex="1">
+          <mxGeometry x="650" y="670" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="createForm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Enter program, trainer, start/end, capacity, and configured cutoff" vertex="1">
+          <mxGeometry x="270" y="830" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="validateCreate" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Validate fields, positive capacity, end after start, trainer overlap" vertex="1">
+          <mxGeometry x="270" y="950" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="createValid" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Valid?" vertex="1">
+          <mxGeometry x="270" y="1070" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="createErrors" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Show field-level and conflict errors" vertex="1">
+          <mxGeometry x="50" y="1070" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="createSave" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Submit create request with CSRF token" vertex="1">
+          <mxGeometry x="270" y="1200" width="250" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="created" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Session created &amp; logged&lt;br&gt;Refresh session list" vertex="1">
+          <mxGeometry x="270" y="1320" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="editForm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Edit allowed scheduling fields" vertex="1">
+          <mxGeometry x="650" y="830" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="validateEdit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Validate fields, trainer overlap, capacity not below bookings" vertex="1">
+          <mxGeometry x="650" y="950" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="editValid" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Valid?" vertex="1">
+          <mxGeometry x="650" y="1070" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="editErrors" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Show field-level and conflict errors&lt;br&gt;Preserve entered values" vertex="1">
+          <mxGeometry x="1020" y="1070" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="editSave" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Submit update request with CSRF token" vertex="1">
+          <mxGeometry x="650" y="1200" width="250" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="updated" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Session updated &amp; logged&lt;br&gt;Refetch affected views" vertex="1">
+          <mxGeometry x="650" y="1320" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="saveFailure" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="No completion claim&lt;br&gt;Show request ID and retry" vertex="1">
+          <mxGeometry x="1020" y="1200" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="participants" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#111310;strokeColor=#C7F134;fontColor=#F2F0E8;fontSize=13;spacing=8;" value="Show fictional confirmed members and ordered waitlist entries" vertex="1">
+          <mxGeometry x="1020" y="830" width="250" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell id="e-a-01" edge="1" parent="1" source="start" target="role" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-02" value="No" edge="1" parent="1" source="role" target="forbidden" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-03" value="Yes" edge="1" parent="1" source="role" target="overview" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-04" edge="1" parent="1" source="authorityNote" target="overview" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=none;strokeColor=#8B5CF6;fontSize=11;fontColor=#8B5CF6;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-05" edge="1" parent="1" source="overview" target="sessions" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-06" edge="1" parent="1" source="sessions" target="loadState" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-07" value="Loading" edge="1" parent="1" source="loadState" target="loading" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-08" edge="1" parent="1" source="loading" target="loadState" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-09" value="Failure" edge="1" parent="1" source="loadState" target="retry" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-10" edge="1" parent="1" source="retry" target="sessions" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-11" value="Empty" edge="1" parent="1" source="loadState" target="empty" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-12" value="Ready" edge="1" parent="1" source="loadState" target="action" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-13" edge="1" parent="1" source="empty" target="createForm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-14" value="Create session" edge="1" parent="1" source="action" target="createForm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-15" edge="1" parent="1" source="createForm" target="validateCreate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-16" edge="1" parent="1" source="validateCreate" target="createValid" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-17" value="No" edge="1" parent="1" source="createValid" target="createErrors" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-18" edge="1" parent="1" source="createErrors" target="createForm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-19" value="Yes" edge="1" parent="1" source="createValid" target="createSave" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-20" edge="1" parent="1" source="createSave" target="created" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-21" value="unexpected failure" edge="1" parent="1" source="createSave" target="saveFailure" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-22" edge="1" parent="1" source="created" target="sessions" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="180" y="1350" />
+              <mxPoint x="180" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-a-23" value="Edit session" edge="1" parent="1" source="action" target="editForm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-24" edge="1" parent="1" source="editForm" target="validateEdit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-25" edge="1" parent="1" source="validateEdit" target="editValid" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-26" value="No" edge="1" parent="1" source="editValid" target="editErrors" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-27" edge="1" parent="1" source="editErrors" target="editForm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-28" value="Yes" edge="1" parent="1" source="editValid" target="editSave" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-29" edge="1" parent="1" source="editSave" target="updated" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-30" value="unexpected failure" edge="1" parent="1" source="editSave" target="saveFailure" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-31" edge="1" parent="1" source="updated" target="sessions" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="600" y="1350" />
+              <mxPoint x="600" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-a-32" value="View participants" edge="1" parent="1" source="action" target="participants" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-33" edge="1" parent="1" source="participants" target="sessions" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1320" y="865" />
+              <mxPoint x="1320" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="07AuthenticationandSecurity" name="07 Authentication, Security, and Onboarding">
+    <mxGraphModel dx="1900" dy="1300" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="2400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#111310;" value="AUTHENTICATION, ONBOARDING, AND SECURITY" vertex="1">
+          <mxGeometry x="40" y="25" width="1300" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#5C6159;" value="Registration, Terms &amp; Waiver consent, Demo Switcher, Session Lifecycle, RBAC, and Security Guards" vertex="1">
+          <mxGeometry x="40" y="60" width="1300" height="24" as="geometry" />
+        </mxCell>
+
+        <!-- Entry Section -->
+        <mxCell id="e_nav" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Visitor clicks Sign In / Join&lt;br&gt;From navigation header" vertex="1">
+          <mxGeometry x="240" y="110" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e_redirect" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Booking intent redirect&lt;br&gt;Preserves returnTo=/sessions/:id" vertex="1">
+          <mxGeometry x="600" y="110" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e_direct" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Direct route access&lt;br&gt;User opens /login or /register" vertex="1">
+          <mxGeometry x="960" y="110" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="auth_check" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Already authenticated?" vertex="1">
+          <mxGeometry x="600" y="210" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="already_auth" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Redirect to role dashboard&lt;br&gt;or restore returnTo intent" vertex="1">
+          <mxGeometry x="960" y="210" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="auth_fork" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Select user action:&lt;br&gt;Sign In (/login) or Register (/register)" vertex="1">
+          <mxGeometry x="600" y="320" width="250" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Path A: Registration & Legal Consent -->
+        <mxCell id="r_form" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Open registration form /register&lt;br&gt;Enter name, email, password" vertex="1">
+          <mxGeometry x="160" y="420" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="r_zod" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Client Zod schema validation&lt;br&gt;Email format, password complexity" vertex="1">
+          <mxGeometry x="160" y="520" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="r_valid" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Form valid?" vertex="1">
+          <mxGeometry x="160" y="620" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="r_errors" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Show field validation errors&lt;br&gt;Preserve entered values" vertex="1">
+          <mxGeometry x="460" y="620" width="200" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="r_legal" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Mandatory legal checkboxes:&lt;br&gt;1. Terms of Service &amp; Privacy Policy&lt;br&gt;2. Physical Readiness &amp; Liability Waiver" vertex="1">
+          <mxGeometry x="160" y="720" width="260" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="r_legal_check" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Both agreements checked?" vertex="1">
+          <mxGeometry x="160" y="840" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="r_legal_blocked" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Registration blocked&lt;br&gt;Terms &amp; waiver acceptance required" vertex="1">
+          <mxGeometry x="460" y="840" width="200" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="r_submit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Submit registration request&lt;br&gt;POST /api/v1/auth/register" vertex="1">
+          <mxGeometry x="160" y="940" width="260" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r_sec" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=13;spacing=8;" value="Security pipeline:&lt;br&gt;Rate limit check &amp; CSRF verification" vertex="1">
+          <mxGeometry x="160" y="1030" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="r_email_check" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Email already registered?" vertex="1">
+          <mxGeometry x="160" y="1130" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="r_email_conflict" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Conflict error (409)&lt;br&gt;Offer Sign In link" vertex="1">
+          <mxGeometry x="460" y="1130" width="200" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="r_create" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Create User &amp; MemberProfile&lt;br&gt;Hash password, status: ACTIVE, waiverSignedAt: timestamp" vertex="1">
+          <mxGeometry x="160" y="1230" width="260" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="r_success" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Issue secure session cookie&lt;br&gt;Redirect to returnTo session or Dashboard" vertex="1">
+          <mxGeometry x="160" y="1340" width="260" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- Path B: Sign In & Demo Switcher -->
+        <mxCell id="l_page" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Open Sign In page /login&lt;br&gt;Choose: Credentials or Demo Switcher" vertex="1">
+          <mxGeometry x="800" y="420" width="280" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="l_method" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Sign in method?" vertex="1">
+          <mxGeometry x="800" y="520" width="280" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- Credentials Sub-path -->
+        <mxCell id="c_input" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Enter email &amp; password" vertex="1">
+          <mxGeometry x="680" y="620" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="c_rate" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=13;spacing=8;" value="Rate limit check:&lt;br&gt;Max 5 failed attempts per min" vertex="1">
+          <mxGeometry x="680" y="710" width="240" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="c_rate_lock" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Rate limit exceeded (429)&lt;br&gt;Temporary lockout cooldown" vertex="1">
+          <mxGeometry x="460" y="710" width="190" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="c_verify" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Server verifies credentials&lt;br&gt;Compare hash in database" vertex="1">
+          <mxGeometry x="680" y="810" width="240" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="c_valid" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Credentials valid?" vertex="1">
+          <mxGeometry x="680" y="910" width="240" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="c_error" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Invalid credentials (401)&lt;br&gt;Preserve email; log failure count" vertex="1">
+          <mxGeometry x="460" y="910" width="190" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- Demo Switcher Sub-path -->
+        <mxCell id="d_switcher" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Portfolio Demo Persona Switcher&lt;br&gt;One-click evaluator fast access" vertex="1">
+          <mxGeometry x="980" y="620" width="260" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="d_choice" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Select fictional persona:&lt;br&gt;1. Alex Morgan (Member)&lt;br&gt;2. Marcus Vance (Trainer)&lt;br&gt;3. Sarah Lin (Administrator)" vertex="1">
+          <mxGeometry x="980" y="710" width="260" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="d_issue" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Issue demo session token&lt;br&gt;Instant authenticated cookie creation" vertex="1">
+          <mxGeometry x="980" y="830" width="260" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- Session Issuance & RBAC -->
+        <mxCell id="s_issue" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=13;spacing=8;" value="Set HTTP-only, Secure, SameSite session cookie&lt;br&gt;Log USER_AUTHENTICATED audit event" vertex="1">
+          <mxGeometry x="800" y="1030" width="280" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="s_rbac" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Server-Side RBAC Routing&lt;br&gt;Inspect role claim in session" vertex="1">
+          <mxGeometry x="800" y="1130" width="280" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="s_role" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="User Role" vertex="1">
+          <mxGeometry x="800" y="1230" width="280" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="m_dash" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Member -&gt; /my-bookings&lt;br&gt;or returnTo session" vertex="1">
+          <mxGeometry x="620" y="1340" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="t_dash" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8E3F3;strokeColor=#4C3B73;fontColor=#111310;fontSize=13;spacing=8;" value="Trainer -&gt; /trainer/sessions&lt;br&gt;Assigned classes" vertex="1">
+          <mxGeometry x="840" y="1340" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a_dash" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#111310;strokeColor=#C7F134;fontColor=#F2F0E8;fontSize=13;spacing=8;" value="Admin -&gt; /admin&lt;br&gt;Operations manager" vertex="1">
+          <mxGeometry x="1060" y="1340" width="200" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Right Side: Lifecycle, Expiry, Recovery -->
+        <mxCell id="sess_mon" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=13;spacing=8;" value="Active session lifecycle&lt;br&gt;Token verified on every protected request" vertex="1">
+          <mxGeometry x="1440" y="420" width="280" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="sess_check" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Session valid &amp; active?" vertex="1">
+          <mxGeometry x="1440" y="520" width="280" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="sess_ok" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Authorize request &amp; update lastActiveAt" vertex="1">
+          <mxGeometry x="1780" y="520" width="240" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="sess_exp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Session expired / invalid (401)" vertex="1">
+          <mxGeometry x="1440" y="620" width="280" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="reauth_modal" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Non-destructive Re-Auth Modal&lt;br&gt;Preserve in-progress booking or form state" vertex="1">
+          <mxGeometry x="1440" y="720" width="280" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="reauth_action" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Re-authenticate in place&lt;br&gt;Quick password check or persona restore" vertex="1">
+          <mxGeometry x="1440" y="820" width="280" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="reauth_done" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Restore session &amp; replay pending action&lt;br&gt;Zero data loss for member" vertex="1">
+          <mxGeometry x="1440" y="920" width="280" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- Account Recovery -->
+        <mxCell id="f_link" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="User clicks Forgot password?&lt;br&gt;Route to /auth/forgot-password" vertex="1">
+          <mxGeometry x="1780" y="720" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f_input" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Enter email address&lt;br&gt;Rate-limited submission" vertex="1">
+          <mxGeometry x="1780" y="810" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f_sim" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Fictional portfolio simulation:&lt;br&gt;Return safe generic response without leaking email status" vertex="1">
+          <mxGeometry x="1780" y="900" width="240" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="f_done" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Show instructions sent feedback&lt;br&gt;Link back to Sign In" vertex="1">
+          <mxGeometry x="1780" y="1010" width="240" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Bottom: Security & Sign Out -->
+        <mxCell id="p_sec" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Member opens /profile/security&lt;br&gt;Review active session, membership, and signed waiver" vertex="1">
+          <mxGeometry x="600" y="1520" width="300" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="so_intent" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="User chooses Sign Out" vertex="1">
+          <mxGeometry x="1000" y="1520" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="so_server" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=13;spacing=8;" value="Server revokes session in database&lt;br&gt;Clears HTTP-only cookies; logs USER_SIGNOUT" vertex="1">
+          <mxGeometry x="1000" y="1620" width="250" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="so_done" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Redirect to Home / with toast confirmation&lt;br&gt;All protected state cleared from memory" vertex="1">
+          <mxGeometry x="1000" y="1720" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rbac_note" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="RBAC Security Guard Summary:&lt;br&gt;Server guards inspect decrypted session on every API route.&lt;br&gt;Role mismatch -&gt; 403 Forbidden with zero PII/attendee data exposed." vertex="1">
+          <mxGeometry x="1360" y="1520" width="380" height="85" as="geometry" />
+        </mxCell>
+
+        
+        <!-- AUTHENTICATION & ROLE KEY -->
+        <mxCell id="leg7_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111310;strokeWidth=1.5;shadow=0;" value="" vertex="1">
+          <mxGeometry x="1450" y="25" width="480" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="leg7_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontStyle=1;fontColor=#111310;" value="AUTHENTICATION &amp; ROLE TAXONOMY KEY" vertex="1">
+          <mxGeometry x="1470" y="38" width="440" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="leg7_subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#5C6159;" value="Role-based access control (RBAC), security guardrails &amp; persona states" vertex="1">
+          <mxGeometry x="1470" y="62" width="440" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg7_div1" parent="1" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;strokeColor=#E2E0D8;" value="" vertex="1">
+          <mxGeometry x="1470" y="84" width="440" height="10" as="geometry" />
+        </mxCell>
+
+        <!-- Role targets -->
+        <mxCell id="leg7_sw1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#1F4D32;fontSize=10;fontStyle=1;" value="Member Role" vertex="1">
+          <mxGeometry x="1470" y="100" width="100" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="leg7_tx1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#111310;" value="&lt;b&gt;Member Role (Alex Morgan)&lt;/b&gt; -&gt; Route to /my-bookings" vertex="1">
+          <mxGeometry x="1580" y="98" width="330" height="38" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg7_sw2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8E3F3;strokeColor=#4C3B73;fontColor=#111310;fontSize=10;fontStyle=1;" value="Trainer Role" vertex="1">
+          <mxGeometry x="1470" y="145" width="100" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="leg7_tx2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#111310;" value="&lt;b&gt;Trainer Role (Marcus Vance)&lt;/b&gt; -&gt; Route to /trainer/sessions" vertex="1">
+          <mxGeometry x="1580" y="143" width="330" height="38" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg7_sw3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#111310;strokeColor=#C7F134;fontColor=#F2F0E8;fontSize=10;fontStyle=1;" value="Admin Role" vertex="1">
+          <mxGeometry x="1470" y="190" width="100" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="leg7_tx3" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#111310;" value="&lt;b&gt;Administrator Role (Sarah Lin)&lt;/b&gt; -&gt; Route to /admin" vertex="1">
+          <mxGeometry x="1580" y="188" width="330" height="38" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg7_sw4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=10;fontStyle=1;" value="Security Gate" vertex="1">
+          <mxGeometry x="1470" y="235" width="100" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="leg7_tx4" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#111310;" value="&lt;b&gt;Security Pipeline&lt;/b&gt;: Rate limiting, CSRF verification, session cookie" vertex="1">
+          <mxGeometry x="1580" y="233" width="330" height="38" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg7_sw5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#9E2E25;fontSize=10;fontStyle=1;" value="Auth Error" vertex="1">
+          <mxGeometry x="1470" y="280" width="100" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="leg7_tx5" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#111310;" value="&lt;b&gt;Auth Errors&lt;/b&gt;: Invalid credentials (401), Lockout (429), Conflict (409)" vertex="1">
+          <mxGeometry x="1580" y="278" width="330" height="38" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg7_div2" parent="1" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;strokeColor=#E2E0D8;" value="" vertex="1">
+          <mxGeometry x="1470" y="325" width="440" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="leg7_txConn" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontColor=#5C6159;" value="&lt;b&gt;Auth Invariant:&lt;/b&gt; Registration requires both Terms and Liability Waiver consent" vertex="1">
+          <mxGeometry x="1470" y="335" width="440" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Edges for Diagram 7 -->
+        <mxCell id="e-auth-01" edge="1" parent="1" source="e_nav" target="auth_check" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-auth-02" edge="1" parent="1" source="e_redirect" target="auth_check" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-auth-03" edge="1" parent="1" source="e_direct" target="auth_check" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-auth-04" value="Yes" edge="1" parent="1" source="auth_check" target="already_auth" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-auth-05" value="No" edge="1" parent="1" source="auth_check" target="auth_fork" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-auth-fork-r" value="Register" edge="1" parent="1" source="auth_fork" target="r_form" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-auth-fork-l" value="Sign In" edge="1" parent="1" source="auth_fork" target="l_page" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Registration Edges -->
+        <mxCell id="e-r-01" edge="1" parent="1" source="r_form" target="r_zod" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-r-02" edge="1" parent="1" source="r_zod" target="r_valid" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-r-03" value="No" edge="1" parent="1" source="r_valid" target="r_errors" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-r-04" edge="1" parent="1" source="r_errors" target="r_form" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="560" y="450" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-r-05" value="Yes" edge="1" parent="1" source="r_valid" target="r_legal" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-r-06" edge="1" parent="1" source="r_legal" target="r_legal_check" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-r-07" value="No" edge="1" parent="1" source="r_legal_check" target="r_legal_blocked" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-r-08" value="Yes" edge="1" parent="1" source="r_legal_check" target="r_submit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-r-09" edge="1" parent="1" source="r_submit" target="r_sec" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-r-10" edge="1" parent="1" source="r_sec" target="r_email_check" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-r-11" value="Yes" edge="1" parent="1" source="r_email_check" target="r_email_conflict" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-r-12" value="No" edge="1" parent="1" source="r_email_check" target="r_create" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-r-13" edge="1" parent="1" source="r_create" target="r_success" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Sign In Edges -->
+        <mxCell id="e-l-01" edge="1" parent="1" source="l_page" target="l_method" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-l-02" value="Credentials" edge="1" parent="1" source="l_method" target="c_input" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-l-03" value="Demo Switcher" edge="1" parent="1" source="l_method" target="d_switcher" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Credentials Flow -->
+        <mxCell id="e-c-01b" edge="1" parent="1" source="c_input" target="c_rate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-02b" value="Exceeded" edge="1" parent="1" source="c_rate" target="c_rate_lock" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-03b" value="OK" edge="1" parent="1" source="c_rate" target="c_verify" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-04b" edge="1" parent="1" source="c_verify" target="c_valid" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-05b" value="No" edge="1" parent="1" source="c_valid" target="c_error" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-c-06b" value="Yes" edge="1" parent="1" source="c_valid" target="s_issue" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Demo Switcher Flow -->
+        <mxCell id="e-d-01" edge="1" parent="1" source="d_switcher" target="d_choice" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-d-02" edge="1" parent="1" source="d_choice" target="d_issue" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-d-03" edge="1" parent="1" source="d_issue" target="s_issue" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Session RBAC Edges -->
+        <mxCell id="e-s-01" edge="1" parent="1" source="s_issue" target="s_rbac" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-s-02" edge="1" parent="1" source="s_rbac" target="s_role" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-s-03" value="Member" edge="1" parent="1" source="s_role" target="m_dash" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-s-04" value="Trainer" edge="1" parent="1" source="s_role" target="t_dash" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-s-05" value="Administrator" edge="1" parent="1" source="s_role" target="a_dash" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Lifecycle & Expiry Edges -->
+        <mxCell id="e-m-01" edge="1" parent="1" source="sess_mon" target="sess_check" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-m-02" value="Valid" edge="1" parent="1" source="sess_check" target="sess_ok" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-m-03" value="Expired" edge="1" parent="1" source="sess_check" target="sess_exp" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-m-04" edge="1" parent="1" source="sess_exp" target="reauth_modal" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-m-05" edge="1" parent="1" source="reauth_modal" target="reauth_action" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-m-06" edge="1" parent="1" source="reauth_action" target="reauth_done" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Forgot Password Edges -->
+        <mxCell id="e-f-01" edge="1" parent="1" source="f_link" target="f_input" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-f-02" edge="1" parent="1" source="f_input" target="f_sim" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-f-03" edge="1" parent="1" source="f_sim" target="f_done" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Profile Security & Sign Out Edges -->
+        <mxCell id="e-so-01" edge="1" parent="1" source="p_sec" target="so_intent" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-so-02" edge="1" parent="1" source="so_intent" target="so_server" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-so-03" edge="1" parent="1" source="so_server" target="so_done" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -3,7 +3,7 @@ type: project
 status: active
 phase: requirements
 sprint: Sprint 0
-updated: 2026-09-15
+updated: 2026-09-17
 ---
 
 # FitOps
@@ -12,7 +12,7 @@ FitOps is the repository and internal project codename. The public-facing fictio
 
 ## Current outcome
 
-The planning foundation exists. `Practice Athletic Club`, Quiet Strength, the Mona Sans lime-bar wordmark, and its palette/type materials are working brand inputs, not a defined or approved brand. An extended brand-definition guide now governs the strategy process. Implementation must not begin until the Sprint 0 requirements review and Sprint 1 low-fidelity design gate are complete.
+The planning foundation exists. `Practice Athletic Club`, Quiet Strength, the Mona Sans lime-bar wordmark, and its palette/type materials are working brand inputs, not a defined or approved brand. The Mermaid sitemap and role-specific flows have been corrected against the product requirements, expanded into a seven-page draw.io companion covering terms, liability waiver, privacy, security guardrails, and onboarding, and are available for review in the `second-brain` vault. Sprint 1 low-fidelity desktop and mobile wireframes have not been completed. Implementation must not begin until the Sprint 0 requirements review and Sprint 1 low-fidelity design gate are complete.
 
 ## Critical journey
 

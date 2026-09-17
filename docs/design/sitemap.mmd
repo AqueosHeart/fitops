@@ -1,53 +1,64 @@
-graph TD
+flowchart TD
     classDef public fill:#F2F0E8,stroke:#111310,stroke-width:1.5px,color:#111310;
     classDef member fill:#E2E0D8,stroke:#111310,stroke-width:1.5px,color:#111310;
+    classDef trainer fill:#E8E3F3,stroke:#4C3B73,stroke-width:1.5px,color:#111310;
     classDef admin fill:#111310,stroke:#C7F134,stroke-width:1.5px,color:#F2F0E8;
-    classDef modal fill:#FFFFFF,stroke:#8B5CF6,stroke-dasharray: 4 4,stroke-width:1.5px,color:#111310;
+    classDef overlay fill:#FFFFFF,stroke:#8B5CF6,stroke-dasharray:4 4,stroke-width:1.5px,color:#111310;
 
-    subgraph PublicSpace ["01. Public Experience (Visitor)"]
-        Home["🏠 Home (Landing Page)<br/>• Hero & Value Prop<br/>• Program Taxonomy Guide<br/>• Live Schedule Preview"]:::public
-        Programs["📋 Programs Guide (/programs)<br/>• Strength, Pace, Reset, Open Floor<br/>• Intensity Ratings & Equipment"]:::public
-        PublicSchedule["📅 Public Schedule (/schedule)<br/>• 7-Day Date Strip<br/>• Program Filter & Legend"]:::public
-        Trainers["🏋️ Trainers Roster (/trainers)<br/>• Coach Bios & Specialties"]:::public
+    Root([Practice Athletic Club])
+
+    subgraph PublicSpace[Public experience]
+        Home["Home /<br/>Value proposition, program summary, schedule preview"]:::public
+        Programs["Programs /programs<br/>Description, intensity, duration, equipment"]:::public
+        Schedule["Schedule /schedule<br/>Filter by date, program, trainer, availability"]:::public
+        Trainers["Trainers /trainers<br/>Fictional bios and specialties"]:::public
+        Pricing["Pricing /pricing<br/>Clearly labeled fictional plans"]:::public
     end
 
-    subgraph GlobalOverlays ["02. Global Overlays & Drawers"]
-        AuthModal["🔑 Demo Auth & Role Switcher<br/>• Fictional Demo Profiles<br/>• Preserves Selected Session Intent"]:::modal
-        SessionDrawer["📄 Session Details Drawer (/sessions/:id)<br/>• Workout Focus & Intensity<br/>• 2h Cutoff Policy Notice<br/>• Membership Gating & Single CTA"]:::modal
-        CancelModal["⚠️ Cancellation Confirmation Dialog<br/>• Cutoff Check & Warning<br/>• Waitlist Auto-Transfer Notice"]:::modal
+    subgraph Overlays[Contextual overlays]
+        SessionDetails["Session details /sessions/:id<br/>Time, trainer, capacity, availability, configured cutoff"]:::overlay
+        DemoAuth["Demo sign-in<br/>Fictional profiles; preserve selected session"]:::overlay
+        CancelDialog["Cancellation confirmation<br/>Configured cutoff and outcome"]:::overlay
     end
 
-    subgraph MemberSpace ["03. Member Experience (Authenticated)"]
-        MemberSchedule["📅 Interactive Schedule (/schedule)<br/>• Live Occupancy Meters<br/>• Real-time Booking Engine"]:::member
-        MyBookings["🎫 My Bookings (/my-bookings)"]:::member
-        ConfirmedPasses["• Confirmed Passes & Pass QR"]:::member
-        WaitlistQueue["• FIFO Waitlist Position Tracker"]:::member
-        MembershipStatus["💳 Membership & Passes Tab<br/>• Active All-Access Status"]:::member
+    subgraph MemberSpace[Member experience - protected]
+        MyBookings["My bookings /my-bookings<br/>Upcoming confirmed and waiting entries"]:::member
+        Confirmed["Confirmed reservations<br/>Session details and cancellation action"]:::member
+        Waiting["Waitlist entries<br/>Current position and leave action"]:::member
     end
 
-    subgraph AdminSpace ["04. Operations & Admin (Staff)"]
-        AdminOverview["📊 Operations Overview (/admin)<br/>• Occupancy % & Active Waitlists"]:::admin
-        AdminSessions["🗓️ Session Manager (/admin/sessions)<br/>• High-Density Schedule Table<br/>• Quick Capacity & Trainer Editor"]:::admin
-        AdminRoster["👥 Attendee & Waitlist Roster (/admin/sessions/:id/roster)<br/>• Check-in & Promotion History"]:::admin
+    subgraph TrainerSpace[Trainer experience - protected read only]
+        TrainerAssignments["Assigned sessions /trainer/sessions<br/>Upcoming assigned sessions"]:::trainer
+        TrainerSession["Assigned session /trainer/sessions/:id<br/>Session details and attendee count"]:::trainer
     end
 
-    Home --> Programs
-    Home --> PublicSchedule
-    Home --> Trainers
+    subgraph AdminSpace[Administrator experience - protected]
+        AdminOverview["Operations overview /admin<br/>Session occupancy and waitlist counts"]:::admin
+        AdminSessions["Session manager /admin/sessions<br/>List and filter scheduled sessions"]:::admin
+        AdminCreate["Create session /admin/sessions/new<br/>Program, trainer, time, capacity, cutoff"]:::admin
+        AdminEdit["Edit session /admin/sessions/:id/edit<br/>Validated scheduling changes"]:::admin
+        AdminParticipants["Participants /admin/sessions/:id/participants<br/>Fictional bookings and ordered waitlist"]:::admin
+    end
 
-    PublicSchedule --> SessionDrawer
-    MemberSchedule --> SessionDrawer
-    SessionDrawer --> AuthModal
+    Root --> Home
+    Root --> Programs
+    Root --> Schedule
+    Root --> Trainers
+    Root --> Pricing
+    Schedule --> SessionDetails
+    SessionDetails -. unauthenticated booking attempt .-> DemoAuth
+    DemoAuth -. return to selected session .-> SessionDetails
 
-    AuthModal --> MemberSchedule
-    AuthModal --> MyBookings
-    AuthModal --> AdminOverview
+    Root --> MyBookings
+    MyBookings --> Confirmed
+    MyBookings --> Waiting
+    Confirmed --> CancelDialog
 
-    MyBookings --> ConfirmedPasses
-    MyBookings --> WaitlistQueue
-    MyBookings --> MembershipStatus
+    Root --> TrainerAssignments
+    TrainerAssignments --> TrainerSession
 
-    ConfirmedPasses --> CancelModal
-
+    Root --> AdminOverview
     AdminOverview --> AdminSessions
-    AdminSessions --> AdminRoster
+    AdminSessions --> AdminCreate
+    AdminSessions --> AdminEdit
+    AdminSessions --> AdminParticipants

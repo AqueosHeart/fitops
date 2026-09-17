@@ -3,7 +3,7 @@ type: sprint
 project: FitOps
 sprint: Sprint 0
 status: active
-updated: 2026-09-15
+updated: 2026-09-17
 ---
 
 # Sprint 0 Product Foundation
@@ -45,6 +45,15 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 - [ ] Connect the repository to the `FitOps Delivery` GitHub Project
 - [ ] Create GitHub fields and views
 - [ ] Review the Sprint 0 exit gate
+
+## Sprint 1 preparation evidence
+
+- [x] Correct the Mermaid sitemap and split the critical behavior into booking, waitlist, cancellation, trainer, and administrator flows
+- [x] Remove out-of-scope QR/check-in behavior and unsupported real-time claims from the Mermaid architecture
+- [x] Publish an Obsidian-native user-flow review hub inside the `second-brain` vault
+- [x] Create a seven-page native draw.io companion for editable visual review with legal gates (terms, waiver), security checkpoints, and authentication/onboarding lifecycles
+- [ ] Review and approve the corrected Mermaid and draw.io flows
+- [ ] Produce the desktop and mobile low-fidelity wireframes required by Issue #6
 
 ## Connections
 

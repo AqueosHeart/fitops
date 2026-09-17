@@ -1,7 +1,7 @@
 ---
 type: board-mirror
 project: FitOps
-updated: 2026-09-15
+updated: 2026-09-17
 ---
 
 # FitOps Delivery Board Mirror
@@ -15,6 +15,9 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 ## Ready for Sprint 1
 
 - [#6 [DESIGN] Low-Fidelity Desktop & Mobile Booking Flow Wireframes](https://github.com/AqueosHeart/fitops/issues/6)
+  - Mermaid prerequisites corrected on 2026-09-17; review and desktop/mobile wireframes remain pending.
+  - Review hub: [[../wiki/design/FitOps User Flows]]
+  - Editable diagram: [[../wiki/design/FitOps User Flows.drawio]]
 - [#7 [ARCH] Domain Boundary & Use-Case Specification](https://github.com/AqueosHeart/fitops/issues/7)
 - [#8 [DATA] Physical Database Schema & Migration Strategy (Prisma)](https://github.com/AqueosHeart/fitops/issues/8)
 - [#9 [SEC] Threat Model & Server-Side Access Control Specification](https://github.com/AqueosHeart/fitops/issues/9)

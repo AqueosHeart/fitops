@@ -1,14 +1,44 @@
 flowchart TD
-    AdminStart([Staff signs in as Morgan Vance - Admin]) --> AdminDash[Operations Overview Dashboard]
-    AdminDash --> ViewKPIs[Review Today's Bookings: 42/48 • Waitlist Count: 5]
-    ViewKPIs --> OpenSessionTable[Open Session Management Table]
-    OpenSessionTable --> SelectSession[Select 07:00 AM Lower Body Tempo]
-    SelectSession --> OpenRosterDrawer[Open Session Roster & Edit Drawer]
+    classDef success fill:#DDEBD8,stroke:#1F4D32,color:#111310;
+    classDef error fill:#F7DFDC,stroke:#9E2E25,color:#111310;
+    classDef decision fill:#FFF4D6,stroke:#7A4B00,color:#111310;
 
-    OpenRosterDrawer --> AdminAction{Action Selected}
-    AdminAction -- "Edit Capacity" --> AdjustCap[Change Max Spots e.g. 12 to 14]
-    AdminAction -- "Reassign Coach" --> ChangeTrainer[Assign Trainer Marcus Vance]
-    AdminAction -- "Inspect Waitlist" --> ViewQueueOrder[Review Chronological FIFO Waitlist Order]
+    Start([User signs in]) --> Role{Administrator role?}
+    Role -- No --> Forbidden["Access denied<br/>Return to permitted experience"]:::error
+    Role -- Yes --> Overview["Operations overview<br/>Session occupancy and waitlist counts"]
+    Overview --> Sessions[Open session manager]
+    Sessions --> LoadState{Session-list result}
+    LoadState -- Loading --> Loading[Show table loading state]
+    Loading --> LoadState
+    LoadState -- Failure --> Retry[Show request ID and retry]:::error
+    Retry --> Sessions
+    LoadState -- Empty --> Empty["No scheduled sessions<br/>Offer Create session"]
+    LoadState -- Ready --> Action{Administrator action}
+    Empty --> CreateForm
 
-    AdjustCap & ChangeTrainer --> SaveSession[Save Changes]
-    SaveSession --> LiveSync[⚡ Real-time Sync to Public & Member Schedules]
+    Action -- Create session --> CreateForm["Enter program, trainer, start/end, capacity, and configured cutoff"]
+    CreateForm --> ValidateCreate["Validate required fields, positive capacity, end after start, trainer existence, and trainer-time overlap"]
+    ValidateCreate --> CreateValid{Valid?}
+    CreateValid -- No --> CreateErrors[Show field-level and conflict errors]:::error
+    CreateErrors --> CreateForm
+    CreateValid -- Yes --> CreateSave[Submit create request]
+    CreateSave --> Created["Session created<br/>Refresh session list"]:::success
+
+    Action -- Edit session --> EditForm[Edit allowed scheduling fields]
+    EditForm --> ValidateEdit["Validate fields, trainer-time overlap, and capacity not below confirmed bookings"]
+    ValidateEdit --> EditValid{Valid?}
+    EditValid -- No --> EditErrors["Show field-level and conflict errors<br/>Preserve entered values"]:::error
+    EditErrors --> EditForm
+    EditValid -- Yes --> EditSave[Submit update request]
+    EditSave --> Updated["Session updated<br/>Refetch affected public and protected views"]:::success
+
+    Action -- View participants --> Participants[Show fictional confirmed members and ordered waitlist entries]
+    Participants --> Sessions
+
+    CreateSave -. unexpected failure .-> SaveFailure["No completion claim<br/>Show request ID and retry"]:::error
+    EditSave -. unexpected failure .-> SaveFailure
+
+    AuthorityNote["Every administrator read and mutation is authorized and validated on the server"]
+    AuthorityNote -.-> Overview
+
+    class Role,LoadState,Action,CreateValid,EditValid decision;

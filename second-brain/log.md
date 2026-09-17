@@ -1,10 +1,26 @@
 ---
 type: activity-log
 project: FitOps
-updated: 2026-09-15
+updated: 2026-09-17
 ---
 
 # FitOps Activity Log
+
+## 2026-09-17
+
+- Reviewed only the repository Mermaid sitemap and user flows against the product requirements, API, architecture, and data model.
+- Replaced the incomplete diagrams with canonical sitemap, booking, waitlist, cancellation, trainer, and administrator Mermaid sources.
+- Removed the hardcoded two-hour cutoff, incorrect capacity-increment behavior, out-of-scope QR/check-in behavior, and unsupported real-time claims.
+- Added server-authoritative membership, role, duplicate, overlap, cutoff, concurrency, authorization, validation, rollback, loading, empty, error, and success paths.
+- Replaced the stale SVG exports with fresh previews rendered from all six Mermaid sources and removed the old hardcoded SVG generator that could recreate contradictory diagrams.
+- Validated all six Mermaid sources through a Mermaid-compatible renderer; every diagram returned a successful render response.
+- Added `wiki/design/FitOps User Flows.md` as an Obsidian-native Mermaid review hub after confirming that the active vault is `second-brain`, not the repository root.
+- Generated `wiki/design/FitOps User Flows.drawio`: six native draw.io pages with editable nodes and orthogonal connectors for the sitemap and five role-specific flows.
+- Corrected the draw.io sitemap after visual inspection: public pages are parallel destinations reached through a shared public-navigation hub; Home does not lead sequentially to Programs, Schedule, Trainers, or Pricing.
+- Researched fitness studio and SaaS compliance standards (Terms of Service, Physical Activity Readiness Questionnaire / Liability Waiver, Privacy Policy, and Demo disclosures) and web application security architectures (RBAC, CSRF token validation, IP/account rate-limiting, and session expiry intent recovery).
+- Expanded `wiki/design/FitOps User Flows.drawio` from 6 pages (113 vertices, 108 edges) to 7 pages (223 vertices, 222 edges), adding Page 7 (`07 Authentication, Security, and Onboarding`) and upgrading Pages 1 through 6 with legal gates, security check blocks, and session restoration paths.
+- Synchronized `wiki/design/FitOps User Flows.md` with updated Mermaid diagrams and architectural requirements for terms, liability waiver, privacy, demo session handling, and security controls.
+- Embedded visual architecture color keys directly onto Pages 1, 2, and 7 of `wiki/design/FitOps User Flows.drawio` (increasing vertex count to 281 across 7 pages) and codified the full color taxonomy table in `wiki/design/FitOps User Flows.md`.
 
 ## 2026-09-15
 

@@ -1,32 +1,54 @@
 flowchart TD
-    Start([Visitor lands on Home or Schedule]) --> Educate[Explore Program Taxonomy & Intensity on Landing Page]
-    Educate --> Browse[Open Schedule & Filter by Date / Program]
-    Browse --> SelectClass[Click on 07:00 AM Lower Body Tempo]
-    SelectClass --> OpenDrawer[Open Session Details Drawer with Class Info]
+    classDef success fill:#DDEBD8,stroke:#1F4D32,color:#111310;
+    classDef error fill:#F7DFDC,stroke:#9E2E25,color:#111310;
+    classDef decision fill:#FFF4D6,stroke:#7A4B00,color:#111310;
 
-    OpenDrawer --> CheckAuth{Is Visitor Authenticated?}
+    Start([Visitor or member opens schedule]) --> Browse["Filter by date, program, trainer, and availability"]
+    Browse --> Results{Any matching sessions?}
+    Results -- No --> Empty["Empty state<br/>Clear filters or choose another date"]
+    Empty --> Browse
+    Results -- Yes --> Select[Select a session]
+    Select --> Details["View time, trainer, remaining availability, status, and configured cutoff"]
+    Details --> Intent[Choose Book session]
 
-    CheckAuth -- "No (Guest)" --> OpenAuthModal[Open Demo Auth Modal<br/>Preserve selected session ID]
-    OpenAuthModal --> SelectDemoUser[Select Demo Profile: Alex Rivera]
-    SelectDemoUser --> CheckMembership
+    Intent --> Auth{Authenticated?}
+    Auth -- No --> SignIn["Demo sign-in<br/>Preserve selected session"]
+    SignIn --> MemberProfile
+    Auth -- Yes --> MemberProfile{Has member profile?}
+    MemberProfile -- No --> RoleBlocked["Member-only action unavailable<br/>Trainer or administrator needs a member profile"]:::error
+    MemberProfile -- Yes --> Membership{Membership active?}
+    Membership -- No --> Inactive["Booking blocked<br/>Explain inactive demo membership"]:::error
+    Membership -- Yes --> SessionEligible{Session scheduled and before its configured cutoff?}
+    SessionEligible -- No --> CutoffOrStatus["Booking unavailable<br/>Show current session status or cutoff"]:::error
+    SessionEligible -- Yes --> SubmitBooking[Submit booking request]
 
-    CheckAuth -- "Yes (Logged In)" --> CheckMembership{Has Active Gym Membership?}
+    SubmitBooking --> Transaction["Server transaction rechecks identity, membership, status, cutoff, duplicates, overlap, and capacity"]
+    Transaction --> ExistingBooking{Already has confirmed booking?}
+    ExistingBooking -- Yes --> AlreadyBooked["Show existing reservation<br/>No duplicate created"]:::error
+    ExistingBooking -- No --> ExistingWaitlist{Already waiting?}
+    ExistingWaitlist -- Yes --> AlreadyWaiting["Show current waitlist position<br/>No duplicate entry created"]:::error
+    ExistingWaitlist -- No --> Overlap{Overlaps another confirmed booking?}
+    Overlap -- Yes --> Conflict["Booking conflict<br/>Link to conflicting reservation"]:::error
+    Overlap -- No --> Capacity{Capacity available at commit time?}
 
-    CheckMembership -- "No / Expired" --> ShowPaywall[Show 'Active Membership Required'<br/>CTA: Activate Demo Pass]
-    ShowPaywall --> ActivatePass[Click 'Activate Demo Pass'] --> CheckSpots
+    Capacity -- Yes --> Confirm[Create confirmed booking atomically]
+    Confirm --> BookingSuccess["Booking confirmed<br/>Show in My bookings"]:::success
 
-    CheckMembership -- "Yes (Active)" --> CheckSpots{Are Spots Available?}
+    Capacity -- No --> Full["Session full<br/>Offer Join waitlist"]
+    Full --> JoinChoice{Join waitlist?}
+    JoinChoice -- No --> Details
+    JoinChoice -- Yes --> SubmitWaitlist[Submit waitlist request]
+    SubmitWaitlist --> WaitlistRecheck["Server rechecks membership, status, cutoff, duplicate entry, and current capacity"]
+    WaitlistRecheck --> StillFull{Session still full?}
+    StillFull -- No --> SpotOpened["Availability changed<br/>Refresh details and offer booking"]
+    SpotOpened --> Details
+    StillFull -- Yes --> CreateEntry[Create one waiting entry with monotonic FIFO order]
+    CreateEntry --> WaitlistSuccess["Waitlist joined<br/>Show current position in My bookings"]:::success
 
-    CheckSpots -- "Yes (Spots > 0)" --> ClickBook[Click 'Book Session']
-    ClickBook --> CheckOverlap{Time Conflict with Existing Booking?}
+    Transaction -. unexpected failure .-> Failure["Preserve selected session<br/>Show request ID and retry action"]:::error
+    WaitlistRecheck -. unexpected failure .-> Failure
 
-    CheckOverlap -- "Conflict (Overlap)" --> ShowOverlapError[❌ Show Error: Time Overlap with another reservation]
-    CheckOverlap -- "No Conflict" --> ConfirmBooking[✅ Booking Confirmed in Database]
-    ConfirmBooking --> ShowSuccessToast[Show Success Modal & Add to My Bookings]
-    ShowSuccessToast --> RedirectConfirmed[View in My Bookings • Confirmed Tab]
+    TransactionNote["Authoritative rules run on the server; UI checks are guidance only"]
+    TransactionNote -.-> Transaction
 
-    CheckSpots -- "No (Capacity Full)" --> ClickWaitlist[Click 'Join FIFO Waitlist']
-    ClickWaitlist --> CheckInWaitlist{Already in Queue?}
-    CheckInWaitlist -- "Yes" --> ShowAlreadyInQueue[Notice: Already in Waitlist queue]
-    CheckInWaitlist -- "No" --> ConfirmWaitlist[⏳ Joined Waitlist: Position #X assigned]
-    ConfirmWaitlist --> RedirectWaitlist[View in My Bookings • Waitlist Tab]
+    class Auth,MemberProfile,Membership,SessionEligible,ExistingBooking,ExistingWaitlist,Overlap,Capacity,JoinChoice,StillFull decision;

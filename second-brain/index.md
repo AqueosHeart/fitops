@@ -2,7 +2,7 @@
 type: index
 project: FitOps
 status: active
-updated: 2026-09-15
+updated: 2026-09-17
 ---
 
 # FitOps Knowledge Index
@@ -20,6 +20,8 @@ updated: 2026-09-15
 - [Project overview](../README.md)
 - [Product requirements](../docs/product-requirements.md)
 - [UX plan](../docs/ux-plan.md)
+- [[wiki/design/FitOps User Flows|FitOps user-flow review hub]]
+- [[wiki/design/FitOps User Flows.drawio|Editable draw.io user-flow file]]
 - [Practice Athletic Club brand identity guidelines](../docs/brand/brand-identity.md)
 - [Practice Athletic Club brand foundation](../docs/brand/brand-foundation.md)
 - [Practice Athletic Club brand definition guide](../docs/brand/brand-definition-guide.md)
@@ -52,4 +54,6 @@ updated: 2026-09-15
 - [[wiki/logs/2026-09-15-practice-brand-identity-and-figma-boards|Practice brand identity and Figma presentation boards]]
 - [[wiki/logs/2026-09-15-practice-figma-template-transformation|Practice Figma template transformation]]
 - [[wiki/logs/2026-09-15-practice-sitemap-and-userflows|Practice Sitemap and User Flows]]
+- [[wiki/logs/2026-09-17-mermaid-userflow-correction|Mermaid user-flow correction]]
+- [[wiki/logs/2026-09-17-user-flows-terms-privacy-security|User flows: terms, privacy, security, and onboarding]]
 - [[raw/06-flash_notes/2026-09-14-conversation-record|Planning conversation record]]
