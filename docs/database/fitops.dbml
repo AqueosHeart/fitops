@@ -14,6 +14,12 @@ Enum member_status {
   inactive
 }
 
+Enum membership_plan_code {
+  base
+  complete
+  training_plus
+}
+
 Enum session_status {
   scheduled
   cancelled
@@ -45,6 +51,8 @@ Table member_profiles {
   id uuid [pk]
   user_id uuid [not null, unique]
   status member_status [not null]
+  selected_plan_code membership_plan_code [note: 'Fictional demo enrollment only; no payment or billing data']
+  plan_selected_at timestamptz
   created_at timestamptz [not null]
 }
 

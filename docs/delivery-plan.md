@@ -250,7 +250,7 @@ The next lifecycle decision is explicit and supported by evidence rather than un
 
 **Goal:** Complete low-fidelity critical-flow wireframes, architecture, data model, REST contract, and security review.
 
-**Demo:** Follow a member from the landing page through booking, waitlisting, and cancellation on desktop and mobile.
+**Demo:** Follow a visitor from public discovery through Join, fictional plan selection or existing-member sign-in, the separate member workspace, booking, waitlisting, and cancellation on desktop and mobile.
 
 ### Sprint 2 Engineering foundation
 
@@ -272,7 +272,7 @@ The next lifecycle decision is explicit and supported by evidence rather than un
 
 **SDLC phase:** 4
 
-**Goal:** Implement session, booking, cancellation, and waitlist endpoints with demo authentication and server-side authorization.
+**Goal:** Implement fictional enrollment, session, booking, cancellation, and waitlist endpoints with demo authentication, validated internal return paths, and server-side authorization.
 
 **Demo:** API tests exercise successful and rejected requests using member and administrator identities.
 
@@ -280,7 +280,7 @@ The next lifecycle decision is explicit and supported by evidence rather than un
 
 **SDLC phase:** 4
 
-**Goal:** Build the landing page, schedule, session details, demo sign-in, and My bookings experience.
+**Goal:** Build the public landing and schedule, Join decision, fictional plan-selection registration, existing-member sign-in, and separate member workspace with My bookings.
 
 **Demo:** A member completes the critical journey on mobile and desktop, including failure states.
 

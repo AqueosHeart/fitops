@@ -7,7 +7,7 @@
         <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#111310;" value="PRACTICE ATHLETIC CLUB - INFORMATION ARCHITECTURE" vertex="1">
           <mxGeometry x="40" y="25" width="1300" height="32" as="geometry" />
         </mxCell>
-        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#5C6159;" value="Public, legal, authentication, member, trainer, and administrator experience" vertex="1">
+        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#5C6159;" value="Public discovery, fictional membership join, and protected member, trainer, and administrator workspaces" vertex="1">
           <mxGeometry x="40" y="60" width="1300" height="24" as="geometry" />
         </mxCell>
         <mxCell id="root" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#111310;strokeColor=#C7F134;fontColor=#F2F0E8;fontSize=13;spacing=8;" value="Practice Athletic Club" vertex="1">
@@ -16,10 +16,10 @@
         <mxCell id="cookieBanner" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;stroke-dasharray=4 4;fontColor=#111310;fontSize=12;spacing=8;" value="Cookie &amp; Demo privacy banner&lt;br&gt;Fictional demo data notice &amp; minimal session cookies" vertex="1">
           <mxGeometry x="60" y="220" width="320" height="74" as="geometry" />
         </mxCell>
-        <mxCell id="publicNav" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Public navigation&lt;br&gt;Available from every public page" vertex="1">
+        <mxCell id="publicNav" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Public navigation + Join now&lt;br&gt;Available from public pages; no global Sign In link" vertex="1">
           <mxGeometry x="500" y="220" width="300" height="74" as="geometry" />
         </mxCell>
-        <mxCell id="authHub" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=13;spacing=8;" value="Authentication &amp; Onboarding Hub&lt;br&gt;Entry via Nav, Schedule, or Direct link" vertex="1">
+        <mxCell id="authHub" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=13;spacing=8;" value="Member Portal&lt;br&gt;Direct entry and protected-route redirects" vertex="1">
           <mxGeometry x="1340" y="220" width="300" height="74" as="geometry" />
         </mxCell>
         <mxCell id="home" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Home /&lt;br&gt;Value proposition, program summary, schedule preview" vertex="1">
@@ -46,19 +46,23 @@
         <mxCell id="waiver" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Liability Waiver /waiver&lt;br&gt;Physical readiness declaration &amp; injury release" vertex="1">
           <mxGeometry x="520" y="500" width="220" height="74" as="geometry" />
         </mxCell>
-        <mxCell id="login" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=13;spacing=8;" value="Sign In &amp; Demo switcher /login&lt;br&gt;Credentials or 1-click persona switch" vertex="1">
+        <mxCell id="services" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Services /#services&lt;br&gt;In-page landing destination: assessment, training plan, recovery" vertex="1"><mxGeometry x="760" y="500" width="220" height="74" as="geometry" /></mxCell>
+      <mxCell id="facilities" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Facilities /#facilities&lt;br&gt;In-page landing destination: fictional training and recovery spaces" vertex="1"><mxGeometry x="1000" y="500" width="220" height="74" as="geometry" /></mxCell>
+      <mxCell id="contact" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Contact /#contact&lt;br&gt;In-page landing destination: fictional location, hours, first contact" vertex="1"><mxGeometry x="1240" y="500" width="220" height="74" as="geometry" /></mxCell>
+        <mxCell id="join" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=13;spacing=8;" value="Join now /join&lt;br&gt;Fictional plan selection; no payment collected" vertex="1"><mxGeometry x="1660" y="220" width="260" height="74" as="geometry" /></mxCell>
+        <mxCell id="login" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=13;spacing=8;" value="Member Portal Login /portal/login&lt;br&gt;Existing member credentials or demo switcher" vertex="1">
           <mxGeometry x="1260" y="370" width="250" height="74" as="geometry" />
         </mxCell>
-        <mxCell id="register" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=13;spacing=8;" value="Member registration /register&lt;br&gt;Zod validation, terms &amp; waiver consent" vertex="1">
+        <mxCell id="register" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=13;spacing=8;" value="Member registration /register&lt;br&gt;Selected fictional plan, Zod validation, terms &amp; waiver consent" vertex="1">
           <mxGeometry x="1540" y="370" width="250" height="74" as="geometry" />
         </mxCell>
         <mxCell id="recovery" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=13;spacing=8;" value="Account recovery /auth/forgot-password&lt;br&gt;Rate-limited, email-safe reset link" vertex="1">
-          <mxGeometry x="1400" y="500" width="260" height="74" as="geometry" />
+          <mxGeometry x="1540" y="500" width="260" height="74" as="geometry" />
         </mxCell>
         <mxCell id="details" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;stroke-dasharray=4 4;fontColor=#111310;fontSize=12;spacing=8;" value="Session details /sessions/:id&lt;br&gt;Time, trainer, capacity, availability, configured cutoff" vertex="1">
           <mxGeometry x="520" y="640" width="240" height="74" as="geometry" />
         </mxCell>
-        <mxCell id="auth" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;stroke-dasharray=4 4;fontColor=#111310;fontSize=12;spacing=8;" value="Demo sign-in modal&lt;br&gt;Fictional profiles; preserve selected session" vertex="1">
+        <mxCell id="auth" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;stroke-dasharray=4 4;fontColor=#111310;fontSize=12;spacing=8;" value="Join decision /join&lt;br&gt;Select fictional plan or choose Already a member" vertex="1">
           <mxGeometry x="800" y="640" width="240" height="74" as="geometry" />
         </mxCell>
         <mxCell id="waiverModal" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;stroke-dasharray=4 4;fontColor=#111310;fontSize=12;spacing=8;" value="Liability waiver modal&lt;br&gt;Mandatory before first class booking" vertex="1">
@@ -67,7 +71,9 @@
         <mxCell id="expiryModal" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;stroke-dasharray=4 4;fontColor=#111310;fontSize=12;spacing=8;" value="Session expiry modal&lt;br&gt;Re-auth without losing booking intent" vertex="1">
           <mxGeometry x="1360" y="640" width="240" height="74" as="geometry" />
         </mxCell>
-        <mxCell id="myBookings" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="My bookings /my-bookings&lt;br&gt;Upcoming confirmed and waiting entries" vertex="1">
+        <mxCell id="memberWorkspace" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2E0D8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Member dashboard /app&lt;br&gt;Home, next class, quick actions, and protected app shell" vertex="1"><mxGeometry x="40" y="800" width="190" height="74" as="geometry" /></mxCell>
+        <mxCell id="appSchedule" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2E0D8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Member schedule /app/schedule&lt;br&gt;Bookable schedule after sign in" vertex="1"><mxGeometry x="40" y="950" width="170" height="74" as="geometry" /></mxCell>
+        <mxCell id="myBookings" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2E0D8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="My bookings /app/bookings&lt;br&gt;Upcoming confirmed and waiting entries" vertex="1">
           <mxGeometry x="240" y="800" width="250" height="74" as="geometry" />
         </mxCell>
         <mxCell id="confirmed" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Confirmed reservations&lt;br&gt;Session details and cancellation action" vertex="1">
@@ -79,7 +85,7 @@
         <mxCell id="waiting" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Waitlist entries&lt;br&gt;Current position and leave action" vertex="1">
           <mxGeometry x="540" y="950" width="250" height="74" as="geometry" />
         </mxCell>
-        <mxCell id="profileSecurity" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Profile &amp; Security /profile/security&lt;br&gt;Membership status, signed waiver, sign out" vertex="1">
+        <mxCell id="profileSecurity" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2E0D8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Profile &amp; Security /app/profile/security&lt;br&gt;Membership status, selected demo plan, signed waiver, sign out" vertex="1">
           <mxGeometry x="540" y="1100" width="250" height="74" as="geometry" />
         </mxCell>
         <mxCell id="trainer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8E3F3;strokeColor=#4C3B73;fontColor=#111310;fontSize=13;spacing=8;" value="Assigned sessions /trainer/sessions&lt;br&gt;Upcoming assigned sessions" vertex="1">
@@ -105,7 +111,10 @@
         </mxCell>
 
         
-        <!-- COLOR & ARCHITECTURE TAXONOMY KEY -->
+        <mxCell id="miscellaneous" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Miscellaneous public routes&lt;br&gt;Supporting, legal, and recovery destinations" vertex="1"><mxGeometry x="40" y="1250" width="260" height="74" as="geometry" /></mxCell>
+      <mxCell id="about" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="About Us /about&lt;br&gt;Club story, fictional mission, and team overview" vertex="1"><mxGeometry x="340" y="1250" width="220" height="74" as="geometry" /></mxCell>
+      <mxCell id="cookieSettings" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Cookie preferences /cookie-settings&lt;br&gt;Essential-cookie disclosure and display preferences" vertex="1"><mxGeometry x="600" y="1250" width="220" height="74" as="geometry" /></mxCell>
+      <mxCell id="notFound" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Not Found /404&lt;br&gt;Unknown-route recovery with safe public navigation" vertex="1"><mxGeometry x="860" y="1250" width="220" height="74" as="geometry" /></mxCell>      <!-- COLOR & ARCHITECTURE TAXONOMY KEY -->
         <mxCell id="leg1_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111310;strokeWidth=1.5;shadow=0;" value="" vertex="1">
           <mxGeometry x="1850" y="25" width="500" height="710" as="geometry" />
         </mxCell>
@@ -200,13 +209,16 @@
         </mxCell>
 
         <!-- Edges -->
-        <mxCell id="e-root-public" edge="1" parent="1" source="root" target="publicNav" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+        <mxCell id="e-nav-misc" edge="1" parent="1" source="publicNav" target="miscellaneous" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+      <mxCell id="e-misc-about" edge="1" parent="1" source="miscellaneous" target="about" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+      <mxCell id="e-misc-cookies" edge="1" parent="1" source="miscellaneous" target="cookieSettings" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+      <mxCell id="e-misc-notfound" value="Unknown public path" edge="1" parent="1" source="miscellaneous" target="notFound" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>      <mxCell id="e-root-public" edge="1" parent="1" source="root" target="publicNav" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-root-auth" edge="1" parent="1" source="root" target="authHub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+        <mxCell id="e-root-auth" value="Join or direct authentication" edge="1" parent="1" source="root" target="authHub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-root-bookings" edge="1" parent="1" source="root" target="myBookings" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+        <mxCell id="e-root-bookings" value="Authenticated member only" edge="1" parent="1" source="root" target="memberWorkspace" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e-root-trainer" edge="1" parent="1" source="root" target="trainer" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
@@ -255,7 +267,13 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
 
-        <mxCell id="e-hub-login" edge="1" parent="1" source="authHub" target="login" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+        <mxCell id="e-nav-services" edge="1" parent="1" source="publicNav" target="services" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+      <mxCell id="e-nav-facilities" edge="1" parent="1" source="publicNav" target="facilities" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+      <mxCell id="e-nav-contact" edge="1" parent="1" source="publicNav" target="contact" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-nav-join" value="Primary CTA" edge="1" parent="1" source="publicNav" target="join" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#1E3A8A;fontSize=11;fontColor=#1E3A8A;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-join-hub" value="Already a member" edge="1" parent="1" source="join" target="authHub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#1E3A8A;fontSize=11;fontColor=#1E3A8A;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-join-register" value="New fictional member" edge="1" parent="1" source="join" target="register" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#1E3A8A;fontSize=11;fontColor=#1E3A8A;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+      <mxCell id="e-hub-login" edge="1" parent="1" source="authHub" target="login" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e-hub-reg" edge="1" parent="1" source="authHub" target="register" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
@@ -264,14 +282,18 @@
         <mxCell id="e-login-rec" edge="1" parent="1" source="login" target="recovery" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="e-register-member" value="New active demo member" edge="1" parent="1" source="register" target="memberWorkspace" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#1E3A8A;fontSize=11;fontColor=#1E3A8A;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-login-member" value="Member role or validated member returnTo" edge="1" parent="1" source="login" target="memberWorkspace" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#1E3A8A;fontSize=11;fontColor=#1E3A8A;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-login-trainer" value="Trainer role" edge="1" parent="1" source="login" target="trainer" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#4C3B73;fontSize=11;fontColor=#4C3B73;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-login-admin" value="Administrator role" edge="1" parent="1" source="login" target="admin" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#C7F134;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
 
         <mxCell id="e-sched-details" edge="1" parent="1" source="schedule" target="details" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-details-auth" value="Unauthenticated booking attempt" edge="1" parent="1" source="details" target="auth" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;">
+        <mxCell id="e-details-auth" value="Unauthenticated booking attempt: preserve returnTo" edge="1" parent="1" source="details" target="auth" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-auth-details" value="Return to selected session" edge="1" parent="1" source="auth" target="details" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;">
+        <mxCell id="e-auth-details" value="After join or sign in, restore intent in member workspace" edge="1" parent="1" source="auth" target="appSchedule" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e-details-waiver" value="Check signed waiver" edge="1" parent="1" source="details" target="waiverModal" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#8B5CF6;fontSize=11;fontColor=#8B5CF6;labelBackgroundColor=#FFFFFF;">
@@ -280,7 +302,11 @@
         <mxCell id="e-details-expiry" value="Session expired" edge="1" parent="1" source="details" target="expiryModal" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="e-expiry-reauth" value="Re-authenticate; preserve and restore returnTo" edge="1" parent="1" source="expiryModal" target="authHub" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
 
+        <mxCell id="e-workspace-schedule" edge="1" parent="1" source="memberWorkspace" target="appSchedule" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-workspace-bookings" edge="1" parent="1" source="memberWorkspace" target="myBookings" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-workspace-profile" edge="1" parent="1" source="memberWorkspace" target="profileSecurity" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
         <mxCell id="e-book-conf" edge="1" parent="1" source="myBookings" target="confirmed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
@@ -355,7 +381,7 @@
         <mxCell id="auth" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Authenticated?" vertex="1">
           <mxGeometry x="650" y="680" width="250" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="signIn" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Demo sign-in&lt;br&gt;Preserve selected session" vertex="1">
+        <mxCell id="signIn" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Redirect to Join /join&lt;br&gt;New visitor selects a fictional plan; existing member may continue to Portal Login; preserve returnTo" vertex="1">
           <mxGeometry x="280" y="680" width="250" height="70" as="geometry" />
         </mxCell>
         <mxCell id="profile" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Has member profile?" vertex="1">
@@ -394,6 +420,9 @@
         <mxCell id="sessionExpired" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="401 Session expired&lt;br&gt;Prompt re-auth modal; preserve session &amp; intent" vertex="1">
           <mxGeometry x="1020" y="1320" width="250" height="65" as="geometry" />
         </mxCell>
+        <mxCell id="reauthBooking" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;stroke-dasharray=4 4;fontColor=#111310;fontSize=12;spacing=8;" value="Re-authenticate in place&lt;br&gt;Restore session and pending booking intent" vertex="1">
+          <mxGeometry x="1400" y="1320" width="250" height="65" as="geometry" />
+        </mxCell>
         <mxCell id="transactionNote" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Authoritative rules run on server;&lt;br&gt;UI checks are guidance only" vertex="1">
           <mxGeometry x="280" y="1420" width="250" height="70" as="geometry" />
         </mxCell>
@@ -402,6 +431,9 @@
         </mxCell>
         <mxCell id="failure" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Preserve selected session&lt;br&gt;Show request ID and retry action" vertex="1">
           <mxGeometry x="1400" y="1420" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="bookingsLink" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2E0D8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Open My bookings /app/bookings&lt;br&gt;View confirmed reservation, waitlist position, or conflicting booking" vertex="1">
+          <mxGeometry x="1400" y="1530" width="250" height="80" as="geometry" />
         </mxCell>
         <mxCell id="existingBooking" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Already has confirmed booking?" vertex="1">
           <mxGeometry x="650" y="1530" width="250" height="70" as="geometry" />
@@ -565,7 +597,7 @@
         <mxCell id="e-b-09" value="No" edge="1" parent="1" source="auth" target="signIn" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-b-10" edge="1" parent="1" source="signIn" target="profile" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+        <mxCell id="e-b-10" value="After successful Join or Portal Login, restore returnTo" edge="1" parent="1" source="signIn" target="profile" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="405" y="825" />
@@ -593,6 +625,7 @@
         <mxCell id="e-b-waiver-sign" edge="1" parent="1" source="waiverModal" target="waiverSign" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="e-b-waiver-close" value="Decline or close: keep booking unsubmitted" edge="1" parent="1" source="waiverModal" target="details" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#8B5CF6;fontSize=11;fontColor=#8B5CF6;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
         <mxCell id="e-b-waiver-loop" edge="1" parent="1" source="waiverSign" target="eligible" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
@@ -615,6 +648,8 @@
         <mxCell id="e-b-sec-exp" value="Expired" edge="1" parent="1" source="securityCheck" target="sessionExpired" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="e-b-reauth" edge="1" parent="1" source="sessionExpired" target="reauthBooking" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-b-reauth-retry" value="Replay preserved request" edge="1" parent="1" source="reauthBooking" target="submitBooking" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
         <mxCell id="e-b-sec-pass" value="Valid" edge="1" parent="1" source="securityCheck" target="transaction" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
@@ -700,6 +735,14 @@
         <mxCell id="e-b-39" edge="1" parent="1" source="createEntry" target="waitlistSuccess" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="e-b-cutoff-browse" value="Browse other sessions" edge="1" parent="1" source="cutoffOrStatus" target="start" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-b-existing-booking" value="Open reservation" edge="1" parent="1" source="alreadyBooked" target="bookingsLink" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-b-existing-waitlist" value="Open waitlist entry" edge="1" parent="1" source="alreadyWaiting" target="bookingsLink" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-b-conflict-booking" value="Open conflicting reservation" edge="1" parent="1" source="conflict" target="bookingsLink" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-b-failure-retry-booking" value="Retry booking request" edge="1" parent="1" source="failure" target="submitBooking" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-b-failure-retry-waitlist" value="Retry waitlist request" edge="1" parent="1" source="failure" target="submitWaitlist" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-b-success-bookings" value="View confirmation" edge="1" parent="1" source="bookingSuccess" target="bookingsLink" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#1F4D32;fontSize=11;fontColor=#1F4D32;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-b-waitlist-bookings" value="View position" edge="1" parent="1" source="waitlistSuccess" target="bookingsLink" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#1F4D32;fontSize=11;fontColor=#1F4D32;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
       </root>
     </mxGraphModel>
   </diagram>
@@ -771,18 +814,18 @@
         <mxCell id="resolved" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Entry already resolved&lt;br&gt;Refresh My bookings" vertex="1">
           <mxGeometry x="1000" y="1180" width="250" height="70" as="geometry" />
         </mxCell>
+        <mxCell id="confirmedReservation" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Open confirmed reservation&lt;br&gt;Cancellation remains available if before cutoff" vertex="1">
+          <mxGeometry x="1000" y="1280" width="250" height="70" as="geometry" />
+        </mxCell>
 
         <!-- Edges -->
         <mxCell id="e-w-01" edge="1" parent="1" source="start" target="load" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-w-02" edge="1" parent="1" source="load" target="loadState" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+        <mxCell id="e-w-02" edge="1" parent="1" source="load" target="loading" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-w-03" value="Loading" edge="1" parent="1" source="loadState" target="loading" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e-w-04" edge="1" parent="1" source="loading" target="loadState" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+        <mxCell id="e-w-04" value="Request resolves" edge="1" parent="1" source="loading" target="loadState" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e-w-05" value="Failure" edge="1" parent="1" source="loadState" target="retry" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
@@ -833,6 +876,10 @@
         <mxCell id="e-w-19" value="Cancelled or expired" edge="1" parent="1" source="status" target="resolved" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="e-w-remove-retry" value="Retry removal" edge="1" parent="1" source="removeFailure" target="submit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-w-promoted-booking" value="Manage confirmed reservation" edge="1" parent="1" source="promoted" target="confirmedReservation" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#1F4D32;fontSize=11;fontColor=#1F4D32;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-w-removed-refresh" value="Return to My bookings" edge="1" parent="1" source="removed" target="start" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-w-resolved-refresh" value="Return to My bookings" edge="1" parent="1" source="resolved" target="start" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
       </root>
     </mxGraphModel>
   </diagram>
@@ -919,7 +966,7 @@
         <mxCell id="auditLog" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Structured audit log:&lt;br&gt;Record cancellation, availability change, or FIFO promotion with request ID" vertex="1">
           <mxGeometry x="1020" y="1650" width="250" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="promotedResult" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Promoted member sees confirmed reservation on refresh" vertex="1">
+        <mxCell id="promotedResult" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Promoted member sees confirmed reservation&lt;br&gt;In-app dashboard badge appears on next visit" vertex="1">
           <mxGeometry x="650" y="1760" width="250" height="60" as="geometry" />
         </mxCell>
 
@@ -1011,6 +1058,11 @@
         <mxCell id="e-c-audit" edge="1" parent="1" source="commitPromotion" target="auditLog" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=none;strokeColor=#8B5CF6;fontSize=11;fontColor=#8B5CF6;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="e-c-locked-return" value="Return to My bookings" edge="1" parent="1" source="locked" target="start" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-c-rejected-return" value="Refresh My bookings" edge="1" parent="1" source="rejected" target="start" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-c-rollback-return" value="Refresh current booking state" edge="1" parent="1" source="rollback" target="start" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-c-success-return" value="Return to My bookings" edge="1" parent="1" source="cancelSuccess" target="start" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#1F4D32;fontSize=11;fontColor=#1F4D32;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-c-promoted-dashboard" value="Next visit: dashboard badge and My bookings" edge="1" parent="1" source="promotedResult" target="start" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#1F4D32;fontSize=11;fontColor=#1F4D32;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
       </root>
     </mxGraphModel>
   </diagram>
@@ -1114,6 +1166,9 @@
         <mxCell id="e-t-14" value="Yes" edge="1" parent="1" source="authorized" target="detail" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="e-t-forbidden-return" value="Return to permitted experience or switch persona" edge="1" parent="1" source="forbidden" target="start" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-t-forbidden2-return" value="Return to assigned sessions" edge="1" parent="1" source="forbidden2" target="list" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-t-detail-back" value="Back to assigned sessions" edge="1" parent="1" source="detail" target="list" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
       </root>
     </mxGraphModel>
   </diagram>
@@ -1319,6 +1374,9 @@
             </Array>
           </mxGeometry>
         </mxCell>
+        <mxCell id="e-a-forbidden-return" value="Return to permitted experience or switch persona" edge="1" parent="1" source="forbidden" target="start" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-a-savefailure-create" value="Retry create safely" edge="1" parent="1" source="saveFailure" target="createSave" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-a-savefailure-edit" value="Retry update safely" edge="1" parent="1" source="saveFailure" target="editSave" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
       </root>
     </mxGraphModel>
   </diagram>
@@ -1335,13 +1393,13 @@
         </mxCell>
 
         <!-- Entry Section -->
-        <mxCell id="e_nav" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Visitor clicks Sign In / Join&lt;br&gt;From navigation header" vertex="1">
+        <mxCell id="e_nav" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Visitor clicks Join now&lt;br&gt;From public navigation" vertex="1">
           <mxGeometry x="240" y="110" width="250" height="60" as="geometry" />
         </mxCell>
         <mxCell id="e_redirect" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Booking intent redirect&lt;br&gt;Preserves returnTo=/sessions/:id" vertex="1">
           <mxGeometry x="600" y="110" width="250" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="e_direct" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Direct route access&lt;br&gt;User opens /login or /register" vertex="1">
+        <mxCell id="e_direct" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Direct route access&lt;br&gt;Existing member opens /portal/login; new visitor opens /join" vertex="1">
           <mxGeometry x="960" y="110" width="250" height="60" as="geometry" />
         </mxCell>
         <mxCell id="auth_check" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Already authenticated?" vertex="1">
@@ -1350,12 +1408,15 @@
         <mxCell id="already_auth" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Redirect to role dashboard&lt;br&gt;or restore returnTo intent" vertex="1">
           <mxGeometry x="960" y="210" width="250" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="auth_fork" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Select user action:&lt;br&gt;Sign In (/login) or Register (/register)" vertex="1">
+        <mxCell id="auth_fork" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Select user action:&lt;br&gt;Member Portal Login (/portal/login) or Join (/join)" vertex="1">
           <mxGeometry x="600" y="320" width="250" height="60" as="geometry" />
         </mxCell>
 
         <!-- Path A: Registration & Legal Consent -->
-        <mxCell id="r_form" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Open registration form /register&lt;br&gt;Enter name, email, password" vertex="1">
+        <mxCell id="r_plan" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=13;spacing=8;" value="Open Join /join&lt;br&gt;Select fictional plan; no payment or card data" vertex="1">
+          <mxGeometry x="160" y="340" width="260" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r_form" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Open registration form /register&lt;br&gt;Selected fictional plan, name, email, password" vertex="1">
           <mxGeometry x="160" y="420" width="260" height="65" as="geometry" />
         </mxCell>
         <mxCell id="r_zod" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Client Zod schema validation&lt;br&gt;Email format, password complexity" vertex="1">
@@ -1396,7 +1457,7 @@
         </mxCell>
 
         <!-- Path B: Sign In & Demo Switcher -->
-        <mxCell id="l_page" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Open Sign In page /login&lt;br&gt;Choose: Credentials or Demo Switcher" vertex="1">
+        <mxCell id="l_page" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Open Member Portal Login /portal/login&lt;br&gt;Choose: Credentials or Demo Switcher" vertex="1">
           <mxGeometry x="800" y="420" width="280" height="65" as="geometry" />
         </mxCell>
         <mxCell id="l_method" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Sign in method?" vertex="1">
@@ -1444,7 +1505,7 @@
         <mxCell id="s_role" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="User Role" vertex="1">
           <mxGeometry x="800" y="1230" width="280" height="65" as="geometry" />
         </mxCell>
-        <mxCell id="m_dash" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Member -&gt; /my-bookings&lt;br&gt;or returnTo session" vertex="1">
+        <mxCell id="m_dash" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Member -&gt; /app&lt;br&gt;or validated returnTo member route" vertex="1">
           <mxGeometry x="620" y="1340" width="200" height="60" as="geometry" />
         </mxCell>
         <mxCell id="t_dash" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8E3F3;strokeColor=#4C3B73;fontColor=#111310;fontSize=13;spacing=8;" value="Trainer -&gt; /trainer/sessions&lt;br&gt;Assigned classes" vertex="1">
@@ -1492,7 +1553,7 @@
         </mxCell>
 
         <!-- Bottom: Security & Sign Out -->
-        <mxCell id="p_sec" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Member opens /profile/security&lt;br&gt;Review active session, membership, and signed waiver" vertex="1">
+        <mxCell id="p_sec" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Member opens /app/profile/security&lt;br&gt;Review active session, selected demo plan, membership, and signed waiver" vertex="1">
           <mxGeometry x="600" y="1520" width="300" height="65" as="geometry" />
         </mxCell>
         <mxCell id="so_intent" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="User chooses Sign Out" vertex="1">
@@ -1527,7 +1588,7 @@
         <mxCell id="leg7_sw1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#1F4D32;fontSize=10;fontStyle=1;" value="Member Role" vertex="1">
           <mxGeometry x="1470" y="100" width="100" height="34" as="geometry" />
         </mxCell>
-        <mxCell id="leg7_tx1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#111310;" value="&lt;b&gt;Member Role (Alex Morgan)&lt;/b&gt; -&gt; Route to /my-bookings" vertex="1">
+        <mxCell id="leg7_tx1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#111310;" value="&lt;b&gt;Member Role (Alex Morgan)&lt;/b&gt; -&gt; Route to /app workspace" vertex="1">
           <mxGeometry x="1580" y="98" width="330" height="38" as="geometry" />
         </mxCell>
 
@@ -1583,14 +1644,15 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
 
-        <mxCell id="e-auth-fork-r" value="Register" edge="1" parent="1" source="auth_fork" target="r_form" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+        <mxCell id="e-auth-fork-r" value="New fictional member" edge="1" parent="1" source="auth_fork" target="r_plan" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-auth-fork-l" value="Sign In" edge="1" parent="1" source="auth_fork" target="l_page" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+        <mxCell id="e-auth-fork-l" value="Existing member" edge="1" parent="1" source="auth_fork" target="l_page" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
 
         <!-- Registration Edges -->
+        <mxCell id="e-r-plan" value="Continue with selected plan" edge="1" parent="1" source="r_plan" target="r_form" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#1E3A8A;fontSize=11;fontColor=#1E3A8A;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
         <mxCell id="e-r-01" edge="1" parent="1" source="r_form" target="r_zod" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
@@ -1634,6 +1696,9 @@
         <mxCell id="e-r-13" edge="1" parent="1" source="r_create" target="r_success" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="e-r-legal-retry" value="Review and accept agreements" edge="1" parent="1" source="r_legal_blocked" target="r_legal" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-r-conflict-login" value="Already a member: open Portal Login" edge="1" parent="1" source="r_email_conflict" target="l_page" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#1E3A8A;fontSize=11;fontColor=#1E3A8A;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-r-success-session" value="Authenticated new member" edge="1" parent="1" source="r_success" target="s_issue" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#1F4D32;fontSize=11;fontColor=#1F4D32;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
 
         <!-- Sign In Edges -->
         <mxCell id="e-l-01" edge="1" parent="1" source="l_page" target="l_method" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
@@ -1665,6 +1730,8 @@
         <mxCell id="e-c-06b" value="Yes" edge="1" parent="1" source="c_valid" target="s_issue" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="e-c-error-retry" value="Correct password and try again" edge="1" parent="1" source="c_error" target="c_input" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-c-rate-retry" value="After cooldown, try again" edge="1" parent="1" source="c_rate_lock" target="c_input" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#9E2E25;fontSize=11;fontColor=#9E2E25;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
 
         <!-- Demo Switcher Flow -->
         <mxCell id="e-d-01" edge="1" parent="1" source="d_switcher" target="d_choice" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
@@ -1693,6 +1760,7 @@
         <mxCell id="e-s-05" value="Administrator" edge="1" parent="1" source="s_role" target="a_dash" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="e-auth-existing-rbac" value="Restore role dashboard or validated returnTo" edge="1" parent="1" source="already_auth" target="s_rbac" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#1F4D32;fontSize=11;fontColor=#1F4D32;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
 
         <!-- Lifecycle & Expiry Edges -->
         <mxCell id="e-m-01" edge="1" parent="1" source="sess_mon" target="sess_check" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
@@ -1713,6 +1781,7 @@
         <mxCell id="e-m-06" edge="1" parent="1" source="reauth_action" target="reauth_done" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="e-m-replay" value="Resume original protected action" edge="1" parent="1" source="reauth_done" target="sess_ok" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#1F4D32;fontSize=11;fontColor=#1F4D32;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
 
         <!-- Forgot Password Edges -->
         <mxCell id="e-f-01" edge="1" parent="1" source="f_link" target="f_input" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
@@ -1724,6 +1793,7 @@
         <mxCell id="e-f-03" edge="1" parent="1" source="f_sim" target="f_done" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="e-f-return-login" value="Return to Member Portal Login" edge="1" parent="1" source="f_done" target="l_page" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#1E3A8A;fontSize=11;fontColor=#1E3A8A;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
 
         <!-- Profile Security & Sign Out Edges -->
         <mxCell id="e-so-01" edge="1" parent="1" source="p_sec" target="so_intent" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">

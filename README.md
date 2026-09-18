@@ -24,6 +24,9 @@ A recruiter should be able to verify that the author can take a product from an 
 - [Engineering tooling and workflow](docs/tooling-and-workflow.md)
 - [ADR 001 Modular monolith](docs/adr/001-modular-monolith.md)
 - [ADR 002 Repository centered planning and design tools](docs/adr/002-project-and-design-tooling.md)
+- [ADR 003 draw.io UX-flow source of truth](docs/adr/003-drawio-ux-source-of-truth.md)
+- [ADR 004 separate public discovery, fictional membership join, and protected workspaces](docs/adr/004-separate-public-join-and-workspace-shells.md)
+- [ADR 005 direct Member Portal and dashboard entry](docs/adr/005-member-portal-and-dashboard-entry.md)
 
 ## Obsidian project memory
 

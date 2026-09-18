@@ -4,9 +4,8 @@ flowchart TD
     classDef decision fill:#FFF4D6,stroke:#7A4B00,color:#111310;
 
     Start([Member opens My bookings]) --> Load[Load confirmed reservations and waiting entries]
-    Load --> LoadState{Request result}
-    LoadState -- Loading --> Loading[Show stable loading skeleton]
-    Loading --> LoadState
+    Load --> Loading[Show stable loading skeleton]
+    Loading --> LoadState{Request result}
     LoadState -- Failure --> Retry[Show recoverable error and retry]:::error
     Retry --> Load
     LoadState -- Empty --> Empty[No upcoming bookings or waitlist entries]
@@ -19,9 +18,10 @@ flowchart TD
     Submit --> ServerCheck["Server verifies identity, ownership, and current entry status"]
     ServerCheck --> Status{Current status}
     Status -- Waiting --> Remove[Atomically mark entry cancelled]
-    Remove --> Removed["Removed from waitlist<br/>Refresh My bookings"]:::success
-    Status -- Promoted --> Promoted["Entry was already promoted<br/>Show confirmed reservation and cancellation policy"]
-    Status -- Cancelled or expired --> Resolved["Entry already resolved<br/>Refresh My bookings"]
+    Remove --> Removed["Removed from waitlist<br/>Refresh My bookings"]:::success --> Start
+    Status -- Promoted --> Promoted["Entry was already promoted<br/>Show confirmed reservation and cancellation policy"] --> ConfirmedReservation["Open confirmed reservation; cancellation remains available before cutoff"]
+    Status -- Cancelled or expired --> Resolved["Entry already resolved<br/>Refresh My bookings"] --> Start
     ServerCheck -. unexpected failure .-> RemoveFailure["Keep entry visible<br/>Show request ID and retry"]:::error
+    RemoveFailure -. retry removal .-> Submit
 
     class LoadState,Choice,Status decision;

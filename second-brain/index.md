@@ -57,4 +57,6 @@ updated: 2026-09-18
 - [[wiki/logs/2026-09-17-mermaid-userflow-correction|Mermaid user-flow correction]]
 - [[wiki/logs/2026-09-17-user-flows-terms-privacy-security|User flows: terms, privacy, security, and onboarding]]
 - [[wiki/logs/2026-09-18-fitops-wireframe-generator|FitOps wireframe generator]]
+- [[wiki/logs/2026-09-18-drawio-figma-sync|draw.io to Figma synchronization]]
+- [[wiki/logs/2026-09-18-public-join-workspace-boundaries|Public Join and workspace boundaries]]
 - [[raw/06-flash_notes/2026-09-14-conversation-record|Planning conversation record]]

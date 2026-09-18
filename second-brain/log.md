@@ -54,6 +54,25 @@ updated: 2026-09-18
 
 ## 2026-09-18
 
+- Accepted ADR 005 to correct an information-architecture flaw found in the generated wireframes: Public Schedule is no longer nested beneath Landing; direct existing-member access uses `/portal/login`; and `/app` is an explicit member dashboard before schedule and bookings.
+- Updated the editable draw.io sitemap first, then the Mermaid sitemap/review hub and Figma generator. The generator now creates eleven modules with 19 desktop and 17 Android states, including separate Landing, Public Schedule, Member Portal, and Member Workspace modules.
+- Audited a supplied flow-review report against the live draw.io source. Removed the duplicate `e-nav-contact` XML edge ID and verified that all seven diagram pages now have unique cell IDs and parse successfully. The audit also confirmed several unresolved recovery-path and source-versus-Mermaid routing gaps; these remain explicitly unimplemented pending a scoped UX correction pass.
+- Completed the scoped UX correction pass in native draw.io first. Added role-routing, fictional-plan selection, re-authentication, retry, dismissal, return, promotion-visibility, and access-recovery connections; retained the explicit MVP exclusions for payments, refunds, admin session deletion, and real-time notifications. Updated the derived Mermaid flow, Figma generator coverage, review hub, and planning notes afterward.
+
+- Accepted ADR 004 after reviewing the product requirements, UX plan, architecture, API, data model, DBML, delivery plan, and source-of-truth UX artifacts. Public discovery, fictional membership Join, and protected workspaces are now distinct.
+- Updated native draw.io first, then the Mermaid sitemap/review hub and Figma generator. The public header now has `Join now`, not Sign In. `/join` presents fictional plan selection for new demo members and an `Already a member? Sign in` option; no payment or card data is collected.
+- Moved member navigation to the protected `/app` shell (`/app/schedule`, `/app/bookings`, and `/app/profile/security`) and documented internal `returnTo` validation after Join or sign-in.
+- Added the fictional `selectedPlanCode` to the conceptual member profile only. Real payments, subscriptions, invoices, and billing remain explicitly out of scope.
+- Rebuilt the Figma plugin bundle and passed static route synchronization for 29 mapped routes and anchors. Figma execution and visual QA remain pending.
+- Attempted to refresh the two affected Mermaid SVG previews, but the local Mermaid CLI could not launch its Puppeteer browser process. The `.mmd` sources are current; regenerate the SVG previews in a working renderer before approval.
+
+- Fixed the Figma runtime selection failure after adding module `00`: the generator now resolves and activates the `01 Landing` page by name before selecting its landing frame. Rebuilt `scripts/figma-plugin/code.js` afterward.
+- Expanded the draw.io sitemap with a Miscellaneous group containing About Us, Cookie Preferences, and Not Found (`/404`). Extended the derived Mermaid sitemap and the Figma generator with an explicit Public, Legal, and Miscellaneous module.
+- Replaced all generated Figma wireframe copy with English. The source-of-truth reminder now disables the stale Figma sitemap generator, preventing it from independently changing the architecture.
+- Expanded and passed `node scripts/validate-ux-sync.mjs`: 26 draw.io routes and anchors now have matching Mermaid and Figma-generator coverage, including Pricing, About Us, legal, cookies, 404, authentication, member, trainer, and administrator destinations.
+- Accepted ADR 003: `wiki/design/FitOps User Flows.drawio` is the editable UX source of truth. Mermaid and Figma are derived after draw.io updates, never competing sources.
+- Added public landing destinations Services (`/#services`), Facilities (`/#facilities`), and Contact (`/#contact`) plus their navigation connections to the native draw.io sitemap. Updated its Mermaid review export and confirmed that the existing Figma generator already contains matching landing sections.
+- Added and passed `node scripts/validate-ux-sync.mjs`. The stale draw.io regeneration script now stops rather than overwriting the source diagram. Figma execution and visual QA remain pending because no Figma instance was accessible.
 - Mapped all seven pages of `FitOps User Flows.drawio` into a non-destructive third action in the existing Figma toolkit at `scripts/figma-plugin/`.
 - Prepared nine module pages with 15 desktop and 13 Android 390 px low-fidelity states covering landing, schedule discovery, booking, waitlist, cancellation, authentication, failures, trainer access, and administrator operations.
 - Reused WebbyFrames button and badge components when available while keeping the output visually neutral and explicitly separate from brand approval.

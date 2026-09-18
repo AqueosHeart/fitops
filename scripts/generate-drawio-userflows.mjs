@@ -1,5 +1,9 @@
 import fs from 'node:fs';
 
+throw new Error(
+  'Deprecated: FitOps User Flows.drawio is the editable UX source of truth. Do not regenerate it from this stale script; update the .drawio file first, then refresh Mermaid and Figma derived views.',
+);
+
 const outputPath = 'second-brain/wiki/design/FitOps User Flows.drawio';
 
 const esc = (value) => String(value)

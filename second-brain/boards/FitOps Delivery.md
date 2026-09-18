@@ -15,8 +15,9 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 ## Ready for Sprint 1
 
 - [#6 [DESIGN] Low-Fidelity Desktop & Mobile Booking Flow Wireframes](https://github.com/AqueosHeart/fitops/issues/6)
-  - Mermaid and draw.io prerequisites are mapped into the validated existing Figma toolkit at `scripts/figma-plugin/`.
-  - The generated nine module pages, 15 desktop states, and 13 Android states still require execution and visual QA in Figma; Issue #6 remains pending.
+  - draw.io is the editable UX source of truth. The Mermaid sitemap and English-only Figma generator statically align on 29 routes and anchors through `node scripts/validate-ux-sync.mjs`, including Join, legal, cookies, 404, and the protected member workspace.
+  - Native flow recovery is explicitly mapped for booking, waitlist, cancellation, trainer, administrator, and authentication states; Figma visual execution remains the outstanding verification step.
+  - The generated eleven module pages, 19 desktop states, and 17 Android states still require execution and visual QA in Figma; Issue #6 remains pending.
   - Review hub: [[../wiki/design/FitOps User Flows]]
   - Editable diagram: [[../wiki/design/FitOps User Flows.drawio]]
 - [#7 [ARCH] Domain Boundary & Use-Case Specification](https://github.com/AqueosHeart/fitops/issues/7)

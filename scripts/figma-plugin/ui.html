@@ -140,16 +140,16 @@
       </div>
     </div>
 
-    <!-- SITEMAP & USERFLOW SECTION -->
+    <!-- UX SOURCE OF TRUTH -->
     <div class="section-card">
       <div class="section-title">
-        <span>🗺️</span> 1. FitOps Sitemap &amp; User Flows (Sprint 1)
+        <span>🗺️</span> 1. UX Source of Truth
       </div>
-      <div class="feature-item"><span class="check">✓</span> <b>Sitemap Page:</b> Generates complete 4-tier IA hierarchy</div>
-      <div class="feature-item"><span class="check">✓</span> <b>Userflow Page:</b> Discovery, Booking, Waitlist &amp; Admin flows</div>
-      <div class="feature-item"><span class="check">✓</span> <b>Mona Sans &amp; Ink/Bone tokens:</b> Clean native layout</div>
+      <div class="feature-item"><span class="check">✓</span> <b>Source:</b> FitOps User Flows.drawio</div>
+      <div class="feature-item"><span class="check">✓</span> Update draw.io before Mermaid exports or Figma frames</div>
+      <div class="feature-item"><span class="check">✓</span> The legacy sitemap action is disabled to prevent divergence</div>
       <button id="sitemapBtn" class="btn-sitemap" onclick="buildSitemap()">
-        Build Sitemap &amp; Userflow Pages →
+        Show Source-of-Truth Reminder
       </button>
     </div>
 
@@ -170,8 +170,8 @@
       <div class="section-title">
         <span>▦</span> 3. FitOps Low-Fidelity Wireframes (Issue #6)
       </div>
-      <div class="feature-item"><span class="check">✓</span> <b>14 desktop + 12 mobile:</b> 390 px responsive coverage</div>
-      <div class="feature-item"><span class="check">✓</span> <b>Complete flows:</b> Booking, waitlist, cancellation, auth, trainer &amp; admin</div>
+      <div class="feature-item"><span class="check">✓</span> <b>19 desktop + 17 mobile:</b> 390 px responsive coverage</div>
+      <div class="feature-item"><span class="check">✓</span> <b>Complete coverage:</b> Public, Join, legal, cookies, 404, member workspace, booking, waitlist, trainer &amp; admin</div>
       <div class="feature-item"><span class="check">✓</span> <b>Safe output:</b> New versioned page, fictional data, neutral styling</div>
       <button id="wireframesBtn" class="btn-wireframes" onclick="buildWireframes()">
         Build Low-Fi Wireframes →
@@ -187,7 +187,7 @@
   <script>
     function buildSitemap() {
       const btn = document.getElementById('sitemapBtn');
-      btn.innerText = 'Generating Sitemap & Flows...';
+      btn.innerText = 'Checking UX source of truth...';
       btn.style.opacity = '0.6';
       parent.postMessage({ pluginMessage: { type: 'build-sitemap-userflow' } }, '*');
     }
@@ -201,7 +201,7 @@
 
     function buildWireframes() {
       const btn = document.getElementById('wireframesBtn');
-      btn.innerText = 'Building 26 Wireframe States...';
+      btn.innerText = 'Building 36 Wireframe States...';
       btn.style.opacity = '0.6';
       btn.disabled = true;
       parent.postMessage({ pluginMessage: { type: 'build-wireframes' } }, '*');
@@ -209,14 +209,14 @@
 
     window.onmessage = (event) => {
       const msg = event.data.pluginMessage;
-      if (msg && msg.type === 'sitemap-complete') {
+      if (msg && msg.type === 'sitemap-source-of-truth') {
         const btn = document.getElementById('sitemapBtn');
-        btn.innerText = 'Re-generate Sitemap & Flows ✓';
+        btn.innerText = 'Source-of-truth reminder ✓';
         btn.style.opacity = '1';
 
         document.getElementById('statusCard').style.display = 'block';
-        document.getElementById('statusTitle').innerText = '✓ Sitemap & Userflow Generated!';
-        document.getElementById('statusMsg').innerText = 'Check the Sitemap and Userflow pages in your Figma left sidebar.';
+        document.getElementById('statusTitle').innerText = '✓ Update draw.io first';
+        document.getElementById('statusMsg').innerText = 'FitOps User Flows.drawio is the editable UX source of truth. Run the wireframe action only after that source is updated.';
       }
       if (msg && msg.type === 'transform-complete') {
         const btn = document.getElementById('brandBtn');

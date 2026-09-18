@@ -4,7 +4,7 @@ flowchart TD
     classDef decision fill:#FFF4D6,stroke:#7A4B00,color:#111310;
 
     Start([User signs in]) --> Role{Administrator role?}
-    Role -- No --> Forbidden["Access denied<br/>Return to permitted experience"]:::error
+    Role -- No --> Forbidden["Access denied<br/>Return to permitted experience"]:::error --> Start
     Role -- Yes --> Overview["Operations overview<br/>Session occupancy and waitlist counts"]
     Overview --> Sessions[Open session manager]
     Sessions --> LoadState{Session-list result}
@@ -37,6 +37,8 @@ flowchart TD
 
     CreateSave -. unexpected failure .-> SaveFailure["No completion claim<br/>Show request ID and retry"]:::error
     EditSave -. unexpected failure .-> SaveFailure
+    SaveFailure -. retry create .-> CreateSave
+    SaveFailure -. retry update .-> EditSave
 
     AuthorityNote["Every administrator read and mutation is authorized and validated on the server"]
     AuthorityNote -.-> Overview

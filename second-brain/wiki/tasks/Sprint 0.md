@@ -52,9 +52,13 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 - [x] Remove out-of-scope QR/check-in behavior and unsupported real-time claims from the Mermaid architecture
 - [x] Publish an Obsidian-native user-flow review hub inside the `second-brain` vault
 - [x] Create a seven-page native draw.io companion for editable visual review with legal gates (terms, waiver), security checkpoints, and authentication/onboarding lifecycles
+- [x] Establish draw.io as the editable UX source of truth and align all 29 routes and anchors across draw.io, Mermaid, and the English-only Figma generator
+- [x] Decide and document separate public discovery, fictional membership Join, and protected workspace shells (ADR 004)
+- [x] Add a repository UX synchronization validation for public, legal, cookie, 404, authentication, and protected-route coverage
+- [x] Correct the native draw.io flow dead ends and contradiction findings before updating its derived Mermaid and Figma artifacts
 - [ ] Review and approve the corrected Mermaid and draw.io flows
 - [ ] Produce the desktop and mobile low-fidelity wireframes required by Issue #6
-  - The existing toolkit at `scripts/figma-plugin/` now includes a generator for nine module pages with 15 desktop and 13 Android 390 px states; Figma execution, visual QA, and approval remain pending.
+  - The existing toolkit at `scripts/figma-plugin/` now includes eleven module pages with 19 desktop and 17 Android 390 px states. Landing and Public Schedule are separate, and the Member Portal plus dashboard are explicit. Static synchronization passed, but Figma execution, visual QA, and approval remain pending.
 
 ## Connections
 

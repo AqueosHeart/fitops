@@ -478,8 +478,8 @@ async function buildFitOpsSitemap(componentPool) {
       x: 1410,
       nodes: [
         { title: 'Interactive Schedule', sub: 'Booking engine with live occupancy meters.', path: '/schedule', type: 'card' },
-        { title: 'My Bookings — Confirmed', sub: 'Active reservations with [Cancel] trigger.', path: '/my-bookings#confirmed', type: 'card' },
-        { title: 'My Bookings — Waitlist', sub: 'FIFO queue status (Position #1 in line).', path: '/my-bookings#waitlist', type: 'card' },
+        { title: 'My Bookings — Confirmed', sub: 'Active reservations with [Cancel] trigger.', path: '/app/bookings#confirmed', type: 'card' },
+        { title: 'My Bookings — Waitlist', sub: 'FIFO queue status (Position #1 in line).', path: '/app/bookings#waitlist', type: 'card' },
         { title: 'Member Profile', sub: 'Account information and booking history.', path: '/profile', type: 'card' }
       ]
     },
@@ -773,16 +773,7 @@ figma.ui.onmessage = async (msg) => {
   await loadSafeFonts();
 
   if (msg.type === 'build-sitemap-userflow') {
-    figma.notify("Scanning template components & generating diagrams...");
-
-    const componentPool = scanComponentsPage();
-    figma.notify(`Found ${componentPool.components.length} components and ${componentPool.frames.length} template frames.`);
-
-    await buildFitOpsSitemap(componentPool);
-    await buildFitOpsUserflows(componentPool);
-
-    figma.notify("✓ Complete! Generated beautiful Sitemap tree & Userflow diagrams.");
-    figma.ui.postMessage({ type: 'sitemap-complete' });
+    figma.ui.postMessage({ type: 'sitemap-source-of-truth' });
     return;
   }
 

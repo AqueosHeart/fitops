@@ -3,7 +3,7 @@ flowchart TD
     classDef decision fill:#FFF4D6,stroke:#7A4B00,color:#111310;
 
     Start([User signs in]) --> Role{Trainer role?}
-    Role -- No --> Forbidden["Access denied<br/>Do not expose trainer data"]:::error
+    Role -- No --> Forbidden["Access denied<br/>Do not expose trainer data"]:::error --> Start
     Role -- Yes --> Load[Load assigned upcoming sessions]
     Load --> Result{Request result}
     Result -- Loading --> Loading[Show stable loading skeleton]
@@ -14,7 +14,7 @@ flowchart TD
     Result -- Ready --> List[Show assigned sessions and attendee counts]
     List --> Select[Select an assigned session]
     Select --> Authorized{Assigned to this trainer?}
-    Authorized -- No --> Forbidden
-    Authorized -- Yes --> Detail["Read-only session details and attendee count<br/>No trainer editing in version one"]
+    Authorized -- No --> Forbidden --> Start
+    Authorized -- Yes --> Detail["Read-only session details and attendee count<br/>No trainer editing in version one"] --> List
 
     class Role,Result,Authorized decision;

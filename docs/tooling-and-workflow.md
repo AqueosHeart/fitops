@@ -7,7 +7,7 @@ FitOps will keep project execution and engineering evidence close to the code. G
 Design artifacts will use the format that best matches their purpose:
 
 - Figma for low-fidelity and high-fidelity interface design
-- Mermaid stored in Markdown for architecture and flow diagrams
+- draw.io for editable UX flow and sitemap diagrams, with Mermaid review exports stored in Markdown
 - DBML for the reviewed conceptual database diagram
 - Prisma schema and committed migrations for the executable database definition
 - OpenAPI stored in the repository for the REST contract
@@ -75,7 +75,7 @@ Use one Figma file named `FitOps Product Design`.
 
 ### Repository evidence
 
-Figma is the working design environment, but important decisions must remain reviewable from the repository. Export approved flows or frames into `docs/design/` and link the Figma file from the project README when it exists.
+Figma is the working design environment, but important decisions must remain reviewable from the repository. `second-brain/wiki/design/FitOps User Flows.drawio` is the editable source of truth for UX navigation and flow architecture: change it before updating derived Mermaid exports or Figma frames. The derived work must preserve the approved public-discovery, Join, and protected-workspace boundary. Export approved flows or frames into `docs/design/` and link the Figma file from the project README when it exists.
 
 No screenshot is treated as a specification by itself. States, rules, and acceptance criteria remain in version-controlled documents and issues.
 
@@ -140,7 +140,8 @@ OpenAPI is authoritative for paths, methods, parameters, request bodies, respons
 | Concern | Working tool | Repository source of truth |
 |---|---|---|
 | Sprint and backlog | GitHub Projects | GitHub Issues and linked pull requests |
-| UX and visual design | Figma | Approved exports plus UX requirements |
+| UX flow and navigation architecture | draw.io | `second-brain/wiki/design/FitOps User Flows.drawio` |
+| UX visual design and prototypes | Figma | Approved frames derived from draw.io plus UX requirements |
 | Architecture diagrams | Mermaid | Markdown files under `docs/` |
 | Conceptual database model | dbdiagram.io or editor with DBML | `docs/database/fitops.dbml` |
 | Physical database model | Prisma | `prisma/schema.prisma` and migrations |

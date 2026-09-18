@@ -27,7 +27,11 @@ MemberProfile 1---* WaitlistEntry *---1 ClassSession
 - `id` UUID primary key
 - `userId` unique foreign key
 - `status` active or inactive
+- `selectedPlanCode` nullable: `base`, `complete`, or `training_plus`; records a fictional demo enrollment only
+- `planSelectedAt` nullable timestamp
 - `createdAt`
+
+No payment method, billing address, transaction, invoice, subscription-provider identifier, or renewal state belongs in the version-one data model. The selected plan supports the portfolio onboarding narrative only and never represents a paid subscription.
 
 ### TrainerProfile
 

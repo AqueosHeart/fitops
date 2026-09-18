@@ -12,27 +12,34 @@ flowchart TD
     Details --> Intent[Choose Book session]
 
     Intent --> Auth{Authenticated?}
-    Auth -- No --> SignIn["Demo sign-in<br/>Preserve selected session"]
-    SignIn --> MemberProfile
+    Auth -- No --> Join["Redirect to Join /join<br/>Select a fictional plan or continue to Portal Login; preserve returnTo"]
+    Join --> MemberProfile
     Auth -- Yes --> MemberProfile{Has member profile?}
     MemberProfile -- No --> RoleBlocked["Member-only action unavailable<br/>Trainer or administrator needs a member profile"]:::error
     MemberProfile -- Yes --> Membership{Membership active?}
     Membership -- No --> Inactive["Booking blocked<br/>Explain inactive demo membership"]:::error
-    Membership -- Yes --> SessionEligible{Session scheduled and before its configured cutoff?}
+    Membership -- Yes --> WaiverCheck{Liability waiver signed on file?}
+    WaiverCheck -- Yes --> SessionEligible{Session scheduled and before its configured cutoff?}
+    WaiverCheck -- No --> WaiverModal["Liability waiver and PAR-Q modal"]
+    WaiverModal -- Sign --> StoreWaiver["Store timestamped waiver in profile"] --> SessionEligible
+    WaiverModal -- Decline or close --> Details
     SessionEligible -- No --> CutoffOrStatus["Booking unavailable<br/>Show current session status or cutoff"]:::error
+    CutoffOrStatus --> Browse
     SessionEligible -- Yes --> SubmitBooking[Submit booking request]
 
-    SubmitBooking --> Transaction["Server transaction rechecks identity, membership, status, cutoff, duplicates, overlap, and capacity"]
+    SubmitBooking --> SecurityCheck["Verify CSRF, session, and rate limit"]
+    SecurityCheck -- Expired 401 --> Reauth["Re-authenticate in place<br/>Preserve booking intent"] --> SubmitBooking
+    SecurityCheck -- Valid --> Transaction["Server transaction rechecks identity, membership, waiver, status, cutoff, duplicates, overlap, and capacity"]
     Transaction --> ExistingBooking{Already has confirmed booking?}
-    ExistingBooking -- Yes --> AlreadyBooked["Show existing reservation<br/>No duplicate created"]:::error
+    ExistingBooking -- Yes --> AlreadyBooked["Show existing reservation<br/>No duplicate created"]:::error --> MyBookings["Open My bookings /app/bookings"]
     ExistingBooking -- No --> ExistingWaitlist{Already waiting?}
-    ExistingWaitlist -- Yes --> AlreadyWaiting["Show current waitlist position<br/>No duplicate entry created"]:::error
+    ExistingWaitlist -- Yes --> AlreadyWaiting["Show current waitlist position<br/>No duplicate entry created"]:::error --> MyBookings
     ExistingWaitlist -- No --> Overlap{Overlaps another confirmed booking?}
-    Overlap -- Yes --> Conflict["Booking conflict<br/>Link to conflicting reservation"]:::error
+    Overlap -- Yes --> Conflict["Booking conflict<br/>Link to conflicting reservation"]:::error --> MyBookings
     Overlap -- No --> Capacity{Capacity available at commit time?}
 
     Capacity -- Yes --> Confirm[Create confirmed booking atomically]
-    Confirm --> BookingSuccess["Booking confirmed<br/>Show in My bookings"]:::success
+    Confirm --> BookingSuccess["Booking confirmed<br/>Show in My bookings"]:::success --> MyBookings
 
     Capacity -- No --> Full["Session full<br/>Offer Join waitlist"]
     Full --> JoinChoice{Join waitlist?}
@@ -43,12 +50,14 @@ flowchart TD
     StillFull -- No --> SpotOpened["Availability changed<br/>Refresh details and offer booking"]
     SpotOpened --> Details
     StillFull -- Yes --> CreateEntry[Create one waiting entry with monotonic FIFO order]
-    CreateEntry --> WaitlistSuccess["Waitlist joined<br/>Show current position in My bookings"]:::success
+    CreateEntry --> WaitlistSuccess["Waitlist joined<br/>Show current position in My bookings"]:::success --> MyBookings
 
     Transaction -. unexpected failure .-> Failure["Preserve selected session<br/>Show request ID and retry action"]:::error
     WaitlistRecheck -. unexpected failure .-> Failure
+    Failure -. retry booking .-> SubmitBooking
+    Failure -. retry waitlist .-> SubmitWaitlist
 
     TransactionNote["Authoritative rules run on the server; UI checks are guidance only"]
     TransactionNote -.-> Transaction
 
-    class Auth,MemberProfile,Membership,SessionEligible,ExistingBooking,ExistingWaitlist,Overlap,Capacity,JoinChoice,StillFull decision;
+    class Auth,MemberProfile,Membership,WaiverCheck,SessionEligible,ExistingBooking,ExistingWaitlist,Overlap,Capacity,JoinChoice,StillFull decision;

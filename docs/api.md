@@ -33,6 +33,10 @@ Expected error response:
 
 ## Public endpoints
 
+### `GET /api/v1/membership/plans`
+
+Returns the published fictional plan catalog used by `/pricing` and `/join`. Each response must state that the plans are demo-only and that no payment is collected. It returns no payment-provider, billing, or checkout fields.
+
 ### `GET /api/v1/programs`
 
 Returns published programs.
@@ -46,6 +50,29 @@ Returns session summaries with computed availability. Pagination is cursor-based
 ### `GET /api/v1/sessions/{sessionId}`
 
 Returns program, trainer, schedule, capacity, confirmed count, availability, and booking cutoff.
+
+## Authentication and fictional enrollment endpoints
+
+### `POST /api/v1/auth/register`
+
+Creates a fictional demo member identity and active `MemberProfile` after validation of name, normalized email, password, terms/privacy consent, liability-waiver consent, and `selectedPlanCode` (`base`, `complete`, or `training_plus`). The selected plan is a demo enrollment only: the request must reject payment, card, billing, checkout, and provider fields.
+
+The handler validates an internal `returnTo` value and then redirects or responds with the restored member-workspace destination. It never accepts an external redirect URL.
+
+Expected failures:
+
+- `409 EMAIL_ALREADY_REGISTERED`
+- `422 CONSENT_REQUIRED`
+- `422 INVALID_PLAN_CODE`
+- `422 INVALID_RETURN_TO`
+
+### `POST /api/v1/auth/login`
+
+Authenticates an existing member or a fictional demo persona and restores a validated internal `returnTo` destination. This endpoint is reached from `/join`, a protected-route redirect, or a direct `/portal/login` request; it is not a public-navigation action.
+
+### `GET /api/v1/me/membership`
+
+Returns the authenticated member's active or inactive status, selected fictional plan, waiver status, and permitted member-workspace routes. It does not expose payment or billing data because none exists in version one.
 
 ## Member endpoints
 

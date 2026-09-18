@@ -4,7 +4,7 @@
 
 The public-facing fictional gym is **Practice Athletic Club**. `FitOps` remains the repository and internal project codename.
 
-The project will be a portfolio-grade full-stack product, not a static gym landing page. The first release will prove one complete business flow: a visitor discovers Practice Athletic Club, signs into a demo member account, finds a class, books it, and later cancels it while capacity and waitlist rules remain correct.
+The project will be a portfolio-grade full-stack product, not a static gym landing page. The first release will prove one complete business flow: a visitor discovers Practice Athletic Club, chooses a fictional membership plan through Join, creates or signs into a demo member account, books a class in the member workspace, and later cancels it while capacity and waitlist rules remain correct.
 
 ## Pre-build risk review
 
@@ -44,11 +44,16 @@ Needs to create and edit class sessions, assign trainers, set capacity, and see 
 - Programs and trainer summaries backed by seed data
 - Upcoming class schedule preview
 - Pricing presentation clearly labeled as fictional
-- Demo sign-in call to action
+- A public `Join now` call to action; the landing header must not expose a global Sign In action
+- A `/join` decision page that offers fictional plan selection for a new demo member and an explicit “Already a member? Sign in” path
+- Public schedule discovery with a context-preserving redirect to Join when an anonymous visitor wants to book
+- Pricing presentation clearly marked fictional, with no payment, card, billing, or real-subscription collection
 
 ### Member experience
 
-- Demo authentication
+- Protected member workspace under `/app`, distinct from the marketing shell
+- Direct existing-member access through the Member Portal at `/portal/login`, plus protected-route redirects
+- Member dashboard at `/app` with next class, membership state, and quick actions before schedule and bookings
 - Search and filter class sessions by date, program, trainer, and availability
 - View session details and remaining capacity
 - Book an available session
@@ -76,6 +81,8 @@ Needs to create and edit class sessions, assign trainers, set capacity, and see 
 8. Members cannot book or cancel a session after its configured cutoff.
 9. Trainers and administrators cannot use member-only booking actions unless they also have a member profile.
 10. All public demo data is fictional and all destructive administrative actions are limited to demo records.
+11. Selecting a plan in `/join` is a fictional demo enrollment, not a purchase. The interface must state that no payment is collected.
+12. Public discovery pages and protected workspaces use separate navigation shells. Public navigation does not include a global Sign In action.
 
 ## Success criteria
 

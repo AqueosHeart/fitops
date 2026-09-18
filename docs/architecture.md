@@ -30,7 +30,7 @@ Owns users, roles, sessions, and demo-account access.
 
 ### Membership
 
-Owns member status and eligibility to book.
+Owns member status, fictional plan selection, and eligibility to book. It does not own payments, billing, cards, invoices, or real subscriptions in version one.
 
 ### Scheduling
 
@@ -49,8 +49,11 @@ Provides authorized use cases for managing sessions and viewing operational stat
 ```text
 src/
 ├── app/
-│   ├── (marketing)/
-│   ├── (member)/
+│   ├── (marketing)/              # /, /programs, /schedule, /pricing, legal pages
+│   ├── (join)/                   # /join, /register, /auth/forgot-password
+│   ├── portal/                   # /portal/login
+│   ├── (member)/app/             # /app/schedule, /app/bookings, /app/profile/security
+│   ├── trainer/
 │   ├── admin/
 │   └── api/
 ├── modules/
@@ -79,6 +82,9 @@ The database must enforce uniqueness for active member-session participation. Ap
 ## Authentication and authorization
 
 - Authentication establishes user identity through a server-managed session.
+- Public marketing routes and the authenticated workspace use distinct layouts. A public header exposes `Join now`; it does not expose a global Sign In action.
+- `/join` carries optional, validated `returnTo` intent. New fictional members select a plan before registration; existing members reach `/portal/login` from Join or a protected-route redirect.
+- Only an approved internal return path may be restored after authentication. The server rejects external or malformed `returnTo` values to prevent open redirects.
 - Authorization is checked in every protected use case, not only by hiding UI controls.
 - Demo accounts use fictional identities and limited permissions.
 - Passwords, connection strings, and provider secrets exist only in environment variables.

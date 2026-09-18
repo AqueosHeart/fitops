@@ -5,7 +5,7 @@ flowchart TD
 
     Start([Member opens My bookings]) --> Select[Select confirmed reservation]
     Select --> CutoffDisplay{Before the session's configured cancellation cutoff?}
-    CutoffDisplay -- No --> Locked["Cancellation unavailable<br/>Reservation remains confirmed"]:::error
+    CutoffDisplay -- No --> Locked["Cancellation unavailable<br/>Reservation remains confirmed"]:::error --> Start
     CutoffDisplay -- Yes --> Dialog["Open confirmation dialog<br/>Explain that an eligible waiting member may receive the spot"]
     Dialog --> Choice{Member choice}
     Choice -- Keep reservation --> Retain([Close dialog; reservation retained])
@@ -13,7 +13,7 @@ flowchart TD
 
     Submit --> Validate["Server verifies identity, ownership, confirmed status, and configured cutoff"]
     Validate --> Valid{Still eligible to cancel?}
-    Valid -- No --> Rejected["Show stable domain error<br/>Refresh reservation state"]:::error
+    Valid -- No --> Rejected["Show stable domain error<br/>Refresh reservation state"]:::error --> Start
     Valid -- Yes --> Transaction[Begin one database transaction]
     Transaction --> CancelBooking[Mark booking cancelled]
     CancelBooking --> NextEntry[Select earliest waiting entry by FIFO order]
@@ -25,11 +25,11 @@ flowchart TD
     Eligible -- Yes --> Promote["Atomically mark waitlist entry promoted and create confirmed booking"]
 
     Promote --> CommitPromotion[Commit cancellation and promotion]
-    CommitOpen --> CancelSuccess[Original member sees cancellation confirmed]:::success
+    CommitOpen --> CancelSuccess[Original member sees cancellation confirmed]:::success --> Start
     CommitPromotion --> CancelSuccess
-    CommitPromotion --> PromotedResult[Promoted member sees a confirmed reservation on next refresh]:::success
+    CommitPromotion --> PromotedResult[Promoted member sees a confirmed reservation and dashboard badge on next visit]:::success --> Start
 
-    Transaction -. transaction failure .-> Rollback["Roll back every change<br/>Reservation remains confirmed; show retry"]:::error
+    Transaction -. transaction failure .-> Rollback["Roll back every change<br/>Reservation remains confirmed; show retry"]:::error --> Start
 
     EligibilityNote["Promotion eligibility: active membership, no confirmed duplicate, no overlapping confirmed booking, and session still bookable under the configured cutoff"]
     EligibilityNote -.-> Eligible
