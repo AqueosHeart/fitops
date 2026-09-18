@@ -13,14 +13,19 @@ pages. It produces 15 desktop frames and 13 Android frames at 390 px, arranged
 as desktop/mobile cascades for Landing, Schedule, Authentication, Booking,
 Waitlist, My Bookings, Cancellation, Trainer, and Administrator modules. The
 output uses fictional data and neutral low-fidelity styling; it is not brand
-approval. It deliberately creates no prototype reactions, so all module pages
-can be generated safely in one run.
+approval. It avoids invalid nested-button reactions; the only prototype links
+are valid top-level Landing-to-Schedule transitions on the same page.
 
 The complete landing pair includes public navigation, hero, activity discovery,
 services, facilities, pricing, team, contact, final CTA, and a legal/navigation
 footer. The supplied MeuFIT site informed this information-architecture scope,
 but this plugin uses original copy, fictional data, and neutral wireframe
 placeholders rather than its assets or design.
+
+`Horario` is present in the desktop and Android navigation, and each Landing
+frame links to the first Schedule state directly below it on the same Figma
+page. This preserves a valid Figma prototype destination while retaining the
+separate Schedule detail/error module page.
 
 The generator re-parents its temporary frames from the current page into the
 module pages. It does not create or remove a staging page.
