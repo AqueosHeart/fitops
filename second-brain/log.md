@@ -59,6 +59,7 @@ updated: 2026-09-18
 - Reused WebbyFrames button and badge components when available while keeping the output visually neutral and explicitly separate from brand approval.
 - Kept the existing plugin ID, added a generated modular entrypoint, and validated the source JavaScript, bundled JavaScript, UI, and manifest locally. After a rejected nested-button prototype reaction, removed all prototype reactions and switched to per-module pages with desktop/Android cascades. Figma execution and visual QA remain pending.
 - Corrected the follow-up runtime failure from attempting to remove a temporary Figma page. The generator now re-parents temporary frames from the current page into module pages without creating or removing any staging page.
+- Expanded the landing desktop and Android wireframes from a short hero into a full public site scroll: navigation, activities, services, facilities, fictional tariffs, team, contact, final CTA, and legal/navigation footer. A user-supplied MeuFIT reference informed coverage only; all FitOps copy, data, and placeholders remain original and fictional.
 
 ## 2026-09-14
 

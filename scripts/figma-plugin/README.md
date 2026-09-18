@@ -16,6 +16,12 @@ output uses fictional data and neutral low-fidelity styling; it is not brand
 approval. It deliberately creates no prototype reactions, so all module pages
 can be generated safely in one run.
 
+The complete landing pair includes public navigation, hero, activity discovery,
+services, facilities, pricing, team, contact, final CTA, and a legal/navigation
+footer. The supplied MeuFIT site informed this information-architecture scope,
+but this plugin uses original copy, fictional data, and neutral wireframe
+placeholders rather than its assets or design.
+
 The generator re-parents its temporary frames from the current page into the
 module pages. It does not create or remove a staging page.
 

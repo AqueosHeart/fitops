@@ -27,6 +27,7 @@ Translate the complete canonical user-flow architecture in `FitOps User Flows.dr
 - Planned output: nine module pages with 15 desktop frames and 13 Android 390 px frames. Each page cascades desktop states vertically with the related Android state beside it.
 - Prototype reactions were removed after Figma rejected a nested-button destination; module page generation no longer depends on prototypes.
 - A follow-up Figma runtime error rejected removal of the temporary staging page. The generator now uses the current page only as a transient parent and moves all generated frames into the final module pages.
+- Expanded the landing desktop and Android frames into complete public-site scrolls with navigation, activities, services, facilities, fictional tariffs, team, contact, final CTA, and legal/navigation footer. The supplied MeuFIT reference informed information architecture only; no external identity, copy, images, or data was reused.
 - `node --check` and manifest JSON parsing passed locally.
 
 ## Unresolved
