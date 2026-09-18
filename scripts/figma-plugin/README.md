@@ -16,6 +16,9 @@ output uses fictional data and neutral low-fidelity styling; it is not brand
 approval. It deliberately creates no prototype reactions, so all module pages
 can be generated safely in one run.
 
+The generator re-parents its temporary frames from the current page into the
+module pages. It does not create or remove a staging page.
+
 ## Build
 
 The installed manifest continues to point to `code.js`. After editing either

@@ -456,7 +456,9 @@ async function buildFitOpsWireframes() {
   await prepareKit();
   await prepareFonts();
   const prefix = 'FitOps /';
-  const staging = figma.createPage(); staging.name = `${prefix} Wireframe Staging`; await figma.setCurrentPageAsync(staging); staging.backgrounds = [paint(C.canvas)];
+  // Frames are created on the current page, then re-parented into module pages.
+  // Do not create/remove a scratch page: Figma may forbid page removal in a file.
+  const staging = figma.currentPage;
   createdScreens = []; prototypeLinks = [];
   progress('Creating desktop and Android states from the verified user flows…');
   const desktop = await buildDesktopScreens(staging);
@@ -478,7 +480,6 @@ async function buildFitOpsWireframes() {
     cascadeModule(page, name, description, desktopStates, mobileStates);
     return page;
   });
-  staging.remove();
   await figma.setCurrentPageAsync(pages[0]);
   figma.currentPage.selection = [desktop.landing];
   figma.viewport.scrollAndZoomIntoView([desktop.landing, mobile.landing]);

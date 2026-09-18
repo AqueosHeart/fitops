@@ -23,9 +23,10 @@ Translate the complete canonical user-flow architecture in `FitOps User Flows.dr
 
 - Added the wireframe action to the existing `scripts/figma-plugin/` toolkit without changing its plugin ID.
 - Split the plugin source into `brand-and-flows.js` and `wireframes.js`; `build.mjs` generates the installed `code.js` entrypoint.
-- The generator creates a new versioned Figma page rather than modifying the source kit.
+- The generator creates new module pages rather than retaining nodes on the source-kit page.
 - Planned output: nine module pages with 15 desktop frames and 13 Android 390 px frames. Each page cascades desktop states vertically with the related Android state beside it.
 - Prototype reactions were removed after Figma rejected a nested-button destination; module page generation no longer depends on prototypes.
+- A follow-up Figma runtime error rejected removal of the temporary staging page. The generator now uses the current page only as a transient parent and moves all generated frames into the final module pages.
 - `node --check` and manifest JSON parsing passed locally.
 
 ## Unresolved

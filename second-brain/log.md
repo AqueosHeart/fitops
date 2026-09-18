@@ -58,6 +58,7 @@ updated: 2026-09-18
 - Prepared nine module pages with 15 desktop and 13 Android 390 px low-fidelity states covering landing, schedule discovery, booking, waitlist, cancellation, authentication, failures, trainer access, and administrator operations.
 - Reused WebbyFrames button and badge components when available while keeping the output visually neutral and explicitly separate from brand approval.
 - Kept the existing plugin ID, added a generated modular entrypoint, and validated the source JavaScript, bundled JavaScript, UI, and manifest locally. After a rejected nested-button prototype reaction, removed all prototype reactions and switched to per-module pages with desktop/Android cascades. Figma execution and visual QA remain pending.
+- Corrected the follow-up runtime failure from attempting to remove a temporary Figma page. The generator now re-parents temporary frames from the current page into module pages without creating or removing any staging page.
 
 ## 2026-09-14
 
