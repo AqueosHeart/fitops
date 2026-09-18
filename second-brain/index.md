@@ -2,7 +2,7 @@
 type: index
 project: FitOps
 status: active
-updated: 2026-09-17
+updated: 2026-09-18
 ---
 
 # FitOps Knowledge Index
@@ -56,4 +56,5 @@ updated: 2026-09-17
 - [[wiki/logs/2026-09-15-practice-sitemap-and-userflows|Practice Sitemap and User Flows]]
 - [[wiki/logs/2026-09-17-mermaid-userflow-correction|Mermaid user-flow correction]]
 - [[wiki/logs/2026-09-17-user-flows-terms-privacy-security|User flows: terms, privacy, security, and onboarding]]
+- [[wiki/logs/2026-09-18-fitops-wireframe-generator|FitOps wireframe generator]]
 - [[raw/06-flash_notes/2026-09-14-conversation-record|Planning conversation record]]

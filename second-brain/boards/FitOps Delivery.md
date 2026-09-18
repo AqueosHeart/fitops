@@ -1,7 +1,7 @@
 ---
 type: board-mirror
 project: FitOps
-updated: 2026-09-17
+updated: 2026-09-18
 ---
 
 # FitOps Delivery Board Mirror
@@ -15,7 +15,8 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 ## Ready for Sprint 1
 
 - [#6 [DESIGN] Low-Fidelity Desktop & Mobile Booking Flow Wireframes](https://github.com/AqueosHeart/fitops/issues/6)
-  - Mermaid prerequisites corrected on 2026-09-17; review and desktop/mobile wireframes remain pending.
+  - Mermaid and draw.io prerequisites are mapped into the validated existing Figma toolkit at `scripts/figma-plugin/`.
+  - The generated nine module pages, 15 desktop states, and 13 Android states still require execution and visual QA in Figma; Issue #6 remains pending.
   - Review hub: [[../wiki/design/FitOps User Flows]]
   - Editable diagram: [[../wiki/design/FitOps User Flows.drawio]]
 - [#7 [ARCH] Domain Boundary & Use-Case Specification](https://github.com/AqueosHeart/fitops/issues/7)

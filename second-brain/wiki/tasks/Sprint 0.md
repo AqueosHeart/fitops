@@ -3,7 +3,7 @@ type: sprint
 project: FitOps
 sprint: Sprint 0
 status: active
-updated: 2026-09-17
+updated: 2026-09-18
 ---
 
 # Sprint 0 Product Foundation
@@ -54,6 +54,7 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 - [x] Create a seven-page native draw.io companion for editable visual review with legal gates (terms, waiver), security checkpoints, and authentication/onboarding lifecycles
 - [ ] Review and approve the corrected Mermaid and draw.io flows
 - [ ] Produce the desktop and mobile low-fidelity wireframes required by Issue #6
+  - The existing toolkit at `scripts/figma-plugin/` now includes a generator for nine module pages with 15 desktop and 13 Android 390 px states; Figma execution, visual QA, and approval remain pending.
 
 ## Connections
 

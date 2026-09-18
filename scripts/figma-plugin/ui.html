@@ -102,6 +102,22 @@
     .btn-brand:hover {
       background-color: #2D332B;
     }
+    .btn-wireframes {
+      background-color: #F2F0E8;
+      color: #111310;
+      border: 1px solid #D7D4CA;
+      border-radius: 6px;
+      padding: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 8px;
+      transition: opacity 0.15s;
+    }
+    .btn-wireframes:hover {
+      opacity: 0.9;
+    }
     .status-card {
       display: none;
       background: #171B16;
@@ -149,6 +165,19 @@
       </button>
     </div>
 
+    <!-- LOW-FIDELITY WIREFRAMES -->
+    <div class="section-card">
+      <div class="section-title">
+        <span>▦</span> 3. FitOps Low-Fidelity Wireframes (Issue #6)
+      </div>
+      <div class="feature-item"><span class="check">✓</span> <b>14 desktop + 12 mobile:</b> 390 px responsive coverage</div>
+      <div class="feature-item"><span class="check">✓</span> <b>Complete flows:</b> Booking, waitlist, cancellation, auth, trainer &amp; admin</div>
+      <div class="feature-item"><span class="check">✓</span> <b>Safe output:</b> New versioned page, fictional data, neutral styling</div>
+      <button id="wireframesBtn" class="btn-wireframes" onclick="buildWireframes()">
+        Build Low-Fi Wireframes →
+      </button>
+    </div>
+
     <div id="statusCard" class="status-card">
       <div id="statusTitle" style="font-weight:700; color:#C7F134; margin-bottom:4px;">✓ Action Complete!</div>
       <div id="statusMsg" style="color:#D7D4CA;">Artifacts have been successfully generated in Figma.</div>
@@ -170,6 +199,14 @@
       parent.postMessage({ pluginMessage: { type: 'transform-template' } }, '*');
     }
 
+    function buildWireframes() {
+      const btn = document.getElementById('wireframesBtn');
+      btn.innerText = 'Building 26 Wireframe States...';
+      btn.style.opacity = '0.6';
+      btn.disabled = true;
+      parent.postMessage({ pluginMessage: { type: 'build-wireframes' } }, '*');
+    }
+
     window.onmessage = (event) => {
       const msg = event.data.pluginMessage;
       if (msg && msg.type === 'sitemap-complete') {
@@ -189,6 +226,31 @@
         document.getElementById('statusCard').style.display = 'block';
         document.getElementById('statusTitle').innerText = '✓ Brand Template Transformed!';
         document.getElementById('statusMsg').innerText = 'All slides updated with Practice Athletic Club brand tokens.';
+      }
+      if (msg && msg.type === 'progress') {
+        document.getElementById('statusCard').style.display = 'block';
+        document.getElementById('statusTitle').innerText = 'Building wireframes...';
+        document.getElementById('statusMsg').innerText = msg.message;
+      }
+      if (msg && msg.type === 'wireframes-complete') {
+        const btn = document.getElementById('wireframesBtn');
+        btn.innerText = 'Build Another Wireframe Version ✓';
+        btn.style.opacity = '1';
+        btn.disabled = false;
+
+        document.getElementById('statusCard').style.display = 'block';
+        document.getElementById('statusTitle').innerText = '✓ Low-Fi Wireframes Generated!';
+        document.getElementById('statusMsg').innerText = `${msg.pageName}: ${msg.screenCount} screens across ${msg.pageCount} module pages, with Android states to the right.`;
+      }
+      if (msg && msg.type === 'wireframes-error') {
+        const btn = document.getElementById('wireframesBtn');
+        btn.innerText = 'Retry Low-Fi Wireframes';
+        btn.style.opacity = '1';
+        btn.disabled = false;
+
+        document.getElementById('statusCard').style.display = 'block';
+        document.getElementById('statusTitle').innerText = 'Wireframe generation stopped';
+        document.getElementById('statusMsg').innerText = msg.message;
       }
     };
   </script>

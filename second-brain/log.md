@@ -1,7 +1,7 @@
 ---
 type: activity-log
 project: FitOps
-updated: 2026-09-17
+updated: 2026-09-18
 ---
 
 # FitOps Activity Log
@@ -51,6 +51,13 @@ updated: 2026-09-17
 - Transformed all template slides: Cover, Brand Strategy, Dual Logo Showcase cards (Ink on Bone & Bone on Ink), Smallest Logo Size footer (Compact Mark), Typography Hierarchy (Mona Sans), Color Palette (Ink, Bone, Signal Lime, Surface Muted), and the 6 Key Elements vector graphics cards. Brand design is complete.
 - Developed dynamic Sitemap & User Flow generator in `scripts/figma-plugin/` that scans the template `Components` page, instantiates native components, and constructs full 4-tier IA tree and 3 critical branching user flows with orthogonal connectors for Sprint 1 (Issue #6).
 - Resolved core UX gaps (program taxonomy education, context-preserving demo auth, gym membership verification, and transactional FIFO auto-promotion) in Mermaid diagrams (`docs/ux-plan.md`) and compiled standalone vector exports in `docs/design/`.
+
+## 2026-09-18
+
+- Mapped all seven pages of `FitOps User Flows.drawio` into a non-destructive third action in the existing Figma toolkit at `scripts/figma-plugin/`.
+- Prepared nine module pages with 15 desktop and 13 Android 390 px low-fidelity states covering landing, schedule discovery, booking, waitlist, cancellation, authentication, failures, trainer access, and administrator operations.
+- Reused WebbyFrames button and badge components when available while keeping the output visually neutral and explicitly separate from brand approval.
+- Kept the existing plugin ID, added a generated modular entrypoint, and validated the source JavaScript, bundled JavaScript, UI, and manifest locally. After a rejected nested-button prototype reaction, removed all prototype reactions and switched to per-module pages with desktop/Android cascades. Figma execution and visual QA remain pending.
 
 ## 2026-09-14
 
