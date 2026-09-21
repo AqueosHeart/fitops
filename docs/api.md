@@ -68,7 +68,7 @@ Expected failures:
 
 ### `POST /api/v1/auth/login`
 
-Authenticates an existing member or a fictional demo persona and restores a validated internal `returnTo` destination. This endpoint is reached from `/join`, a protected-route redirect, or a direct `/portal/login` request; it is not a public-navigation action.
+Authenticates an existing member or a fictional demo persona and restores a validated internal `returnTo` destination. This endpoint is reached from the secondary public-header `My Account` utility, `/join`, a protected-route redirect, or a direct `/portal/login` request; it is not a generic global Sign In action.
 
 ### `GET /api/v1/me/membership`
 

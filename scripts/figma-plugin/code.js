@@ -2,6 +2,7 @@
 
 // Practice Athletic Club — Elite Figma Sitemap & Userflow Engine
 figma.showUI(__html__, { width: 440, height: 760, themeColors: true });
+figma.root.setRelaunchData({open:'Build and review complete FitOps wireframes'});
 
 const PRIMARY_LOGO_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-label="Practice Athletic Club primary stacked logo">
 <path d="M38.63639315478213 729H323.9970116263139Q452.33388072914386 729 518.8987855123778 665.2197536560416Q585.4636902956117 601.4395073120832 585.4636902956117 485.6306061776995Q585.4636902956117 407.4077954606473 554.1313159786005 352.4606390273184Q522.7989416615892 297.51348259398947 463.85536787539604 268.96170442569564Q404.9117940892029 240.40992625740182 323.8667560463655 240.40992625740182H193.45179065415869V378.6076470202388H308.8260139711492Q359.0535933973006 378.6076470202388 384.91824103306135 405.4222002436072Q410.7828886688221 432.23675346697564 410.7828886688221 483.3820806757867Q410.7828886688221 533.8738621110679 384.6199523897012 559.3249796290547Q358.4570161105803 584.7760971470416 308.8260139711492 584.7760971470416H187.18432804296026L208.04259439495218 604.9799676819384V0H38.63639315478213Z" fill="#111310" transform="translate(105.00 170.00) scale(0.1400000 -0.1400000)"/>
@@ -756,18 +757,27 @@ async function buildFitOpsUserflows(componentPool) {
 // MAIN PLUGIN MESSAGE ROUTER
 // =========================================================================
 
+let toolkitBusy = false;
 figma.ui.onmessage = async (msg) => {
-  try { await figma.loadAllPagesAsync(); } catch (_) {}
+  if (toolkitBusy) return;
+  if (msg.type === 'open-wireframe-page') {
+    await openFitOpsWireframePage(msg.pageId);
+    return;
+  }
 
-  if (msg.type === 'build-wireframes') {
+  if (msg.type === 'build-wireframes' || msg.type === 'split-wireframes') {
+    toolkitBusy = true;
     try {
       figma.notify("Building FitOps desktop and mobile wireframes...");
-      await buildFitOpsWireframes();
+      if(msg.type === 'split-wireframes') await splitCurrentFitOpsWireframes();
+      else await buildFitOpsWireframes();
       figma.notify("✓ FitOps wireframes created and linked.");
     } catch (error) {
       console.error(error);
       figma.ui.postMessage({ type: 'wireframes-error', message: error instanceof Error ? error.message : String(error) });
       figma.notify("Wireframe generation stopped. See the plugin status for details.", { error: true });
+    } finally {
+      toolkitBusy = false;
     }
     return;
   }
@@ -792,603 +802,585 @@ figma.ui.onmessage = async (msg) => {
   }
 };
 
-const C = {
-  canvas: '#EEF0F3', bg: '#F6F7F9', white: '#FFFFFF', ink: '#20242B', muted: '#68707C',
-  border: '#D7DBE0', line: '#C4C9D0', blue: '#1F66FF', blueSoft: '#EAF0FF',
-  green: '#19724F', greenSoft: '#E6F4ED', amber: '#945700', amberSoft: '#FFF3D9',
-  red: '#B42318', redSoft: '#FDECEC', dark: '#31363E'
-};
-
-const hex = (value) => {
-  const h = value.replace('#', '');
-  const n = parseInt(h, 16);
-  return { r: ((n >> 16) & 255) / 255, g: ((n >> 8) & 255) / 255, b: (n & 255) / 255 };
-};
-const paint = (value, opacity = 1) => ({ type: 'SOLID', color: hex(value), opacity });
-
-let family = 'Inter';
-let fonts = {};
-let kit = {};
-let createdScreens = [];
-let prototypeLinks = [];
-
-const progress = (message) => figma.ui.postMessage({ type: 'progress', message });
-
-async function prepareFonts() {
-  const available = await figma.listAvailableFontsAsync();
-  const familyNames = [...new Set(available.map((f) => f.fontName.family))];
-  const sampleText = kit.sourcePages
-    ?.flatMap((page) => page.findAllWithCriteria({ types: ['TEXT'] }))
-    .find((node) => node.fontName !== figma.mixed);
-  const kitFamily = sampleText && sampleText.fontName !== figma.mixed ? sampleText.fontName.family : null;
-  const sampleFamily = (kitFamily && familyNames.includes(kitFamily) ? kitFamily : null)
-    || familyNames.find((f) => /roboto/i.test(f))
-    || familyNames.find((f) => /inter/i.test(f));
-  family = sampleFamily || familyNames[0];
-  const inFamily = available.filter((f) => f.fontName.family === family).map((f) => f.fontName.style);
-  const pick = (patterns) => inFamily.find((style) => patterns.some((pattern) => pattern.test(style))) || inFamily[0];
-  fonts.regular = { family, style: pick([/^regular$/i, /book/i]) };
-  fonts.medium = { family, style: pick([/medium/i, /semi.?bold/i, /regular/i]) };
-  fonts.bold = { family, style: pick([/^bold$/i, /semi.?bold/i, /medium/i]) };
-  await Promise.all([...new Map(Object.values(fonts).map((f) => [JSON.stringify(f), f])).values()].map((f) => figma.loadFontAsync(f)));
-}
-
-function findComponent(regex) {
-  return kit.components.find((node) => regex.test(node.name));
-}
-
-async function prepareKit() {
-  try { await figma.loadAllPagesAsync(); } catch (_) {}
-  const sourcePages = figma.root.children.filter((p) => /components|headers|footers|content sections|dashboards/i.test(p.name));
-  kit.sourcePages = sourcePages;
-  const components = [];
-  for (const page of sourcePages) {
-    components.push(...page.findAllWithCriteria({ types: ['COMPONENT', 'COMPONENT_SET'] }));
-  }
-  kit.components = components;
-  kit.button = findComponent(/^button$/i);
-  kit.badge = findComponent(/^badge$/i);
-}
-
-function textNode(value, size = 14, weight = 'regular', color = C.ink, width = null, align = 'LEFT') {
-  const node = figma.createText();
-  node.fontName = fonts[weight] || fonts.regular;
-  node.fontSize = size;
-  node.lineHeight = { unit: 'PERCENT', value: 135 };
-  node.fills = [paint(color)];
-  node.textAlignHorizontal = align;
-  if (width !== null) {
-    node.textAutoResize = 'HEIGHT';
-    node.resize(width, Math.max(size * 1.4, node.height));
-  }
-  node.characters = value;
-  return node;
-}
-
-function auto(direction = 'VERTICAL', gap = 12, padding = 0) {
-  const frame = figma.createFrame();
-  frame.layoutMode = direction;
-  frame.primaryAxisSizingMode = 'AUTO';
-  frame.counterAxisSizingMode = 'AUTO';
-  frame.itemSpacing = gap;
-  frame.paddingTop = padding;
-  frame.paddingRight = padding;
-  frame.paddingBottom = padding;
-  frame.paddingLeft = padding;
-  frame.fills = [];
-  return frame;
-}
-
-function box(width, height, fill = C.white, stroke = C.border, radius = 8) {
-  const frame = figma.createFrame();
-  frame.resize(width, height);
-  frame.fills = [paint(fill)];
-  frame.strokes = stroke ? [paint(stroke)] : [];
-  frame.strokeWeight = stroke ? 1 : 0;
-  frame.cornerRadius = radius;
-  return frame;
-}
-
-async function loadNodeFonts(node) {
-  const textNodes = node.type === 'TEXT' ? [node] : ('findAllWithCriteria' in node ? node.findAllWithCriteria({ types: ['TEXT'] }) : []);
-  const found = [];
-  for (const text of textNodes) {
-    for (const segment of text.getStyledTextSegments(['fontName'])) found.push(segment.fontName);
-  }
-  const unique = [...new Map(found.map((f) => [JSON.stringify(f), f])).values()];
-  await Promise.all(unique.map((f) => figma.loadFontAsync(f)));
-}
-
-async function setInstanceLabel(instance, label) {
-  const textNodes = instance.findAllWithCriteria({ types: ['TEXT'] }).filter((node) => node.visible);
-  if (!textNodes.length) return;
-  await loadNodeFonts(instance);
-  const target = textNodes.find((node) => /label|button|text/i.test(node.name)) || textNodes[0];
-  target.characters = label;
-}
-
-async function kitButton(label, kind = 'primary', width = 150) {
-  let source = kit.button;
-  if (source && source.type === 'COMPONENT_SET') {
-    const terms = kind === 'secondary' ? /secondary|outline|stroke|ghost/i : /primary|filled|solid/i;
-    source = source.children.find((node) => node.type === 'COMPONENT' && terms.test(node.name)) || source.defaultVariant;
-  }
-  if (source && source.type === 'COMPONENT') {
-    const instance = source.createInstance();
-    await setInstanceLabel(instance, label);
-    instance.resize(width, 44);
-    instance.name = `Kit Button / ${label}`;
-    return instance;
-  }
-  const frame = auto('HORIZONTAL', 8, 12);
-  frame.name = `Button / ${label}`;
-  frame.fills = [paint(kind === 'secondary' ? C.white : C.blue)];
-  frame.strokes = [paint(C.blue)];
-  frame.cornerRadius = 4;
-  frame.resize(width, 44);
-  frame.primaryAxisAlignItems = 'CENTER';
-  frame.counterAxisAlignItems = 'CENTER';
-  frame.appendChild(textNode(label, 13, 'medium', kind === 'secondary' ? C.blue : C.white));
-  return frame;
-}
-
-async function kitBadge(label, tone = 'neutral') {
-  let source = kit.badge;
-  if (source && source.type === 'COMPONENT_SET') source = source.defaultVariant;
-  if (source && source.type === 'COMPONENT') {
-    const instance = source.createInstance();
-    await setInstanceLabel(instance, label);
-    instance.name = `Kit Badge / ${label}`;
-    return instance;
-  }
-  const bg = tone === 'success' ? C.greenSoft : tone === 'warning' ? C.amberSoft : tone === 'danger' ? C.redSoft : C.blueSoft;
-  const fg = tone === 'success' ? C.green : tone === 'warning' ? C.amber : tone === 'danger' ? C.red : C.blue;
-  const frame = auto('HORIZONTAL', 0, 6);
-  frame.name = `Badge / ${label}`;
-  frame.fills = [paint(bg)];
-  frame.cornerRadius = 999;
-  frame.appendChild(textNode(label, 10, 'medium', fg));
-  return frame;
-}
-
-function field(label, value, width) {
-  const wrapper = auto('VERTICAL', 6, 0);
-  wrapper.name = `Field / ${label}`;
-  wrapper.appendChild(textNode(label, 11, 'medium', C.ink));
-  const input = box(width, 44, C.white, C.border, 4);
-  const valueText = textNode(value, 12, 'regular', C.muted, width - 24);
-  input.appendChild(valueText);
-  valueText.x = 12;
-  valueText.y = 13;
-  wrapper.appendChild(input);
-  return wrapper;
-}
-
-function checkbox(label, checked = false, width = 420) {
-  const row = auto('HORIZONTAL', 10, 0);
-  const square = box(18, 18, checked ? C.blue : C.white, checked ? C.blue : C.line, 3);
-  if (checked) {
-    const mark = textNode('✓', 12, 'bold', C.white);
-    square.appendChild(mark); mark.x = 4; mark.y = 0;
-  }
-  row.appendChild(square);
-  row.appendChild(textNode(label, 11, 'regular', C.ink, width - 28));
-  return row;
-}
-
-function alertBox(title, body, tone = 'info', width = 560) {
-  const colors = tone === 'success' ? [C.greenSoft, C.green] : tone === 'warning' ? [C.amberSoft, C.amber] : tone === 'danger' ? [C.redSoft, C.red] : [C.blueSoft, C.blue];
-  const frame = auto('VERTICAL', 4, 14);
-  frame.resize(width, 72);
-  frame.counterAxisSizingMode = 'FIXED';
-  frame.fills = [paint(colors[0])];
-  frame.strokes = [paint(colors[1])];
-  frame.strokeWeight = 1;
-  frame.cornerRadius = 6;
-  frame.appendChild(textNode(title, 12, 'bold', colors[1], width - 28));
-  frame.appendChild(textNode(body, 11, 'regular', C.ink, width - 28));
-  return frame;
-}
-
-function divider(width) {
-  const line = figma.createRectangle();
-  line.resize(width, 1);
-  line.fills = [paint(C.border)];
-  return line;
-}
-
-function desktopHeader(width = 1440) {
-  const header = box(width, 80, C.white, C.border, 0);
-  header.name = 'Header / Public';
-  const logo = textNode('PRACTICE ATHLETIC CLUB', 15, 'bold', C.ink);
-  logo.x = 32; logo.y = 29; header.appendChild(logo);
-  const nav = textNode('Home     Programs     Schedule     Services     Facilities     Pricing     Team     Contact', 10, 'medium', C.ink);
-  nav.x = 320; nav.y = 31; header.appendChild(nav);
-  const access = textNode('Join now', 11, 'bold', C.blue); access.x = 1320; access.y = 31; header.appendChild(access);
-  return header;
-}
-
-function protectedSidebar(role = 'Member') {
-  const side = box(240, 1024, C.white, C.border, 0);
-  side.name = `Sidebar / ${role}`;
-  const brand = textNode('PRACTICE', 17, 'bold', C.ink); brand.x = 24; brand.y = 28; side.appendChild(brand);
-  const roleText = textNode(`${role} workspace`, 11, 'regular', C.muted); roleText.x = 24; roleText.y = 54; side.appendChild(roleText);
-  const items = role === 'Administrator'
-    ? ['Overview', 'Sessions', 'Participants', 'Audit status']
-    : role === 'Trainer' ? ['Assigned sessions', 'Profile & security'] : ['Schedule', 'My bookings', 'Profile & security'];
-  items.forEach((item, index) => {
-    const active = index === 0;
-    const nav = box(192, 44, active ? C.blueSoft : C.white, null, 4);
-    nav.x = 24; nav.y = 110 + index * 54; side.appendChild(nav);
-    const label = textNode(item, 12, active ? 'bold' : 'medium', active ? C.blue : C.ink);
-    label.x = 12; label.y = 13; nav.appendChild(label);
-  });
-  const demo = textNode('FICTIONAL DEMO DATA', 9, 'bold', C.muted); demo.x = 24; demo.y = 970; side.appendChild(demo);
-  return side;
-}
-
-function mobileHeader() {
-  const header = box(390, 64, C.white, C.border, 0);
-  header.name = 'Header / Mobile';
-  const logo = textNode('PRACTICE', 14, 'bold', C.ink); logo.x = 16; logo.y = 22; header.appendChild(logo);
-  const action = textNode('Join now  Menu', 10, 'medium', C.blue); action.x = 272; action.y = 24; header.appendChild(action);
-  return header;
-}
-
-function mobileBottom() {
-  const nav = box(390, 64, C.white, C.border, 0);
-  nav.name = 'Navigation / Mobile';
-  const label = textNode('Schedule        Bookings        Profile', 10, 'medium', C.ink, 358, 'CENTER');
-  label.x = 16; label.y = 23; nav.appendChild(label);
-  return nav;
-}
-
-function titleBlock(title, subtitle, width) {
-  const block = auto('VERTICAL', 6, 0);
-  block.appendChild(textNode(title, width < 500 ? 22 : 30, 'bold', C.ink, width));
-  block.appendChild(textNode(subtitle, 12, 'regular', C.muted, width));
-  return block;
-}
-
-function createDesktopBase(name, title, subtitle, protectedRole = null) {
-  const screen = box(1440, 1024, C.bg, null, 0);
-  screen.name = name;
-  screen.clipsContent = true;
-  let content;
-  if (protectedRole) {
-    screen.appendChild(protectedSidebar(protectedRole));
-    const topbar = box(1200, 80, C.white, C.border, 0); topbar.x = 240; screen.appendChild(topbar);
-    const role = textNode(protectedRole, 12, 'medium', C.muted); role.x = 1090; role.y = 31; topbar.appendChild(role);
-    content = auto('VERTICAL', 18, 0); content.name = 'Page Content'; content.resize(1104, 100); content.counterAxisSizingMode = 'FIXED'; content.primaryAxisSizingMode = 'AUTO'; content.x = 288; content.y = 112; screen.appendChild(content);
-    content.appendChild(titleBlock(title, subtitle, 1104));
-  } else {
-    screen.appendChild(desktopHeader());
-    content = auto('VERTICAL', 18, 0); content.name = 'Page Content'; content.resize(1312, 100); content.counterAxisSizingMode = 'FIXED'; content.primaryAxisSizingMode = 'AUTO'; content.x = 64; content.y = 112; screen.appendChild(content);
-    content.appendChild(titleBlock(title, subtitle, 1312));
-  }
-  createdScreens.push(screen);
-  return { screen, content };
-}
-
-function createMobileBase(name, title, subtitle) {
-  const screen = box(390, 844, C.bg, null, 0);
-  screen.name = name;
-  screen.clipsContent = true;
-  screen.appendChild(mobileHeader());
-  const bottom = mobileBottom(); bottom.y = 780; screen.appendChild(bottom);
-  const content = auto('VERTICAL', 14, 0); content.name = 'Page Content'; content.resize(358, 100); content.counterAxisSizingMode = 'FIXED'; content.primaryAxisSizingMode = 'AUTO'; content.x = 16; content.y = 86; screen.appendChild(content);
-  content.appendChild(titleBlock(title, subtitle, 358));
-  createdScreens.push(screen);
-  return { screen, content, bottom };
-}
-
-async function sessionCard(data, width, compact = false) {
-  const frame = auto('VERTICAL', compact ? 8 : 10, compact ? 12 : 16);
-  frame.name = `Session Card / ${data.title}`;
-  frame.resize(width, 100);
-  frame.counterAxisSizingMode = 'FIXED';
-  frame.primaryAxisSizingMode = 'AUTO';
-  frame.fills = [paint(C.white)]; frame.strokes = [paint(C.border)]; frame.strokeWeight = 1; frame.cornerRadius = 6;
-  const top = auto('HORIZONTAL', 10, 0); top.resize(width - (compact ? 24 : 32), 24); top.counterAxisSizingMode = 'FIXED';
-  top.appendChild(await kitBadge(data.program, data.full ? 'warning' : 'neutral'));
-  const capacity = textNode(data.full ? 'FULL' : data.spots, 11, 'bold', data.full ? C.amber : C.green);
-  top.appendChild(capacity); frame.appendChild(top);
-  frame.appendChild(textNode(data.title, compact ? 15 : 18, 'bold', C.ink, width - (compact ? 24 : 32)));
-  frame.appendChild(textNode(`${data.time} · ${data.duration} · ${data.trainer}`, 11, 'regular', C.muted, width - (compact ? 24 : 32)));
-  if (!compact) frame.appendChild(textNode(`Booking cutoff: ${data.cutoff}`, 10, 'regular', C.muted, width - 32));
-  return frame;
-}
-
-function detailsPanel(width, data) {
-  const panel = auto('VERTICAL', 12, 20); panel.name = 'Session Details'; panel.resize(width, 100); panel.counterAxisSizingMode = 'FIXED'; panel.primaryAxisSizingMode = 'AUTO'; panel.fills = [paint(C.white)]; panel.strokes = [paint(C.border)]; panel.cornerRadius = 8;
-  panel.appendChild(textNode(data.title, 22, 'bold', C.ink, width - 40));
-  panel.appendChild(textNode(`${data.time} · ${data.duration} · Trainer ${data.trainer}`, 12, 'medium', C.muted, width - 40));
-  panel.appendChild(divider(width - 40));
-  panel.appendChild(textNode('Session information', 12, 'bold', C.ink));
-  panel.appendChild(textNode(`Availability: ${data.spots}\nStatus: Scheduled\nConfigured booking cutoff: ${data.cutoff}\nLocation: Studio A`, 12, 'regular', C.ink, width - 40));
-  panel.appendChild(alertBox('Server-authoritative availability', 'Availability is rechecked when the request is submitted.', 'info', width - 40));
-  return panel;
-}
-
-// Keep this list aligned with the editable draw.io sitemap. Each entry names the
-// generated frame that provides visual coverage for the route or in-page anchor.
-const UX_ROUTE_COVERAGE = [
-  ['Home /', 'D00/M00 Landing'], ['Programs /programs', 'D13/M13 Public directory'],
-  ['Services /#services', 'D00/M00 Landing'], ['Facilities /#facilities', 'D00/M00 Landing'],
-  ['Contact /#contact', 'D00/M00 Landing'], ['Schedule /schedule', 'D01/M01 Schedule'],
-  ['Trainers /trainers', 'D13/M13 Public directory'], ['Pricing /pricing', 'D14/M14 Pricing and About Us'],
-  ['About Us /about', 'D14/M14 Pricing and About Us'], ['Terms of Service /terms', 'D15/M15 Legal, Cookies, and Not Found'],
-  ['Privacy Policy /privacy', 'D15/M15 Legal, Cookies, and Not Found'], ['Liability Waiver /waiver', 'D15/M15 Legal, Cookies, and Not Found'],
-  ['Cookie preferences /cookie-settings', 'D15/M15 Legal, Cookies, and Not Found'], ['Not Found /404', 'D15/M15 Legal, Cookies, and Not Found'],
-  ['Join now /join', 'D03/M03 Join decision'], ['Member Portal Login /portal/login', 'D11/M10 Member Portal Login'],
-  ['Member registration /register', 'D03/M03 Join decision'], ['Account recovery /auth/forgot-password', 'D11/M10 Sign In'],
-  ['Member dashboard /app', 'D16/M16 Member dashboard'], ['Member schedule /app/schedule', 'D16/M16 Member dashboard'],
-  ['My bookings /app/bookings', 'D07/M06 My Bookings'], ['Profile and Security /app/profile/security', 'D07/M06 Member workspace'], ['Assigned sessions /trainer/sessions', 'D12/M11 Trainer'],
-  ['Assigned session /trainer/sessions/:id', 'D12/M11 Trainer'], ['Operations overview /admin', 'D13/M12 Administrator'],
-  ['Session manager /admin/sessions', 'D13/M12 Administrator'], ['Create session /admin/sessions/new', 'D13/M12 Administrator'],
-  ['Edit session /admin/sessions/:id/edit', 'D13/M12 Administrator'], ['Participants /admin/sessions/:id/participants', 'D13/M12 Administrator'],
+// Derived from draw.io Page 08. Fictional examples only; no app business logic.
+const WF_ACTION = (label, target, kind = 'secondary') => ({label, target, kind});
+const WF_TEXT = (title, body, actions = []) => ({type:'text', title, body, actions});
+const WF_CARDS = (title, items) => ({type:'cards', title, items});
+const WF_FORM = (title, fields, actions = [], body = '') => ({type:'form', title, fields, actions, body});
+const WF_STATE = (id, title, body, options = {}) => ({id, title, body, ...options});
+const WF_PLANS = [
+  {title:'Base', body:'$39 / month · fictional price\nClub access and the demo booking workspace. No payment is collected.', actions:[WF_ACTION('Choose Base','join@base','primary')]},
+  {title:'Complete', body:'$59 / month · fictional price\nGuided training and the demo booking workspace. No payment is collected.', actions:[WF_ACTION('Choose Complete','join@complete','primary')]},
+  {title:'Training+', body:'$79 / month · fictional price\nAdditional training support in the fictional club story. No payment is collected.', actions:[WF_ACTION('Choose Training+','join@training','primary')]}
+];
+const WF_PROGRAMS = [
+  {title:'Strength',body:'45 minutes · Moderate intensity\nBuild technique through controlled squat, hinge, push, and pull movements. Equipment: dumbbells and racks.',actions:[WF_ACTION('View schedule','schedule')]},
+  {title:'Pace',body:'40 minutes · High intensity\nInterval-based conditioning with adjustable effort. Equipment: bikes and rowers.',actions:[WF_ACTION('View schedule','schedule')]},
+  {title:'Reset',body:'30 minutes · Low intensity\nMobility, balance, and controlled movement. Equipment: mat and blocks.',actions:[WF_ACTION('View schedule','schedule')]},
+  {title:'Open Floor',body:'60 minutes · Self-directed\nA scheduled training block with shared equipment and clear capacity limits.',actions:[WF_ACTION('View schedule','schedule')]}
+];
+const WF_TRAINERS = [
+  {title:'Marcus Vance',body:'Fictional trainer · Strength\nCoaches controlled movement and gradual progression. Leads Lower Body Tempo.',actions:[WF_ACTION('Browse the public schedule','schedule')]},
+  {title:'Lena Ortiz',body:'Fictional trainer · Pace\nLeads interval sessions with options for different training levels.',actions:[WF_ACTION('Browse the public schedule','schedule')]},
+  {title:'Nora Silva',body:'Fictional trainer · Reset\nFocuses on mobility, balance, and movement confidence.',actions:[WF_ACTION('Browse the public schedule','schedule')]}
+];
+const WF_SESSION = WF_TEXT('Lower Body Tempo','Tuesday, September 22 · 7:00–7:45 AM\nStrength · Marcus Vance · Studio A\n12 confirmed / 16 capacity · 4 spots available\nBooking and cancellation close at 6:00 AM for this session.\nBring water and comfortable training clothes. All schedule times are shown in club local time.');
+const WF_SCHEDULE = (member = false) => [
+  WF_FORM('Find a session',[
+    ['Search','Lower Body Tempo'],['Date','September 22–28'],['Program','All programs'],['Trainer','All trainers'],['Availability','Any availability']
+  ],[WF_ACTION('Apply filters',(member?'memberSchedule':'schedule')+'@filtered','primary'),WF_ACTION('Clear filters',member?'memberSchedule':'schedule')]),
+  WF_CARDS('Tuesday, September 22 · club local time',[
+    {title:'Lower Body Tempo',body:'7:00–7:45 AM · Marcus Vance\nStrength · 4 of 16 spots available\nBooking closes at 6:00 AM.',actions:[WF_ACTION('View session',member?'memberSchedule@details':'session','primary')]},
+    {title:'Pace Intervals',body:'6:30–7:10 PM · Lena Ortiz\nPace · Full, 12 of 12 confirmed\nBooking closes at 5:30 PM.',actions:[WF_ACTION('View full session',member?'memberSchedule@full':'session@full')]},
+    {title:'Reset Mobility',body:'8:00–8:30 PM · Nora Silva\nReset · 8 of 14 spots available\nBooking closes at 7:30 PM.',actions:[WF_ACTION('View session',member?'memberSchedule@resetDetails':'session@reset')]}
+  ]),
+  WF_TEXT('Browse the week','Showing 3 sessions for the selected dates.',[WF_ACTION('Next dates',(member?'memberSchedule':'schedule')+'@empty'),WF_ACTION('Refresh schedule',member?'memberSchedule':'schedule')])
+];
+const WF_COLLECTION_STATES = (id, label) => [
+  WF_STATE('loading',`Loading ${label}`,'Please wait while the latest information is retrieved.',{mode:'loading',autoTarget:id}),
+  WF_STATE('empty',`No ${label} to show`,'Try another date or return to the full list.',{mode:'empty',actions:[WF_ACTION('Reset and return',id,'primary')]}),
+  WF_STATE('error',`Could not load ${label}`,'Your selection is preserved. Try again. Reference: DEMO-104.',{mode:'error',tone:'danger',actions:[WF_ACTION('Retry',id,'primary')]})
+];
+const WF_LEGAL = (kind, intro, sections) => [
+  WF_TEXT('Fictional portfolio notice','This is sample interface content for a fictional club. It is not a real membership contract or legal document.'),
+  WF_TEXT('Document overview',intro+'\nDemo version: September 21, 2026.'),
+  ...sections.map(([title,body])=>WF_TEXT(title,body)),
+  WF_TEXT('Related information','Review the other documents before creating a demo profile.',[WF_ACTION('Terms','terms'),WF_ACTION('Privacy','privacy'),WF_ACTION('Waiver','waiver'),WF_ACTION('Back to Join','join')])
+];
+const WF_ADMIN_FIELDS = [
+  ['Program','Strength'],['Session name','Lower Body Tempo'],['Trainer','Marcus Vance'],['Date','September 22, 2026'],['Start time','7:00 AM'],['End time','7:45 AM'],['Capacity','16'],['Booking/cancellation cutoff','60 minutes before start']
+];
+const WF_ADMIN_STATES = (id) => [
+  WF_STATE('validation','Check the highlighted fields','Enter a valid session time, positive capacity, and a trainer.',{tone:'danger',actionTargets:{'Create session':id+'@validation','Save changes':id+'@validation'},fieldErrors:{'End time':'End time must be after start time.','Capacity':'Use a positive whole number.'},actions:[WF_ACTION('Review corrected example',id)]}),
+  WF_STATE('overlap','Scheduling conflict','Marcus already leads a session at this time. Choose another trainer or time.',{tone:'danger',actionTargets:{'Create session':id+'@overlap','Save changes':id+'@overlap'},fieldErrors:{Trainer:'Trainer is unavailable at this time.'},actions:[WF_ACTION('Review another time',id)]}),
+  WF_STATE('error','Changes were not saved','Your entries are preserved. Try again. Reference: DEMO-205.',{tone:'danger',actions:[WF_ACTION('Retry save',id+'@saved','primary'),WF_ACTION('Keep editing',id)]}),
+  WF_STATE('saved','Session saved','The session list now reflects the saved fictional schedule.',{tone:'success',mode:'success',actions:[WF_ACTION('Return to sessions','adminSessions','primary')]})
 ];
 
-function routeCoverageCard(title, routes, width) {
-  const card = auto('VERTICAL', 8, 16); card.resize(width, 120); card.counterAxisSizingMode = 'FIXED'; card.fills = [paint(C.white)]; card.strokes = [paint(C.border)]; card.cornerRadius = 6;
-  card.appendChild(textNode(title, 14, 'bold', C.ink, width - 32));
-  card.appendChild(textNode(routes.join('\n'), 11, 'regular', C.muted, width - 32));
-  return card;
+const WIREFRAME_ROUTES = [
+  {id:'home',route:'/',label:'Home',shell:'public',title:'Train with purpose. Make room for progress.',description:'Discover a fictional club built around strength, pace, and recovery.',sections:[
+    {type:'hero',title:'Your next session starts here.',body:'Find a program that fits your week. Explore the club, compare fictional plans, and book through the member workspace.',actions:[WF_ACTION('View schedule','schedule'),WF_ACTION('Join Now','join','primary')]},
+    WF_CARDS('Programs for your week',WF_PROGRAMS),
+    WF_TEXT('Upcoming sessions','Lower Body Tempo · Tue 7:00 AM\nPace Intervals · Tue 6:30 PM\nReset Mobility · Tue 8:00 PM',[WF_ACTION('Browse the full schedule','schedule','primary')]),
+    {...WF_CARDS('Services',[
+      {title:'Initial assessment',body:'An introduction to the fictional club and training goals.'},
+      {title:'Training guidance',body:'Support with technique and building a consistent routine.'},
+      {title:'Recovery',body:'Time and space for mobility and a measured return to movement.'}
+    ]),anchor:'services'},
+    {...WF_CARDS('Facilities',[
+      {title:'Strength room',body:'Racks, free weights, and space for coached sessions.',media:'Strength room image placeholder'},
+      {title:'Pace studio',body:'Bikes and rowers for interval classes.',media:'Pace studio image placeholder'},
+      {title:'Mobility space',body:'Mats, blocks, and room to reset.',media:'Mobility space image placeholder'}
+    ]),anchor:'facilities'},
+    WF_CARDS('Fictional membership plans',WF_PLANS),
+    WF_CARDS('Meet the team',WF_TRAINERS),
+    {...WF_TEXT('Contact and visit','Fictional location: 100 Training Avenue, Demo City\nOpening hours: daily, 6:00 AM–10:00 PM\nStep-free entrance and accessible changing space in this fictional club.\nDemo inquiries: hello@practice.example.invalid\nNo real messages are sent from this portfolio.',[WF_ACTION('View About Us','about')]),anchor:'contact'},
+    WF_TEXT('Make time for your first session.','Select a fictional plan to begin. No card or payment is required.',[WF_ACTION('Join Now','join','primary'),WF_ACTION('My Account','login')]),
+    {type:'notice',title:'Your demo privacy',body:'Only essential session cookies and local display preferences are represented.',actions:[WF_ACTION('Cookie preferences','cookies'),WF_ACTION('Dismiss notice','home@noticeDismissed')]}
+  ],states:[WF_STATE('noticeDismissed','Cookie notice dismissed','Display preference remembered for this preview.',{omitSection:'Your demo privacy'}),WF_STATE('signedOut','You are signed out','Your member session has ended.',{tone:'success'})]},
+  {id:'programs',route:'/programs',label:'Programs',shell:'public',title:'Find your way to train',description:'Compare formats, intensity, duration, and equipment before choosing a session.',sections:[
+    WF_CARDS('Explore all programs',WF_PROGRAMS),WF_TEXT('New to a program?','Read the session description and arrival guidance. Choose an intensity that fits your experience.',[WF_ACTION('Meet the trainers','trainers'),WF_ACTION('View schedule','schedule','primary')])
+  ],states:WF_COLLECTION_STATES('programs','programs')},
+  {id:'schedule',route:'/schedule',label:'Schedule',shell:'public',title:'Find your next session',description:'Browse upcoming classes without an account. Times are shown in club local time.',sections:WF_SCHEDULE(),states:[
+    ...WF_COLLECTION_STATES('schedule','sessions'),WF_STATE('filtered','Filters applied','Strength · Marcus Vance · September 22. One matching session.',{sections:[WF_FORM('Current filters',[['Program','Strength'],['Trainer','Marcus Vance'],['Date','September 22']],[WF_ACTION('Clear filters','schedule')]),{...WF_SESSION,actions:[WF_ACTION('View session','session','primary')]}]})
+  ]},
+  {id:'session',route:'/sessions/:id',label:'Session detail',shell:'public',title:'Lower Body Tempo',description:'Review this session before continuing to member booking.',sections:[
+    WF_SESSION,WF_TEXT('What to expect','A coached 45-minute strength session. Warm up, practice lower-body movements, and finish with a measured cooldown.'),
+    WF_TEXT('Trainer and equipment','Marcus Vance · Fictional strength trainer\nEquipment: dumbbells, rack, and mat.',[WF_ACTION('Meet the team','trainers')]),
+    WF_TEXT('Ready to attend?','New members choose a fictional plan first. Existing members can sign in and continue with this session.',[WF_ACTION('Join to book','join@intent','primary'),WF_ACTION('My Account','login@intent'),WF_ACTION('Back to schedule','schedule')])
+  ],states:[WF_STATE('full','This session is full','Pace Intervals · 12 of 12 spots taken. Members can join the waitlist.',{sections:[WF_TEXT('Pace Intervals','Tuesday, September 22 · 6:30–7:10 PM\nLena Ortiz · Pace studio\nBooking cutoff: 5:30 PM. No confirmed spots remain.',[WF_ACTION('Join to continue','join@fullIntent','primary'),WF_ACTION('My Account','login@fullIntent'),WF_ACTION('Back to schedule','schedule')])]}),WF_STATE('unavailable','Session unavailable','This session was cancelled or is no longer listed.',{mode:'empty',actions:[WF_ACTION('Browse other sessions','schedule','primary')]}),...WF_COLLECTION_STATES('session','session details').filter(s=>s.id!=='empty')]},
+  {id:'trainers',route:'/trainers',label:'Trainers',shell:'public',title:'Meet your training team',description:'Fictional profiles, coaching approaches, and program specialties.',sections:[WF_CARDS('Our trainers',WF_TRAINERS),WF_TEXT('Train with the team','Find a scheduled class led by the trainer whose approach suits you.',[WF_ACTION('View schedule','schedule','primary')])],states:WF_COLLECTION_STATES('trainers','trainers')},
+  {id:'pricing',route:'/pricing',label:'Pricing',shell:'public',title:'Choose a fictional plan',description:'These prices explain the demo experience. There is no purchase or real subscription.',sections:[
+    WF_CARDS('Membership comparison',WF_PLANS),
+    {type:'table',title:'What the demo includes',columns:['Feature','Base','Complete','Training+'],rows:[['Schedule and availability','Included','Included','Included'],['Booking and waitlist demo','Included','Included','Included'],['Guided-session club concept','Standard','Expanded','Expanded'],['Training-support club concept','Basic','Group','Additional']]},
+    WF_TEXT('Common questions','Will I be charged? No. Prices and plans are fictional.\nDo I need a credit card? No card details are collected.\nCan I try the member experience? Use My Account and choose a demo persona.',[WF_ACTION('Join Now','join','primary'),WF_ACTION('My Account','login')])
+  ],states:[]},
+  {id:'about',route:'/about',label:'About Us',shell:'public',title:'A club built around practice',description:'A fictional place to build a sustainable training routine.',sections:[
+    WF_TEXT('Our story','Practice Athletic Club is a fictional portfolio project exploring a complete gym scheduling and booking experience.'),
+    WF_CARDS('How we approach training',[{title:'Consistency',body:'Make a realistic plan and return to it.'},{title:'Clear guidance',body:'Know what a session involves before reserving.'},{title:'Respect for shared space',body:'Fair capacity, considerate cancellation, and an ordered waitlist.'}]),
+    WF_CARDS('The fictional team',WF_TRAINERS),WF_TEXT('The club experience','Strength room, Pace studio, and a dedicated mobility space.',[WF_ACTION('Explore facilities','home#facilities'),WF_ACTION('Contact and hours','home#contact'),WF_ACTION('View programs','programs')])
+  ],states:[]},
+  {id:'terms',route:'/terms',label:'Terms of Service',shell:'public',title:'Terms of Service',description:'Sample membership and reservation terms for this fictional experience.',sections:WF_LEGAL('terms','Membership, booking, cancellation, and shared-space rules.',[
+    ['Demo membership','A selected plan records a fictional enrollment. It does not create a paid subscription.'],['Reservations','An active demo member may reserve an eligible class when capacity is available. Duplicate and overlapping bookings are not permitted.'],['Waitlist','Full sessions use an ordered waitlist. A released spot goes to the first eligible waiting member.'],['Cancellation and cutoffs','Each session displays its configured booking and cancellation cutoff. Review it before reserving.'],['Club etiquette','Arrive prepared, respect other participants, and release a reservation when you cannot attend.'],['Questions','Use the fictional contact information on the public site. No real support service is provided.']
+  ]),states:[]},
+  {id:'privacy',route:'/privacy',label:'Privacy Policy',shell:'public',title:'Privacy Policy',description:'How data is represented in this fictional portfolio experience.',sections:WF_LEGAL('privacy','Data boundaries, session cookies, and demo privacy.',[
+    ['Fictional data only','Names, sessions, biographies, and reservations are invented. Use the supplied demo personas; do not enter personal records.'],['Account and reservation data','The demo models account identity, selected plan, consent status, bookings, and waitlist entries.'],['Cookies','Essential cookies represent sign-in sessions. Display preferences represent local interface choices. No advertising-cookie flow is included.'],['Visibility','Members see their own reservations. Trainers see assigned-session details and counts. Administrators see fictional participant lists.'],['Consent and readiness','The prototype shows consent acknowledgement, not a medical-history questionnaire. Do not provide health details.'],['Questions and preferences','Review Cookie preferences or return to the public site.']
+  ]),states:[]},
+  {id:'waiver',route:'/waiver',label:'Liability Waiver',shell:'public',title:'Readiness and waiver information',description:'Sample acknowledgement content for the fictional booking flow.',sections:WF_LEGAL('waiver','Read the demo information before acknowledging it during registration or booking.',[
+    ['Participation information','The fictional class descriptions identify duration, intensity, and equipment so participants can understand the activity.'],['Readiness acknowledgement','The demo asks for acknowledgement of the readiness information. It does not collect symptoms, diagnoses, or health records.'],['Sample release','This screen reserves space for reviewed participation and release language. It is not an enforceable real-world waiver.'],['Where acknowledgement happens','Consent is captured in registration or the member booking acknowledgement dialog. This public document does not change account consent.']
+  ]),states:[]},
+  {id:'cookies',route:'/cookie-settings',label:'Cookie preferences',shell:'public',title:'Cookie preferences',description:'Choose how the fictional demo remembers display preferences.',sections:[
+    WF_TEXT('Essential session cookies','Always enabled for the represented sign-in experience. These cannot be disabled here.'),
+    {type:'checks',title:'Display preferences',items:[['Remember display preferences',true,'cookies@changed']]},
+    WF_TEXT('No advertising preferences','Advertising and production analytics are outside this demo.',[WF_ACTION('Save preferences','cookies@saved','primary'),WF_ACTION('Read Privacy Policy','privacy')])
+  ],states:[WF_STATE('changed','Display preference changed','Remember display preferences is off.',{checks:{'Remember display preferences':false},checkTargets:{'Remember display preferences':'cookies'},actionTargets:{'Save preferences':'cookies@savedOff'}}),WF_STATE('savedOff','Preferences saved','Remember display preferences is off.',{tone:'success',checks:{'Remember display preferences':false},checkTargets:{'Remember display preferences':'cookies'},actionTargets:{'Save preferences':'cookies@savedOff'},actions:[WF_ACTION('Return Home','home')]}),WF_STATE('saved','Preferences saved','Your display preference is saved for this preview.',{tone:'success',actions:[WF_ACTION('Return Home','home')]})]},
+  {id:'join',route:'/join',label:'Join Now',shell:'public',title:'Join Practice Athletic Club',description:'Choose a fictional plan. No payment, card, or real subscription is involved.',sections:[
+    WF_CARDS('Choose your demo plan',WF_PLANS),WF_TEXT('Already a member?','Use your existing demo account or a supplied persona.',[WF_ACTION('My Account','login')]),WF_TEXT('Before you continue','Registration asks for demo account details, terms acceptance, and waiver acknowledgement.',[WF_ACTION('Review Terms','terms'),WF_ACTION('Review Privacy','privacy'),WF_ACTION('Review Waiver','waiver')])
+  ],states:[
+    ...[['base','Base'],['complete','Complete'],['training','Training+']].map(([id,title])=>WF_STATE(id,`${title} selected`,'No payment will be collected.',{actions:[WF_ACTION('Continue to registration','register@'+id,'primary'),WF_ACTION('Change plan','join')]})),
+    WF_STATE('intent','Continue to Lower Body Tempo','Your selected session is saved while you choose a plan.',{sections:[WF_CARDS('Choose a plan to continue',WF_PLANS.map(p=>({...p,actions:[WF_ACTION('Choose '+p.title,'register@intent','primary')]}))),WF_TEXT('Existing member?','Sign in to continue with your selected session.',[WF_ACTION('My Account','login@intent')])]}),
+    WF_STATE('fullIntent','Continue to Pace Intervals','Your full-session selection is saved. Membership does not guarantee a place.',{sections:[WF_CARDS('Choose a plan to continue',WF_PLANS.map(p=>({...p,actions:[WF_ACTION('Choose '+p.title,'register@fullIntent','primary')]}))),WF_TEXT('Existing member?','Sign in to review the waitlist.',[WF_ACTION('My Account','login@fullIntent')])]})
+  ]},
+  {id:'register',route:'/register',label:'Member registration',shell:'public',title:'Create your demo member account',description:'Selected plan: Complete · fictional enrollment. Use fictional details only.',sections:[
+    WF_FORM('Account details',[['Name','Alex Morgan'],['Email','alex@practice.example.invalid'],['Password','••••••••••••'],['Confirm password','••••••••••••']]),
+    {type:'checks',title:'Review and consent',items:[['I accept the sample Terms and Privacy information.',true,'register@consentMissing'],['I acknowledge the sample readiness and waiver information.',true,'register@consentMissing']]},
+    WF_TEXT('Complete your enrollment','No payment information is collected.',[WF_ACTION('Create demo account','dashboard','primary'),WF_ACTION('Change plan','join'),WF_ACTION('Terms','terms'),WF_ACTION('Privacy','privacy'),WF_ACTION('Waiver','waiver')])
+  ],states:[
+    ...[['base','Base'],['complete','Complete'],['training','Training+']].map(([id,title])=>WF_STATE(id,`Selected plan: ${title}`,'Fictional enrollment only. No payment is collected.',{description:`Selected plan: ${title} · fictional enrollment. Use fictional details only.`})),
+    WF_STATE('intent','Session saved: Lower Body Tempo','After creating your account, continue to the selected member session.',{actionTargets:{'Create demo account':'memberSchedule@details'}}),
+    WF_STATE('fullIntent','Session saved: Pace Intervals','After creating your account, review the full session and waitlist.',{actionTargets:{'Create demo account':'memberSchedule@full'}}),
+    WF_STATE('validation','Check your account details','Correct the fields below. Your other entries are preserved.',{tone:'danger',fieldErrors:{Email:'Enter a valid fictional email address.','Confirm password':'Passwords must match.'},actionTargets:{'Create demo account':'register'}}),
+    WF_STATE('consentMissing','Acknowledgement required','Review and accept both statements to continue.',{tone:'warning',checks:{'I accept the sample Terms and Privacy information.':false,'I acknowledge the sample readiness and waiver information.':false},actionTargets:{'Create demo account':'register@consentMissing'},actions:[WF_ACTION('Accept both in this preview','register','primary')]}),
+    WF_STATE('existingEmail','This demo account already exists','Sign in instead of creating another account.',{tone:'warning',actionTargets:{'Create demo account':'register@existingEmail'},actions:[WF_ACTION('Open My Account','login','primary')]}),
+    WF_STATE('planMissing','Choose a plan first','Registration requires a selected fictional plan.',{mode:'empty',actions:[WF_ACTION('Return to Join','join','primary')]}),
+    WF_STATE('error','Account could not be created','Your entries are preserved. Try again. Reference: DEMO-301.',{tone:'danger',actions:[WF_ACTION('Retry','register','primary')]})
+  ]},
+  {id:'login',route:'/portal/login',label:'My Account',shell:'public',title:'Welcome back',description:'Sign in with demo credentials or choose a fictional persona.',sections:[
+    WF_FORM('Demo account',[['Email','alex@practice.example.invalid'],['Password','••••••••••••']],[WF_ACTION('Sign in','dashboard','primary'),WF_ACTION('Forgot password?','recovery')]),
+    WF_CARDS('Try a demo persona',[{title:'Alex Morgan · Member',body:'Book sessions, manage reservations, and view waitlist position.',actions:[WF_ACTION('Continue as Member','dashboard','primary')]},{title:'Marcus Vance · Trainer',body:'Read assigned sessions and attendee counts.',actions:[WF_ACTION('Continue as Trainer','trainer')]},{title:'Sarah Lin · Administrator',body:'Manage fictional sessions and participant lists.',actions:[WF_ACTION('Continue as Administrator','admin')]}]),
+    WF_TEXT('New to Practice?','Select a fictional plan before creating an account.',[WF_ACTION('Join Now','join')])
+  ],states:[WF_STATE('intent','Continue to Lower Body Tempo','Sign in to continue with your selected session.',{actionTargets:{'Sign in':'memberSchedule@details','Continue as Member':'memberSchedule@details'}}),WF_STATE('fullIntent','Continue to Pace Intervals','Sign in to review the full session.',{actionTargets:{'Sign in':'memberSchedule@full','Continue as Member':'memberSchedule@full'}}),WF_STATE('invalid','Email or password not recognized','Check your demo credentials or use a persona.',{tone:'danger',fieldErrors:{Password:'Check your demo credentials.'}}),WF_STATE('locked','Please wait before trying again','Too many attempts. The next sign-in attempt is available after the displayed cooldown.',{tone:'warning',actionTargets:{'Sign in':'login@locked'},actions:[WF_ACTION('Try after cooldown','login')]}),WF_STATE('error','Sign-in unavailable','Try again shortly. Reference: DEMO-302.',{tone:'danger',actions:[WF_ACTION('Retry','login','primary')]})]},
+  {id:'recovery',route:'/auth/forgot-password',label:'Account recovery',shell:'public',title:'Account recovery',description:'This portfolio simulates recovery and does not send real email.',sections:[
+    WF_FORM('Recovery request',[['Email','alex@practice.example.invalid']],[WF_ACTION('Show recovery instructions','recovery@sent','primary'),WF_ACTION('Back to My Account','login')]),WF_TEXT('Need immediate demo access?','Return to My Account and select a demo persona.',[WF_ACTION('Choose a persona','login')])
+  ],states:[WF_STATE('sent','Recovery request received','If this were a live account, instructions would be provided through its recovery channel. This demo sends no email and does not reset a password.',{mode:'success',actions:[WF_ACTION('Return to My Account','login','primary')]}),WF_STATE('validation','Check the email format','Enter a fictional email address in the expected format.',{tone:'danger',fieldErrors:{Email:'Use a valid email format.'}}),WF_STATE('limited','Please wait before trying again','The demo request limit has been reached.',{mode:'error',tone:'warning',actions:[WF_ACTION('Back to My Account','login')]})]},
+  {id:'dashboard',route:'/app',label:'Member dashboard',shell:'member',title:'Good morning, Alex',description:'Your membership, next session, and booking shortcuts in one place.',sections:[
+    {type:'stats',title:'Your membership',items:[['Status','Active'],['Fictional plan','Complete'],['Upcoming bookings','1'],['Waiting entries','1']]},
+    {...WF_SESSION,title:'Your next class',actions:[WF_ACTION('View my bookings','bookings','primary')]},
+    WF_TEXT('Your waitlist','Pace Intervals · Tuesday 6:30 PM\nWaiting position: 2. Check My bookings for the latest result.',[WF_ACTION('View waitlist','bookings@waiting')]),
+    WF_TEXT('Plan your week','Find another class or review your account.',[WF_ACTION('Browse schedule','memberSchedule','primary'),WF_ACTION('Profile & Security','profile')])
+  ],states:[...WF_COLLECTION_STATES('dashboard','dashboard details'),WF_STATE('inactive','Membership inactive','You can review your existing reservations and profile. New bookings and waitlist joins are unavailable.',{tone:'warning',sections:[WF_TEXT('Membership','Inactive · Complete demo plan',[WF_ACTION('Review profile','profile@inactive','primary'),WF_ACTION('View existing bookings','bookings')])]})]},
+  {id:'memberSchedule',route:'/app/schedule',label:'Member schedule',shell:'member',title:'Book your next session',description:'Browse classes and review the latest availability before booking.',sections:WF_SCHEDULE(true),states:[
+    ...WF_COLLECTION_STATES('memberSchedule','sessions'),WF_STATE('filtered','Filters applied','One matching Strength session.',{sections:[{...WF_SESSION,actions:[WF_ACTION('View and book','memberSchedule@details','primary'),WF_ACTION('Clear filters','memberSchedule')]}]}),
+    WF_STATE('details','Session details','Review the session and cutoff before confirming.',{sections:[WF_SESSION,WF_TEXT('Reserve your place','Your reservation is confirmed only after the booking succeeds.',[WF_ACTION('Book session','memberSchedule@confirmed','primary'),WF_ACTION('Back to schedule','memberSchedule')])]}),
+    WF_STATE('full','Session full','Pace Intervals has 12 confirmed members and no available spots.',{sections:[WF_TEXT('Pace Intervals','Tuesday, September 22 · 6:30–7:10 PM\nLena Ortiz · Pace studio\nBooking closes at 5:30 PM.',[WF_ACTION('Join waitlist','memberSchedule@waitlisted','primary'),WF_ACTION('Back to schedule','memberSchedule')])]}),
+    WF_STATE('confirmed','Booking confirmed','Lower Body Tempo is now in My bookings.',{mode:'success',tone:'success',actions:[WF_ACTION('View My bookings','bookings','primary'),WF_ACTION('Browse sessions','memberSchedule')]}),
+    WF_STATE('waitlisted','You joined the waitlist','Pace Intervals · Position 2. A place is not yet confirmed.',{mode:'success',tone:'success',actions:[WF_ACTION('View waitlist','bookings@waiting','primary')]}),
+    WF_STATE('waiver','Review the readiness acknowledgement','No health details are collected. Read the sample information before continuing.',{mode:'dialog',actions:[WF_ACTION('Read sample waiver','waiver'),WF_ACTION('Acknowledge and continue','memberSchedule@details','primary'),WF_ACTION('Close','memberSchedule@details')]}),
+    WF_STATE('duplicate','You already have this reservation','No second booking was created.',{mode:'error',tone:'warning',actions:[WF_ACTION('View existing reservation','bookings','primary')]}),
+    WF_STATE('alreadyWaiting','You are already on this waitlist','Your current position is 2. No duplicate entry was added.',{mode:'error',tone:'warning',actions:[WF_ACTION('View waitlist','bookings@waiting','primary')]}),
+    WF_STATE('overlap','This class overlaps your reservation','Lower Body Tempo conflicts with an existing confirmed session.',{mode:'error',tone:'warning',actions:[WF_ACTION('View conflicting reservation','bookings'),WF_ACTION('Choose another session','memberSchedule','primary')]}),
+    WF_STATE('cutoff','Booking has closed','This session is past its configured cutoff.',{mode:'error',tone:'warning',actions:[WF_ACTION('Browse other sessions','memberSchedule','primary')]}),
+    WF_STATE('spotOpened','A spot became available','The class is no longer full. Review current availability before booking.',{mode:'success',actions:[WF_ACTION('Review available session','memberSchedule@details','primary')]}),
+    WF_STATE('inactive','Membership inactive','New bookings and waitlist joins are unavailable for this demo membership.',{mode:'error',tone:'warning',actions:[WF_ACTION('Review profile','profile@inactive'),WF_ACTION('Back to schedule','memberSchedule')]}),
+    WF_STATE('forbidden','Member access required','This account cannot use member booking actions.',{mode:'denied',tone:'danger',actions:[WF_ACTION('Choose Member persona','login','primary')]}),
+    WF_STATE('expired','Sign in to continue','Your selected session is preserved. No booking has been submitted again.',{mode:'dialog',actions:[WF_ACTION('Restore demo member session','memberSchedule@details','primary'),WF_ACTION('Dismiss','schedule')]}),
+    WF_STATE('failed','Booking was not completed','The selected session is preserved. Reference: DEMO-401.',{mode:'error',tone:'danger',actions:[WF_ACTION('Review and retry','memberSchedule@details','primary'),WF_ACTION('Back to schedule','memberSchedule')]})
+  ]},
+  {id:'bookings',route:'/app/bookings',label:'My bookings',shell:'member',title:'My bookings',description:'Review confirmed reservations and waiting entries.',sections:[
+    WF_TEXT('Upcoming confirmed reservations','Lower Body Tempo · Tue September 22 · 7:00–7:45 AM\nMarcus Vance · Studio A\nConfirmed · Cancellation closes at 6:00 AM.',[WF_ACTION('View session details','memberSchedule@details'),WF_ACTION('Cancel reservation','bookings@cancel')]),
+    WF_TEXT('Waitlist entries','Pace Intervals · Tue September 22 · 6:30–7:10 PM\nPosition 2 · Not confirmed.',[WF_ACTION('Refresh position','bookings@waiting'),WF_ACTION('Leave waitlist','bookings@leave')])
+  ],states:[
+    ...WF_COLLECTION_STATES('bookings','bookings'),WF_STATE('waiting','Waitlist position refreshed','Pace Intervals · Position 2. No confirmed place yet.'),
+    WF_STATE('cancel','Cancel this reservation?','Lower Body Tempo · Tuesday 7:00 AM. This action releases your confirmed place if cancellation is still allowed.',{mode:'dialog',actions:[WF_ACTION('Keep reservation','bookings'),WF_ACTION('Confirm cancellation','bookings@cancelled','danger')]}),
+    WF_STATE('cancelled','Reservation cancelled','Lower Body Tempo is no longer in your confirmed reservations.',{mode:'success',tone:'success',actions:[WF_ACTION('View remaining waitlist','bookings@remaining'),WF_ACTION('Find another session','memberSchedule','primary')]}),
+    WF_STATE('remaining','Your remaining entry','No upcoming confirmed reservations. You are still waiting for Pace Intervals.',{sections:[WF_TEXT('Waitlist entries','Pace Intervals · Position 2 · Tuesday 6:30 PM',[WF_ACTION('Leave waitlist','bookings@leave'),WF_ACTION('Browse schedule','memberSchedule')])]}),
+    WF_STATE('cancelCutoff','Cancellation is closed','This reservation is past its configured cancellation cutoff.',{mode:'error',tone:'warning',actions:[WF_ACTION('Keep and return','bookings','primary')]}),
+    WF_STATE('cancelError','Cancellation was not completed','Your reservation remains confirmed. Reference: DEMO-402.',{mode:'error',tone:'danger',actions:[WF_ACTION('Retry cancellation','bookings@cancel','primary'),WF_ACTION('Keep reservation','bookings')]}),
+    WF_STATE('leave','Leave the waitlist?','You will lose your waiting position for Pace Intervals.',{mode:'dialog',actions:[WF_ACTION('Keep waiting','bookings@waiting'),WF_ACTION('Leave waitlist','bookings@left','danger')]}),
+    WF_STATE('left','You left the waitlist','Your waiting entry was removed.',{tone:'success',sections:[WF_TEXT('Confirmed reservation','Lower Body Tempo · Tuesday 7:00 AM',[WF_ACTION('Cancel reservation','bookings@cancel'),WF_ACTION('Browse schedule','memberSchedule')])]}),
+    WF_STATE('promoted','Your waitlist place is now confirmed','Pace Intervals was promoted while you were viewing the list. Use cancellation to release a confirmed reservation.',{tone:'success',sections:[WF_TEXT('Confirmed reservations','Pace Intervals · Tuesday 6:30 PM\nLower Body Tempo · Tuesday 7:00 AM',[WF_ACTION('Review promoted reservation','bookings@promotedCancel'),WF_ACTION('Back to schedule','memberSchedule')])]}),
+    WF_STATE('promotedCancel','Cancel Pace Intervals?','This entry is now confirmed. Cancellation uses the session cutoff.',{mode:'dialog',actions:[WF_ACTION('Keep reservation','bookings@promoted'),WF_ACTION('Cancel promoted reservation','bookings@left','danger')]}),
+    WF_STATE('leaveError','Waitlist could not be updated','Your current entry is preserved. Refresh before trying again. Reference: DEMO-403.',{mode:'error',tone:'danger',actions:[WF_ACTION('Refresh entry','bookings@waiting','primary')]})
+  ]},
+  {id:'profile',route:'/app/profile/security',label:'Profile and Security',shell:'member',title:'Profile & Security',description:'Review your demo membership, consent, and sign-in session.',sections:[
+    WF_TEXT('Demo profile','Alex Morgan\nalex@practice.example.invalid\nMember profile · Fictional data'),
+    WF_TEXT('Membership','Active · Complete plan\nSelected September 21, 2026. No real payment or subscription.'),
+    WF_TEXT('Consent record','Sample terms and waiver acknowledged September 21, 2026.',[WF_ACTION('Read Terms','terms'),WF_ACTION('Read Waiver','waiver')]),
+    WF_TEXT('Current session','Demo member session active on this browser. Signing out ends this session.',[WF_ACTION('Sign out','home@signedOut','primary')])
+  ],states:[WF_STATE('inactive','Membership inactive','Booking is blocked. Existing reservations remain available for review.',{tone:'warning',sections:[WF_TEXT('Membership','Inactive · Complete demo plan\nActivation changes are not available in this prototype.',[WF_ACTION('Review bookings','bookings'),WF_ACTION('Choose an active demo persona','login')]),WF_TEXT('Current session','You remain signed in to this demo profile.',[WF_ACTION('Sign out','home@signedOut')])]}),...WF_COLLECTION_STATES('profile','profile details').filter(s=>s.id!=='empty')]},
+  {id:'trainer',route:'/trainer/sessions',label:'Assigned sessions',shell:'trainer',title:'Your assigned sessions',description:'Read-only access to the sessions assigned to your trainer profile.',sections:[
+    WF_FORM('Filter assignments',[['Date','September 22–28']],[WF_ACTION('Apply date','trainer@filtered'),WF_ACTION('Reset','trainer')]),
+    {type:'table',title:'Upcoming assignments',columns:['Session','Time','Attendees','Action'],rows:[['Lower Body Tempo','Tue 7:00 AM','12 / 16',WF_ACTION('View session','trainerSession','primary')],['Strength Foundations','Thu 8:00 AM','8 / 14',WF_ACTION('View session','trainerSession')]]},
+    WF_TEXT('Trainer access','Session editing and member booking actions are not part of the trainer workspace.')
+  ],states:[...WF_COLLECTION_STATES('trainer','assigned sessions'),WF_STATE('filtered','Date filter applied','Assignments for September 22.'),WF_STATE('denied','Trainer access unavailable','This account cannot view trainer assignments.',{mode:'denied',tone:'danger',actions:[WF_ACTION('Choose Trainer persona','login','primary')]})]},
+  {id:'trainerSession',route:'/trainer/sessions/:id',label:'Assigned session',shell:'trainer',title:'Lower Body Tempo',description:'Assigned-session details and attendee counts.',sections:[
+    WF_SESSION,WF_TEXT('Class preparation','Strength · 45 minutes\nEquipment: dumbbells, racks, and mats.\nReview the session time and room before class.'),WF_TEXT('Attendance overview','12 confirmed attendees · Capacity 16\nParticipant identities are not shown in the trainer experience.',[WF_ACTION('Back to assigned sessions','trainer','primary')])
+  ],states:[...WF_COLLECTION_STATES('trainerSession','session details').filter(s=>s.id!=='empty'),WF_STATE('denied','Session not assigned to you','You cannot view this session through the trainer workspace.',{mode:'denied',tone:'danger',actions:[WF_ACTION('Return to assignments','trainer','primary')]})]},
+  {id:'admin',route:'/admin',label:'Operations overview',shell:'admin',title:'Operations overview',description:'A snapshot of the fictional club schedule and occupancy.',sections:[
+    {type:'stats',title:'Today at the club',items:[['Scheduled sessions','3'],['Confirmed places','30 / 42'],['Waiting entries','2'],['Full sessions','1']]},
+    {type:'table',title:'Session occupancy',columns:['Session','Confirmed / capacity','Waiting','Action'],rows:[['Lower Body Tempo','12 / 16','0',WF_ACTION('Participants','participants')],['Pace Intervals','12 / 12','2',WF_ACTION('View sessions','adminSessions')],['Reset Mobility','6 / 14','0',WF_ACTION('View sessions','adminSessions')]]},
+    WF_TEXT('Manage the schedule','Create a session or review existing sessions.',[WF_ACTION('Create session','adminCreate','primary'),WF_ACTION('Session manager','adminSessions')])
+  ],states:[...WF_COLLECTION_STATES('admin','operations'),WF_STATE('denied','Administrator access required','No operations data is available for this account.',{mode:'denied',tone:'danger',actions:[WF_ACTION('Choose Administrator persona','login','primary')]})]},
+  {id:'adminSessions',route:'/admin/sessions',label:'Session manager',shell:'admin',title:'Manage sessions',description:'Review scheduled classes, occupancy, and waitlist counts.',sections:[
+    WF_FORM('Filter sessions',[['Date','September 22–28'],['Program','All programs'],['Trainer','All trainers'],['Status','Scheduled']],[WF_ACTION('Apply filters','adminSessions@filtered'),WF_ACTION('Reset','adminSessions'),WF_ACTION('Create session','adminCreate','primary')]),
+    {type:'table',title:'Scheduled sessions',columns:['Session','Trainer / time','Confirmed / capacity','Waiting','Actions'],rows:[['Lower Body Tempo','Marcus · Tue 7:00 AM','12 / 16','0',[WF_ACTION('Edit','adminEdit'),WF_ACTION('Participants','participants')]],['Pace Intervals','Lena · Tue 6:30 PM','12 / 12','2',[WF_ACTION('Review full session','participants@pace')]],['Reset Mobility','Nora · Tue 8:00 PM','6 / 14','0',[WF_ACTION('View filtered example','adminSessions@filtered')]]]},
+    WF_TEXT('Result navigation','Showing 3 scheduled sessions.',[WF_ACTION('Next dates','adminSessions@empty'),WF_ACTION('Refresh','adminSessions')])
+  ],states:[...WF_COLLECTION_STATES('adminSessions','sessions'),WF_STATE('filtered','Filters applied','Showing one matching Strength session.',{sections:[{...WF_SESSION,actions:[WF_ACTION('Edit session','adminEdit','primary'),WF_ACTION('Participants','participants'),WF_ACTION('Reset filters','adminSessions')]}]})]},
+  {id:'adminCreate',route:'/admin/sessions/new',label:'Create session',shell:'admin',title:'Create a session',description:'Define the program, trainer, time, capacity, and cutoff.',sections:[
+    WF_FORM('Session details',WF_ADMIN_FIELDS,[WF_ACTION('Create session','adminCreate@saved','primary'),WF_ACTION('Cancel','adminSessions')]),WF_TEXT('Before saving','The trainer must be available. End time must follow start time. Capacity must be positive. Cutoff is configured per session.')
+  ],states:WF_ADMIN_STATES('adminCreate')},
+  {id:'adminEdit',route:'/admin/sessions/:id/edit',label:'Edit session',shell:'admin',title:'Edit Lower Body Tempo',description:'Review existing reservations before changing the session.',sections:[
+    WF_TEXT('Current occupancy','12 confirmed members · Capacity 16 · No waiting entries. Capacity cannot be reduced below 12.'),
+    WF_FORM('Session details',WF_ADMIN_FIELDS,[WF_ACTION('Save changes','adminEdit@saved','primary'),WF_ACTION('Discard changes','adminSessions')]),
+    WF_TEXT('Scheduling safeguards','Trainer and participant conflicts must be resolved before a schedule change is saved.',[WF_ACTION('View participants','participants')])
+  ],states:[...WF_ADMIN_STATES('adminEdit'),WF_STATE('capacity','Capacity conflicts with reservations','There are 12 confirmed members. A capacity of 10 cannot be saved.',{tone:'danger',actionTargets:{'Save changes':'adminEdit@capacity'},fieldErrors:{Capacity:'Minimum capacity is 12 for this session.'},fieldValues:{Capacity:'10'},actions:[WF_ACTION('Restore valid capacity','adminEdit','primary')]}),WF_STATE('memberConflict','A member has an overlapping reservation','Changing the time would conflict with an existing participant booking.',{tone:'danger',actionTargets:{'Save changes':'adminEdit@memberConflict'},fieldErrors:{'Start time':'Choose a time without participant conflicts.'},actions:[WF_ACTION('Review original time','adminEdit')]})]},
+  {id:'participants',route:'/admin/sessions/:id/participants',label:'Participants',shell:'admin',title:'Lower Body Tempo participants',description:'Fictional confirmed members and ordered waiting entries.',sections:[
+    WF_TEXT('Session summary','Tuesday 7:00–7:45 AM · Marcus Vance\n12 confirmed / 16 capacity · 0 waiting'),
+    {type:'table',title:'Confirmed members',columns:['Member','Status','Booked'],rows:Array.from({length:12},(_,i)=>[`Demo Member ${String(i+1).padStart(2,'0')}`,'Confirmed','September 21'])},
+    WF_TEXT('Ordered waitlist','No waiting members for this session.'),WF_TEXT('Session actions','Roster is read-only in this view.',[WF_ACTION('Edit session','adminEdit'),WF_ACTION('Back to sessions','adminSessions','primary')])
+  ],states:[...WF_COLLECTION_STATES('participants','participants'),WF_STATE('pace','Pace Intervals participants','Tuesday 6:30 PM · Lena Ortiz · 12 confirmed / 12 capacity.',{sections:[{type:'table',title:'Confirmed members',columns:['Member','Status'],rows:Array.from({length:12},(_,i)=>[`Demo Member ${String(i+1).padStart(2,'0')}`,'Confirmed'])},{type:'table',title:'Ordered waitlist',columns:['Position','Member','Joined'],rows:[['1','Demo Member 13','September 21 · 10:00'],['2','Alex Morgan','September 21 · 10:05']]},WF_TEXT('Session actions','Waitlist order follows joining order.',[WF_ACTION('Back to sessions','adminSessions','primary')])]})]},
+  {id:'notFound',route:'/404',label:'Not Found',shell:'public',title:'We could not find that page',description:'The address may be incorrect or the page may no longer be available.',sections:[WF_TEXT('Find your way back','Browse the public site or open your account.',[WF_ACTION('Go Home','home','primary'),WF_ACTION('View schedule','schedule'),WF_ACTION('My Account','login')])],states:[]}
+];
+
+// Session variants share the same route; the selected session survives Join/Login.
+const wfResetSession = WF_TEXT('Reset Mobility','Tuesday, September 22 · 8:00–8:30 PM\nReset · Nora Silva · Mobility space\n6 confirmed / 14 capacity · 8 spots available\nBooking and cancellation close at 7:30 PM.');
+const wfRoute = id => WIREFRAME_ROUTES.find(r=>r.id===id);
+wfRoute('session').states.push(WF_STATE('reset','Reset Mobility','Review this mobility session.',{description:'Reset · Nora Silva · 30 minutes.',sections:[wfResetSession,WF_TEXT('Ready to attend?','Continue with your selected session.',[WF_ACTION('Join to book','join@resetIntent','primary'),WF_ACTION('My Account','login@resetIntent'),WF_ACTION('Back to schedule','schedule')])]}));
+wfRoute('join').states.push(WF_STATE('resetIntent','Continue to Reset Mobility','Your selected session is preserved.',{sections:[WF_CARDS('Select your fictional plan',WF_PLANS.map((p,i)=>({...p,actions:[WF_ACTION('Choose '+p.title,'register@reset'+['base','complete','training'][i],'primary')]}))),WF_TEXT('Existing member?','Sign in to continue with Reset Mobility.',[WF_ACTION('My Account','login@resetIntent')])]}));
+wfRoute('login').states.push(WF_STATE('resetIntent','Continue to Reset Mobility','Sign in to continue with your selected mobility session.',{actionTargets:{'Sign in':'memberSchedule@resetDetails','Continue as Member':'memberSchedule@resetDetails'}}));
+for (const [code,title] of [['base','Base'],['complete','Complete'],['training','Training+']]) wfRoute('register').states.push(WF_STATE('reset'+code,'Selected session: Reset Mobility','Your session is preserved while you register.',{description:`Selected plan: ${title} · fictional enrollment.`,actionTargets:{'Create demo account':'memberSchedule@resetDetails'}}));
+wfRoute('memberSchedule').states.push(WF_STATE('resetDetails','Reset Mobility','Review the latest availability.',{sections:[wfResetSession,WF_TEXT('Reserve your place','Review the session cutoff before booking.',[WF_ACTION('Book session','bookings@resetConfirmed','primary'),WF_ACTION('Back to schedule','memberSchedule')])]}));
+wfRoute('bookings').states.push(WF_STATE('resetConfirmed','Reset Mobility confirmed','Your reservation was added.',{tone:'success',sections:[wfResetSession,WF_TEXT('Manage reservation','Cancellation closes at 7:30 PM.',[WF_ACTION('Cancel Reset Mobility','bookings@resetCancel'),WF_ACTION('Browse sessions','memberSchedule')])]}),WF_STATE('resetCancel','Cancel Reset Mobility?','This releases your confirmed place if cancellation is still allowed.',{mode:'dialog',actions:[WF_ACTION('Keep reservation','bookings@resetConfirmed'),WF_ACTION('Confirm cancellation','bookings@resetCancelled','danger')]}),WF_STATE('resetCancelled','Reset Mobility cancelled','This reservation is no longer confirmed.',{mode:'success',tone:'success',actions:[WF_ACTION('Browse sessions','memberSchedule','primary')]}));
+// Preserve the plan choice in the two original booking-intent examples.
+for (const [intent,destination] of [['intent','memberSchedule@details'],['fullIntent','memberSchedule@full']]) {
+  const state=wfRoute('join').states.find(s=>s.id===intent);
+  state.sections[0].items.forEach((item,i)=>{const code=['base','complete','training'][i];item.actions[0].target='register@'+intent+code;wfRoute('register').states.push(WF_STATE(intent+code,'Selected session preserved','Continue after fictional enrollment.',{description:`Selected plan: ${item.title} · fictional enrollment.`,actionTargets:{'Create demo account':destination}}));});
 }
 
-async function buildPublicCoverageDesktop() {
-  const screens = {};
-  let base = createDesktopBase('D13 · Public Directory / Route Coverage', 'Public destinations', 'Every public destination in the draw.io sitemap is represented by a generated frame or a named landing anchor.');
-  base.content.appendChild(routeCoverageCard('DRAW.IO TO FIGMA COVERAGE', UX_ROUTE_COVERAGE.slice(0, 14).map(([route, frame]) => `${route}  →  ${frame}`), 980));
-  const directory = auto('HORIZONTAL', 16, 0);
-  directory.appendChild(routeCoverageCard('PROGRAMS', ['Strength', 'Pace', 'Reset', 'Open Floor'], 300));
-  directory.appendChild(routeCoverageCard('TRAINERS', ['Fictional bios', 'Specialties', 'Assigned sessions'], 300));
-  directory.appendChild(routeCoverageCard('CONTACT', ['Landing anchor', 'Fictional location', 'Opening hours'], 300));
-  base.content.appendChild(directory); screens.publicDirectory = base.screen;
+// Submission states demonstrate pending actions without submitting real requests.
+for (const [id,stateId,title,body,destination] of [
+  ['register','submitting','Creating demo account','Please wait while your fictional account is prepared.','dashboard'],
+  ['login','submitting','Signing in','Checking the selected demo credentials.','dashboard'],
+  ['recovery','submitting','Preparing recovery instructions','This simulation sends no email.','recovery@sent'],
+  ['adminCreate','submitting','Saving session','Your entered session details are retained.','adminCreate@saved'],
+  ['adminEdit','submitting','Saving changes','Your entered changes are retained.','adminEdit@saved'],
+  ['memberSchedule','submitting','Reserving your place','Checking the current session availability.','memberSchedule@confirmed'],
+  ['memberSchedule','joining','Joining the waitlist','Checking current availability and your waiting entry.','memberSchedule@waitlisted'],
+  ['bookings','cancelling','Cancelling reservation','Your reservation stays confirmed until cancellation succeeds.','bookings@cancelled']
+]) wfRoute(id).states.push(WF_STATE(stateId,title,body,{mode:'loading',autoTarget:destination}));
+function wfRetargetActions(sections,label,target) { for (const section of sections) { for (const a of section.actions||[]) if(a.label===label)a.target=target; } }
+wfRetargetActions(wfRoute('register').sections,'Create demo account','register@submitting');
+wfRetargetActions(wfRoute('login').sections,'Sign in','login@submitting');
+wfRetargetActions(wfRoute('recovery').sections,'Show recovery instructions','recovery@submitting');
+wfRetargetActions(wfRoute('adminCreate').sections,'Create session','adminCreate@submitting');
+wfRetargetActions(wfRoute('adminEdit').sections,'Save changes','adminEdit@submitting');
+wfRetargetActions(wfRoute('memberSchedule').states.find(s=>s.id==='details').sections,'Book session','memberSchedule@submitting');
+wfRetargetActions(wfRoute('memberSchedule').states.find(s=>s.id==='full').sections,'Join waitlist','memberSchedule@joining');
+wfRoute('bookings').states.find(s=>s.id==='cancel').actions.find(a=>a.label==='Confirm cancellation').target='bookings@cancelling';
+wfRoute('trainerSession').states.push(WF_STATE('foundations','Strength Foundations','Thursday, September 24 · 8:00–8:45 AM.',{description:'Assigned session · Marcus Vance.',sections:[WF_TEXT('Strength Foundations','Strength · Studio A\n8 confirmed / 14 capacity\nEquipment: dumbbells, racks, and mats.\nBooking and cancellation close at 7:00 AM.'),WF_TEXT('Read-only trainer view','Participant identities are not shown here.',[WF_ACTION('Back to assigned sessions','trainer','primary')])]}));
+wfRoute('trainer').sections.find(s=>s.type==='table').rows[1][3].target='trainerSession@foundations';
 
-  base = createDesktopBase('D14 · Pricing and About Us', 'Membership options and club story', 'Fictional plans, a transparent product boundary, and the public club narrative.');
-  const pricing = auto('HORIZONTAL', 16, 0);
-  [['Base', '$39 / month'], ['Complete', '$59 / month'], ['Training+', '$79 / month']].forEach(([name, price]) => pricing.appendChild(routeCoverageCard(name, [price, 'Fictional plan', 'No payment collection'], 300)));
-  base.content.appendChild(pricing); base.content.appendChild(routeCoverageCard('ABOUT US /about', ['Practice Athletic Club is a fictional portfolio product.', 'Mission, operating principles, and team overview are public.', 'No real gym, member, or health data is represented.'], 980)); screens.pricingAbout = base.screen;
+wfRoute('participants').states.find(s=>s.id==='pace').pageTitle='Pace Intervals participants';
+wfRoute('session').states.find(s=>s.id==='full').pageTitle='Pace Intervals';
+wfRoute('session').states.find(s=>s.id==='reset').pageTitle='Reset Mobility';
+wfRoute('trainerSession').states.find(s=>s.id==='foundations').pageTitle='Strength Foundations';
 
-  base = createDesktopBase('D15 · Legal, Cookies, and Not Found', 'Legal and recovery destinations', 'Static public destinations are explicit so the sitemap, wireframes, and generated Figma pages stay aligned.');
-  const legal = auto('HORIZONTAL', 16, 0);
-  legal.appendChild(routeCoverageCard('TERMS OF SERVICE /terms', ['Membership rules', 'Configured cutoff policy', 'Club etiquette'], 300));
-  legal.appendChild(routeCoverageCard('PRIVACY POLICY /privacy', ['Fictional demo disclosure', 'Minimal session cookies', 'No production data'], 300));
-  legal.appendChild(routeCoverageCard('LIABILITY WAIVER /waiver', ['Physical readiness declaration', 'Required before first booking', 'Server-side recheck'], 300));
-  base.content.appendChild(legal); base.content.appendChild(routeCoverageCard('COOKIE PREFERENCES /cookie-settings', ['Essential cookie disclosure', 'Display preference controls', 'Visible from the public cookie notice'], 980)); base.content.appendChild(alertBox('NOT FOUND /404', 'Unknown routes explain what happened and return the visitor to public navigation without exposing protected data.', 'danger', 980)); screens.legalMisc = base.screen;
-  return screens;
-}
+// Native Figma renderer. Content and state definitions live in wireframe-content.js.
+const WF_COLORS = {bg:'#F6F7F9',white:'#FFFFFF',ink:'#20242B',muted:'#626B77',border:'#D7DBE0',blue:'#245BCC',soft:'#EEF3FF',danger:'#A52722',warning:'#815500',success:'#196444'};
+const wfPaint = value => ({type:'SOLID',color:{r:parseInt(value.slice(1,3),16)/255,g:parseInt(value.slice(3,5),16)/255,b:parseInt(value.slice(5,7),16)/255}});
+let wfFonts, wfButtonSource, wfLinks, wfFrames, wfAnchors;
+const wfProgress = message => figma.ui.postMessage({type:'progress',message});
 
-async function buildPublicCoverageMobile() {
-  const screens = {};
-  let base = createMobileBase('M13 · Public Directory / Route Coverage', 'Public destinations', 'Every public route is mapped from draw.io to Figma.');
-  base.content.appendChild(routeCoverageCard('PUBLIC ROUTE COVERAGE', UX_ROUTE_COVERAGE.slice(0, 14).map(([route, frame]) => `${route}\n${frame}`), 358)); screens.publicDirectory = base.screen;
-  base = createMobileBase('M14 · Pricing and About Us', 'Membership options and club story', 'Fictional pricing and a clear public narrative.');
-  for (const [name, price] of [['Base', '$39 / month'], ['Complete', '$59 / month'], ['Training+', '$79 / month']]) base.content.appendChild(routeCoverageCard(name, [price, 'Fictional plan'], 358));
-  base.content.appendChild(routeCoverageCard('ABOUT US /about', ['Fictional portfolio product', 'Mission and team overview'], 358)); screens.pricingAbout = base.screen;
-  base = createMobileBase('M15 · Legal, Cookies, and Not Found', 'Legal and recovery destinations', 'Public legal pages and safe unknown-route recovery.');
-  for (const [title, lines] of [['TERMS /terms', ['Membership rules', 'Configured cutoff']], ['PRIVACY /privacy', ['Fictional demo disclosure', 'Session cookies']], ['WAIVER /waiver', ['Physical readiness', 'Booking requirement']], ['COOKIE PREFERENCES /cookie-settings', ['Essential cookies', 'Display preferences']], ['NOT FOUND /404', ['Unknown-route recovery', 'Return to public navigation']]]) base.content.appendChild(routeCoverageCard(title, lines, 358));
-  screens.legalMisc = base.screen;
-  return screens;
-}
-
-async function buildDesktopScreens(page) {
-  const session = { title: 'Lower Body Tempo', program: 'STRENGTH', time: 'Tue · 7:00 AM', duration: '45 min', trainer: 'Marcus Vance', spots: '4 of 16 spots left', cutoff: '60 minutes before start' };
-  const full = { ...session, title: 'Pace Intervals', program: 'PACE', time: 'Wed · 6:30 PM', trainer: 'Lena Ortiz', spots: '0 of 12 spots left', full: true };
-  const screens = {};
-
-  let base = createDesktopBase('D00 · Landing / Complete', 'Train with purpose. Live with more energy.', 'A fictional public Practice Athletic Club experience, from discovering the club to booking your next session.');
-  screens.landing = base.screen;
-  base.screen.resize(1440, 6100);
-  const hero = auto('HORIZONTAL', 24, 32); hero.resize(1312, 340); hero.counterAxisSizingMode = 'FIXED'; hero.fills = [paint(C.white)]; hero.strokes = [paint(C.border)]; hero.cornerRadius = 8;
-  const heroCopy = auto('VERTICAL', 16, 0); heroCopy.resize(720, 100); heroCopy.counterAxisSizingMode = 'FIXED'; heroCopy.primaryAxisSizingMode = 'AUTO'; heroCopy.appendChild(await kitBadge('PRACTICE ATHLETIC CLUB')); heroCopy.appendChild(textNode('Strength, pace, and recovery for real life.', 38, 'bold', C.ink, 720)); heroCopy.appendChild(textNode('Discover programs, meet the team, and join a fictional club experience. Booking lives in the separate member workspace.', 15, 'regular', C.muted, 660)); const heroActions = auto('HORIZONTAL', 12, 0); heroActions.appendChild(await kitButton('View schedule', 'secondary', 160)); heroActions.appendChild(await kitButton('Join now', 'primary', 160)); heroCopy.appendChild(heroActions);
-  const heroPanel = auto('VERTICAL', 12, 24); heroPanel.resize(500, 250); heroPanel.counterAxisSizingMode = 'FIXED'; heroPanel.fills = [paint(C.blueSoft)]; heroPanel.cornerRadius = 6; heroPanel.appendChild(textNode('YOUR WEEK AT PRACTICE', 11, 'bold', C.blue, 452)); heroPanel.appendChild(textNode('18 guided sessions', 26, 'bold', C.ink, 452)); heroPanel.appendChild(textNode('Strength, mobility, intervals, and open training spaces.', 13, 'regular', C.muted, 452)); heroPanel.appendChild(await kitButton('Browse schedule', 'secondary', 180)); hero.appendChild(heroCopy); hero.appendChild(heroPanel); base.content.appendChild(hero);
-  const stats = box(1312, 78, C.dark, null, 0); const statsText = textNode('OPEN EVERY DAY        ·        GUIDED PROGRAMS        ·        BOOK IN THE APP        ·        DEMO DATA', 12, 'bold', C.white, 1260, 'CENTER'); statsText.x = 26; statsText.y = 29; stats.appendChild(statsText); base.content.appendChild(stats);
-
-  const sectionHeading = (eyebrow, title, body) => { const block = auto('VERTICAL', 6, 0); block.appendChild(textNode(eyebrow.toUpperCase(), 11, 'bold', C.blue, 1312)); block.appendChild(textNode(title, 28, 'bold', C.ink, 1040)); block.appendChild(textNode(body, 13, 'regular', C.muted, 920)); return block; };
-  base.content.appendChild(sectionHeading('Programs', 'A routine that moves with you.', 'Explore strength, pace, mobility, and functional-training formats.'));
-  const activityRow = auto('HORIZONTAL', 16, 0); [['Strength', 'Technique, progression, and load.'], ['Pace', 'Intervals for capacity and energy.'], ['Reset', 'Mobility, control, and recovery.'], ['Open Floor', 'Train at your own pace.']].forEach(([title, body]) => { const card = auto('VERTICAL', 10, 18); card.resize(316, 180); card.counterAxisSizingMode = 'FIXED'; card.fills = [paint(C.white)]; card.strokes = [paint(C.border)]; card.cornerRadius = 6; const placeholder = box(280, 62, C.canvas, C.line, 4); const label = textNode('PROGRAM', 10, 'bold', C.muted); label.x = 12; label.y = 24; placeholder.appendChild(label); card.appendChild(placeholder); card.appendChild(textNode(title, 18, 'bold', C.ink, 280)); card.appendChild(textNode(body, 12, 'regular', C.muted, 280)); activityRow.appendChild(card); }); base.content.appendChild(activityRow);
-
-  base.content.appendChild(sectionHeading('Services', 'Support before, during, and after training.', 'The experience combines an initial assessment, training guidance, follow-up, and recovery.'));
-  const serviceRow = auto('HORIZONTAL', 16, 0); [['Initial assessment', 'Goals and starting point.'], ['Training plan', 'A visible route for your progress.'], ['Recovery', 'Spaces and habits to reset.']].forEach(([title, body]) => { const card = auto('VERTICAL', 8, 20); card.resize(426, 142); card.counterAxisSizingMode = 'FIXED'; card.fills = [paint(C.blueSoft)]; card.cornerRadius = 6; card.appendChild(textNode(title, 16, 'bold', C.ink, 386)); card.appendChild(textNode(body, 12, 'regular', C.muted, 386)); card.appendChild(textNode('Explore service →', 11, 'bold', C.blue, 386)); serviceRow.appendChild(card); }); base.content.appendChild(serviceRow);
-
-  base.content.appendChild(sectionHeading('Facilities', 'Spaces designed for training and recovery.', 'A quick view of the spaces in this fictional club.'));
-  const facilityGrid = auto('HORIZONTAL', 16, 0); [['Strength room', 420], ['Pace studio', 280], ['Mobility', 280], ['Recovery', 280]].forEach(([name, width]) => { const card = box(width, 214, C.canvas, C.line, 6); const placeholder = textNode(`IMAGE\n${name.toUpperCase()}`, 12, 'bold', C.muted, width - 32, 'CENTER'); placeholder.x = 16; placeholder.y = 88; card.appendChild(placeholder); facilityGrid.appendChild(card); }); base.content.appendChild(facilityGrid);
-
-  base.content.appendChild(sectionHeading('Pricing', 'Choose the way of training that fits you.', 'Fictional plans used to define product hierarchy and comparison.'));
-  const priceRow = auto('HORIZONTAL', 16, 0); const plans = [['Base', 'Essential access', '$39 / month'], ['Complete', 'Guided sessions', '$59 / month'], ['Training+', 'Complete support', '$79 / month']];
-  for (const [index, [name, detail, price]] of plans.entries()) { const card = auto('VERTICAL', 10, 20); card.resize(426, 245); card.counterAxisSizingMode = 'FIXED'; card.fills = [paint(index === 1 ? C.dark : C.white)]; card.strokes = [paint(index === 1 ? C.dark : C.border)]; card.cornerRadius = 6; const ink = index === 1 ? C.white : C.ink; card.appendChild(textNode(name, 18, 'bold', ink, 386)); card.appendChild(textNode(detail, 12, 'regular', index === 1 ? C.canvas : C.muted, 386)); card.appendChild(textNode(price, 28, 'bold', ink, 386)); card.appendChild(textNode('✓ Schedule and availability\n✓ Profile and bookings\n✓ Fictional data', 11, 'regular', index === 1 ? C.canvas : C.muted, 386)); card.appendChild(await kitButton('View plan', index === 1 ? 'primary' : 'secondary', 150)); priceRow.appendChild(card); }
-  base.content.appendChild(priceRow);
-
-  base.content.appendChild(sectionHeading('Team', 'Support is part of training.', 'Fictional profiles define how the team and specialties are presented.'));
-  const teamRow = auto('HORIZONTAL', 16, 0); [['Maya Torres', 'Strength'], ['Daniel Ross', 'Pace'], ['Sofia Mendes', 'Mobility'], ['Lucas Vega', 'Member support']].forEach(([name, role]) => { const card = auto('VERTICAL', 8, 16); card.resize(316, 174); card.counterAxisSizingMode = 'FIXED'; card.fills = [paint(C.white)]; card.strokes = [paint(C.border)]; card.cornerRadius = 6; const avatar = box(72, 72, C.canvas, C.line, 999); const avatarText = textNode('PHOTO', 10, 'bold', C.muted); avatarText.x = 18; avatarText.y = 28; avatar.appendChild(avatarText); card.appendChild(avatar); card.appendChild(textNode(name, 15, 'bold', C.ink, 280)); card.appendChild(textNode(role, 11, 'regular', C.muted, 280)); teamRow.appendChild(card); }); base.content.appendChild(teamRow);
-
-  base.content.appendChild(sectionHeading('Contact', 'Get to know the club before you start.', 'Fictional information for hours, location, accessibility, and first contact.'));
-  const contactRow = auto('HORIZONTAL', 16, 0); const map = box(650, 196, C.canvas, C.line, 6); const mapText = textNode('MAP / LOCATION\nFICTIONAL DATA', 12, 'bold', C.muted, 610, 'CENTER'); mapText.x = 20; mapText.y = 82; map.appendChild(mapText); const contact = auto('VERTICAL', 8, 20); contact.resize(646, 196); contact.counterAxisSizingMode = 'FIXED'; contact.fills = [paint(C.white)]; contact.strokes = [paint(C.border)]; contact.cornerRadius = 6; contact.appendChild(textNode('Practice Athletic Club', 17, 'bold', C.ink, 606)); contact.appendChild(textNode('100 Training Avenue · Fictional City\nMon–Sun · 06:00–22:00\ncontact@practice.example.invalid', 12, 'regular', C.muted, 606)); contact.appendChild(await kitButton('Contact the club', 'secondary', 190)); contactRow.appendChild(map); contactRow.appendChild(contact); base.content.appendChild(contactRow);
-
-  const finalCta = auto('VERTICAL', 12, 28); finalCta.resize(1312, 204); finalCta.counterAxisSizingMode = 'FIXED'; finalCta.fills = [paint(C.blueSoft)]; finalCta.cornerRadius = 8; finalCta.appendChild(textNode('You have the plan. Your first session is next.', 27, 'bold', C.ink, 1256)); finalCta.appendChild(textNode('Join now to select a fictional plan. Already a member? The Join page gives you a clear path to sign in.', 13, 'regular', C.muted, 1256)); finalCta.appendChild(await kitButton('Join now', 'primary', 170)); base.content.appendChild(finalCta);
-  const footer = box(1312, 260, C.dark, null, 0); const footerTitle = textNode('PRACTICE ATHLETIC CLUB', 17, 'bold', C.white); footerTitle.x = 28; footerTitle.y = 28; footer.appendChild(footerTitle); const footerNav = textNode('Explore\nHome\nPrograms\nServices\nFacilities\nPricing\n\nClub\nTeam\nContact\nSchedule\nAbout Us\n\nLegal\nPrivacy\nTerms\nLiability waiver\nCookie preferences', 12, 'regular', C.canvas, 720); footerNav.x = 28; footerNav.y = 68; footer.appendChild(footerNav); const footerNote = textNode('Fictional portfolio project. No real or production data.\n© Practice Athletic Club', 11, 'regular', C.muted, 430); footerNote.x = 840; footerNote.y = 184; footer.appendChild(footerNote); base.content.appendChild(footer);
-
-  base = createDesktopBase('D01 · Schedule / Ready', 'Find your next session', 'Filter the fictional schedule by date, program, trainer, and availability.');
-  screens.schedule = base.screen;
-  const filters = auto('HORIZONTAL', 12, 0); filters.appendChild(field('Date', 'This week', 210)); filters.appendChild(field('Program', 'All programs', 210)); filters.appendChild(field('Trainer', 'All trainers', 210)); filters.appendChild(field('Availability', 'Any availability', 210)); base.content.appendChild(filters);
-  base.content.appendChild(textNode('Tuesday, September 22', 16, 'bold', C.ink));
-  const row = auto('HORIZONTAL', 16, 0);
-  const card1 = await sessionCard(session, 420); const card2 = await sessionCard(full, 420); const card3 = await sessionCard({ ...session, title: 'Reset Mobility', program: 'RESET', time: 'Tue · 6:00 PM', trainer: 'Nora Silva', spots: '8 of 14 spots left' }, 420);
-  row.appendChild(card1); row.appendChild(card2); row.appendChild(card3); base.content.appendChild(row);
-  const viewButton = await kitButton('View session', 'primary', 160); card1.appendChild(viewButton);
-
-  base = createDesktopBase('D02 · Session Details / Public', 'Session details', 'Review time, trainer, capacity, status, and the configured cutoff. Booking is completed in the separate member workspace.');
-  screens.details = base.screen; const details = detailsPanel(720, session); base.content.appendChild(details); const book = await kitButton('Join to book', 'primary', 180); details.appendChild(book);
-
-  base = createDesktopBase('D03 · Join / Membership Decision', 'Join Practice Athletic Club', 'Choose a fictional plan to create a demo member profile, or sign in if you are already a member.');
-  screens.auth = base.screen; const auth = auto('VERTICAL', 12, 24); auth.resize(720, 100); auth.counterAxisSizingMode = 'FIXED'; auth.primaryAxisSizingMode = 'AUTO'; auth.fills = [paint(C.white)]; auth.strokes = [paint(C.border)]; auth.cornerRadius = 8;
-  auth.appendChild(await kitBadge('RETURN TO LOWER BODY TEMPO'));
-  auth.appendChild(textNode('New to Practice?', 20, 'bold', C.ink, 672));
-  auth.appendChild(alertBox('Fictional portfolio enrollment', 'Plan selection creates a demo membership only. No payment, credit card, or real subscription is collected.', 'info', 672));
-  for (const persona of ['Base · Essential access · $39/month', 'Complete · Guided sessions · $59/month', 'Training+ · Complete support · $79/month']) {
-    const personaRow = box(672, 56, C.white, C.border, 5); const t = textNode(persona, 12, 'medium', C.ink); t.x = 16; t.y = 19; personaRow.appendChild(t); auth.appendChild(personaRow);
+async function wfPrepareResources() {
+  wfButtonSource = null;
+  // Inspect only likely kit pages, never every previous generated version.
+  const pages = figma.root.children.filter(p => /components|webby|headers|ui kit/i.test(p.name) && !/^FitOps Wireframes/.test(p.name));
+  let preferred = null;
+  for (const page of pages) {
+    await page.loadAsync();
+    const candidates = page.findAllWithCriteria({types:['COMPONENT']});
+    if (!wfButtonSource) wfButtonSource = candidates.find(n => /^button$/i.test(n.name)) || candidates.find(n => /button/i.test(n.parent?.name || '') && /primary|default/i.test(n.name));
+    const sample = page.findAllWithCriteria({types:['TEXT']}).find(n => n.fontName !== figma.mixed);
+    if (sample && !preferred) preferred = sample.fontName.family;
   }
-  const continueButton = await kitButton('Select a plan and register', 'primary', 240); auth.appendChild(continueButton); auth.appendChild(await kitButton('Already a member? Sign in', 'secondary', 240)); base.content.appendChild(auth);
-
-  base = createDesktopBase('D04 · Booking / Confirmed', 'Booking confirmed', 'The authoritative state has refreshed and the reservation is now visible in My bookings.');
-  screens.confirmed = base.screen; base.content.appendChild(alertBox('Confirmed reservation', 'Lower Body Tempo · Tuesday at 7:00 AM · Request completed successfully.', 'success', 760)); base.content.appendChild(detailsPanel(760, { ...session, spots: '3 of 16 spots left' })); base.content.appendChild(await kitButton('View My bookings', 'primary', 190));
-
-  base = createDesktopBase('D05 · Session Details / Full', 'Session is full', 'A booking is not promised from stale availability. The member may join the FIFO waitlist.');
-  screens.full = base.screen; const fullPanel = detailsPanel(720, full); fullPanel.appendChild(alertBox('No confirmed spots remain', 'Join the waitlist once. Your position is assigned after the server rechecks capacity.', 'warning', 680)); const joinButton = await kitButton('Join waitlist', 'primary', 180); fullPanel.appendChild(joinButton); base.content.appendChild(fullPanel);
-
-  base = createDesktopBase('D06 · Waitlist / Joined', 'You joined the waitlist', 'Position is deterministic and may change only after server-authoritative resolution.');
-  screens.waitlist = base.screen; const wait = auto('VERTICAL', 12, 24); wait.resize(760, 100); wait.counterAxisSizingMode = 'FIXED'; wait.primaryAxisSizingMode = 'AUTO'; wait.fills = [paint(C.white)]; wait.strokes = [paint(C.border)]; wait.cornerRadius = 8; wait.appendChild(await kitBadge('WAITLIST POSITION #2', 'warning')); wait.appendChild(textNode(full.title, 22, 'bold', C.ink, 712)); wait.appendChild(textNode(`${full.time} · ${full.trainer}`, 12, 'regular', C.muted, 712)); wait.appendChild(alertBox('Automatic promotion policy', 'When a spot is released, the first eligible waiting member is promoted transactionally.', 'info', 712)); const leave = await kitButton('Leave waitlist', 'secondary', 170); wait.appendChild(leave); base.content.appendChild(wait);
-
-  base = createDesktopBase('D07 · My Bookings / Ready', 'My bookings', 'Upcoming confirmed reservations and waiting entries for the signed-in fictional member.', 'Member');
-  screens.myBookings = base.screen; const tabs = auto('HORIZONTAL', 8, 0); tabs.appendChild(await kitBadge('CONFIRMED 1', 'success')); tabs.appendChild(await kitBadge('WAITLIST 1', 'warning')); base.content.appendChild(tabs);
-  const booking = await sessionCard(session, 720); booking.appendChild(await kitBadge('CONFIRMED', 'success')); const cancel = await kitButton('Cancel reservation', 'secondary', 190); booking.appendChild(cancel); base.content.appendChild(booking);
-  const waiting = await sessionCard(full, 720); waiting.appendChild(await kitBadge('POSITION #2', 'warning')); waiting.appendChild(await kitButton('Leave waitlist', 'secondary', 170)); base.content.appendChild(waiting);
-
-  base = createDesktopBase('D16 · Member Dashboard / Home', 'Welcome back, Alex', 'Your protected member home brings together your next class, booking status, and quick actions.', 'Member');
-  screens.dashboard = base.screen; base.content.appendChild(alertBox('Next class', 'Lower Body Tempo · Tuesday at 7:00 AM · Confirmed. Arrive 10 minutes early.', 'success', 760)); base.content.appendChild(alertBox('Waitlist promotion', 'You were promoted to Pace Intervals. Review the confirmed reservation in My bookings.', 'success', 760)); const dashboardActions = auto('HORIZONTAL', 12, 0); dashboardActions.appendChild(await kitButton('Explore schedule', 'primary', 180)); dashboardActions.appendChild(await kitButton('View My bookings', 'secondary', 190)); base.content.appendChild(dashboardActions); base.content.appendChild(alertBox('Membership', 'Complete plan · Fictional demo enrollment · No payment information is stored.', 'info', 760));
-
-  base = createDesktopBase('D08 · Cancellation / Confirmation', 'My bookings', 'Cancellation remains pending until the member confirms and the server rechecks the cutoff.', 'Member');
-  screens.cancelDialog = base.screen; base.content.appendChild(await sessionCard(session, 720)); const dialog = auto('VERTICAL', 12, 24); dialog.resize(620, 100); dialog.counterAxisSizingMode = 'FIXED'; dialog.primaryAxisSizingMode = 'AUTO'; dialog.fills = [paint(C.white)]; dialog.strokes = [paint(C.line)]; dialog.cornerRadius = 8; dialog.appendChild(textNode('Cancel this reservation?', 20, 'bold', C.ink, 572)); dialog.appendChild(textNode('The reservation will remain active until cancellation commits. If a waiting member is eligible, the released spot will be transferred in the same transaction.', 12, 'regular', C.ink, 572)); dialog.appendChild(alertBox('Configured cutoff', 'Cancellation is currently permitted. The server validates this again on submit.', 'warning', 572)); const actions = auto('HORIZONTAL', 12, 0); actions.appendChild(await kitButton('Keep reservation', 'secondary', 170)); const confirmCancel = await kitButton('Confirm cancellation', 'primary', 190); actions.appendChild(confirmCancel); dialog.appendChild(actions); base.content.appendChild(dialog);
-
-  base = createDesktopBase('D09 · Cancellation / Success', 'Reservation cancelled', 'The refreshed state shows the committed result without changing maximum capacity.', 'Member');
-  screens.cancelSuccess = base.screen; base.content.appendChild(alertBox('Cancellation completed', 'Your reservation was cancelled. The first eligible waiting member was promoted.', 'success', 760)); base.content.appendChild(await sessionCard(full, 720)); base.content.appendChild(await kitButton('Browse schedule', 'primary', 170));
-
-  base = createDesktopBase('D10 · Domain and Failure States', 'Recoverable states', 'Every state preserves context, identifies the cause, and offers a safe next action.');
-  screens.failures = base.screen; base.content.appendChild(alertBox('Session expired · 401', 'Re-authenticate in place, then replay the preserved request.', 'danger', 820)); base.content.appendChild(alertBox('Membership inactive · 403', 'Booking is unavailable for this fictional profile. Return to the permitted member experience.', 'warning', 820)); base.content.appendChild(alertBox('Booking conflict · 409', 'This session overlaps another confirmed reservation. Open the conflicting booking.', 'warning', 820)); base.content.appendChild(alertBox('Configured cutoff passed · 422', 'This action is no longer available. Browse other sessions or return to My bookings.', 'danger', 820)); base.content.appendChild(alertBox('Unexpected server failure', 'Nothing was changed. Request ID: demo-7F3A. Retry the preserved request safely.', 'danger', 820));
-
-  base = createDesktopBase('D11 · Sign In / Existing Member', 'Sign in', 'This path is for an existing member or a direct protected-route visit; return to Join to create a fictional member profile.');
-  screens.registration = base.screen; const authCols = auto('HORIZONTAL', 32, 0); const credentials = auto('VERTICAL', 12, 20); credentials.resize(560, 100); credentials.counterAxisSizingMode = 'FIXED'; credentials.primaryAxisSizingMode = 'AUTO'; credentials.fills = [paint(C.white)]; credentials.strokes = [paint(C.border)]; credentials.cornerRadius = 8; credentials.appendChild(textNode('Credentials', 18, 'bold', C.ink)); credentials.appendChild(field('Email', 'alex.member@example.invalid', 520)); credentials.appendChild(field('Password', '••••••••••••', 520)); credentials.appendChild(await kitButton('Sign in', 'primary', 180)); const register = auto('VERTICAL', 12, 20); register.resize(650, 100); register.counterAxisSizingMode = 'FIXED'; register.primaryAxisSizingMode = 'AUTO'; register.fills = [paint(C.white)]; register.strokes = [paint(C.border)]; register.cornerRadius = 8; register.appendChild(textNode('Member registration', 18, 'bold', C.ink)); register.appendChild(field('Name', 'Fictional member name', 610)); register.appendChild(checkbox('I agree to the Terms of Service and Privacy Policy.', true, 610)); register.appendChild(checkbox('I confirm physical readiness and sign the Liability Waiver.', true, 610)); register.appendChild(await kitButton('Create demo account', 'primary', 210)); authCols.appendChild(credentials); authCols.appendChild(register); base.content.appendChild(authCols);
-
-  base = createDesktopBase('D12 · Trainer / Assigned Sessions', 'Assigned sessions', 'Read-only access: trainers see only their assigned upcoming sessions and attendee counts.', 'Trainer');
-  screens.trainer = base.screen; base.content.appendChild(alertBox('Read-only role', 'Editing schedules, capacity, bookings, and attendees is unavailable to trainers.', 'info', 760)); base.content.appendChild(await sessionCard({ ...session, spots: '12 confirmed attendees' }, 760)); base.content.appendChild(await sessionCard({ ...full, title: 'Strength Foundations', full: false, spots: '9 confirmed attendees' }, 760));
-
-  base = createDesktopBase('D13 · Admin / Session Manager', 'Session manager', 'Operational list with confirmed and waiting counts. Every action is server-authorized.', 'Administrator');
-  screens.admin = base.screen; const adminActions = auto('HORIZONTAL', 12, 0); adminActions.appendChild(field('Date', 'This week', 220)); adminActions.appendChild(field('Program', 'All programs', 220)); adminActions.appendChild(await kitButton('Create session', 'primary', 170)); base.content.appendChild(adminActions); const table = auto('VERTICAL', 0, 0); table.resize(1040, 100); table.counterAxisSizingMode = 'FIXED'; table.primaryAxisSizingMode = 'AUTO'; const rows = [['SESSION','TRAINER','TIME','CONFIRMED','WAITING','ACTION'],['Lower Body Tempo','Marcus Vance','Tue 7:00 AM','12 / 16','0','Edit · Participants'],['Pace Intervals','Lena Ortiz','Wed 6:30 PM','12 / 12','4','Edit · Participants'],['Reset Mobility','Nora Silva','Thu 5:30 PM','6 / 14','0','Edit · Participants']]; rows.forEach((cells,index)=>{ const rowFrame=box(1040,index===0?44:54,index===0?C.dark:C.white,C.border,0); const t=textNode(cells.join('        '),11,index===0?'bold':'regular',index===0?C.white:C.ink,1008); t.x=16;t.y=index===0?14:18;rowFrame.appendChild(t);table.appendChild(rowFrame);}); base.content.appendChild(table);
-
-  base = createDesktopBase('D14 · Admin / Edit and Participants', 'Edit session', 'Validation preserves entered values and prevents trainer overlap or capacity below confirmed bookings.', 'Administrator');
-  screens.adminForm = base.screen; const formRow = auto('HORIZONTAL', 24, 0); const form = auto('VERTICAL', 10, 18); form.resize(520, 100); form.counterAxisSizingMode = 'FIXED'; form.primaryAxisSizingMode = 'AUTO'; form.fills=[paint(C.white)];form.strokes=[paint(C.border)];form.cornerRadius=8; form.appendChild(field('Program','Pace Intervals',484));form.appendChild(field('Trainer','Lena Ortiz',484));form.appendChild(field('Start','Wed · 6:30 PM',484));form.appendChild(field('Capacity','10',484));form.appendChild(alertBox('Capacity conflict','Capacity cannot be reduced below 12 confirmed bookings.','danger',484));form.appendChild(await kitButton('Save changes','primary',170)); const roster=auto('VERTICAL',10,18);roster.resize(520,100);roster.counterAxisSizingMode='FIXED';roster.primaryAxisSizingMode='AUTO';roster.fills=[paint(C.white)];roster.strokes=[paint(C.border)];roster.cornerRadius=8;roster.appendChild(textNode('Participants',18,'bold',C.ink));roster.appendChild(textNode('Confirmed members · 12\nAlex Morgan\nJamie Cruz\nTaylor Reed\n\nOrdered waitlist · 4\n#1 Jordan Kim\n#2 Casey Brooks\n#3 Morgan Bell\n#4 Drew Park',12,'regular',C.ink,484));formRow.appendChild(form);formRow.appendChild(roster);base.content.appendChild(formRow);
-
-  Object.assign(screens, await buildPublicCoverageDesktop());
-  return screens;
-}
-
-async function buildMobileScreens(page) {
-  const session = { title: 'Lower Body Tempo', program: 'STRENGTH', time: 'Tue · 7:00 AM', duration: '45 min', trainer: 'Marcus Vance', spots: '4 spots left', cutoff: '60 minutes before start' };
-  const full = { ...session, title: 'Pace Intervals', program: 'PACE', time: 'Wed · 6:30 PM', trainer: 'Lena Ortiz', spots: 'Full', full: true };
-  const screens = {};
-
-  let base = createMobileBase('M00 · Landing / Android Complete', 'Practice Athletic Club', 'A fictional public discovery experience. Joining and booking happen in a separate member workspace.'); screens.landing = base.screen; base.screen.resize(390, 5000); base.bottom.y = 4936; const mobileHero = auto('VERTICAL', 12, 20); mobileHero.resize(358, 280); mobileHero.counterAxisSizingMode = 'FIXED'; mobileHero.fills = [paint(C.white)]; mobileHero.strokes = [paint(C.border)]; mobileHero.cornerRadius = 8; mobileHero.appendChild(await kitBadge('PRACTICE ATHLETIC CLUB')); mobileHero.appendChild(textNode('Train with purpose.', 30, 'bold', C.ink, 318)); mobileHero.appendChild(textNode('Strength, pace, and recovery for real life.', 13, 'regular', C.muted, 318)); const mobileHeroActions = auto('HORIZONTAL', 10, 0); mobileHeroActions.appendChild(await kitButton('Schedule', 'secondary', 150)); mobileHeroActions.appendChild(await kitButton('Join now', 'primary', 150)); mobileHero.appendChild(mobileHeroActions); base.content.appendChild(mobileHero); const mobileSection = (eyebrow, title, body) => { const section = auto('VERTICAL', 5, 0); section.appendChild(textNode(eyebrow.toUpperCase(), 10, 'bold', C.blue, 358)); section.appendChild(textNode(title, 22, 'bold', C.ink, 358)); section.appendChild(textNode(body, 12, 'regular', C.muted, 358)); return section; }; base.content.appendChild(mobileSection('Programs', 'A routine that moves with you.', 'Strength, pace, reset, and open floor.')); for (const program of ['Strength · Technique and progression', 'Pace · Capacity and energy', 'Reset · Mobility and control', 'Open Floor · At your own pace']) { const card = box(358, 56, C.white, C.border, 5); const label = textNode(program, 12, 'medium', C.ink); label.x = 14; label.y = 20; card.appendChild(label); base.content.appendChild(card); } base.content.appendChild(mobileSection('Services', 'Guidance and care throughout.', 'Assessment, training plan, and recovery.')); for (const service of ['Initial assessment', 'Training plan', 'Recovery']) { const card = box(358, 54, C.blueSoft, null, 5); const label = textNode(`${service}  →`, 12, 'bold', C.ink); label.x = 14; label.y = 19; card.appendChild(label); base.content.appendChild(card); } base.content.appendChild(mobileSection('Facilities', 'Spaces that support your training.', 'Fictional spaces for strength, pace, mobility, and recovery.')); const mobileFacilities = box(358, 180, C.canvas, C.line, 6); const facilityLabel = textNode('FACILITIES GALLERY\nREFERENCE IMAGES', 11, 'bold', C.muted, 318, 'CENTER'); facilityLabel.x = 20; facilityLabel.y = 76; mobileFacilities.appendChild(facilityLabel); base.content.appendChild(mobileFacilities); base.content.appendChild(mobileSection('Pricing', 'Choose your training approach.', 'Fictional plans for comparison.')); for (const plan of ['Base · $39 / month', 'Complete · $59 / month', 'Training+ · $79 / month']) { const card = box(358, 66, C.white, C.border, 5); const label = textNode(plan, 14, 'bold', C.ink); label.x = 14; label.y = 15; card.appendChild(label); const sub = textNode('View benefits →', 11, 'medium', C.blue); sub.x = 14; sub.y = 39; card.appendChild(sub); base.content.appendChild(card); } base.content.appendChild(mobileSection('Team', 'You do not train alone.', 'Meet profiles and specialties.')); for (const person of ['Maya · Strength', 'Daniel · Pace', 'Sofia · Mobility']) { const card = box(358, 52, C.white, C.border, 5); const label = textNode(person, 12, 'medium', C.ink); label.x = 14; label.y = 18; card.appendChild(label); base.content.appendChild(card); } base.content.appendChild(mobileSection('Contact', 'Visit the club.', 'Location, hours, and first contact.')); const mobileContact = auto('VERTICAL', 8, 16); mobileContact.resize(358, 170); mobileContact.counterAxisSizingMode = 'FIXED'; mobileContact.fills = [paint(C.white)]; mobileContact.strokes = [paint(C.border)]; mobileContact.cornerRadius = 6; mobileContact.appendChild(textNode('Practice Athletic Club', 16, 'bold', C.ink, 326)); mobileContact.appendChild(textNode('Fictional City · Mon–Sun 06:00–22:00\ncontact@practice.example.invalid', 11, 'regular', C.muted, 326)); mobileContact.appendChild(await kitButton('Contact', 'secondary', 150)); base.content.appendChild(mobileContact); const mobileCta = auto('VERTICAL', 10, 18); mobileCta.resize(358, 154); mobileCta.counterAxisSizingMode = 'FIXED'; mobileCta.fills = [paint(C.blueSoft)]; mobileCta.cornerRadius = 6; mobileCta.appendChild(textNode('Your first session starts here.', 19, 'bold', C.ink, 322)); mobileCta.appendChild(await kitButton('Join now', 'primary', 180)); base.content.appendChild(mobileCta); const mobileFooter = box(358, 190, C.dark, null, 0); const mobileFooterText = textNode('PRACTICE ATHLETIC CLUB\n\nHome · Programs · Schedule\nServices · Facilities · Pricing\nTeam · Contact · About Us · Privacy\nTerms · Liability waiver · Cookie preferences\n\nFictional portfolio project', 11, 'regular', C.canvas, 318); mobileFooterText.x = 20; mobileFooterText.y = 20; mobileFooter.appendChild(mobileFooterText); base.content.appendChild(mobileFooter);
-  base = createMobileBase('M01 · Schedule / Ready', 'Schedule', 'Filter and choose a fictional session.'); screens.schedule = base.screen; base.content.appendChild(field('Date','This week',358)); base.content.appendChild(await sessionCard(session,358,true)); base.content.appendChild(await sessionCard(full,358,true)); const view = await kitButton('View Lower Body Tempo','primary',220); base.content.appendChild(view);
-  base = createMobileBase('M02 · Session Details / Public','Lower Body Tempo','Review capacity and configured cutoff. Booking continues in the member workspace.'); screens.details=base.screen; const mobileDetails=detailsPanel(358,session); const book=await kitButton('Join to book','primary',326);mobileDetails.appendChild(book);base.content.appendChild(mobileDetails);
-  base=createMobileBase('M03 · Join / Membership Decision','Join Practice','Select a fictional plan, or sign in if you are already a member. No payment is collected.');screens.auth=base.screen;base.content.appendChild(await kitBadge('RETURN TO SESSION'));for(const person of ['Base · $39/month','Complete · $59/month','Training+ · $79/month']){const p=box(358,54,C.white,C.border,5);const t=textNode(person,12,'medium',C.ink);t.x=14;t.y=18;p.appendChild(t);base.content.appendChild(p);}const continueButton=await kitButton('Select plan and register','primary',240);base.content.appendChild(continueButton);base.content.appendChild(await kitButton('Already a member? Sign in','secondary',250));
-  base=createMobileBase('M04 · Booking / Confirmed','Booking confirmed','Authoritative state refreshed successfully.');screens.confirmed=base.screen;base.content.appendChild(alertBox('Confirmed','Lower Body Tempo · Tue at 7:00 AM','success',358));base.content.appendChild(await sessionCard({...session,spots:'3 spots left'},358,true));base.content.appendChild(await kitButton('View My bookings','primary',220));
-  base=createMobileBase('M05 · Waitlist / Join and Status','Session is full','Join once and receive a deterministic FIFO position.');screens.waitlist=base.screen;base.content.appendChild(await sessionCard(full,358,true));base.content.appendChild(alertBox('Position assigned after submit','The server rechecks capacity and duplicates.','warning',358));const join=await kitButton('Join waitlist','primary',220);base.content.appendChild(join);base.content.appendChild(await kitBadge('RESULT · POSITION #2','warning'));
-  base=createMobileBase('M06 · My Bookings / Ready','My bookings','Confirmed reservations and waiting entries.');screens.myBookings=base.screen;base.content.appendChild(await sessionCard(session,358,true));const cancel=await kitButton('Cancel reservation','secondary',220);base.content.appendChild(cancel);base.content.appendChild(await sessionCard(full,358,true));base.content.appendChild(await kitButton('Leave waitlist','secondary',200));
-  base=createMobileBase('M16 · Member Dashboard / Home','Welcome back, Alex','Your protected member home shows your next class and quick actions.');screens.dashboard=base.screen;base.content.appendChild(alertBox('Next class','Lower Body Tempo · Tuesday at 7:00 AM · Confirmed.','success',358));base.content.appendChild(alertBox('Waitlist promotion','You were promoted to Pace Intervals. Review My bookings.','success',358));base.content.appendChild(await kitButton('Explore schedule','primary',240));base.content.appendChild(await kitButton('View My bookings','secondary',240));base.content.appendChild(alertBox('Membership','Complete plan · Fictional demo enrollment · No payment stored.','info',358));
-  base=createMobileBase('M07 · Cancellation / Confirm','Cancel reservation?','The booking remains active until commit.');screens.cancel=base.screen;base.content.appendChild(await sessionCard(session,358,true));base.content.appendChild(alertBox('Promotion may occur','The first eligible waiting member may receive the released spot.','warning',358));const confirm=await kitButton('Confirm cancellation','primary',230);base.content.appendChild(confirm);base.content.appendChild(await kitButton('Keep reservation','secondary',210));
-  base=createMobileBase('M08 · Cancellation / Success','Reservation cancelled','The updated state is visible after commit.');screens.success=base.screen;base.content.appendChild(alertBox('Completed','An eligible waiting member was promoted.','success',358));base.content.appendChild(await kitButton('Browse schedule','primary',190));
-  base=createMobileBase('M09 · Failure States','Needs attention','Context is preserved and recovery is explicit.');screens.failures=base.screen;base.content.appendChild(alertBox('Session expired · 401','Re-authenticate in place and replay the request.','danger',358));base.content.appendChild(alertBox('Booking conflict · 409','Open the conflicting reservation.','warning',358));base.content.appendChild(alertBox('Cutoff passed · 422','Browse other sessions or return to My bookings.','danger',358));base.content.appendChild(alertBox('Server failure','Request ID demo-7F3A · Retry the preserved request safely.','danger',358));
-  base=createMobileBase('M10 · Sign In / Existing Member','Sign in','Use this path only if you are already a member or reached a protected route directly.');screens.register=base.screen;base.content.appendChild(field('Email','member@example.invalid',358));base.content.appendChild(field('Password','••••••••',358));base.content.appendChild(await kitButton('Sign in','primary',220));base.content.appendChild(await kitButton('Back to Join','secondary',220));
-  base=createMobileBase('M11 · Trainer / Assigned Sessions','Assigned sessions','Read-only trainer access.');screens.trainer=base.screen;base.content.appendChild(alertBox('Read only','No editing in version one.','info',358));base.content.appendChild(await sessionCard({...session,spots:'12 attendees'},358,true));base.content.appendChild(await sessionCard({...full,full:false,spots:'9 attendees'},358,true));
-  base=createMobileBase('M12 · Admin / Sessions','Session manager','Authorized operational actions.');screens.admin=base.screen;base.content.appendChild(await kitButton('Create session','primary',190));base.content.appendChild(await sessionCard({...session,spots:'12 confirmed · 0 waiting'},358,true));base.content.appendChild(await sessionCard({...full,spots:'12 confirmed · 4 waiting'},358,true));base.content.appendChild(alertBox('Validation','Capacity cannot fall below confirmed bookings.','warning',358));
-
-  Object.assign(screens, await buildPublicCoverageMobile());
-  return screens;
-}
-
-function place(node, x, y) { node.x = x; node.y = y; return node; }
-
-async function createCover(page, pageName) {
-  const cover = box(1440, 900, C.white, C.border, 0); cover.name = '00 · Wireframe Index'; page.appendChild(cover);
-  const kicker = textNode('FITOPS · PRACTICE ATHLETIC CLUB', 12, 'bold', C.blue); kicker.x = 72; kicker.y = 72; cover.appendChild(kicker);
-  const title = textNode('Low-fidelity product wireframes', 44, 'bold', C.ink, 920); title.x = 72; title.y = 112; cover.appendChild(title);
-  const subtitle = textNode('Translated from the seven-page FitOps User Flows.drawio architecture into reusable desktop and mobile interface states.', 17, 'regular', C.muted, 920); subtitle.x = 72; subtitle.y = 180; cover.appendChild(subtitle);
-  const note = alertBox('Status: exploratory design evidence', 'Neutral WebbyFrames kit styling is used for structure only. This page does not approve the Practice Athletic Club brand system.', 'info', 920); note.x = 72; note.y = 250; cover.appendChild(note);
-  const columns = [
-    ['MEMBER JOURNEY','Schedule and filters\nSession details\nDemo sign-in\nBooking confirmation\nFull-session waitlist\nMy bookings\nCancellation and recovery'],
-    ['AUTH & SECURITY','Credentials and demo personas\nRegistration consent\nSession-expiry recovery\nStable 401/403/409/422 states'],
-    ['ROLE COVERAGE','Trainer read-only assignments\nAdministrator session manager\nCreate/edit validation\nParticipants and ordered waitlist']
-  ];
-  columns.forEach((item,index)=>{const card=auto('VERTICAL',10,20);card.resize(400,300);card.counterAxisSizingMode='FIXED';card.fills=[paint(C.bg)];card.strokes=[paint(C.border)];card.cornerRadius=8;card.appendChild(textNode(item[0],12,'bold',C.blue,360));card.appendChild(textNode(item[1],15,'regular',C.ink,360));card.x=72+index*432;card.y=370;cover.appendChild(card);});
-  const footer = textNode('Fictional demo data only · Desktop 1440px · Mobile 390px · Server-authoritative rules', 12, 'medium', C.muted, 1296); footer.x = 72; footer.y = 820; cover.appendChild(footer);
-  return cover;
-}
-
-function createModuleGuide(page, title, description) {
-  const guide = box(1920, 170, C.white, C.border, 0); guide.name = `${title} / Guide`; page.appendChild(guide);
-  const kicker = textNode('FITOPS · PRACTICE ATHLETIC CLUB · LOW-FIDELITY', 11, 'bold', C.blue, 1800); kicker.x = 32; kicker.y = 30; guide.appendChild(kicker);
-  const heading = textNode(title, 28, 'bold', C.ink, 1800); heading.x = 32; heading.y = 58; guide.appendChild(heading);
-  const copy = textNode(description, 12, 'regular', C.muted, 1320); copy.x = 32; copy.y = 108; guide.appendChild(copy);
-  const desktop = textNode('DESKTOP · 1440 PX', 11, 'bold', C.muted); desktop.x = 32; desktop.y = 142; guide.appendChild(desktop);
-  const android = textNode('ANDROID · 390 PX', 11, 'bold', C.muted); android.x = 1500; android.y = 142; guide.appendChild(android);
-  return guide;
-}
-
-function cascadeModule(page, title, description, desktopStates, mobileStates) {
-  page.backgrounds = [paint(C.canvas)];
-  const guide = createModuleGuide(page, title, description); place(guide, 0, 0);
-  const rows = Math.max(desktopStates.length, mobileStates.length);
-  for (let index = 0; index < rows; index++) {
-    const y = 220 + index * 1120;
-    const desktop = desktopStates[index];
-    const mobile = mobileStates[index];
-    if (desktop) { page.appendChild(desktop); place(desktop, 0, y); }
-    if (mobile) { page.appendChild(mobile); place(mobile, 1500, y); }
+  const available = (await figma.listAvailableFontsAsync()).map(x=>x.fontName);
+  if (!available.length) throw new Error('No fonts are available. Enable a font and run again.');
+  const family = [preferred,'Mona Sans','Roboto','Inter'].find(f=>available.some(a=>a.family===f)) || available[0].family;
+  const faces = available.filter(a=>a.family===family);
+  wfFonts = {regular:faces.find(f=>/regular|book/i.test(f.style))||faces[0],bold:faces.find(f=>/^bold$|semi.?bold/i.test(f.style))||faces[0]};
+  for (const font of [...new Map(Object.values(wfFonts).map(f=>[JSON.stringify(f),f])).values()]) await figma.loadFontAsync(font);
+  if (wfButtonSource) {
+    for (const t of wfButtonSource.findAllWithCriteria({types:['TEXT']})) {
+      for (const segment of t.getStyledTextSegments(['fontName'])) await figma.loadFontAsync(segment.fontName);
+    }
   }
 }
 
-function uniqueModulePageName(baseName) {
-  let candidate = baseName;
-  let version = 2;
-  while (figma.root.children.some((page) => page.name === candidate)) candidate = `${baseName} v${version++}`;
-  return candidate;
+function wfStack(width, direction='VERTICAL', gap=16, padding=0, fill=null) {
+  const n=figma.createFrame();
+  n.layoutMode=direction;n.resize(width,1);
+  // Never temporarily hug the horizontal primary axis: that loses the supplied width.
+  n.primaryAxisSizingMode=direction==='HORIZONTAL'?'FIXED':'AUTO';
+  n.counterAxisSizingMode=direction==='HORIZONTAL'?'AUTO':'FIXED';
+  n.itemSpacing=gap;n.paddingTop=padding;n.paddingBottom=padding;n.paddingLeft=padding;n.paddingRight=padding;
+  n.fills=fill?[wfPaint(fill)]:[];n.clipsContent=false;
+  return n;
 }
 
-async function linkLandingToSchedule(source, destination) {
-  await source.setReactionsAsync([{
-    trigger: { type: 'ON_CLICK' },
-    actions: [{ type: 'NODE', destinationId: destination.id, navigation: 'NAVIGATE', transition: { type: 'DISSOLVE', easing: { type: 'EASE_OUT' }, duration: 0.2 }, resetScrollPosition: true }]
-  }]);
+function wfText(value,width,size=14,bold=false,color=WF_COLORS.ink){
+  const n=figma.createText();n.fontName=bold?wfFonts.bold:wfFonts.regular;n.fontSize=size;
+  n.lineHeight={unit:'PERCENT',value:145};n.fills=[wfPaint(color)];
+  n.characters=String(value);n.resize(width,Math.max(1,n.height));n.textAutoResize='HEIGHT';return n;
 }
 
-async function buildFitOpsWireframes() {
-  progress('Loading fonts and indexing local WebbyFrames components…');
-  await prepareKit();
-  await prepareFonts();
-  const prefix = 'FitOps /';
-  // Frames are created on the current page, then re-parented into module pages.
-  // Do not create/remove a scratch page: Figma may forbid page removal in a file.
-  const staging = figma.currentPage;
-  createdScreens = []; prototypeLinks = [];
-  progress('Creating desktop and Android states from the verified user flows…');
-  const desktop = await buildDesktopScreens(staging);
-  const mobile = await buildMobileScreens(staging);
-  const modules = [
-    ['00 Public, Legal, and Miscellaneous', 'Route coverage for public destinations, legal pages, cookie preferences, and safe 404 recovery.', [desktop.publicDirectory, desktop.pricingAbout, desktop.legalMisc], [mobile.publicDirectory, mobile.pricingAbout, mobile.legalMisc]],
-    ['01 Landing', 'Public marketing entry only. Join now is the primary membership action.', [desktop.landing], [mobile.landing]],
-    ['02 Public Schedule', 'Browse public sessions and view class details. Booking continues through Join or the member workspace.', [desktop.schedule, desktop.details, desktop.failures], [mobile.schedule, mobile.details, mobile.failures]],
-    ['03 Join', 'New members select a fictional plan; existing members continue to the Member Portal.', [desktop.auth], [mobile.auth]],
-    ['04 Member Portal', 'Direct existing-member login and demo persona access from /portal/login.', [desktop.registration], [mobile.register]],
-    ['05 Member Workspace', 'Dashboard home, class discovery, and member-owned bookings behind the protected app shell.', [desktop.dashboard, desktop.myBookings], [mobile.dashboard, mobile.myBookings]],
-    ['06 Booking', 'Confirmed reservation after the server rechecks eligibility, capacity, and conflicts.', [desktop.confirmed], [mobile.confirmed]],
-    ['07 Waitlist', 'Full-session state and deterministic FIFO waitlist result.', [desktop.full, desktop.waitlist], [mobile.waitlist]],
-    ['08 Cancellation', 'Confirmation and committed result without inventing capacity.', [desktop.cancelDialog, desktop.cancelSuccess], [mobile.cancel, mobile.success]],
-    ['09 Trainer', 'Read-only assigned-session experience.', [desktop.trainer], [mobile.trainer]],
-    ['10 Administrator', 'Session operations, validation, participants, and ordered waitlist.', [desktop.admin, desktop.adminForm], [mobile.admin]]
-  ];
-  progress('Organizing one Figma page per module with side-by-side Android states…');
-  const pages = modules.map(([name, description, desktopStates, mobileStates]) => {
-    const page = figma.createPage(); page.name = uniqueModulePageName(`${prefix} ${name}`);
-    cascadeModule(page, name, description, desktopStates, mobileStates);
-    return page;
-  });
-  progress('Keeping public Landing and Public Schedule as distinct Figma modules…');
-  const landingModuleIndex = modules.findIndex(([name]) => name === '01 Landing');
-  const landingPage = pages[landingModuleIndex];
-  await figma.setCurrentPageAsync(landingPage);
-  figma.currentPage.selection = [desktop.landing];
-  figma.viewport.scrollAndZoomIntoView([desktop.landing, mobile.landing]);
-  figma.ui.postMessage({ type: 'wireframes-complete', pageName: 'FitOps module wireframes', pageCount: pages.length, screenCount: createdScreens.length });
+function wfBorder(n){n.strokes=[wfPaint(WF_COLORS.border)];n.strokeWeight=1;n.cornerRadius=8;return n;}
+
+function wfAction(action,width,device,state={}){
+  const target=state.actionTargets?.[action.label]||action.target;
+  const primary=action.kind==='primary', danger=action.kind==='danger';
+  let n;
+  if(wfButtonSource && primary && !danger){
+    n=wfButtonSource.createInstance();
+    const labels=n.findAllWithCriteria({types:['TEXT']}).filter(t=>t.visible);
+    const label=labels.find(t=>/label|text/i.test(t.name))||labels[0];
+    if(label){label.characters=action.label;label.resize(Math.max(10,width-24),label.height);label.textAutoResize='HEIGHT';}
+    n.resize(width,Math.max(48,label?label.height+24:48));
+    if(n.layoutMode && n.layoutMode!=='NONE'){n.primaryAxisSizingMode='FIXED';n.counterAxisSizingMode='FIXED';}
+  }else{
+    n=wfStack(width,'VERTICAL',0,15,primary?WF_COLORS.blue:WF_COLORS.white);wfBorder(n);
+    n.appendChild(wfText(action.label,width-30,13,true,primary?WF_COLORS.white:danger?WF_COLORS.danger:WF_COLORS.blue));
+  }
+  n.name=`Action / ${action.label}`;
+  wfLinks.push({node:n,target,device});return n;
+}
+
+function wfActions(actions,width,device,state={}){
+  const wrap=wfStack(width,'VERTICAL',10);wrap.name='Actions';
+  const columns=device==='mobile'||width<500?1:Math.min(3,actions.length||1);
+  for(let start=0;start<actions.length;start+=columns){
+    const count=Math.min(columns,actions.length-start),row=wfStack(width,'HORIZONTAL',10);
+    const w=(width-(count-1)*10)/count;
+    for(const action of actions.slice(start,start+count))row.appendChild(wfAction(action,w,device,state));
+    wrap.appendChild(row);
+  }
+  return wrap;
+}
+
+function wfCard(item,width,device,state){
+  const card=wfBorder(wfStack(width,'VERTICAL',12,20,WF_COLORS.white));card.name=`Card / ${item.title}`;
+  const inner=width-40;
+  if(item.media){const media=wfBorder(wfStack(inner,'VERTICAL',0,20,WF_COLORS.bg));media.name=item.media;media.appendChild(wfText(item.media,inner-40,12,false,WF_COLORS.muted));card.appendChild(media);}
+  card.appendChild(wfText(item.title,inner,19,true));if(item.body)card.appendChild(wfText(item.body,inner));
+  if(item.actions?.length)card.appendChild(wfActions(item.actions,inner,device,state));return card;
+}
+
+function wfRenderSection(section,width,device,state,route){
+  const wrap=wfStack(width,'VERTICAL',16);wrap.name=`Section / ${section.title}`;
+  if(section.anchor && !state.id)wfAnchors.set(`${device}:${route.id}#${section.anchor}`,wrap);
+  wrap.appendChild(wfText(section.title,width,device==='mobile'?22:28,true));
+  if(section.body)wrap.appendChild(wfText(section.body,width,15));
+  const mobile=device==='mobile';
+  if(section.type==='cards'){
+    const cols=mobile?1:Math.min(3,section.items.length);
+    for(let i=0;i<section.items.length;i+=cols){const row=wfStack(width,'HORIZONTAL',16);const count=Math.min(cols,section.items.length-i);const w=(width-(count-1)*16)/count;for(const item of section.items.slice(i,i+count))row.appendChild(wfCard(item,w,device,state));wrap.appendChild(row);}
+  }
+  if(section.type==='stats'){
+    const cols=mobile?2:section.items.length;
+    for(let i=0;i<section.items.length;i+=cols){const row=wfStack(width,'HORIZONTAL',12);const count=Math.min(cols,section.items.length-i);const w=(width-(count-1)*12)/count;for(const [label,value] of section.items.slice(i,i+count)){const c=wfBorder(wfStack(w,'VERTICAL',6,16,WF_COLORS.white));c.appendChild(wfText(label,w-32,12,false,WF_COLORS.muted));c.appendChild(wfText(value,w-32,22,true));row.appendChild(c);}wrap.appendChild(row);}
+  }
+  if(section.type==='form'){
+    const cols=mobile?1:2;
+    for(let i=0;i<section.fields.length;i+=cols){const row=wfStack(width,'HORIZONTAL',16);const count=Math.min(cols,section.fields.length-i),w=(width-(count-1)*16)/count;
+      for(const [label,value] of section.fields.slice(i,i+count)){const field=wfStack(w,'VERTICAL',6);field.name=`Field / ${label}`;field.appendChild(wfText(label,w,13,true));const input=wfBorder(wfStack(w,'VERTICAL',0,12,WF_COLORS.white));input.name=`Input / ${label}`;input.appendChild(wfText(state.fieldValues?.[label]||value,w-24,14,false,WF_COLORS.muted));field.appendChild(input);if(state.fieldErrors?.[label])field.appendChild(wfText(state.fieldErrors[label],w,12,false,WF_COLORS.danger));row.appendChild(field);}wrap.appendChild(row);
+    }
+  }
+  if(section.type==='checks'){
+    for(const [label,checked,target] of section.items){const selected=state.checks?.[label]??checked;const n=wfBorder(wfStack(width,'HORIZONTAL',12,12,WF_COLORS.white));n.name=`Checkbox / ${label}`;n.appendChild(wfText(selected?'[x]':'[ ]',28,16,true));n.appendChild(wfText(label,width-64,14));wrap.appendChild(n);if(target)wfLinks.push({node:n,target:state.checkTargets?.[label]||target,device});}
+  }
+  if(section.type==='table'){
+    if(mobile){
+      for(const row of section.rows){const card=wfBorder(wfStack(width,'VERTICAL',10,16,WF_COLORS.white));card.name=`Record / ${row[0]}`;row.forEach((value,i)=>{if(typeof value==='object'){const acts=Array.isArray(value)?value:[value];card.appendChild(wfActions(acts,width-32,device,state));}else card.appendChild(wfText(`${section.columns[i]}: ${value}`,width-32,14,i===0));});wrap.appendChild(card);}
+    }else{
+      const col=(width-32)/section.columns.length;
+      const head=wfStack(width,'HORIZONTAL',0,16,WF_COLORS.soft);section.columns.forEach(label=>head.appendChild(wfText(label,col,12,true)));wrap.appendChild(head);
+      for(const row of section.rows){const line=wfBorder(wfStack(width,'HORIZONTAL',0,16,WF_COLORS.white));row.forEach(value=>{if(typeof value==='object')line.appendChild(wfActions(Array.isArray(value)?value:[value],col-8,device,state));else line.appendChild(wfText(value,col,13));});wrap.appendChild(line);}
+    }
+  }
+  if(section.type==='hero'){const media=wfBorder(wfStack(width,'VERTICAL',0,32,WF_COLORS.soft));media.name='Media / Club image placeholder';media.appendChild(wfText('CLUB IMAGE PLACEHOLDER',width-64,18,true,WF_COLORS.muted));wrap.appendChild(media);}
+  if(section.actions?.length)wrap.appendChild(wfActions(section.actions,width,device,state));
+  return wrap;
+}
+
+const WF_PUBLIC_NAV=[WF_ACTION('Home','home'),WF_ACTION('Programs','programs'),WF_ACTION('Schedule','schedule'),WF_ACTION('Services','home#services'),WF_ACTION('Facilities','home#facilities'),WF_ACTION('Pricing','pricing'),WF_ACTION('Trainers','trainers'),WF_ACTION('Contact','home#contact')];
+const WF_ROLE_NAV={member:[WF_ACTION('Dashboard','dashboard'),WF_ACTION('Schedule','memberSchedule'),WF_ACTION('My bookings','bookings'),WF_ACTION('Profile & Security','profile')],trainer:[WF_ACTION('Assigned sessions','trainer')],admin:[WF_ACTION('Overview','admin'),WF_ACTION('Sessions','adminSessions'),WF_ACTION('Create session','adminCreate')]};
+
+function wfHeader(route,width,device){
+  const mobile=device==='mobile',pad=mobile?16:40,inner=width-pad*2;
+  const header=wfStack(width,'VERTICAL',12,pad,WF_COLORS.white);header.name=`Header / ${route.shell}`;
+  const top=wfStack(inner,'HORIZONTAL',16);header.appendChild(top);
+  top.appendChild(wfText('PRACTICE ATHLETIC CLUB',mobile?inner:inner-376,mobile?16:20,true));
+  if(route.shell==='public'){
+    const actions=wfStack(mobile?inner:360,'HORIZONTAL',12);actions.appendChild(wfAction(WF_ACTION('My Account','login'),mobile?(inner-12)/2:174,device));actions.appendChild(wfAction(WF_ACTION('Join Now','join','primary'),mobile?(inner-12)/2:174,device));(mobile?header:top).appendChild(actions);
+    // A compact wrapped link grid exposes the same public destinations on mobile.
+    const cols=mobile?4:8;
+    for(let i=0;i<WF_PUBLIC_NAV.length;i+=cols){const row=wfStack(inner,'HORIZONTAL',8);const w=(inner-(cols-1)*8)/cols;for(const a of WF_PUBLIC_NAV.slice(i,i+cols)){const link=wfStack(w,'VERTICAL',0,6);link.resize(w,44);link.primaryAxisSizingMode='FIXED';link.name=`Navigation / ${a.label}`;link.appendChild(wfText(a.label,w-12,11,true,WF_COLORS.blue));wfLinks.push({node:link,target:a.target,device});row.appendChild(link);}header.appendChild(row);}
+  }else{
+    header.appendChild(wfText(`${route.shell==='admin'?'Administrator':route.shell==='trainer'?'Trainer':'Member'} workspace · Fictional demo`,inner,12,false,WF_COLORS.muted));
+    if(mobile)header.appendChild(wfActions([...WF_ROLE_NAV[route.shell],WF_ACTION('Sign out','home@signedOut')],inner,device));
+    else top.appendChild(wfAction(WF_ACTION('Sign out','home@signedOut'),360,device));
+  }
+  return header;
+}
+
+function wfFooter(route,width,device){
+  const pad=device==='mobile'?16:40,inner=width-pad*2;
+  const footer=wfStack(width,'VERTICAL',18,pad,WF_COLORS.white);footer.name='Footer';
+  if(route.shell==='public')footer.appendChild(wfActions([WF_ACTION('About Us','about'),WF_ACTION('Terms','terms'),WF_ACTION('Privacy','privacy'),WF_ACTION('Waiver','waiver'),WF_ACTION('Cookie preferences','cookies'),WF_ACTION('Contact and hours','home#contact')],inner,device));
+  footer.appendChild(wfText('Fictional portfolio demo. No real memberships or payments.',inner,12,false,WF_COLORS.muted));return footer;
+}
+
+function wfScreen(route,state,device){
+  const width=device==='mobile'?390:1440,hasSidebar=device==='desktop'&&route.shell!=='public';
+  const contentWidth=hasSidebar?1216:width,pad=device==='mobile'?16:hasSidebar?40:64,inner=contentWidth-pad*2;
+  if(state.mode==='dialog'){
+    const frame=figma.createFrame();frame.resize(width,device==='mobile'?844:1024);frame.name=`${device==='mobile'?'M':'D'} / ${route.route} / ${state.id}`;frame.clipsContent=true;
+    const background=wfScreen(route,{},device);frame.appendChild(background);background.x=0;background.y=0;
+    const shade=figma.createRectangle();shade.resize(width,frame.height);shade.fills=[{...wfPaint('#20242B'),opacity:0.35}];frame.appendChild(shade);shade.x=0;shade.y=0;
+    const w=device==='mobile'?358:640,dialog=wfBorder(wfStack(w,'VERTICAL',18,24,WF_COLORS.white));dialog.name='Dialog / '+state.title;
+    dialog.appendChild(wfText(state.title,w-48,24,true));dialog.appendChild(wfText(state.body,w-48,15));dialog.appendChild(wfActions(state.actions||[],w-48,device,state));frame.appendChild(dialog);dialog.x=(width-w)/2;dialog.y=Math.max(40,(frame.height-dialog.height)/2);
+    return frame;
+  }
+  const screen=wfStack(width,'VERTICAL',0,0,WF_COLORS.bg);
+  screen.name=`${device==='mobile'?'M':'D'} / ${route.route} / ${state.id||'ready'}`;
+  screen.appendChild(wfHeader(route,width,device));
+  const content=wfStack(contentWidth,'VERTICAL',32,pad);content.name='Page Content';
+  if(hasSidebar){const body=wfStack(width,'HORIZONTAL',0);screen.appendChild(body);const side=wfStack(224,'VERTICAL',20,20,WF_COLORS.white);side.name='Workspace navigation';side.appendChild(wfActions(WF_ROLE_NAV[route.shell],184,device));body.appendChild(side);body.appendChild(content);}else screen.appendChild(content);
+  const safeTitle=state.mode==='denied'?state.title:state.pageTitle||route.title;
+  content.appendChild(wfText(safeTitle,inner,device==='mobile'?30:42,true));
+  if(state.mode!=='denied')content.appendChild(wfText(state.description||route.description,inner,16,false,WF_COLORS.muted));
+  if(state.id){
+    const tone=WF_COLORS[state.tone]||WF_COLORS.blue;
+    const status=wfBorder(wfStack(inner,'VERTICAL',12,20,WF_COLORS.white));status.name=state.mode==='dialog'?'Dialog / '+state.title:'Status / '+state.title;
+    status.appendChild(wfText(state.title,inner-40,22,true,tone));status.appendChild(wfText(state.body,inner-40,15));
+    if(state.actions?.length)status.appendChild(wfActions(state.actions,inner-40,device,state));content.appendChild(status);
+  }
+  if(state.mode==='loading'){
+    for(let i=0;i<3;i++){const skeleton=wfStack(inner,'VERTICAL',10,20,WF_COLORS.white);skeleton.name='Loading placeholder';for(const w of [inner-40,inner*.65,inner*.4]){const line=figma.createRectangle();line.resize(w,14);line.fills=[wfPaint(WF_COLORS.border)];skeleton.appendChild(line);}content.appendChild(skeleton);}
+  }else if(!['empty','error','denied','success','dialog'].includes(state.mode)){
+    for(const section of state.sections||route.sections){if(section.title!==state.omitSection)content.appendChild(wfRenderSection(section,inner,device,state,route));}
+  }
+  screen.appendChild(wfFooter(route,width,device));
+  // Full content stays visible on the canvas, including long mobile tables and legal pages.
+  screen.clipsContent=false;
+  if(state.autoTarget)wfLinks.push({node:screen,target:state.autoTarget,device,trigger:{type:'AFTER_TIMEOUT',timeout:800}});
+  return screen;
+}
+
+function wfUniqueName(base){let n=1,name=base;while(figma.root.children.some(p=>p.name===name))name=`${base} (${++n})`;return name;}
+
+let wfGeneratedPages = [];
+
+function wfTopFrame(node) {
+  let current=node;
+  while(current?.parent && current.parent.type!=='PAGE')current=current.parent;
+  return current?.type==='FRAME'?current:null;
+}
+
+async function openFitOpsWireframePage(pageId) {
+  const entry=wfGeneratedPages.find(p=>p.page.id===pageId);
+  if(!entry)return;
+  await figma.setCurrentPageAsync(entry.page);
+  const desktop=wfFrames.get(`desktop:${entry.route.id}`),mobile=wfFrames.get(`mobile:${entry.route.id}`);
+  const available=[desktop,mobile].filter(Boolean);
+  if(available.length){entry.page.selection=[available[0]];figma.viewport.scrollAndZoomIntoView(available);}
+}
+
+async function splitCurrentFitOpsWireframes(){
+  const source=figma.currentPage;
+  if(!source.name.startsWith('FitOps Wireframes / Complete /'))throw new Error('Select the old FitOps Wireframes / Complete page first, then click Split current combined page.');
+  const candidates=source.findAllWithCriteria({types:['FRAME']}).filter(n=>n.parent?.type==='SECTION'&&n.parent.parent===source&&/^[DM] \/ .+ \/ [^/]+$/.test(n.name));
+  if(!candidates.length)throw new Error('No original combined-page wireframe screens were found on this page.');
+  const records=candidates.map(frame=>{const [,device,url,state]=frame.name.match(/^([DM]) \/ (.+) \/ ([^/]+)$/);return {frame,device:device==='D'?'desktop':'mobile',route:WIREFRAME_ROUTES.find(r=>r.route===url),state};});
+  if(records.some(r=>!r.route))throw new Error('An unrecognized route was found. No screens were moved.');
+  const saved=[];
+  const oldIndex=source.children.find(n=>n.name==='START HERE / Route and scenario index');
+  for(const root of [...candidates,...(oldIndex?[oldIndex]:[])]){
+    const nodes=[root,...root.findAllWithCriteria({types:['FRAME','INSTANCE','TEXT','RECTANGLE']})];
+    for(const node of nodes){if(node.reactions?.length){if(root!==oldIndex)saved.push({node,reactions:node.reactions});await node.setReactionsAsync([]);}}
+  }
+  wfFrames=new Map();wfGeneratedPages=[];
+  for(const route of WIREFRAME_ROUTES){
+    const owned=records.filter(r=>r.route===route);if(!owned.length)continue;
+    const page=figma.createPage();page.name=wfUniqueName(`FitOps Split / ${String(wfGeneratedPages.length+1).padStart(2,'0')} ${route.label}`);wfGeneratedPages.push({page,route});
+    let y=80;
+    for(const state of [...new Set(owned.map(r=>r.state))]){
+      let height=0;
+      for(const item of owned.filter(r=>r.state===state)){page.appendChild(item.frame);item.frame.x=item.device==='desktop'?0:1510;item.frame.y=y;height=Math.max(height,item.frame.height);wfFrames.set(`${item.device}:${route.id}${state==='ready'?'':'@'+state}`,item.frame);}
+      y+=height+140;
+    }
+    wfProgress(`Split ${route.label}: ${owned.length} existing screens moved`);
+  }
+  let linked=0;
+  for(const {node,reactions} of saved){
+    const allowed=[];
+    for(const reaction of reactions){const actions=[];
+      for(const action of reaction.actions||[]){
+        if(action.type!=='NODE'){actions.push(action);continue;}
+        const target=await figma.getNodeByIdAsync(action.destinationId),owner=wfTopFrame(node);
+        if(action.navigation==='NAVIGATE'&&target?.type==='FRAME'&&target.parent?.type==='PAGE'&&owner?.parent===target.parent&&owner!==target)actions.push(action);
+        else if(action.navigation==='SCROLL_TO'&&target&&wfTopFrame(target)===owner)actions.push(action);
+        else if(target)node.name+=` → ${wfTopFrame(target)?.parent?.name||'another route page'}`;
+      }
+      if(actions.length)allowed.push({...reaction,actions});
+    }
+    if(allowed.length){await node.setReactionsAsync(allowed);linked++;}
+  }
+  if(oldIndex)oldIndex.name='Legacy index / screens moved to separate route pages';
+  source.name+=' [Split - original annotations retained]';
+  await openFitOpsWireframePage(wfGeneratedPages[0].page.id);
+  const result={type:'wireframes-complete',pageName:'Split existing wireframes',pageCount:wfGeneratedPages.length,moduleCount:wfGeneratedPages.length,desktopCount:records.filter(r=>r.device==='desktop').length,mobileCount:records.filter(r=>r.device==='mobile').length,screenCount:records.length,actionCount:linked,pages:wfGeneratedPages.map(({page,route})=>({id:page.id,label:route.label,route:route.route}))};
+  figma.ui.postMessage(result);return result;
+}
+
+async function buildFitOpsWireframes(){
+  wfLinks=[];wfFrames=new Map();wfAnchors=new Map();wfGeneratedPages=[];
+  wfProgress('Reading the existing UI kit and loading available fonts…');
+  await wfPrepareResources();
+  const base='FitOps Wireframes / '+new Date().toISOString().slice(0,10);
+  let version=1,runPrefix=base+' v1';
+  while(figma.root.children.some(p=>p.name.startsWith(runPrefix+' /')))runPrefix=base+' v'+(++version);
+  let localActionCount=0,crossPageCount=0,selfActionCount=0;
+  try {
+    for(const [index,route] of WIREFRAME_ROUTES.entries()){
+      const page=figma.createPage();page.name=`${runPrefix} / ${String(index+1).padStart(2,'0')} ${route.label}`;
+      wfGeneratedPages.push({page,route});await figma.setCurrentPageAsync(page);
+      wfProgress(`${index+1}/${WIREFRAME_ROUTES.length} · ${route.label}: separate page, desktop + mobile`);
+      const overview=wfStack(1960,'VERTICAL',14,24,WF_COLORS.white);overview.name='START HERE / '+route.label;page.appendChild(overview);overview.x=0;overview.y=0;
+      overview.setRelaunchData({open:'Open the FitOps wireframe page chooser'});
+      overview.appendChild(wfText(`${route.label} · ${route.route}`,1912,30,true));
+      overview.appendChild(wfText('Desktop 1440 px / Mobile 390 px. Local scenarios are clickable. Use the plugin page chooser for another route; cross-page controls carry destination names in their layer labels. Inputs use preset fictional examples.',1912,15));
+      const scenarios=[{id:'ready'},...route.states],pairs=[];
+      for(const state of scenarios){
+        const desktop=wfScreen(route,state.id==='ready'?{}:state,'desktop'),mobile=wfScreen(route,state.id==='ready'?{}:state,'mobile');
+        page.appendChild(desktop);page.appendChild(mobile);
+        for(const [device,frame] of [['desktop',desktop],['mobile',mobile]])wfFrames.set(`${device}:${route.id}${state.id==='ready'?'':'@'+state.id}`,frame);
+        pairs.push({desktop,mobile,state});
+        const row=wfStack(1912,'HORIZONTAL',16);row.appendChild(wfText(state.id==='ready'?'Ready':state.title,720,14,true));
+        row.appendChild(wfAction(WF_ACTION('Desktop preview',route.id+(state.id==='ready'?'':'@'+state.id)),280,'desktop'));
+        row.appendChild(wfAction(WF_ACTION('Mobile preview',route.id+(state.id==='ready'?'':'@'+state.id)),280,'mobile'));overview.appendChild(row);
+      }
+      let y=overview.height+100;
+      for(const {desktop,mobile} of pairs){desktop.x=0;desktop.y=y;mobile.x=1510;mobile.y=y;y+=Math.max(desktop.height,mobile.height)+140;}
+      await new Promise(resolve=>setTimeout(resolve,0));
+    }
+    for(const [index,link] of wfLinks.entries()){
+      if(index%200===0)wfProgress(`Checking local prototype actions ${index+1} of ${wfLinks.length}…`);
+      const routeTarget=link.target.split('#')[0];
+      const target=wfFrames.get(`${link.device}:${routeTarget}`);
+      const source=wfTopFrame(link.node);
+      if(!target||!source||target.parent?.type!=='PAGE')throw new Error(`Invalid prototype endpoint: ${link.target}`);
+      if(source.parent!==target.parent){
+        await link.node.setReactionsAsync([]);
+        link.node.name+=` → ${target.parent.name} / ${link.target}`;
+        crossPageCount++;
+        continue;
+      }
+      if(source===target){
+        if(link.target.includes('#')){
+          const anchor=wfAnchors.get(`${link.device}:${link.target}`);
+          if(anchor&&wfTopFrame(anchor)===source){
+            await link.node.setReactionsAsync([{trigger:{type:'ON_CLICK'},actions:[{type:'NODE',destinationId:anchor.id,navigation:'SCROLL_TO',transition:null,preserveScrollPosition:false}]}]);localActionCount++;continue;
+          }
+        }
+        // Current navigation items and blocked submissions stay on the existing screen.
+        await link.node.setReactionsAsync([]);
+        selfActionCount++;
+        continue;
+      }
+      await link.node.setReactionsAsync([{trigger:link.trigger||{type:'ON_CLICK'},actions:[{type:'NODE',destinationId:target.id,navigation:'NAVIGATE',transition:null,preserveScrollPosition:false}]}]);localActionCount++;
+    }
+    await openFitOpsWireframePage(wfGeneratedPages[0].page.id);
+    const result={type:'wireframes-complete',pageName:'FitOps route pages',pageCount:wfGeneratedPages.length,moduleCount:wfGeneratedPages.length,screenCount:wfFrames.size,desktopCount:wfFrames.size/2,mobileCount:wfFrames.size/2,actionCount:localActionCount,crossPageCount,selfActionCount,pages:wfGeneratedPages.map(({page,route})=>({id:page.id,label:route.label,route:route.route}))};
+    figma.ui.postMessage(result);return result;
+  }catch(error){for(const {page} of wfGeneratedPages)page.name+=' [Incomplete]';throw error;}
 }

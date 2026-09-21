@@ -170,21 +170,34 @@
       <div class="section-title">
         <span>▦</span> 3. FitOps Low-Fidelity Wireframes (Issue #6)
       </div>
-      <div class="feature-item"><span class="check">✓</span> <b>19 desktop + 17 mobile:</b> 390 px responsive coverage</div>
-      <div class="feature-item"><span class="check">✓</span> <b>Complete coverage:</b> Public, Join, legal, cookies, 404, member workspace, booking, waitlist, trainer &amp; admin</div>
-      <div class="feature-item"><span class="check">✓</span> <b>Safe output:</b> New versioned page, fictional data, neutral styling</div>
+      <div class="feature-item"><span class="check">✓</span> <b>Every page:</b> 26 routes + a separate 404 fallback</div>
+      <div class="feature-item"><span class="check">✓</span> <b>Paired versions:</b> 1440 px desktop and 390 px mobile</div>
+      <div class="feature-item"><span class="check">✓</span> Complete sections, forms, booking states, waitlists, recovery, and staff operations</div>
+      <div class="feature-item"><span class="check">✓</span> 27 separate route pages, each with desktop/mobile pairs and a local scenario index</div>
+      <div class="desc">Fields use preset fictional examples. No live accounts, payments, or emails. Existing pages are preserved.</div>
       <button id="wireframesBtn" class="btn-wireframes" onclick="buildWireframes()">
         Build Low-Fi Wireframes →
       </button>
+      <button id="splitBtn" class="btn-brand" onclick="splitWireframes()">Split current combined page</button>
+      <div class="desc">Select the previous Complete page first. Moves existing screens into route pages and removes invalid links; keeps your screen content and original annotations.</div>
     </div>
 
     <div id="statusCard" class="status-card">
       <div id="statusTitle" style="font-weight:700; color:#C7F134; margin-bottom:4px;">✓ Action Complete!</div>
       <div id="statusMsg" style="color:#D7D4CA;">Artifacts have been successfully generated in Figma.</div>
     </div>
+    <div id="pageChooser" class="section-card" hidden>
+      <label for="wireframePage">Open a wireframe page</label>
+      <select id="wireframePage" style="width:100%;padding:10px;margin-top:8px"></select>
+      <button class="btn-wireframes" onclick="openWireframePage()">Open selected page</button>
+      <div class="desc">Prototype links connect local states. Switch routes here or through Figma’s page list.</div>
+    </div>
   </div>
 
   <script>
+    function openWireframePage() {
+      parent.postMessage({pluginMessage:{type:'open-wireframe-page',pageId:document.getElementById('wireframePage').value}},'*');
+    }
     function buildSitemap() {
       const btn = document.getElementById('sitemapBtn');
       btn.innerText = 'Checking UX source of truth...';
@@ -200,11 +213,26 @@
     }
 
     function buildWireframes() {
+      document.getElementById('pageChooser').hidden = true;
       const btn = document.getElementById('wireframesBtn');
-      btn.innerText = 'Building 36 Wireframe States...';
+      btn.innerText = 'Building all pages and states...';
       btn.style.opacity = '0.6';
       btn.disabled = true;
+      document.getElementById('splitBtn').disabled = true;
+      document.getElementById('brandBtn').disabled = true;
+      document.getElementById('sitemapBtn').disabled = true;
       parent.postMessage({ pluginMessage: { type: 'build-wireframes' } }, '*');
+    }
+
+    function splitWireframes() {
+      document.getElementById('pageChooser').hidden = true;
+      document.getElementById('wireframesBtn').disabled = true;
+      document.getElementById('splitBtn').disabled = true;
+      document.getElementById('brandBtn').disabled = true;
+      document.getElementById('sitemapBtn').disabled = true;
+      document.getElementById('statusCard').style.display = 'block';
+      document.getElementById('statusTitle').innerText = 'Splitting current combined page...';
+      parent.postMessage({pluginMessage:{type:'split-wireframes'}},'*');
     }
 
     window.onmessage = (event) => {
@@ -237,16 +265,26 @@
         btn.innerText = 'Build Another Wireframe Version ✓';
         btn.style.opacity = '1';
         btn.disabled = false;
+        document.getElementById('splitBtn').disabled = false;
+        document.getElementById('brandBtn').disabled = false;
+        document.getElementById('sitemapBtn').disabled = false;
 
         document.getElementById('statusCard').style.display = 'block';
         document.getElementById('statusTitle').innerText = '✓ Low-Fi Wireframes Generated!';
-        document.getElementById('statusMsg').innerText = `${msg.pageName}: ${msg.screenCount} screens across ${msg.pageCount} module pages, with Android states to the right.`;
+        document.getElementById('statusMsg').innerText = `${msg.pageCount} separate pages: ${msg.desktopCount} desktop + ${msg.mobileCount} mobile screens. ${msg.actionCount} local actions linked. Cross-page destinations are labeled; use the page chooser below.`;
+        const pageSelect = document.getElementById('wireframePage');
+        pageSelect.replaceChildren();
+        for (const page of msg.pages) pageSelect.add(new Option(`${page.label} · ${page.route}`,page.id));
+        document.getElementById('pageChooser').hidden = false;
       }
       if (msg && msg.type === 'wireframes-error') {
         const btn = document.getElementById('wireframesBtn');
         btn.innerText = 'Retry Low-Fi Wireframes';
         btn.style.opacity = '1';
         btn.disabled = false;
+        document.getElementById('splitBtn').disabled = false;
+        document.getElementById('brandBtn').disabled = false;
+        document.getElementById('sitemapBtn').disabled = false;
 
         document.getElementById('statusCard').style.display = 'block';
         document.getElementById('statusTitle').innerText = 'Wireframe generation stopped';

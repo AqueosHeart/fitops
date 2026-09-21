@@ -27,6 +27,7 @@ A recruiter should be able to verify that the author can take a product from an 
 - [ADR 003 draw.io UX-flow source of truth](docs/adr/003-drawio-ux-source-of-truth.md)
 - [ADR 004 separate public discovery, fictional membership join, and protected workspaces](docs/adr/004-separate-public-join-and-workspace-shells.md)
 - [ADR 005 direct Member Portal and dashboard entry](docs/adr/005-member-portal-and-dashboard-entry.md)
+- [ADR 006 secondary My Account utility and primary Join Now CTA](docs/adr/006-public-my-account-utility.md)
 
 ## Obsidian project memory
 

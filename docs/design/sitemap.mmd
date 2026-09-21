@@ -1,83 +1,68 @@
-flowchart TD
-    Root[Practice Athletic Club]
-
-    subgraph PublicSpace[Public discovery site]
-        PublicNav[Public navigation + Join now<br/>No global Sign In link]
-        Home[Home /]
-        Programs[Programs /programs]
-        Services[Services /#services]
-        Facilities[Facilities /#facilities]
-        Contact[Contact /#contact]
-        PublicSchedule[Schedule /schedule]
-        Trainers[Trainers /trainers]
-        Pricing[Pricing /pricing<br/>Fictional plans only]
-        About[About Us /about]
-        Terms[Terms of Service /terms]
-        Privacy[Privacy Policy /privacy]
-        Waiver[Liability Waiver /waiver]
-        Cookies[Cookie preferences /cookie-settings]
-        NotFound[Not Found /404]
+flowchart TB
+    %% Route-only information hierarchy. Group headings are not pages.
+    subgraph publicGroup["PUBLIC DISCOVERY"]
+        direction TB
+        home["/"]
+        programs["/programs"]
+        home --- programs
+        schedule["/schedule"]
+        home --- schedule
+        details["/sessions/:id"]
+        schedule --- details
+        trainers["/trainers"]
+        home --- trainers
+        pricing["/pricing"]
+        home --- pricing
     end
-
-    subgraph JoinAndAuth[Membership join and authentication]
-        Join[Join now /join<br/>Fictional plan selection; no payment collected]
-        AuthHub[Member Portal<br/>Direct entry and protected-route redirects]
-        Login[Member Portal Login /portal/login<br/>Existing member credentials or demo switcher]
-        Register[Member registration /register<br/>Fictional plan selection, consent, and demo profile]
-        Recovery[Account recovery /auth/forgot-password]
+    style publicGroup fill:#F2F0E8,stroke:#B8BDB4
+    subgraph legalGroup["PUBLIC INFORMATION & PREFERENCES"]
+        direction TB
+        about["/about"]
+        terms["/terms"]
+        privacy["/privacy"]
+        waiver["/waiver"]
+        cookies["/cookie-settings"]
     end
-
-    subgraph MemberSpace[Member workspace: protected app shell]
-        Workspace[Member dashboard /app<br/>Home, next class, and quick actions]
-        AppSchedule[Member schedule /app/schedule]
-        MyBookings[My bookings /app/bookings]
-        ProfileSec[Profile &amp; Security /app/profile/security]
-        Confirmed[Confirmed reservations]
-        Waiting[Waitlist entries]
-        CancelDialog[Cancellation confirmation]
+    style legalGroup fill:#F2F0E8,stroke:#B8BDB4
+    subgraph authGroup["JOIN & ACCOUNT PAGES"]
+        direction TB
+        join["/join"]
+        register["/register"]
+        login["/portal/login"]
+        recovery["/auth/forgot-password"]
     end
-
-    subgraph TrainerSpace[Trainer workspace: protected]
-        TrainerAssignments[Assigned sessions /trainer/sessions]
-        TrainerSession[Assigned session /trainer/sessions/:id]
+    style authGroup fill:#E1EAF5,stroke:#B8BDB4
+    subgraph memberGroup["MEMBER WORKSPACE"]
+        direction TB
+        app["/app"]
+        appSchedule["/app/schedule"]
+        app --- appSchedule
+        bookings["/app/bookings"]
+        app --- bookings
+        security["/app/profile/security"]
+        app --- security
     end
-
-    subgraph AdminSpace[Administrator workspace: protected]
-        AdminOverview[Operations overview /admin]
-        AdminSessions[Session manager /admin/sessions]
-        AdminCreate[Create session /admin/sessions/new]
-        AdminEdit[Edit session /admin/sessions/:id/edit]
-        AdminParticipants[Participants /admin/sessions/:id/participants]
+    style memberGroup fill:#E2E0D8,stroke:#B8BDB4
+    subgraph trainerGroup["TRAINER WORKSPACE"]
+        direction TB
+        assigned["/trainer/sessions"]
+        assignedDetail["/trainer/sessions/:id"]
+        assigned --- assignedDetail
     end
+    style trainerGroup fill:#E8E3F3,stroke:#B8BDB4
+    subgraph adminGroup["ADMINISTRATOR WORKSPACE"]
+        direction TB
+        adminHome["/admin"]
+        adminSessions["/admin/sessions"]
+        adminHome --- adminSessions
+        adminCreate["/admin/sessions/new"]
+        adminSessions --- adminCreate
+        adminEdit["/admin/sessions/:id/edit"]
+        adminSessions --- adminEdit
+        participants["/admin/sessions/:id/participants"]
+        adminSessions --- participants
+    end
+    style adminGroup fill:#EDF1E8,stroke:#B8BDB4
 
-    Root --> PublicNav
-    PublicNav --> Home & Programs & Services & Facilities & Contact & PublicSchedule & Trainers & Pricing & About & Terms & Privacy & Waiver & Cookies & NotFound & Join
-    PublicSchedule --> SessionDetails[Session details /sessions/:id]
-    SessionDetails -. unauthenticated booking; preserve returnTo .-> Join
-    Join -- Select a fictional plan; no payment collected --> Register
-    Join -- Already a member --> AuthHub
-    AuthHub --> Login & Register
-    Login --> Recovery
-    Register -. creates active demo profile with selected fictional plan .-> Workspace
-    Login -. restores validated returnTo or role workspace .-> Workspace
-    Workspace --> AppSchedule & MyBookings & ProfileSec
-    MyBookings --> Confirmed & Waiting
-    Confirmed --> CancelDialog
-    Login -. trainer role .-> TrainerAssignments
-    TrainerAssignments --> TrainerSession
-    Login -. administrator role .-> AdminOverview
-    AdminOverview --> AdminSessions
-    AdminSessions --> AdminCreate & AdminEdit & AdminParticipants
-
-    classDef public fill:#F2F0E8,stroke:#111310,color:#111310;
-    classDef join fill:#E1EAF5,stroke:#1E3A8A,color:#111310;
-    classDef member fill:#E2E0D8,stroke:#111310,color:#111310;
-    classDef trainer fill:#E8E3F3,stroke:#4C3B73,color:#111310;
-    classDef admin fill:#111310,stroke:#C7F134,color:#F2F0E8;
-    classDef overlay fill:#FFFFFF,stroke:#8B5CF6,stroke-dasharray: 4 4,color:#111310;
-    class Root,PublicNav,Home,Programs,Services,Facilities,Contact,PublicSchedule,Trainers,Pricing,About,Terms,Privacy,Waiver,Cookies,NotFound public;
-    class Join,AuthHub,Login,Register,Recovery join;
-    class Workspace,AppSchedule,MyBookings,ProfileSec,Confirmed,Waiting member;
-    class TrainerAssignments,TrainerSession trainer;
-    class AdminOverview,AdminSessions,AdminCreate,AdminEdit,AdminParticipants admin;
-    class SessionDetails,CancelDialog overlay;
+    %% Invisible layout links organize groups; they are not navigation.
+    publicGroup ~~~ legalGroup ~~~ authGroup ~~~ memberGroup ~~~ trainerGroup ~~~ adminGroup

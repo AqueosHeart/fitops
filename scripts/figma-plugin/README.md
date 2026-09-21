@@ -1,60 +1,51 @@
 # Practice Athletic Club Master Toolkit
 
-This is the existing local Figma development plugin for FitOps. Its interface
-contains three actions:
+This local Figma development plugin preserves its existing source-of-truth reminder and brand action. **Build Low-Fi Wireframes** now creates complete page mockups instead of grouped route-coverage cards.
 
-1. Display the draw.io source-of-truth reminder.
-2. Transform the brand-guidelines template.
-3. Build the Issue #6 low-fidelity desktop and mobile wireframes.
+## Output
 
-The wireframe action translates the canonical architecture from
-`second-brain/wiki/design/FitOps User Flows.drawio` into a new versioned Figma
-pages. It produces 19 desktop frames and 17 Android frames at 390 px, arranged
-as desktop/mobile cascades for Public, Legal, and Miscellaneous; Landing;
-Public Schedule; Join; Member Portal; Member Workspace; Booking; Waitlist;
-Cancellation; Trainer; and Administrator modules. The
-output separates public discovery, fictional membership join, and protected
-member or staff workspaces. The public landing header uses `Join now`, not Sign
-In. Plan selection is explicitly fictional and no payment is collected. It uses
-fictional data and neutral low-fidelity styling; it is not brand
-approval. It avoids invalid nested-button reactions and does not place the
-public Schedule underneath the Landing module.
+- 26 page routes plus a separate `/404` fallback, each with its own desktop and mobile screen.
+- 163 scenarios per device: **163 desktop + 163 mobile frames** (326 total).
+- Desktop width 1440 px; mobile width 390 px. Content-driven page heights expose every section. Dialog scenarios use 1024/844 px viewport mockups with a dimmed background.
+- 27 separate versioned Figma pages, one per route/fallback. Each has paired desktop/mobile scenarios and a compact local index. All screen frames are direct children of their page.
+- Separate public and protected shells, desktop workspace navigation, mobile roster cards, complete public footer links, and named landing anchors.
+- Booking, full-class waitlist, cancellation, promotion, consent, validation, inactive membership, recovery, role denial, loading, empty, failure, pending, and success examples.
+- Selected-plan and selected-session examples survive the demonstrated enrollment paths.
 
-The complete landing pair includes public navigation, hero, activity discovery,
-services, facilities, pricing, team, contact, final CTA, and a legal/navigation
-footer. The supplied MeuFIT site informed this information-architecture scope,
-but this plugin uses original copy, fictional data, and neutral wireframe
-placeholders rather than its assets or design.
+The figures and forms are fictional mockups. Prototype buttons move between preset examples; fields do not submit real requests. Recovery explicitly sends no email. Neutral styling does not approve the brand.
 
-Public Schedule is a separate desktop and Android module, not a state nested
-under Landing. It supports browsing and class-detail discovery; booking belongs
-to the protected Member Workspace after Join or Portal Login.
+Every run preserves previous pages. An interrupted/failed generation marks its new pages `[Incomplete]` for inspection. Progress is reported during each route and while actions are linked. The generator reuses a suitable primary button and fonts from existing kit pages when available; otherwise it builds editable neutral fallback elements.
 
-The generator re-parents its temporary frames from the current page into the
-module pages. It does not create or remove a staging page.
+See [the coverage matrix](../../docs/design/wireframe-coverage.md) for every route, section, and scenario. The authoritative inventory is Page 08 of `second-brain/wiki/design/FitOps User Flows.drawio`; update it before changing derived content.
 
-## Build
-
-The installed manifest continues to point to `code.js`. After editing either
-source file, rebuild the entrypoint:
+## Build and validate
 
 ```powershell
 node scripts/figma-plugin/build.mjs
 node --check scripts/figma-plugin/code.js
+node scripts/validate-ux-sync.mjs
+node scripts/test-wireframe-generator.mjs
+git diff --check
 ```
 
-- `brand-and-flows.js` contains the original toolkit behavior and message router.
-- `wireframes.js` contains the low-fidelity screen generator.
-- `code.js` is generated from both sources.
+- `brand-and-flows.js`: existing toolkit behavior and guarded UI message router.
+- `wireframe-content.js`: route-specific copy, sections, fictional examples, and states.
+- `wireframes.js`: native Figma layout, responsive rendering, navigation, and versioning.
+- `code.js`: generated bundle; do not edit directly.
+- `ui.html`: primary action, progress, completion, and error feedback.
 
-## Run the wireframes
+The structural test executes the real generator with a Plugin API double. It verifies route/state pairs, action destinations, horizontal bounds, blocked-state behavior, role-denied privacy, preserved user work, kit reuse, and safe reruns. It is **not native Figma visual QA**.
 
-`FitOps User Flows.drawio` is the editable UX source of truth. Update it before
-Mermaid or Figma, run `node scripts/validate-ux-sync.mjs`, then open the
-duplicated WebbyFrames kit in Figma Desktop and run **Practice Athletic Club
-Master Toolkit** from **Plugins > Development**. Select **Build Low-Fi
-Wireframes**. The action never overwrites an earlier wireframe page.
+## Run in Figma
 
-The generated `00 Public, Legal, and Miscellaneous` module maps every public
-route and landing anchor, including Pricing, About Us, Terms, Privacy, Liability
-Waiver, Cookie Preferences, and Not Found (`/404`).
+1. Import `scripts/figma-plugin/manifest.json` through **Plugins > Development > Import plugin from manifest** if not already imported.
+2. Open the target design file. Existing UI-kit components may be present but are not required.
+3. Reload/reopen **Practice Athletic Club Master Toolkit** after rebuilding.
+4. Click **Build Low-Fi Wireframes** and wait for the completed count.
+5. Use the plugin page chooser (or Figma page list) to switch routes, then use each page's scenario index. Local states have native prototype links. Cross-page controls carry the destination in their layer names; native prototype navigation cannot cross pages. Self-targeting navigation/blocked submissions do not receive a reaction.
+
+The previous combined-page output failed native Figma reaction validation. The corrected build passes stricter structural tests for top-level, same-page, different-frame destinations; native rerun and visual review remain pending. Issue #6 is not marked complete.
+
+## Split the existing giant page
+
+Reload the rebuilt plugin, select the old `FitOps Wireframes / Complete / ...` page, then click **Split current combined page**. The action moves existing screens into separate route pages without redrawing them, clears invalid reactions, restores valid local reactions, and retains original annotations on the old page. It does not regenerate prototype actions that were never written before the earlier failure; use Build Low-Fi Wireframes for a fresh, fully linked local-state version. The split action refuses unrelated pages.

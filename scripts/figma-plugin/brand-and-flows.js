@@ -1,5 +1,6 @@
 // Practice Athletic Club — Elite Figma Sitemap & Userflow Engine
 figma.showUI(__html__, { width: 440, height: 760, themeColors: true });
+figma.root.setRelaunchData({open:'Build and review complete FitOps wireframes'});
 
 const PRIMARY_LOGO_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-label="Practice Athletic Club primary stacked logo">
 <path d="M38.63639315478213 729H323.9970116263139Q452.33388072914386 729 518.8987855123778 665.2197536560416Q585.4636902956117 601.4395073120832 585.4636902956117 485.6306061776995Q585.4636902956117 407.4077954606473 554.1313159786005 352.4606390273184Q522.7989416615892 297.51348259398947 463.85536787539604 268.96170442569564Q404.9117940892029 240.40992625740182 323.8667560463655 240.40992625740182H193.45179065415869V378.6076470202388H308.8260139711492Q359.0535933973006 378.6076470202388 384.91824103306135 405.4222002436072Q410.7828886688221 432.23675346697564 410.7828886688221 483.3820806757867Q410.7828886688221 533.8738621110679 384.6199523897012 559.3249796290547Q358.4570161105803 584.7760971470416 308.8260139711492 584.7760971470416H187.18432804296026L208.04259439495218 604.9799676819384V0H38.63639315478213Z" fill="#111310" transform="translate(105.00 170.00) scale(0.1400000 -0.1400000)"/>
@@ -754,18 +755,27 @@ async function buildFitOpsUserflows(componentPool) {
 // MAIN PLUGIN MESSAGE ROUTER
 // =========================================================================
 
+let toolkitBusy = false;
 figma.ui.onmessage = async (msg) => {
-  try { await figma.loadAllPagesAsync(); } catch (_) {}
+  if (toolkitBusy) return;
+  if (msg.type === 'open-wireframe-page') {
+    await openFitOpsWireframePage(msg.pageId);
+    return;
+  }
 
-  if (msg.type === 'build-wireframes') {
+  if (msg.type === 'build-wireframes' || msg.type === 'split-wireframes') {
+    toolkitBusy = true;
     try {
       figma.notify("Building FitOps desktop and mobile wireframes...");
-      await buildFitOpsWireframes();
+      if(msg.type === 'split-wireframes') await splitCurrentFitOpsWireframes();
+      else await buildFitOpsWireframes();
       figma.notify("✓ FitOps wireframes created and linked.");
     } catch (error) {
       console.error(error);
       figma.ui.postMessage({ type: 'wireframes-error', message: error instanceof Error ? error.message : String(error) });
       figma.notify("Wireframe generation stopped. See the plugin status for details.", { error: true });
+    } finally {
+      toolkitBusy = false;
     }
     return;
   }

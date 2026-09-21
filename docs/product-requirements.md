@@ -44,8 +44,8 @@ Needs to create and edit class sessions, assign trainers, set capacity, and see 
 - Programs and trainer summaries backed by seed data
 - Upcoming class schedule preview
 - Pricing presentation clearly labeled as fictional
-- A public `Join now` call to action; the landing header must not expose a global Sign In action
-- A `/join` decision page that offers fictional plan selection for a new demo member and an explicit “Already a member? Sign in” path
+- A public header with secondary `My Account` access for existing members and primary `Join Now` conversion; it must not expose a generic global Sign In action
+- A `/join` decision page that offers fictional plan selection for a new demo member and an explicit “Already a member? My Account” path
 - Public schedule discovery with a context-preserving redirect to Join when an anonymous visitor wants to book
 - Pricing presentation clearly marked fictional, with no payment, card, billing, or real-subscription collection
 
@@ -82,7 +82,7 @@ Needs to create and edit class sessions, assign trainers, set capacity, and see 
 9. Trainers and administrators cannot use member-only booking actions unless they also have a member profile.
 10. All public demo data is fictional and all destructive administrative actions are limited to demo records.
 11. Selecting a plan in `/join` is a fictional demo enrollment, not a purchase. The interface must state that no payment is collected.
-12. Public discovery pages and protected workspaces use separate navigation shells. Public navigation does not include a global Sign In action.
+12. Public discovery pages and protected workspaces use separate navigation shells. The public header may include secondary `My Account` access, but it does not include a generic global Sign In action and keeps `Join Now` primary.
 
 ## Success criteria
 

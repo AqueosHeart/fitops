@@ -1,0 +1,83 @@
+flowchart TD
+    Root[Practice Athletic Club]
+
+    subgraph PublicSpace[Public discovery site]
+        PublicNav[Public header<br/>Primary navigation, My Account utility, and Join Now CTA]
+        Home[Home /]
+        Programs[Programs /programs]
+        Services[Services /#services]
+        Facilities[Facilities /#facilities]
+        Contact[Contact /#contact]
+        PublicSchedule[Schedule /schedule]
+        Trainers[Trainers /trainers]
+        Pricing[Pricing /pricing<br/>Fictional plans only]
+        SessionDetails[Session detail /sessions/:id<br/>PUBLIC ROUTE: anonymous booking starts Join; members continue in workspace]
+    end
+
+    subgraph FooterSystem[Footer and system routes]
+        About[About Us /about]
+        Terms[Terms of Service /terms]
+        Privacy[Privacy Policy /privacy]
+        Waiver[Liability Waiver /waiver]
+        Cookies[Cookie preferences /cookie-settings]
+        NotFound["SYSTEM FALLBACK: Not Found /404"]
+    end
+
+    subgraph JoinAndAuth[Membership join and authentication]
+        Join[Join Now /join<br/>Choose a fictional plan; no payment or card data]
+        Login[My Account /portal/login<br/>Existing-member access and demo persona switcher]
+        Guard[Protected-route guard<br/>SYSTEM: unauthenticated to My Account with validated returnTo; wrong role denied]
+        Register[Member registration /register<br/>Account form and required consent]
+        Recovery[Account recovery /auth/forgot-password]
+    end
+
+    subgraph MemberSpace[Member workspace: protected app shell]
+        Workspace[Member dashboard /app<br/>Home, next class, and quick actions]
+        AppSchedule[Member schedule /app/schedule]
+        MyBookings[My bookings /app/bookings]
+        ProfileSec[Profile &amp; Security /app/profile/security]
+        Confirmed["SECTION: Confirmed reservations within /app/bookings"]
+        Waiting["SECTION: Waitlist entries within /app/bookings"]
+        CancelDialog["MODAL: Cancellation confirmation"]
+    end
+
+    subgraph TrainerSpace[Trainer workspace: protected]
+        TrainerAssignments[Assigned sessions /trainer/sessions]
+        TrainerSession[Assigned session /trainer/sessions/:id]
+    end
+
+    subgraph AdminSpace[Administrator workspace: protected]
+        AdminOverview[Operations overview /admin]
+        AdminSessions[Session manager /admin/sessions]
+        AdminCreate[Create session /admin/sessions/new]
+        AdminEdit[Edit session /admin/sessions/:id/edit]
+        AdminParticipants[Participants /admin/sessions/:id/participants]
+    end
+
+    Root --> PublicNav
+    PublicNav -- Secondary utility: My Account --> Login
+    PublicNav -- Primary CTA --> Join
+    PublicSchedule --> SessionDetails
+    Join --> PlanSelected["STEP: select fictional plan"] --> Register
+    Register --> Created["STEP: account created and session issued"] --> Destination["Validated member intent, otherwise /app"]
+    Login --> Recovery
+    Workspace --> AppSchedule & MyBookings & ProfileSec
+    MyBookings -. contains .-> Confirmed & Waiting
+    Confirmed -. opens .-> CancelDialog
+    TrainerAssignments --> TrainerSession
+    AdminOverview --> AdminSessions
+    AdminSessions --> AdminCreate & AdminEdit & AdminParticipants
+
+    classDef public fill:#F2F0E8,stroke:#111310,color:#111310;
+    classDef join fill:#E1EAF5,stroke:#1E3A8A,color:#111310;
+    classDef member fill:#E2E0D8,stroke:#111310,color:#111310;
+    classDef trainer fill:#E8E3F3,stroke:#4C3B73,color:#111310;
+    classDef admin fill:#111310,stroke:#C7F134,color:#F2F0E8;
+    classDef overlay fill:#FFFFFF,stroke:#8B5CF6,stroke-dasharray: 4 4,color:#111310;
+    class Root,PublicNav,Home,Programs,Services,Facilities,Contact,PublicSchedule,Trainers,Pricing,About,Terms,Privacy,Waiver,Cookies,NotFound public;
+    class Join,Login,Guard,Register,Recovery join;
+    class Workspace,AppSchedule,MyBookings,ProfileSec,Confirmed,Waiting member;
+    class TrainerAssignments,TrainerSession trainer;
+    class AdminOverview,AdminSessions,AdminCreate,AdminEdit,AdminParticipants admin;
+    class SessionDetails public;
+    class CancelDialog overlay;

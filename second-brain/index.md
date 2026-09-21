@@ -2,7 +2,7 @@
 type: index
 project: FitOps
 status: active
-updated: 2026-09-18
+updated: 2026-09-21
 ---
 
 # FitOps Knowledge Index
@@ -20,6 +20,7 @@ updated: 2026-09-18
 - [Project overview](../README.md)
 - [Product requirements](../docs/product-requirements.md)
 - [UX plan](../docs/ux-plan.md)
+- [Complete wireframe coverage](../docs/design/wireframe-coverage.md)
 - [[wiki/design/FitOps User Flows|FitOps user-flow review hub]]
 - [[wiki/design/FitOps User Flows.drawio|Editable draw.io user-flow file]]
 - [Practice Athletic Club brand identity guidelines](../docs/brand/brand-identity.md)
@@ -46,6 +47,10 @@ updated: 2026-09-18
 
 ## Activity
 
+- [[wiki/logs/2026-09-21-complete-wireframe-plugin|Complete desktop and mobile wireframe plugin]]
+
+- [[wiki/logs/2026-09-21-sitemap-architecture-separation|Page-only sitemap and route/access architecture separation]]
+
 - [[log]]
 - [[wiki/logs/2026-09-14-fitops-foundation-session|FitOps foundation session]]
 - [[wiki/logs/2026-09-15-practice-brand-foundation|Practice Athletic Club brand foundation]]
@@ -59,4 +64,8 @@ updated: 2026-09-18
 - [[wiki/logs/2026-09-18-fitops-wireframe-generator|FitOps wireframe generator]]
 - [[wiki/logs/2026-09-18-drawio-figma-sync|draw.io to Figma synchronization]]
 - [[wiki/logs/2026-09-18-public-join-workspace-boundaries|Public Join and workspace boundaries]]
+- [[wiki/logs/2026-09-21-drawio-sitemap-remediation|draw.io 01 Sitemap remediation]]
+- [[wiki/logs/2026-09-21-public-my-account-utility|Public My Account utility and Join Now hierarchy]]
 - [[raw/06-flash_notes/2026-09-14-conversation-record|Planning conversation record]]
+
+- [[wiki/logs/2026-09-21-wireframe-page-split-fix|Wireframe page split and native reaction fix]]

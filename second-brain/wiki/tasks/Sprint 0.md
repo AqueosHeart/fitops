@@ -3,7 +3,7 @@ type: sprint
 project: FitOps
 sprint: Sprint 0
 status: active
-updated: 2026-09-18
+updated: 2026-09-21
 ---
 
 # Sprint 0 Product Foundation
@@ -56,9 +56,14 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 - [x] Decide and document separate public discovery, fictional membership Join, and protected workspace shells (ADR 004)
 - [x] Add a repository UX synchronization validation for public, legal, cookie, 404, authentication, and protected-route coverage
 - [x] Correct the native draw.io flow dead ends and contradiction findings before updating its derived Mermaid and Figma artifacts
+- [x] Define the public-header access hierarchy: secondary `My Account`, primary `Join Now`, plan-gated fictional registration, and separate footer/system routes (ADR 006)
+- [x] Reduce Page 01 connector density so the editable sitemap remains legible and defers detailed behavior to Pages 02 through 07
+- [x] Separate the 26-URL `00 Sitemap` from `01 Route & Access Architecture`, clarify UI/system states and enrollment steps, and refresh both Mermaid/SVG review exports
 - [ ] Review and approve the corrected Mermaid and draw.io flows
-- [ ] Produce the desktop and mobile low-fidelity wireframes required by Issue #6
-  - The existing toolkit at `scripts/figma-plugin/` now includes eleven module pages with 19 desktop and 17 Android 390 px states. Landing and Public Schedule are separate, and the Member Portal plus dashboard are explicit. Static synchronization passed, but Figma execution, visual QA, and approval remain pending.
+- [x] Expand the local plugin to separate desktop/mobile screens for all 26 routes plus 404, with 163 scenarios per device, complete content sections, and checked prototype links
+- [x] Split generator output into 27 route pages, add existing-output migration, and reproduce/fix invalid native NAVIGATE destinations in the stricter regression test
+- [ ] Produce and visually approve the native Figma desktop/mobile wireframes required by Issue #6
+  - The plugin now defines 26 page routes plus a separate 404 fallback, each with full desktop (1440 px) and mobile (390 px) sections. It generates 163 scenarios per device across 27 separate versioned Figma route pages. Desktop/mobile scenario frames are direct children of their page. Only different-frame, same-page transitions receive NAVIGATE reactions; cross-page destinations are labeled and reached through the plugin page chooser. The earlier combined-page run failed native reaction validation; the stricter local regression tests now pass, but native rerun and visual QA remain pending.
 
 ## Connections
 

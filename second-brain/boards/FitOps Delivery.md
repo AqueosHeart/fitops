@@ -1,7 +1,7 @@
 ---
 type: board-mirror
 project: FitOps
-updated: 2026-09-18
+updated: 2026-09-21
 ---
 
 # FitOps Delivery Board Mirror
@@ -15,9 +15,9 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 ## Ready for Sprint 1
 
 - [#6 [DESIGN] Low-Fidelity Desktop & Mobile Booking Flow Wireframes](https://github.com/AqueosHeart/fitops/issues/6)
-  - draw.io is the editable UX source of truth. The Mermaid sitemap and English-only Figma generator statically align on 29 routes and anchors through `node scripts/validate-ux-sync.mjs`, including Join, legal, cookies, 404, and the protected member workspace.
-  - Native flow recovery is explicitly mapped for booking, waitlist, cancellation, trainer, administrator, and authentication states; Figma visual execution remains the outstanding verification step.
-  - The generated eleven module pages, 19 desktop states, and 17 Android states still require execution and visual QA in Figma; Issue #6 remains pending.
+  - draw.io is the editable UX source of truth. The Mermaid route/access architecture and English-only Figma generator statically align on 29 routes and anchors through `node scripts/validate-ux-sync.mjs`, including secondary `My Account`, primary `Join Now`, legal, cookies, 404, and the protected member workspace.
+  - The nine-page native file separates `00 Sitemap` (26 page URLs, independently checked) from `01 Route & Access Architecture` (routes, UI/system states, enrollment steps); Pages 02 through 07 retain detailed behavior, and Page 08 records wireframe coverage. Figma visual execution remains the outstanding verification step.
+  - The plugin now defines 26 page routes plus a separate 404 fallback, each with full desktop (1440 px) and mobile (390 px) sections. It generates 163 scenarios per device across 27 separate versioned Figma route pages. Desktop/mobile scenario frames are direct children of their page. Only different-frame, same-page transitions receive NAVIGATE reactions; cross-page destinations are labeled and reached through the plugin page chooser. The earlier combined-page run failed native reaction validation; the stricter local regression tests now pass, but native rerun and visual QA remain pending. Issue #6 remains pending.
   - Review hub: [[../wiki/design/FitOps User Flows]]
   - Editable diagram: [[../wiki/design/FitOps User Flows.drawio]]
 - [#7 [ARCH] Domain Boundary & Use-Case Specification](https://github.com/AqueosHeart/fitops/issues/7)

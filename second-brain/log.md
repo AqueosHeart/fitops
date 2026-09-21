@@ -1,10 +1,24 @@
 ---
 type: activity-log
 project: FitOps
-updated: 2026-09-18
+updated: 2026-09-21
 ---
 
 # FitOps Activity Log
+
+## 2026-09-21
+
+- Simplified Page 01 after visual review showed connector crossings and unreadable labels. Removed decorative route-inventory and long cross-workspace arrows, added clear group headings and route-copy explanations, and retained only high-signal transitions. Updated the Mermaid sitemap and Obsidian review hub to the same sparse-map convention.
+- Accepted ADR 006 after reviewing the source sitemap, public/member boundary, and existing-member entry path. The public header now has secondary `My Account` access to `/portal/login` and primary `Join Now` conversion to `/join`; it is not a generic global Sign In pattern.
+- Updated native draw.io Page 01 first, then the Mermaid sitemap/review hub and English-only Figma generator. Registration now follows fictional-plan selection only; direct portal access, guarded redirects, validated `returnTo`, public session intent, footer/system routes, and the separate protected workspaces are explicit.
+- Rebuilt `scripts/figma-plugin/code.js`; `node --check scripts/figma-plugin/code.js`, `node scripts/validate-ux-sync.mjs` (29 mapped routes/anchors), and `git diff --check` passed. No Figma file was connected, so generator execution and visual QA remain pending.
+- Audited and corrected Page 1 (`01 Sitemap`) of `wiki/design/FitOps User Flows.drawio`.
+- Resolved a 70 px horizontal collision between the `Join now /join` card and the Legend card (`leg1_box`), which previously obscured the `Auth & Security` and `Overlay / Modal` color swatches.
+- Re-aligned the authentication row to an intuitive left-to-right flow (`publicNav` -> `join` -> `authHub` / `login` / `register`), eliminating backward crisscrossing orthogonal connectors.
+- Restored visual taxonomy compliance across all nodes: updated `root` brand card from Administrator Operations (`#111310; stroke=#C7F134`) to Public Cream (`#F2F0E8; stroke=#111310`); updated `confirmed` and `waiting` from Public Cream to Member Sand (`#E2E0D8`); changed `e-conf-cancel` to a dashed violet modal connector (`strokeColor=#8B5CF6; dashed=1`); and eliminated the dashed-modal `miscellaneous` container in favor of direct public navigation routing.
+- Enforced ADR 004 security boundaries: removed unauthorized direct edges from `root` to protected member, trainer, and administrator workspaces, ensuring protected shells are accessible strictly through server-validated role redirects (`/portal/login`) and new demo registration (`/register`).
+- Removed out-of-place runtime booking modals (`waiverModal`, `expiryModal`, duplicate `auth` decision) from the sitemap to resolve dead ends and upward wire tangling, linking public session details directly to `/join` with an internal `returnTo` preserve intent.
+- Validated all 29 mapped routes and anchors with `node scripts/validate-ux-sync.mjs`, achieving 100% pass across draw.io, Mermaid, and the Figma generator with 0 collisions and 0 broken references.
 
 ## 2026-09-17
 
@@ -93,3 +107,23 @@ updated: 2026-09-18
 - Created the public `AqueosHeart/fitops` GitHub repository and pushed the planning and project-memory files.
 - Added repository-level continuity instructions that require new FitOps tasks to read the second-brain context and material tasks to update it before completion.
 - Saved a durable foundation-session summary and a concise chronological conversation record.
+
+
+## 2026-09-21 - Sitemap and architecture separation
+
+- The native file now has eight pages: `00 Sitemap` contains 26 page URLs only; `01 Route & Access Architecture` preserves route/access context, explicitly typed UI/system states, and enrollment steps; Pages 02 through 07 retain the detailed flows. Landing anchors and the `/404` fallback belong to the architecture view, not the page-only sitemap. No routes or product capabilities were added.
+- Refreshed Mermaid/SVG exports, review hub, static route checks, and continuity notes. Flow approval, native visual review, and Figma QA remain pending.
+- Session: [[wiki/logs/2026-09-21-sitemap-architecture-separation]].
+
+
+## 2026-09-21 - Complete wireframe plugin
+
+- The plugin now defines 26 page routes plus a separate 404 fallback, each with full desktop (1440 px) and mobile (390 px) sections. It generates 163 scenarios per device on one new versioned Figma page with 27 route sections and same-page prototype links. Local build, structural tests, and representative approximate layout previews pass; native Figma execution and visual QA remain pending.
+- Updated draw.io coverage first, then the plugin, bundle, coverage specification, tests, UI, and current project context. No app implementation or publication.
+- Session: [[wiki/logs/2026-09-21-complete-wireframe-plugin]].
+
+
+## 2026-09-21 - Wireframe page split and reaction fix
+
+- User-reported Figma failure reproduced in stricter tests. Generator now produces 27 route pages with top-level frames, no self/cross-page NAVIGATE, and a page chooser. Added a migration action for existing combined output. Native rerun remains pending.
+- [[wiki/logs/2026-09-21-wireframe-page-split-fix]].

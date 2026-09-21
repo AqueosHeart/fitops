@@ -2,18 +2,18 @@
 type: ux-flow-hub
 project: FitOps
 status: review-required
-updated: 2026-09-18
+updated: 2026-09-21
 ---
 
 # FitOps User Flows
 
 This note is the Obsidian-readable review hub for the platform user flows, incorporating terms of service, gym liability waiver, privacy policies, demo data governance, security guardrails, and full authentication/onboarding lifecycles.
 
-Open the native editable diagram: [[FitOps User Flows.drawio|FitOps User Flows.drawio]]. It contains the seven diagrams as individual draw.io pages (295 vertices, 274 edges) with embedded visual color keys.
+Open the native editable diagram: [[FitOps User Flows.drawio|FitOps User Flows.drawio]]. The native file now has nine pages: `00 Sitemap` contains 26 page URLs only; `01 Route & Access Architecture` preserves route/access context, explicitly typed UI/system states, and enrollment steps; Pages 02 through 07 retain the detailed flows; Page 08 specifies wireframe sections and scenarios. Landing anchors and the `/404` fallback belong to the architecture view, not the page-only sitemap. No routes or product capabilities were added.
 
-## Native flow correction pass, 2026-09-18
+## Native flow correction passes, 2026-09-21
 
-The editable draw.io source was corrected before its Mermaid and Figma derivatives. The sitemap now makes post-registration and role-based Portal routing explicit. The detailed flows now include recovery for dismissed waivers, expired sessions, duplicate/conflict outcomes, retries, cancellation cutoffs, promotion visibility, forbidden staff access, failed administrator saves, registration consent, existing-email redirects, invalid credentials, and rate limits. The Join route visibly requires fictional plan selection before registration and the public entry wording is `Join now`, never a global Sign In action.
+The editable draw.io source was corrected before its Mermaid and Figma derivatives. The sitemap resolves a 70 px collision with the Legend card, maintains taxonomy compliance, and eliminates unauthenticated direct root edges to protected workspaces. The later access-boundary pass implements ADR 006: the public header now offers secondary `My Account` access for existing members and primary `Join Now` conversion; registration is reachable only after fictional-plan selection. Footer/system routes are grouped separately, and protected-route redirects preserve only validated internal `returnTo` state. The detailed flows include recovery for dismissed waivers, expired sessions, duplicate/conflict outcomes, retries, cancellation cutoffs, promotion visibility, forbidden staff access, failed administrator saves, registration consent, existing-email redirects, invalid credentials, and rate limits.
 
 ## Visual language and color legend
 
@@ -34,14 +34,97 @@ Every color in the diagrams has a precise architectural meaning derived from the
 | **Dashed Purple Connector (`#8B5CF6`)** | **Overlay / Modal Trigger** | Non-blocking client dialog activation or contextual sheet presentation. |
 | **Dashed Red Connector (`#9E2E25`)** | **Security / Auth Intercept** | Unauthenticated action redirect, rate-limit lockout, or session expiry re-auth recovery. |
 
+## Complete wireframe coverage
+
+The plugin now defines 26 page routes plus a separate 404 fallback, each with full desktop (1440 px) and mobile (390 px) sections. It generates 163 scenarios per device across 27 separate versioned Figma route pages. Desktop/mobile scenario frames are direct children of their page. Only different-frame, same-page transitions receive NAVIGATE reactions; cross-page destinations are labeled and reached through the plugin page chooser. The earlier combined-page run failed native reaction validation; the stricter local regression tests now pass, but native rerun and visual QA remain pending.
+
+[Route, section, and state matrix](../../../docs/design/wireframe-coverage.md).
+
 ## Sitemap
 
-`mermaid
+[Open SVG preview](../../../docs/design/sitemap.svg). Only page URLs appear as nodes; lines express information hierarchy.
+
+```mermaid
+flowchart TB
+    %% Route-only information hierarchy. Group headings are not pages.
+    subgraph publicGroup["PUBLIC DISCOVERY"]
+        direction TB
+        home["/"]
+        programs["/programs"]
+        home --- programs
+        schedule["/schedule"]
+        home --- schedule
+        details["/sessions/:id"]
+        schedule --- details
+        trainers["/trainers"]
+        home --- trainers
+        pricing["/pricing"]
+        home --- pricing
+    end
+    style publicGroup fill:#F2F0E8,stroke:#B8BDB4
+    subgraph legalGroup["PUBLIC INFORMATION & PREFERENCES"]
+        direction TB
+        about["/about"]
+        terms["/terms"]
+        privacy["/privacy"]
+        waiver["/waiver"]
+        cookies["/cookie-settings"]
+    end
+    style legalGroup fill:#F2F0E8,stroke:#B8BDB4
+    subgraph authGroup["JOIN & ACCOUNT PAGES"]
+        direction TB
+        join["/join"]
+        register["/register"]
+        login["/portal/login"]
+        recovery["/auth/forgot-password"]
+    end
+    style authGroup fill:#E1EAF5,stroke:#B8BDB4
+    subgraph memberGroup["MEMBER WORKSPACE"]
+        direction TB
+        app["/app"]
+        appSchedule["/app/schedule"]
+        app --- appSchedule
+        bookings["/app/bookings"]
+        app --- bookings
+        security["/app/profile/security"]
+        app --- security
+    end
+    style memberGroup fill:#E2E0D8,stroke:#B8BDB4
+    subgraph trainerGroup["TRAINER WORKSPACE"]
+        direction TB
+        assigned["/trainer/sessions"]
+        assignedDetail["/trainer/sessions/:id"]
+        assigned --- assignedDetail
+    end
+    style trainerGroup fill:#E8E3F3,stroke:#B8BDB4
+    subgraph adminGroup["ADMINISTRATOR WORKSPACE"]
+        direction TB
+        adminHome["/admin"]
+        adminSessions["/admin/sessions"]
+        adminHome --- adminSessions
+        adminCreate["/admin/sessions/new"]
+        adminSessions --- adminCreate
+        adminEdit["/admin/sessions/:id/edit"]
+        adminSessions --- adminEdit
+        participants["/admin/sessions/:id/participants"]
+        adminSessions --- participants
+    end
+    style adminGroup fill:#EDF1E8,stroke:#B8BDB4
+
+    %% Invisible layout links organize groups; they are not navigation.
+    publicGroup ~~~ legalGroup ~~~ authGroup ~~~ memberGroup ~~~ trainerGroup ~~~ adminGroup
+```
+
+## Route & Access Architecture
+
+[Open SVG preview](../../../docs/design/route-access-architecture.svg). Routes, flow steps, and UI/system behavior are explicitly distinguished.
+
+```mermaid
 flowchart TD
     Root[Practice Athletic Club]
 
     subgraph PublicSpace[Public discovery site]
-        PublicNav[Public navigation + Join now<br/>No global Sign In link]
+        PublicNav[Public header<br/>Primary navigation, My Account utility, and Join Now CTA]
         Home[Home /]
         Programs[Programs /programs]
         Services[Services /#services]
@@ -50,30 +133,34 @@ flowchart TD
         PublicSchedule[Schedule /schedule]
         Trainers[Trainers /trainers]
         Pricing[Pricing /pricing<br/>Fictional plans only]
+        SessionDetails[Session detail /sessions/:id<br/>PUBLIC ROUTE: anonymous booking starts Join; members continue in workspace]
+    end
+
+    subgraph FooterSystem[Footer and system routes]
         About[About Us /about]
         Terms[Terms of Service /terms]
         Privacy[Privacy Policy /privacy]
         Waiver[Liability Waiver /waiver]
         Cookies[Cookie preferences /cookie-settings]
-        NotFound[Not Found /404]
+        NotFound["SYSTEM FALLBACK: Not Found /404"]
     end
 
     subgraph JoinAndAuth[Membership join and authentication]
-        Join[Join now /join<br/>Fictional plan selection; no payment collected]
-        AuthHub[Member Portal<br/>Direct entry and protected-route redirects]
-        Login[Member Portal Login /portal/login<br/>Existing member credentials or demo switcher]
-        Register[Member registration /register<br/>Fictional plan selection, consent, and demo profile]
+        Join[Join Now /join<br/>Choose a fictional plan; no payment or card data]
+        Login[My Account /portal/login<br/>Existing-member access and demo persona switcher]
+        Guard[Protected-route guard<br/>SYSTEM: unauthenticated to My Account with validated returnTo; wrong role denied]
+        Register[Member registration /register<br/>Account form and required consent]
         Recovery[Account recovery /auth/forgot-password]
     end
 
     subgraph MemberSpace[Member workspace: protected app shell]
-        Workspace[Member workspace /app]
+        Workspace[Member dashboard /app<br/>Home, next class, and quick actions]
         AppSchedule[Member schedule /app/schedule]
         MyBookings[My bookings /app/bookings]
         ProfileSec[Profile &amp; Security /app/profile/security]
-        Confirmed[Confirmed reservations]
-        Waiting[Waitlist entries]
-        CancelDialog[Cancellation confirmation]
+        Confirmed["SECTION: Confirmed reservations within /app/bookings"]
+        Waiting["SECTION: Waitlist entries within /app/bookings"]
+        CancelDialog["MODAL: Cancellation confirmation"]
     end
 
     subgraph TrainerSpace[Trainer workspace: protected]
@@ -90,21 +177,16 @@ flowchart TD
     end
 
     Root --> PublicNav
-    PublicNav --> Home & Programs & Services & Facilities & Contact & PublicSchedule & Trainers & Pricing & About & Terms & Privacy & Waiver & Cookies & NotFound & Join
-    PublicSchedule --> SessionDetails[Session details /sessions/:id]
-    SessionDetails -. unauthenticated booking; preserve returnTo .-> Join
-    Join -- Select a fictional plan; no payment collected --> Register
-    Join -- Already a member --> AuthHub
-    AuthHub --> Login & Register
+    PublicNav -- Secondary utility: My Account --> Login
+    PublicNav -- Primary CTA --> Join
+    PublicSchedule --> SessionDetails
+    Join --> PlanSelected["STEP: select fictional plan"] --> Register
+    Register --> Created["STEP: account created and session issued"] --> Destination["Validated member intent, otherwise /app"]
     Login --> Recovery
-    Register -. creates active demo profile with selected fictional plan .-> Workspace
-    Login -. restores returnTo or role workspace .-> Workspace
     Workspace --> AppSchedule & MyBookings & ProfileSec
-    MyBookings --> Confirmed & Waiting
-    Confirmed --> CancelDialog
-    Login -. trainer role .-> TrainerAssignments
+    MyBookings -. contains .-> Confirmed & Waiting
+    Confirmed -. opens .-> CancelDialog
     TrainerAssignments --> TrainerSession
-    Login -. administrator role .-> AdminOverview
     AdminOverview --> AdminSessions
     AdminSessions --> AdminCreate & AdminEdit & AdminParticipants
 
@@ -115,12 +197,12 @@ flowchart TD
     classDef admin fill:#111310,stroke:#C7F134,color:#F2F0E8;
     classDef overlay fill:#FFFFFF,stroke:#8B5CF6,stroke-dasharray: 4 4,color:#111310;
     class Root,PublicNav,Home,Programs,Services,Facilities,Contact,PublicSchedule,Trainers,Pricing,About,Terms,Privacy,Waiver,Cookies,NotFound public;
-    class Join,AuthHub,Login,Register,Recovery join;
+    class Join,Login,Guard,Register,Recovery join;
     class Workspace,AppSchedule,MyBookings,ProfileSec,Confirmed,Waiting member;
     class TrainerAssignments,TrainerSession trainer;
     class AdminOverview,AdminSessions,AdminCreate,AdminEdit,AdminParticipants admin;
-    class SessionDetails,CancelDialog overlay;
-
+    class SessionDetails public;
+    class CancelDialog overlay;
 ```
 
 ## Booking and waitlist entry
