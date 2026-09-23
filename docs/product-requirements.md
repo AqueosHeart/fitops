@@ -84,6 +84,15 @@ Needs to create and edit class sessions, assign trainers, set capacity, and see 
 11. Selecting a plan in `/join` is a fictional demo enrollment, not a purchase. The interface must state that no payment is collected.
 12. Public discovery pages and protected workspaces use separate navigation shells. The public header may include secondary `My Account` access, but it does not include a generic global Sign In action and keeps `Join Now` primary.
 
+### Rule details for Issue #7
+
+- Booking, waitlist entry, cancellation, and automatic promotion use the class session's configured cutoff. The server checks it at command time. An expired cutoff rejects a new booking, waitlist entry, or cancellation; cancellation cannot initiate promotion after cutoff.
+- Promotion rechecks the waiting member's active demo membership, signed liability waiver, duplicate booking, and confirmed-session overlap. It promotes the first currently eligible entry in FIFO order. As shown in the editable UX flow, an ineligible entry becomes `expired`; the next waiting entry is considered in the same transaction. The member sees the final state on the next visit, without a real-time delivery guarantee.
+- A member has at most one active confirmed booking or waiting entry for a session. Once capacity becomes available before a waitlist submission commits, the request returns current availability and asks the member to book; it does not silently create a waiting entry.
+- Cancellation releases one confirmed seat but never increases configured capacity. If no eligible waiter exists, availability increases by one.
+- After a session receives a confirmed booking or waiting entry, administrators may change capacity only while maintaining capacity at or above confirmed occupancy. Program, trainer, start/end time, and configured cutoff are fixed for that session in the MVP. Session cancellation/deletion and participant migration are outside this edit operation.
+- Registration records acceptance of Terms/Privacy and the liability waiver with timestamps. PAR-Q or health answers are not stored in this fictional demo. An existing demo profile missing a valid waiver may complete the in-app waiver flow before booking.
+
 ## Success criteria
 
 - A first-time visitor can understand the product and reach the schedule within 30 seconds.

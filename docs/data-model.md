@@ -11,6 +11,10 @@ MemberProfile 1---* Booking *---1 ClassSession
 MemberProfile 1---* WaitlistEntry *---1 ClassSession
 ```
 
+## Logical ownership after ADR 008
+
+The current `ClassSession` entry is a conceptual product record, not a claim that one future ORM entity serves every domain model. Scheduling uses a `SessionSlot` view for program, trainer, and interval; Booking uses a `BookableSession` view for capacity, cutoff, status, and participation. Issue #8 may represent these with separate physical tables or a carefully mapped implementation, but no context may import another context's ORM model. `MemberReservationCalendar` is a Booking aggregate that may be represented through confirmed-booking intervals rather than a separate persisted table.
+
 ## Entities
 
 ### User
@@ -29,7 +33,11 @@ MemberProfile 1---* WaitlistEntry *---1 ClassSession
 - `status` active or inactive
 - `selectedPlanCode` nullable: `base`, `complete`, or `training_plus`; records a fictional demo enrollment only
 - `planSelectedAt` nullable timestamp
+- `termsPrivacyAcceptedAt` nullable timestamp for existing demo personas; required for new registration
+- `waiverSignedAt` nullable timestamp for legacy/demo personas; required for new registration and member booking eligibility
 - `createdAt`
+
+Only acceptance timestamps are modeled. Do not store PAR-Q answers or real health information in demo data. Registration writes User, MemberProfile, selected plan, and required consent timestamps atomically.
 
 No payment method, billing address, transaction, invoice, subscription-provider identifier, or renewal state belongs in the version-one data model. The selected plan supports the portfolio onboarding narrative only and never represents a paid subscription.
 
@@ -88,6 +96,9 @@ No payment method, billing address, transaction, invoice, subscription-provider 
 - Session end later than session start
 - Unique active booking per member and session
 - Unique waiting entry per member and session
+- Unique, monotonically allocated `positionKey` per session; resolved entries may leave gaps
+- Participation mutations serialize on their session row and, when a member can receive a confirmed seat, on their member-profile row; this protects capacity and cross-session overlap beyond what simple uniqueness can express
+- Admin capacity edits use the same session row lock and reject capacity below confirmed occupancy
 - Foreign-key integrity for every relationship
 - Timestamps stored in UTC and displayed in the selected local timezone
 

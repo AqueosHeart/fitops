@@ -34,15 +34,17 @@ Owns member status, fictional plan selection, and eligibility to book. It does n
 
 ### Scheduling
 
-Owns programs, trainers, class sessions, capacity, and cutoff times.
+Owns programs, trainers, `SessionSlot` calendar definitions, and trainer-time overlap prevention. A published slot supplies translated data to Booking; it does not own capacity, cutoff, participation, or waitlist order.
 
 ### Booking
 
-Owns confirmed reservations, cancellations, overlap checks, waitlists, and promotion.
+Owns `BookableSession` reservation policy (capacity, cutoff, status, and session snapshot), confirmed reservations, cancellations, overlap checks, waitlists, and promotion. `MemberReservationCalendar` prevents overlapping confirmed reservations for one member. ADR 008 defines the Scheduling-to-Booking contract and the explicit local transaction that can change both Booking aggregates.
 
 ### Administration
 
 Provides authorized use cases for managing sessions and viewing operational state. It does not bypass scheduling or booking invariants.
+
+Administration is an application-facing orchestration module, not a fifth bounded context or independent owner of session and participation records. ADR 008 defines the Scheduling/Booking ownership boundary; ADR 007 retains the transaction safeguards it references.
 
 ## Suggested source structure
 
@@ -78,6 +80,8 @@ tests/
 Booking, cancellation, and waitlist promotion require database transactions. Capacity is checked and updated within the transaction so concurrent requests cannot overbook a session.
 
 The database must enforce uniqueness for active member-session participation. Application checks provide useful errors, while database constraints remain the final consistency guard.
+
+Per [ADR 007](adr/007-booking-consistency-boundary.md) and [ADR 008](adr/008-booking-owns-reservable-session.md), participation mutations lock the affected BookableSession row, then the MemberReservationCalendar lock anchor, currently its owned `member_profiles` row, when a confirmation or promotion is possible. Rules are rechecked under those locks. This serializes final-seat allocation and member overlap checks across sessions; Booking capacity edits use the same session lock. Cancellation, expiry of ineligible waiting entries, and first-eligible promotion commit together. Bounded transaction retries handle serialization failures and deadlocks. Cross-table participation, overlap, and capacity are protected by this protocol and database integration tests, not by uniqueness constraints alone.
 
 ## Authentication and authorization
 

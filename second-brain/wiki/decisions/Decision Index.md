@@ -12,5 +12,7 @@ updated: 2026-09-21
 - [ADR 004 Separate public discovery, fictional membership join, and protected workspaces](../../../docs/adr/004-separate-public-join-and-workspace-shells.md)
 - [ADR 005 Use a direct Member Portal and a member dashboard entry](../../../docs/adr/005-member-portal-and-dashboard-entry.md)
 - [ADR 006 Add a secondary My Account utility to the public header](../../../docs/adr/006-public-my-account-utility.md)
+- [ADR 007 Keep seat allocation and waitlist promotion in one consistency boundary](../../../docs/adr/007-booking-consistency-boundary.md)
+- [ADR 008 Give Booking ownership of the reservable session](../../../docs/adr/008-booking-owns-reservable-session.md)
 
 New material architecture decisions receive a new ADR. Accepted historical decisions are not silently rewritten; a later ADR may supersede them.

@@ -53,6 +53,8 @@ Table member_profiles {
   status member_status [not null]
   selected_plan_code membership_plan_code [note: 'Fictional demo enrollment only; no payment or billing data']
   plan_selected_at timestamptz
+  terms_privacy_accepted_at timestamptz [note: 'Required for new registration; nullable for pre-existing fictional demo personas']
+  waiver_signed_at timestamptz [note: 'Required for new registration and booking eligibility; never stores PAR-Q answers']
   created_at timestamptz [not null]
 }
 
@@ -117,6 +119,7 @@ Table waitlist_entries {
 
   indexes {
     (session_id, status, position_key) [name: 'waitlist_session_order_idx']
+    (session_id, position_key) [unique, name: 'waitlist_session_position_unique']
     (member_id, session_id) [name: 'waitlist_member_session_idx', note: 'A partial unique index for waiting rows will be added in a reviewed SQL migration']
   }
 }
