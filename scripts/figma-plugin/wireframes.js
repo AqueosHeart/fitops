@@ -203,35 +203,43 @@ async function openFitOpsWireframePage(pageId) {
   const entry=wfGeneratedPages.find(p=>p.page.id===pageId);
   if(!entry)return;
   await figma.setCurrentPageAsync(entry.page);
-  const desktop=wfFrames.get(`desktop:${entry.route.id}`),mobile=wfFrames.get(`mobile:${entry.route.id}`);
+  const route=entry.routes[0];
+  const desktop=wfFrames.get(`desktop:${route.id}`),mobile=wfFrames.get(`mobile:${route.id}`);
   const available=[desktop,mobile].filter(Boolean);
   if(available.length){entry.page.selection=[available[0]];figma.viewport.scrollAndZoomIntoView(available);}
 }
 
 async function splitCurrentFitOpsWireframes(){
   const source=figma.currentPage;
-  if(!source.name.startsWith('FitOps Wireframes / Complete /'))throw new Error('Select the old FitOps Wireframes / Complete page first, then click Split current combined page.');
-  const candidates=source.findAllWithCriteria({types:['FRAME']}).filter(n=>n.parent?.type==='SECTION'&&n.parent.parent===source&&/^[DM] \/ .+ \/ [^/]+$/.test(n.name));
-  if(!candidates.length)throw new Error('No original combined-page wireframe screens were found on this page.');
+  const combined=source.name.startsWith('FitOps Wireframes / Complete /');
+  const legacyVersion=source.name.match(/^(FitOps Wireframes \/ \d{4}-\d{2}-\d{2} v\d+) \/ \d+ /)?.[1];
+  const namedVersion=source.name.match(/— FitOps (\d{4}-\d{2}-\d{2} v\d+)$/)?.[1];
+  if(!combined&&!legacyVersion&&!namedVersion)throw new Error('Select an old combined page or any page from the wireframe version you want to regroup.');
+  const sourcePages=combined?[source]:legacyVersion?figma.root.children.filter(page=>page.name.startsWith(legacyVersion+' / ')):figma.root.children.filter(page=>page.name.endsWith('— FitOps '+namedVersion));
+  const candidates=sourcePages.flatMap(page=>page.findAllWithCriteria({types:['FRAME']}).filter(node=>/^[DM] \/ .+ \/ [^/]+$/.test(node.name)&&(node.parent===page||(node.parent?.type==='SECTION'&&node.parent.parent===page))));
+  if(!candidates.length)throw new Error('No generated wireframe screens were found in this version.');
   const records=candidates.map(frame=>{const [,device,url,state]=frame.name.match(/^([DM]) \/ (.+) \/ ([^/]+)$/);return {frame,device:device==='D'?'desktop':'mobile',route:WIREFRAME_ROUTES.find(r=>r.route===url),state};});
   if(records.some(r=>!r.route))throw new Error('An unrecognized route was found. No screens were moved.');
   const saved=[];
-  const oldIndex=source.children.find(n=>n.name==='START HERE / Route and scenario index');
-  for(const root of [...candidates,...(oldIndex?[oldIndex]:[])]){
+  const oldIndexes=sourcePages.flatMap(page=>page.children.filter(node=>node.name==='START HERE / Route and scenario index'||node.name.startsWith('START HERE / ')));
+  for(const root of [...candidates,...oldIndexes]){
     const nodes=[root,...root.findAllWithCriteria({types:['FRAME','INSTANCE','TEXT','RECTANGLE']})];
-    for(const node of nodes){if(node.reactions?.length){if(root!==oldIndex)saved.push({node,reactions:node.reactions});await node.setReactionsAsync([]);}}
+    for(const node of nodes){if(node.reactions?.length){if(!oldIndexes.includes(root))saved.push({node,reactions:node.reactions});await node.setReactionsAsync([]);}}
   }
   wfFrames=new Map();wfGeneratedPages=[];
-  for(const route of WIREFRAME_ROUTES){
-    const owned=records.filter(r=>r.route===route);if(!owned.length)continue;
-    const page=figma.createPage();page.name=wfUniqueName(`FitOps Split / ${String(wfGeneratedPages.length+1).padStart(2,'0')} ${route.label}`);wfGeneratedPages.push({page,route});
+  for(const group of WF_PAGE_GROUPS){
+    const routes=group.routeIds.map(id=>WIREFRAME_ROUTES.find(route=>route.id===id));
+    const owned=records.filter(record=>routes.includes(record.route));if(!owned.length)continue;
+    const page=figma.createPage();page.name=wfUniqueName(`${String(wfGeneratedPages.length+1).padStart(2,'0')} · ${group.label} — Regrouped`);wfGeneratedPages.push({page,group,routes});
     let y=80;
-    for(const state of [...new Set(owned.map(r=>r.state))]){
-      let height=0;
-      for(const item of owned.filter(r=>r.state===state)){page.appendChild(item.frame);item.frame.x=item.device==='desktop'?0:1510;item.frame.y=y;height=Math.max(height,item.frame.height);wfFrames.set(`${item.device}:${route.id}${state==='ready'?'':'@'+state}`,item.frame);}
-      y+=height+140;
+    for(const route of routes){
+      for(const state of [...new Set(owned.filter(item=>item.route===route).map(item=>item.state))]){
+        let height=0;
+        for(const item of owned.filter(item=>item.route===route&&item.state===state)){page.appendChild(item.frame);item.frame.x=item.device==='desktop'?0:1510;item.frame.y=y;height=Math.max(height,item.frame.height);wfFrames.set(`${item.device}:${route.id}${state==='ready'?'':'@'+state}`,item.frame);}
+        y+=height+140;
+      }
     }
-    wfProgress(`Split ${route.label}: ${owned.length} existing screens moved`);
+    wfProgress(`Split ${group.label}: ${owned.length} existing screens moved`);
   }
   let linked=0;
   for(const {node,reactions} of saved){
@@ -248,10 +256,14 @@ async function splitCurrentFitOpsWireframes(){
     }
     if(allowed.length){await node.setReactionsAsync(allowed);linked++;}
   }
-  if(oldIndex)oldIndex.name='Legacy index / screens moved to separate route pages';
-  source.name+=' [Split - original annotations retained]';
+  await figma.setCurrentPageAsync(wfGeneratedPages[0].page);
+  for(const index of oldIndexes)index.remove();
+  for(const page of sourcePages){
+    if(!page.children.length)page.remove();
+    else page.name=`Archive · ${page.name} — annotations retained`;
+  }
   await openFitOpsWireframePage(wfGeneratedPages[0].page.id);
-  const result={type:'wireframes-complete',pageName:'Split existing wireframes',pageCount:wfGeneratedPages.length,moduleCount:wfGeneratedPages.length,desktopCount:records.filter(r=>r.device==='desktop').length,mobileCount:records.filter(r=>r.device==='mobile').length,screenCount:records.length,actionCount:linked,pages:wfGeneratedPages.map(({page,route})=>({id:page.id,label:route.label,route:route.route}))};
+  const result={type:'wireframes-complete',pageName:'Regrouped existing wireframes',pageCount:wfGeneratedPages.length,moduleCount:wfGeneratedPages.length,desktopCount:records.filter(r=>r.device==='desktop').length,mobileCount:records.filter(r=>r.device==='mobile').length,screenCount:records.length,actionCount:linked,pages:wfGeneratedPages.map(({page,group,routes})=>({id:page.id,label:group.label,route:routes.map(route=>route.route).join(' · ')}))};
   figma.ui.postMessage(result);return result;
 }
 
@@ -259,31 +271,35 @@ async function buildFitOpsWireframes(){
   wfLinks=[];wfFrames=new Map();wfAnchors=new Map();wfGeneratedPages=[];
   wfProgress('Reading the existing UI kit and loading available fonts…');
   await wfPrepareResources();
-  const base='FitOps Wireframes / '+new Date().toISOString().slice(0,10);
-  let version=1,runPrefix=base+' v1';
-  while(figma.root.children.some(p=>p.name.startsWith(runPrefix+' /')))runPrefix=base+' v'+(++version);
+  const runDate=new Date().toISOString().slice(0,10);
+  let version=1,runLabel=`FitOps ${runDate} v1`;
+  while(figma.root.children.some(page=>page.name.endsWith('— '+runLabel)))runLabel=`FitOps ${runDate} v${++version}`;
   let localActionCount=0,crossPageCount=0,selfActionCount=0;
   try {
-    for(const [index,route] of WIREFRAME_ROUTES.entries()){
-      const page=figma.createPage();page.name=`${runPrefix} / ${String(index+1).padStart(2,'0')} ${route.label}`;
-      wfGeneratedPages.push({page,route});await figma.setCurrentPageAsync(page);
-      wfProgress(`${index+1}/${WIREFRAME_ROUTES.length} · ${route.label}: separate page, desktop + mobile`);
-      const overview=wfStack(1960,'VERTICAL',14,24,WF_COLORS.white);overview.name='START HERE / '+route.label;page.appendChild(overview);overview.x=0;overview.y=0;
+    for(const [index,group] of WF_PAGE_GROUPS.entries()){
+      const routes=group.routeIds.map(id=>WIREFRAME_ROUTES.find(route=>route.id===id));
+      const page=figma.createPage();page.name=`${String(index+1).padStart(2,'0')} · ${group.label} — ${runLabel}`;
+      wfGeneratedPages.push({page,group,routes});await figma.setCurrentPageAsync(page);
+      wfProgress(`${index+1}/${WF_PAGE_GROUPS.length} · ${group.label}: grouped desktop + mobile screens`);
+      const overview=wfStack(1960,'VERTICAL',14,24,WF_COLORS.white);overview.name='START HERE / '+group.label;page.appendChild(overview);overview.x=0;overview.y=0;
       overview.setRelaunchData({open:'Open the FitOps wireframe page chooser'});
-      overview.appendChild(wfText(`${route.label} · ${route.route}`,1912,30,true));
-      overview.appendChild(wfText('Desktop 1440 px / Mobile 390 px. Local scenarios are clickable. Use the plugin page chooser for another route; cross-page controls carry destination names in their layer labels. Inputs use preset fictional examples.',1912,15));
-      const scenarios=[{id:'ready'},...route.states],pairs=[];
-      for(const state of scenarios){
-        const desktop=wfScreen(route,state.id==='ready'?{}:state,'desktop'),mobile=wfScreen(route,state.id==='ready'?{}:state,'mobile');
-        page.appendChild(desktop);page.appendChild(mobile);
-        for(const [device,frame] of [['desktop',desktop],['mobile',mobile]])wfFrames.set(`${device}:${route.id}${state.id==='ready'?'':'@'+state.id}`,frame);
-        pairs.push({desktop,mobile,state});
-        const row=wfStack(1912,'HORIZONTAL',16);row.appendChild(wfText(state.id==='ready'?'Ready':state.title,720,14,true));
-        row.appendChild(wfAction(WF_ACTION('Desktop preview',route.id+(state.id==='ready'?'':'@'+state.id)),280,'desktop'));
-        row.appendChild(wfAction(WF_ACTION('Mobile preview',route.id+(state.id==='ready'?'':'@'+state.id)),280,'mobile'));overview.appendChild(row);
-      }
+      overview.appendChild(wfText(group.label,1912,30,true));
+      overview.appendChild(wfText(`${routes.map(route=>`${route.label} (${route.route})`).join(' · ')}. Desktop 1440 px / Mobile 390 px. Local scenarios are clickable. Use the plugin page chooser for another group; cross-page controls carry destination names in their layer labels. Inputs use preset fictional examples.`,1912,15));
       let y=overview.height+100;
-      for(const {desktop,mobile} of pairs){desktop.x=0;desktop.y=y;mobile.x=1510;mobile.y=y;y+=Math.max(desktop.height,mobile.height)+140;}
+      for(const route of routes){
+        const scenarios=[{id:'ready'},...route.states],pairs=[];
+        overview.appendChild(wfText(`${route.label} · ${route.route}`,1912,18,true));
+        for(const state of scenarios){
+          const desktop=wfScreen(route,state.id==='ready'?{}:state,'desktop'),mobile=wfScreen(route,state.id==='ready'?{}:state,'mobile');
+          page.appendChild(desktop);page.appendChild(mobile);
+          for(const [device,frame] of [['desktop',desktop],['mobile',mobile]])wfFrames.set(`${device}:${route.id}${state.id==='ready'?'':'@'+state.id}`,frame);
+          pairs.push({desktop,mobile,state});
+          const row=wfStack(1912,'HORIZONTAL',16);row.appendChild(wfText(`${route.label} · ${state.id==='ready'?'Ready':state.title}`,720,14,true));
+          row.appendChild(wfAction(WF_ACTION('Desktop preview',route.id+(state.id==='ready'?'':'@'+state.id)),280,'desktop'));
+          row.appendChild(wfAction(WF_ACTION('Mobile preview',route.id+(state.id==='ready'?'':'@'+state.id)),280,'mobile'));overview.appendChild(row);
+        }
+        for(const {desktop,mobile} of pairs){desktop.x=0;desktop.y=y;mobile.x=1510;mobile.y=y;y+=Math.max(desktop.height,mobile.height)+140;}
+      }
       await new Promise(resolve=>setTimeout(resolve,0));
     }
     for(const [index,link] of wfLinks.entries()){
@@ -313,7 +329,7 @@ async function buildFitOpsWireframes(){
       await link.node.setReactionsAsync([{trigger:link.trigger||{type:'ON_CLICK'},actions:[{type:'NODE',destinationId:target.id,navigation:'NAVIGATE',transition:null,preserveScrollPosition:false}]}]);localActionCount++;
     }
     await openFitOpsWireframePage(wfGeneratedPages[0].page.id);
-    const result={type:'wireframes-complete',pageName:'FitOps route pages',pageCount:wfGeneratedPages.length,moduleCount:wfGeneratedPages.length,screenCount:wfFrames.size,desktopCount:wfFrames.size/2,mobileCount:wfFrames.size/2,actionCount:localActionCount,crossPageCount,selfActionCount,pages:wfGeneratedPages.map(({page,route})=>({id:page.id,label:route.label,route:route.route}))};
+    const result={type:'wireframes-complete',pageName:'FitOps grouped route pages',pageCount:wfGeneratedPages.length,moduleCount:wfGeneratedPages.length,screenCount:wfFrames.size,desktopCount:wfFrames.size/2,mobileCount:wfFrames.size/2,actionCount:localActionCount,crossPageCount,selfActionCount,pages:wfGeneratedPages.map(({page,group,routes})=>({id:page.id,label:group.label,route:routes.map(route=>route.route).join(' · ')}))};
     figma.ui.postMessage(result);return result;
   }catch(error){for(const {page} of wfGeneratedPages)page.name+=' [Incomplete]';throw error;}
 }

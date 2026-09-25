@@ -84,9 +84,9 @@ The cases below cover the MVP goals. Each prior open point now has a documented 
 - **Success postcondition:** Exactly one waiting entry exists for the member/session with a deterministic ordering key; capacity and confirmed bookings are unchanged.
 - **Failure postcondition:** No new entry is created.
 - **Basic flow:** (1) Member requests waitlisting. (2) System checks member eligibility, session state/cutoff, current fullness, and duplicate active participation. (3) System assigns an ordered position and commits the entry. (4) System returns waiting status and current position.
-- **Alternates/exceptions:** If a seat opens before commit, return `SEAT_AVAILABLE` and offer booking; do not silently add a waitlist entry. Duplicate entry, confirmed booking, cutoff, ineligible member, or concurrent state change returns a stable rejection and no duplicate participation.
+- **Alternates/exceptions:** If a seat opens before commit and no one waits, return `SEAT_AVAILABLE` and offer booking; do not silently add a waitlist entry. A free seat with a waiting entry is an invariant breach and returns the generic `500 PARTICIPATION_INVARIANT_BROKEN` response with an operational alert. Duplicate entry, confirmed booking, cutoff, ineligible member, or concurrent state change returns a stable rejection and no duplicate participation.
 - **Acceptance examples:** Given a full session, two sequential eligible requests receive distinct ordered entries. Given a duplicate request, only one waiting entry remains.
-- **Resolution:** If a seat opens before waitlist commit, return `SEAT_AVAILABLE` and let the member choose Book. Session-row serialization assigns a unique monotonically increasing `positionKey` within that session; Issue #8 must choose the exact database allocation method and verify concurrent requests.
+- **Resolution:** If a seat opens before waitlist commit and no one waits, return `SEAT_AVAILABLE` and let the member choose Book. If a waiting entry coexists with an open seat, report the invariant breach without inserting. Session-row serialization assigns a unique monotonically increasing `positionKey` within that session; Issue #8 must choose the exact database allocation method and verify concurrent requests.
 
 ### UC-04 Cancel a booking and promote a member
 
@@ -109,7 +109,7 @@ The cases below cover the MVP goals. Each prior open point now has a documented 
 - **Alternates:** Create and edit share validation but are separate commands. The administrator may leave the form without saving. Existing participants are displayed for impact assessment; an edit must not silently delete or cancel their bookings.
 - **Exceptions:** Role failure returns forbidden. Invalid time/capacity/cutoff, unavailable trainer, overlap, or capacity below occupancy returns a stable field/conflict error. If a booking wins the race before capacity reduction commits, the edit rechecks and rejects. A failed write makes no completion claim.
 - **Acceptance examples:** Given 8 confirmed bookings, reducing capacity to 7 is rejected. Given a concurrent booking for the last allowed seat and capacity reduction, the final state satisfies confirmed count ≤ capacity.
-- **Resolution:** Once any confirmed booking or waiting entry exists, admin PATCH may change capacity only, never below confirmed occupancy. Program, trainer, time, cutoff, and status are frozen; cancellation/deletion and participant migration are outside this endpoint.
+- **Resolution:** Once any booking or waitlist row has ever existed, admin PATCH may change capacity only, never below confirmed occupancy. Program, trainer, time, cutoff, and status are frozen even after every participation row becomes inactive; cancellation/deletion and participant migration are outside this endpoint. Downstream ADR 010 requires FIFO promotion within a capacity increase before cutoff.
 
 ### UC-06 View assigned sessions and attendee counts
 
@@ -201,7 +201,7 @@ These are the ADR 007 design boundaries within **one modular monolith**, not sep
 | Active membership | Fictional member eligibility state; Membership. | Paid subscription or an authenticated login session. |
 | Confirmed booking | Active reserved seat for one member/session; Booking. | Waitlist entry or merely viewing a session. |
 | Waitlist position | Ordering among currently waiting entries, subject to eligibility rechecks; Booking. | Guaranteed seat or permanent rank. |
-| Available seat | Capacity minus confirmed occupancy at a particular committed state; Booking computes from Scheduling policy. | A persisted capacity increase after cancellation. |
+| Available seat | Capacity minus confirmed occupancy at a particular committed state; Booking owns capacity and reservation policy under ADR 008. | A persisted capacity increase after cancellation. |
 | Administrator action | Authorized command through a use case. | Direct database override of invariants. |
 
 Avoid vague domain names such as `Manager` or `Processor`; use business verbs and the vocabulary above. `BookingIntent` is not required by current requirements and should not be added without a lifecycle reason.
@@ -441,7 +441,7 @@ Compatibility policy: internal ports change atomically in the monolith with unit
 | `PublishBookableSession` | Creates translated BookableSession from a published SessionSlot. | Idempotency key is `sessionSlotId`; duplicate publish returns existing BookableSession. |
 | `BookingConfirmed` | Fact recorded after one confirmation commits. Fields: bookingId, memberId, bookableSessionId, committedAt. | Internal only; ordered after transaction commit; read models may refresh. |
 | `WaitlistEntryAdded` | Fact recorded after waitlist commit. Fields: entryId, memberId, bookableSessionId, positionKey. | A position key is immutable; no replay consumer in MVP. |
-| `BookingCancelled` / `WaitlistEntryPromoted` | Facts recorded from the same committed transaction. | Promotion follows cancellation in that transaction; never publish one on rollback. |
+| `BookingCancelled` / `WaitlistEntryPromoted` | Facts recorded from the same committed transaction when cancellation triggers promotion. | Promotion follows cancellation in that transaction; never publish one on rollback. A capacity increase may separately emit `WaitlistEntryPromoted` under ADR 010 without a `BookingCancelled` event. |
 | `WaitlistEntryExpired` | Fact recorded when current eligibility fails during promotion. | Idempotency key is entryId plus final status; no retry may expire twice. |
 
 | Factory | Creation target and conditions |
@@ -472,7 +472,7 @@ No route or screen was added, so the editable draw.io source required no mutatio
 
 ## Race-safe transaction design and proof obligations
 
-The protocol below is a design specification for PostgreSQL. It has **not** run against an executable schema. Read the database clock **after acquiring the locks**, not at transaction start or from the browser, for the strict `now < startsAt - cutoff` test; a request waiting on another writer must not pass a cutoff that elapsed while it waited. At `READ COMMITTED`, re-read all mutable state after locking; bounded whole-transaction retry handles deadlock or serialization errors. Fix lock order in one shared application coordinator and integration-test every writer.
+The protocol below is a design specification for PostgreSQL. It has **not** run against an executable schema. The downstream [Issue #8 physical plan](../../../docs/database/physical-schema-plan.md) and ADRs 009–010 refine this protocol with one physical session row, history-based edit freeze, capacity-increase promotion, and cutoff rechecks after candidate member locks. Read the database clock **after acquiring the locks**, not at transaction start or from the browser, for the strict `now < startsAt - cutoff` test; a request waiting on another writer must not pass a cutoff that elapsed while it waited. At `READ COMMITTED`, re-read all mutable state after locking; bounded whole-transaction retry handles deadlock or serialization errors. Fix lock order in one shared application coordinator and integration-test every writer.
 
 ```text
 Book(member, session):
@@ -488,7 +488,8 @@ Book(member, session):
 
 JoinWaitlist(member, session):
   BEGIN; lock session; lock member; recheck eligibility and full capacity
-  reject with SEAT_AVAILABLE if count < capacity
+  if count < capacity and any waiting entry: fail PARTICIPATION_INVARIANT_BROKEN
+  reject with SEAT_AVAILABLE if count < capacity and no waiting entry
   assign next session-local position_key under session lock; INSERT waiting entry
   COMMIT
 
@@ -497,15 +498,24 @@ Cancel(booking):
   re-read booking, owner, status, session cutoff; reject if invalid
   mark booking cancelled
   for each waiting entry in ascending position_key:
-    lock candidate member; re-read eligibility, waiver, duplicate and overlap
+    lock candidate member; recheck database-clock cutoff and roll back if passed
+    re-read eligibility, waiver, duplicate and overlap
     if ineligible: mark entry expired; continue
     mark entry promoted; insert one confirmed booking; break
   assert confirmed count <= capacity; COMMIT all changes together
 
 EditSession(admin, session):
-  authorize admin; BEGIN; lock session; re-read participation and occupancy
-  if any confirmed/waiting participation: allow capacity change only
-  reject proposed capacity < confirmed count; UPDATE; COMMIT
+  authorize admin; BEGIN; lock affected trainer rows when scheduling fields may change
+  lock session; re-read trainer assignment, participation history and occupancy
+  if trainer changed since lock selection: retry whole transaction with correct locks
+  if any historical booking/waitlist row: allow capacity change only
+  reject proposed capacity < confirmed count
+  UPDATE permitted session fields, including new capacity
+  if increasing before cutoff: scan waiting entries FIFO; lock each candidate member
+    recheck cutoff after each member lock; expire ineligible or promote eligible
+    roll back whole edit if cutoff passes before promotion
+  if increasing after cutoff with waiting entries: reject
+  COMMIT capacity and all queue changes together
 ```
 
 When trainer/time edits are allowed before participation, serialize scheduling edits on the trainer profile before acquiring the session lock and checking trainer overlap. Booking commands never acquire a trainer lock, so this does not reverse a booking lock cycle. A promotion may hold one session and acquire member locks in FIFO order; two promotions on different sessions can deadlock if they meet the same members in different orders. Retrying the **entire** failed transaction releases every lock and preserves the invariant. Retry exhaustion returns a stable failure with no partial cancellation claim.

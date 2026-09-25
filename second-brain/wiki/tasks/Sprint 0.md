@@ -3,7 +3,7 @@ type: sprint
 project: FitOps
 sprint: Sprint 0
 status: active
-updated: 2026-09-21
+updated: 2026-09-24
 ---
 
 # Sprint 0 Product Foundation
@@ -61,11 +61,22 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 - [x] Separate the 26-URL `00 Sitemap` from `01 Route & Access Architecture`, clarify UI/system states and enrollment steps, and refresh both Mermaid/SVG review exports
 - [ ] Review and approve the corrected Mermaid and draw.io flows
 - [x] Expand the local plugin to separate desktop/mobile screens for all 26 routes plus 404, with 163 scenarios per device, complete content sections, and checked prototype links
-- [x] Split generator output into 27 route pages, add existing-output migration, and reproduce/fix invalid native NAVIGATE destinations in the stricter regression test
+- [x] Group generator output into 20 named review pages, add existing-output migration, and reproduce/fix invalid native NAVIGATE destinations in the stricter regression test
+- [x] Add a safe local component-page manager that scans the UI kit and maintains neutral, native FitOps components without mutating the Community template
+- [x] Add documented exploratory color/type tokens and a Design Tokens review page to the connected Penpot file; proposed spacing/grid values remain unapproved
+- [x] Add a Penpot Lucide icon reference page with a 20-icon product starter set and working usage guidance
+- [x] Mirror all 20 local Figma-plugin wireframe review groups into Penpot as 163 desktop/mobile scenario pairs; visual checks confirm readable light canvases and representative public/admin layouts. The imported boards are static SVG vectors with no icons or prototype reactions.
+- [x] Consolidate Penpot into one 20-page wireframe set, remove 12 duplicate older import pages, correct short member/trainer/admin backgrounds, and verify all 326 live desktop/mobile boards against draw.io's 26 page routes, 404 fallback, and scenario definitions. Representative member booking and schedule exports were visually checked; a screen-by-screen visual approval is still pending.
 - [ ] Produce and visually approve the native Figma desktop/mobile wireframes required by Issue #6
-  - The plugin now defines 26 page routes plus a separate 404 fallback, each with full desktop (1440 px) and mobile (390 px) sections. It generates 163 scenarios per device across 27 separate versioned Figma route pages. Desktop/mobile scenario frames are direct children of their page. Only different-frame, same-page transitions receive NAVIGATE reactions; cross-page destinations are labeled and reached through the plugin page chooser. The earlier combined-page run failed native reaction validation; the stricter local regression tests now pass, but native rerun and visual QA remain pending.
+  - Issue #6 remains in Ready for Sprint 1 and open for execution. Its GitHub issue now carries the existing `sprint:sprint-1` label; the connected Penpot mirror does not complete the native Figma review gate.
+  - The plugin defines 26 page routes plus a separate 404 fallback, each with full desktop (1440 px) and mobile (390 px) sections. It generates 163 scenarios per device across 20 sidebar-readable Figma review pages whose names begin with their ordered group. Related routes share a page, while every desktop/mobile scenario frame remains a direct child of that page. Legal & Misc groups Terms, Privacy, Waiver, Cookie preferences, and 404; Club information, Account access, and Trainer screens are grouped by workflow. Only different-frame, same-page transitions receive NAVIGATE reactions; cross-page destinations are labeled and reached through the plugin page chooser. The earlier combined-page run failed native reaction validation; stricter local regression tests now pass, but native rerun and visual QA remain pending.
 
 ## Connections
+
+- Issue #7 closed on GitHub in `c8d1262`: [[../design/Issue 7 Domain Boundaries and Use Cases]] covers ten use cases and all twelve MVP rules. ADR 008 resolves the DDD boundary review by giving Booking BookableSession capacity/cutoff/participation ownership and keeping Scheduling responsible for SessionSlot calendar definition. Aggregate, interaction, and context-map artifacts pass the DDD design checklists; implementation and PostgreSQL race tests remain downstream evidence.
+- Issue #8's revised [physical schema plan](../../../docs/database/physical-schema-plan.md) uses one `class_sessions` table with separate Scheduling/Booking domain views (ADR 009). It specifies native types, constraints, auth storage, lock order, migration steps, and synchronized PostgreSQL proof. No Prisma schema, migration, or database test exists; Sprint 0 and Sprint 1 design gates still apply.
+- The [first schema review](../../../docs/database/physical-schema-review.md) identified four high and four medium findings. The [second review](../../../docs/database/physical-schema-second-review.md) records design resolutions and the ADR 010 capacity-increase FIFO promotion rule. Issue #8 stays open for executable evidence and Issue #9 security choices.
+- The [independent third review](../../../docs/database/physical-schema-third-review.md) corrected a cancellation cutoff race (ADR 011), stale Issue #7 protocol wording, and the free-seat-plus-waitlist API failure contract. These remain design corrections; Issue #8 is not complete.
 
 - [[../projects/FitOps]]
 - [[../concepts/Software Development Life Cycle]]

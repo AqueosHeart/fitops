@@ -104,13 +104,14 @@ Expected failures:
 - `409 ALREADY_WAITING`
 - `409 BOOKING_CONFLICT`
 - `409 SESSION_FULL`
+- `500 PARTICIPATION_INVARIANT_BROKEN` only if a free seat and waiting entry coexist after the session lock; return a generic message, record a server-side alert, and require explicit data repair rather than booking ahead of the queue.
 - `422 BOOKING_CUTOFF_PASSED`
 
 ### `DELETE /api/v1/bookings/{bookingId}`
 
 Cancels the authenticated member's booking. If eligible, promotes the first waitlisted member transactionally. Returns `204 No Content`.
 
-The request is allowed only for the booking owner before the session's configured cutoff. A successful response means the cancellation and any FIFO promotion/expiry were committed together; configured capacity is unchanged. Candidates are rechecked for active membership, waiver, duplicate confirmation, overlap, session status, and cutoff. Ineligible entries become `expired` as specified in the current UX flow. A repeat DELETE for an already-cancelled booking returns `204` only when the authenticated caller still owns the original booking; it performs no second promotion. Other callers receive `403`, and an unknown booking receives `404`.
+The request is allowed only for the booking owner before the session's configured cutoff. A successful response means the cancellation and any FIFO promotion/expiry were committed together; configured capacity is unchanged. After each candidate member lock, the server rechecks the database-clock cutoff, active membership, waiver, duplicate confirmation, overlap, and session status. A cutoff that passes during a lock wait rolls back the entire cancellation. Ineligible entries become `expired` as specified in the current UX flow. A repeat DELETE for an already-cancelled booking returns `204` only when the authenticated caller still owns the original booking; it performs no second promotion. Other callers receive `403`, and an unknown booking receives `404`.
 
 Expected business failure: `422 BOOKING_CUTOFF_PASSED`. A transaction failure never returns `204`.
 
@@ -118,7 +119,7 @@ Expected business failure: `422 BOOKING_CUTOFF_PASSED`. A transaction failure ne
 
 Adds the authenticated member to a full session's waitlist. Returns `201 Created` with current position.
 
-It checks the owned MemberProfile, active membership, waiver, session status, and configured cutoff. Joining a waitlist does not check overlap with another confirmed session; promotion does, and an ineligible entry then expires under the current policy. The session must still be full when the transaction commits. If a seat opened, return `409 SEAT_AVAILABLE` with current availability so the member can choose Book; do not silently book or waitlist. A duplicate waiting entry returns `409 ALREADY_WAITING`; an existing confirmed booking returns `409 ALREADY_BOOKED`. Queue ordering is unique and monotonic within a session. The returned position is a snapshot and may change.
+It checks the owned MemberProfile, active membership, waiver, session status, and configured cutoff. Joining a waitlist does not check overlap with another confirmed session; promotion does, and an ineligible entry then expires under the current policy. The session must still be full when the transaction commits. If a seat opened and no one is waiting, return `409 SEAT_AVAILABLE` with current availability so the member can choose Book; do not silently book or waitlist. If a free seat and waiting entry coexist, return the same generic `500 PARTICIPATION_INVARIANT_BROKEN` response and server alert as direct booking; neither action silently repairs or bypasses the queue. A duplicate waiting entry returns `409 ALREADY_WAITING`; an existing confirmed booking returns `409 ALREADY_BOOKED`. Queue ordering is unique and monotonic within a session. The returned position is a snapshot and may change.
 
 ### `DELETE /api/v1/waitlist/{entryId}`
 
@@ -150,7 +151,9 @@ Internally, this command creates the Scheduling `SessionSlot` and publishes its 
 
 Updates allowed session fields. Capacity cannot be reduced below confirmed bookings.
 
-Once a session has any confirmed booking or waiting entry, only Booking capacity may change, and it cannot be set below confirmed occupancy. Program, trainer, start/end, cutoff, and status changes are rejected with `409 SESSION_HAS_PARTICIPANTS`. Before participation exists, program, trainer, start/end, capacity, and cutoff may change with normal validation; trainer-time overlap is checked under concurrent writes. Session cancellation/deletion are not part of this endpoint in the MVP. Capacity writes serialize with booking and promotion using the BookableSession lock defined by ADRs 007 and 008.
+Once a session has ever had a booking or waitlist entry, only Booking capacity may change, and it cannot be set below confirmed occupancy. Program, trainer, start/end, cutoff, and status changes are rejected with `409 SESSION_HAS_PARTICIPANTS`, including after all historical entries are inactive. Before participation has ever existed, program, trainer, start/end, capacity, and cutoff may change with normal validation; trainer-time overlap is checked under concurrent writes. Session cancellation/deletion are not part of this endpoint in the MVP. Capacity writes serialize with booking and promotion using the BookableSession lock defined by ADRs 007 and 008.
+
+Capacity increases before the configured cutoff promote the first currently eligible waiting members in FIFO order within the same transaction, filling newly available seats until none or no eligible waiters remain. Ineligible entries become `expired`. The response returns the final capacity and confirmed/waiting counts; public and protected views refresh from committed state. If cutoff has passed and waiting entries remain, an increase returns `409 WAITLIST_CUTOFF_PASSED` without changing capacity. A decrease remains subject to the confirmed-occupancy floor. [ADR 010](adr/010-promote-waitlist-on-capacity-increase.md) records this rule. Direct booking never leaps ahead of a waiting entry if an inconsistent free-seat-plus-waitlist state is encountered.
 
 ### `GET /api/v1/admin/sessions/{sessionId}/participants`
 

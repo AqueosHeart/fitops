@@ -2,7 +2,7 @@
 type: index
 project: FitOps
 status: active
-updated: 2026-09-21
+updated: 2026-09-24
 ---
 
 # FitOps Knowledge Index
@@ -22,6 +22,7 @@ updated: 2026-09-21
 - [UX plan](../docs/ux-plan.md)
 - [Complete wireframe coverage](../docs/design/wireframe-coverage.md)
 - [[wiki/design/FitOps User Flows|FitOps user-flow review hub]]
+- [[wiki/design/Issue 7 Domain Boundaries and Use Cases|Issue #7 domain boundaries, use cases, and race design]]
 - [[wiki/design/FitOps User Flows.drawio|Editable draw.io user-flow file]]
 - [Practice Athletic Club brand identity guidelines](../docs/brand/brand-identity.md)
 - [Practice Athletic Club brand foundation](../docs/brand/brand-foundation.md)
@@ -31,6 +32,10 @@ updated: 2026-09-21
 - [Practice Athletic Club color and type system](../docs/brand/color-and-type-system.md)
 - [Architecture](../docs/architecture.md)
 - [Data model](../docs/data-model.md)
+- [Issue #8 physical schema and migration plan](../docs/database/physical-schema-plan.md)
+- [Issue #8 physical schema review](../docs/database/physical-schema-review.md)
+- [Issue #8 second schema review](../docs/database/physical-schema-second-review.md)
+- [Issue #8 independent third schema review](../docs/database/physical-schema-third-review.md)
 - [REST API](../docs/api.md)
 - [SDLC and sprint plan](../docs/delivery-plan.md)
 - [Tooling and workflow](../docs/tooling-and-workflow.md)
@@ -69,3 +74,20 @@ updated: 2026-09-21
 - [[raw/06-flash_notes/2026-09-14-conversation-record|Planning conversation record]]
 
 - [[wiki/logs/2026-09-21-wireframe-page-split-fix|Wireframe page split and native reaction fix]]
+
+- [[wiki/logs/2026-09-22-wireframe-review-groups|Named wireframe review groups]]
+
+- [[wiki/logs/2026-09-22-wireframe-sidebar-names|Sidebar-readable wireframe page names]]
+
+- [[wiki/logs/2026-09-22-fitops-component-page-manager|FitOps component page manager]]
+- [[wiki/logs/2026-09-22-penpot-exploratory-design-tokens|Penpot exploratory design tokens]]
+- [[wiki/logs/2026-09-22-penpot-design-tokens-page|Penpot Design Tokens page and layout proposals]]
+- [[wiki/logs/2026-09-22-penpot-lucide-icon-library|Penpot Lucide icon library page]]
+- [[wiki/logs/2026-09-22-penpot-wireframe-mirror|Penpot wireframe mirror from plugin source]]
+- [[wiki/logs/2026-09-22-issue-6-ready-for-sprint-1|Issue #6 Ready for Sprint 1 status sync]]
+- [[wiki/logs/2026-09-23-penpot-wireframe-consolidation|Penpot wireframe consolidation and draw.io coverage audit]]
+- [[wiki/logs/2026-09-23-issue-7-use-case-boundary-draft|Issue #7 use case and boundary draft]]
+- [[wiki/logs/2026-09-23-issue-8-schema-design-start|Issue #8 schema design start]]
+- [[wiki/logs/2026-09-23-issue-8-schema-review|Issue #8 schema review]]
+- [[wiki/logs/2026-09-24-issue-8-revision-second-review|Issue #8 revision and second review]]
+- [[wiki/logs/2026-09-24-issue-8-independent-third-review|Issue #8 independent third review]]

@@ -6,6 +6,12 @@ updated: 2026-09-21
 
 # FitOps Activity Log
 
+## 2026-09-22 - Penpot Lucide icon library
+
+- Added `Icons — Lucide` to the connected Penpot file with 20 official icon SVGs grouped for navigation/account, booking/schedule, status/feedback, and common controls. The board documents a 24 px / 2 px default and accessible labeling guidance.
+- Lucide is the selected UI icon family; the page and usage rules remain reviewable design guidance. This does not approve the FitOps brand or constitute application implementation.
+- Session: [[wiki/logs/2026-09-22-penpot-lucide-icon-library]].
+
 ## 2026-09-21
 
 - Simplified Page 01 after visual review showed connector crossings and unreadable labels. Removed decorative route-inventory and long cross-workspace arrows, added clear group headings and route-copy explanations, and retained only high-signal transitions. Updated the Mermaid sitemap and Obsidian review hub to the same sparse-map convention.
@@ -127,3 +133,111 @@ updated: 2026-09-21
 
 - User-reported Figma failure reproduced in stricter tests. Generator now produces 27 route pages with top-level frames, no self/cross-page NAVIGATE, and a page chooser. Added a migration action for existing combined output. Native rerun remains pending.
 - [[wiki/logs/2026-09-21-wireframe-page-split-fix]].
+
+
+## 2026-09-22 - Named wireframe review groups
+
+- Consolidated the 27 route pages into 20 named review pages while keeping every route/state screen separate and top-level. Legal & Misc contains Terms, Privacy, Waiver, Cookie preferences, and 404; related Club information, Account access, and Trainer routes are grouped by workflow.
+- Rebuilt the plugin and verified grouping, prototype constraints, static UX synchronization, and layout checks. Native Figma visual QA remains pending.
+- Session: [[wiki/logs/2026-09-22-wireframe-review-groups]].
+
+
+## 2026-09-22 - Sidebar-readable wireframe page names
+
+- Reordered generated Figma page names so the sidebar begins with the numbered review group, such as `01 · Public · Home`, followed by the version marker. Existing prefix-first versions remain supported by regrouping.
+- Session: [[wiki/logs/2026-09-22-wireframe-sidebar-names]].
+
+
+## 2026-09-22 - FitOps component page manager
+
+- Added `Manage FitOps Components` to the local Practice Athletic Club Master Toolkit. It scans eligible kit pages and creates or refreshes a native Button component set with Style, Size, and Brand variants plus five neutral low-fidelity components on a separate `FitOps Components` page, preserving the Community kit and unrelated user layers.
+- Rebuilt the plugin and passed structural component rerun coverage, wireframe generator checks, UX synchronization, JavaScript syntax checks, and whitespace validation. Native Figma Desktop execution and visual QA remain pending.
+- Session: [[wiki/logs/2026-09-22-fitops-component-page-manager]].
+
+
+## 2026-09-22 - Penpot exploratory design tokens
+
+- Added 25 tokens to a new inactive `Practice Exploratory` set in the connected Penpot `FitOps Design System` file: 11 colors, 9 font sizes, and 5 Mona Sans weights. Kept the existing `Global` set and `FitOps` theme unchanged.
+- Values follow the existing exploratory brand references; no unsupported spacing, radii, shadows, or other values were added. The token set does not approve the brand.
+- Session: [[wiki/logs/2026-09-22-penpot-exploratory-design-tokens]].
+
+
+## 2026-09-22 - Penpot Design Tokens page and layout proposals
+
+- Created and visually reviewed a dedicated `Design Tokens` page in the connected Penpot file. It documents existing color/type references and proposes a 4 px spacing scale plus responsive grid examples at 1440, 768, and 390 px.
+- Added the 8 spacing values to a separate inactive `FitOps Layout Proposal` set. Current catalog read shows `Practice Exploratory` active, `Global` inactive, and the `FitOps` theme inactive with no sets; activation does not constitute brand approval.
+- Line-height/tracking and exact layout breakpoints remain unresolved; the page labels spacing and grid values as proposals.
+- Session: [[wiki/logs/2026-09-22-penpot-design-tokens-page]].
+
+
+## 2026-09-22 - Penpot wireframe mirror from plugin source
+
+- Created 20 numbered review pages in the connected Penpot file from the local Figma plugin's existing route/state definitions: 163 scenarios and 326 desktop/mobile SVG-vector screen groups. Kept the low-fidelity structure and fictional data; no icons or prototype reactions were added.
+- Exported and visually reviewed the Home desktop and Admin Participants boards; both have readable light canvases and clear screen content. Page and board counts match the plugin's definitions.
+- This Penpot mirror does not claim native Figma execution or visual approval; the native Figma Issue #6 gate remains pending.
+- Session: [[wiki/logs/2026-09-22-penpot-wireframe-mirror]].
+
+
+## 2026-09-22 - Issue #6 Ready for Sprint 1 status sync
+
+- Confirmed Issue #6 is listed under Ready for Sprint 1 in the local delivery system and added the existing `sprint:sprint-1` label to GitHub Issue #6. GitHub verification shows the issue remains open and has no attached Project item.
+- Native Figma execution and visual approval remain outstanding, so the issue was not marked complete. Project board access is unavailable to the current GitHub connection because it lacks `read:project` scope.
+- Session: [[wiki/logs/2026-09-22-issue-6-ready-for-sprint-1]].
+## 2026-09-23 - Penpot wireframe consolidation and draw.io coverage audit
+
+- Removed 12 redundant older Penpot import pages after verifying their screen-name inventories match the newer QA pages. Renamed the retained 20 groups consistently as `— Wireframes`; Design Tokens, Icons, and kit pages were preserved.
+- Matched the live 326 desktop/mobile boards to all 26 draw.io page routes, the separate 404 fallback, and 163 scenarios per device with no missing, extra, or duplicate names. Corrected 76 short member/trainer/admin screen backgrounds and exported representative member booking and schedule boards for visual review.
+- Static Penpot mirrors still lack prototype interactions and do not complete native Figma visual approval for Issue #6.
+- Session: [[wiki/logs/2026-09-23-penpot-wireframe-consolidation]].
+
+## 2026-09-23 - Issue #7 use case and boundary draft
+
+- Adapted the supplied use case template into an Obsidian specification and reviewed candidate boundaries with four DDD skill checklists.
+- Identified unresolved consistency and eligibility questions; Issue #7 remains open and implementation readiness is not claimed.
+- Session: [[wiki/logs/2026-09-23-issue-7-use-case-boundary-draft]].
+
+### Same-day expansion
+
+- Expanded the draft to ten use cases and applied eight DDD skill stages to existing requirements and flow evidence. Corrected the cancellation review against the current flow and recorded waiver, trainer API, and session-edit gaps.
+
+### Exit-evidence upgrade
+
+- Aligned ten use cases with the editable UX source and updated requirements, REST API, conceptual data model, and DBML. Added ADR 007, twelve-rule traceability, and a transaction protocol with seven concurrent test scenarios.
+- Design review is documented; executable schema and PostgreSQL concurrency tests remain unimplemented. Issue #7 was not closed.
+
+### Same-day DDD skill audit
+
+- Checked the Issue #7 artifacts against upstream DDD skill validation lists. Withdrew subjective review scores and marked context/aggregate backtracking and incomplete modeling artifacts. Corrected member-profile authorization and documented the existing in-app waiver action in the API. Issue #7 remains open.
+
+### Same-day DDD closure revision
+
+- Added ADR 008 to give Booking BookableSession capacity/cutoff/participation ownership and retain Scheduling's calendar responsibility. Expanded context, aggregate, event, port, and contract-map artifacts; the revised design passes the DDD checklists with a documented local multi-aggregate exception. Implementation evidence remains pending.
+
+- Clarified that MemberReservationCalendar uses the owned member-profile row as its physical lock anchor until the data-schema work selects a representation; the session-first lock protocol remains unchanged.
+
+- Final documentation check corrected stale ADR 007-only references: ADR 008 is the ownership boundary and ADR 007 keeps transaction safeguards. GitHub Issue #7 remains open with no stated acceptance criteria beyond its title/summary.
+
+### GitHub closure
+
+- Published the reviewed design artifacts in `c8d1262` and closed [GitHub Issue #7](https://github.com/AqueosHeart/fitops/issues/7). The issue is closed as documentation/design scope; executable schema, migrations, and PostgreSQL concurrency evidence remain assigned to downstream work.
+
+## 2026-09-23 Issue #8 schema design start
+
+- Drafted `docs/database/physical-schema-plan.md` from Issue #7, ADR 008, the conceptual DBML, requirements, and API. Proposed separate one-to-one Scheduling/Booking session tables with a shared public ID, database constraints, session-local waitlist key allocation, migration review, and synchronized PostgreSQL race tests.
+- Issue #8 remains open. No Prisma schema, SQL migration, PostgreSQL test, or application behavior was created. Authentication persistence and trainer-specialty representation remain design checks before implementation.
+
+### Same-day deep review
+
+- Audited the proposal against Issue #7, ADRs 007–008, requirements, API, conceptual model, and current PostgreSQL/Prisma/Auth.js documentation. Recorded four high and four medium findings in `docs/database/physical-schema-review.md`.
+- The design is not ready to migrate: session snapshots can drift, authentication storage is undefined, cross-table participation transitions need a complete contract, and native types/FK actions are missing. No executable schema or PostgreSQL proof exists; Issue #8 stays open.
+
+## 2026-09-24 Issue #8 revision and second review
+
+- Revised the physical plan, conceptual DBML, architecture, requirements, API, and related UX copy. ADR 009 selects one physical `class_sessions` row mapped to separate Scheduling and Booking domain views; the plan now names auth storage, PostgreSQL types, constraints, foreign-key actions, indexes, lock order, and migration/test obligations.
+- The second review records design resolutions for the prior four high and four medium findings. It found a further capacity-increase fairness gap; ADR 010 requires FIFO promotion of eligible waiters inside the administrator edit transaction before cutoff, with rollback on failure and a post-cutoff restriction.
+- Static DBML parsing, draw.io XML parsing, Mermaid rendering, wireframe generation, and UX synchronization checks passed. No Prisma schema, migration, PostgreSQL execution, or native visual approval exists. Issue #8 remains open under the Sprint 0 and Sprint 1 design gates and Issue #9 security decisions.
+
+### Independent third schema review
+
+- A subagent reviewed the revised plan against requirements, API, Issue #7 use cases, ADRs, and DBML. It found a cancellation promotion cutoff race, stale Issue #7 edit/promotion protocol, and an undefined free-seat-plus-waitlist error. ADR 011 now requires a fresh cutoff check after each candidate member lock, with full rollback if expired.
+- Aligned the Issue #7 use cases and pseudocode with historical-row edit freeze, capacity-increase FIFO promotion, and the inconsistent free-seat-plus-waitlist response. Both Book and Join now specify generic `500 PARTICIPATION_INVARIANT_BROKEN`, server alert, and explicit repair. The [third review](../docs/database/physical-schema-third-review.md) records evidence and outstanding database proof. Issue #8 remains open.

@@ -763,6 +763,22 @@ figma.ui.onmessage = async (msg) => {
     return;
   }
 
+  if (msg.type === 'build-components') {
+    toolkitBusy = true;
+    try {
+      figma.notify('Scanning the kit and managing FitOps components...');
+      await buildFitOpsComponents();
+      figma.notify('✓ FitOps component page is ready.');
+    } catch (error) {
+      console.error(error);
+      figma.ui.postMessage({ type: 'components-error', message: error instanceof Error ? error.message : String(error) });
+      figma.notify('Component page update stopped. See the plugin status for details.', { error: true });
+    } finally {
+      toolkitBusy = false;
+    }
+    return;
+  }
+
   if (msg.type === 'build-wireframes' || msg.type === 'split-wireframes') {
     toolkitBusy = true;
     try {

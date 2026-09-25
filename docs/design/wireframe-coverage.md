@@ -1,6 +1,6 @@
 # Wireframe coverage
 
-Derived from draw.io Page 08. Each scenario is rendered at 1440 px desktop and 390 px mobile. Output uses 27 separate route pages with top-level frames. Native reactions connect different frames on the same page; the plugin chooser opens other routes. These are editable mockups with preset fictional prototype transitions, not live application functions.
+Derived from draw.io Page 08. Each scenario is rendered at 1440 px desktop and 390 px mobile. Output uses 20 named review pages with top-level frames. Legal & Misc groups Terms, Privacy, Waiver, Cookie preferences, and 404; Club information, Account access, and Trainer screens are grouped by workflow. Native reactions connect different frames on the same page; the plugin chooser opens other groups. These are editable mockups with preset fictional prototype transitions, not live application functions.
 
 | Route | Sections | Additional states |
 | --- | --- | --- |

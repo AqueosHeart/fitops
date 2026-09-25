@@ -1,0 +1,13 @@
+# Issue #8 physical schema: independent third design pass
+
+Date: 2026-09-24. A subagent independently audited the revised physical plan against the API, requirements, Issue #7 use cases, ADRs 007–010, and conceptual DBML. This is a document review; no Prisma migration or PostgreSQL transaction was run.
+
+| Finding | Severity | Correction | Required executable proof |
+| --- | --- | --- | --- |
+| Cancellation checked cutoff before scanning candidates but could block on a candidate member lock until after cutoff. | High | [ADR 011](../adr/011-recheck-cutoff-during-cancellation-promotion.md) requires a fresh database-clock check after each candidate lock and full rollback if cutoff passed. The physical plan and DELETE contract now say so. | Synchronized cancellation versus candidate-member update that crosses cutoff, proving no partial cancellation, expiry, or promotion. |
+| The closed Issue #7 design note still described edit freeze using only active participation and omitted capacity-increase promotion. | Medium | Updated its use-case resolution, event note, and downstream transaction pseudocode to reflect historical-row freeze, ADR 010 FIFO capacity promotion, and trainer-lock revalidation. ADRs 007–008 remain historical. | End-to-end admin edit and capacity-increase race tests after migration. |
+| Direct booking rejected a free-seat-plus-waiting invariant breach without a stable API response; Join waitlist initially offered Book for the same state. | Medium | Both API branches and the plan now define `500 PARTICIPATION_INVARIANT_BROKEN`, a generic client message, server alert, and explicit repair path; no queue leapfrogging or silent repair. | Inject inconsistent state in a disposable database and verify both responses, alerts, and zero new participation rows. |
+
+A targeted verification pass caught the same inconsistent state in the Join waitlist branch: it previously returned `SEAT_AVAILABLE`, sending the member to Book and then a 500. Join now returns the same invariant error and alert when a free seat coexists with any waiting entry. The Issue #7 use case and pseudocode were aligned with this branch, and its glossary was corrected to reflect Booking's capacity ownership under ADR 008.
+
+The subagent found no clear SQL or Prisma impossibility in the proposed composite foreign key, partial indexes, native timestamp mapping, or GiST exclusion constraint. That is a design assessment, not migration validation. The remaining gates are the pinned stack, reviewed migration SQL, rejected-write tests, synchronized PostgreSQL races, Issue #9 security decisions, and the existing Sprint 0/Sprint 1 design gates. Issue #8 remains open.

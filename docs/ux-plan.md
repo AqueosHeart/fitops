@@ -45,6 +45,7 @@ Lines in the sitemap represent information hierarchy, not permission grants or a
 6. Confirmed bookings cannot overlap.
 7. Capacity is rechecked inside the booking transaction; the interface never guarantees a spot from stale availability.
 8. Cancelling a booking does not change maximum capacity. It either increases availability or transfers the released spot to the first eligible waiting member.
+   Increasing capacity through the administrator edit before cutoff fills newly opened seats with the first eligible waiting members in the same transaction. The edit result refreshes occupancy and waitlist counts; no new route or screen is introduced.
 9. Waitlist promotion is FIFO among eligible entries. Ineligible entries are resolved according to the agreed status rule and the search continues within the same transaction.
 10. Expected domain errors use stable error codes. Unexpected failures preserve context, show a request identifier, and offer a safe retry.
 11. Administrative UI does not bypass scheduling, capacity, authorization, or booking invariants.
