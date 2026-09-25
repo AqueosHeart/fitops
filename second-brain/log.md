@@ -262,3 +262,11 @@ updated: 2026-09-21
 - Added Issues #8 and #9 to the delivery plan with values. Issue #8 is In Progress for Sprint 3 / SDLC Phase 4, high risk, P1, estimate 5. Issue #9 is Done and closed for Sprint 1 / SDLC Phase 3, high risk, P1, estimate 3.
 - The Sprint 0 exit review passed from documented product, UX, architecture, data, security, Penpot, and GitHub Project evidence. No executable application or database proof exists yet.
 - Session: [[wiki/logs/2026-09-25-sprint-0-exit-and-project-setup]].
+
+## 2026-09-25 - Issue #8 implementation foundation
+
+- Added `web/` as the Next.js 16.3.6 application foundation with TypeScript, ESLint, and Tailwind. The generated application passes lint and a production build.
+- Pinned Node 24.14.x, npm 11.9.x, Prisma 7.10.0, PostgreSQL driver packages, Zod 4.6.5, and `next-auth` 4.24.15. PostgreSQL 16 runs locally in Docker and the `fitops` database connection was verified.
+- Added a valid empty Prisma 7 configuration and schema plus an ignored local `.env` and tracked `.env.example`. No domain models, migration, seed, authentication behavior, constraints, or race tests were created.
+- `npm audit --omit=dev` reports four high findings in Prisma CLI transitive development dependencies. The offered automated fix downgrades Prisma to 6, so it was not applied; reassess when Prisma 7 publishes a compatible fix.
+- Session: [[wiki/logs/2026-09-25-issue-8-implementation-foundation]].

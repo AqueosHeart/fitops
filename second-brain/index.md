@@ -96,3 +96,4 @@ updated: 2026-09-25
 - [[wiki/logs/2026-09-25-issue-9-security-baseline|Issue #9 security baseline]]
 - [[wiki/logs/2026-09-25-penpot-replaces-figma|Penpot replaces Figma as the visual-design tool]]
 - [[wiki/logs/2026-09-25-sprint-0-exit-and-project-setup|Sprint 0 exit and GitHub Project setup]]
+- [[wiki/logs/2026-09-25-issue-8-implementation-foundation|Issue #8 implementation foundation]]
