@@ -286,3 +286,8 @@ updated: 2026-09-21
 ## 2026-09-25 - Shared Prisma client
 
 - Added the server-only shared Prisma PostgreSQL client and `npm run db:verify`. It successfully reads the local fictional seed data.
+
+## 2026-09-25 - Booking repository and locks
+
+- Added a read-only booking-state repository and a transaction helper that locks the ClassSession row, then the MemberProfile row, with parameterized PostgreSQL `FOR UPDATE` queries.
+- Verification reads the full seeded booking state through both paths and confirms two bookings plus an active member under the lock.

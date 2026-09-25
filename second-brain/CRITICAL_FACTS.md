@@ -21,6 +21,7 @@ updated: 2026-09-25
 - Implementation stack: Next.js 16.3.6, React 19.2.8, TypeScript, PostgreSQL 16 in Docker, Prisma 7.10.0, Auth.js (`next-auth`) 4.24.15, and Zod 4.6.5. Node 24.14.x and npm 11.9.x are pinned in `web/package.json`.
 - Test stack: Vitest, React Testing Library, and Playwright.
 - `web/lib/server/prisma.ts` is the server-only shared Prisma 7 client. `npm run db:verify` reads the fictional seed data through it; booking and scheduling adapters remain unimplemented.
+- The read-only Booking Repository and `withBookingLocks` transaction helper now exist. The helper locks `class_sessions` then `member_profiles`; booking decisions and concurrency proof remain unimplemented.
 - Sprint source of truth after repository setup: GitHub Projects, Issues, and pull requests.
 - `FitOps Delivery` is linked to `AqueosHeart/fitops`. It has Sprint, SDLC Phase, Work Type, Risk, Priority, Status, Estimate, and date fields plus Current Sprint, Product Backlog, SDLC Roadmap, and Bugs and Debt views. GitHub reserves `Type`, so the project uses `Work Type`.
 - Conceptual database source: `docs/database/fitops.dbml`.
