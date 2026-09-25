@@ -1,6 +1,6 @@
-# Practice Athletic Club Master Toolkit
+# Practice Athletic Club Master Toolkit (legacy Figma tooling)
 
-This local Figma development plugin preserves its existing source-of-truth reminder and brand action. **Build Low-Fi Wireframes** now creates complete page mockups instead of grouped route-coverage cards.
+This local Figma development plugin is retained as historical source tooling for the Penpot wireframe import. Under ADR 013, Penpot is FitOps' active visual-design tool; running this plugin is optional and is not an approval or delivery gate.
 
 ## Output
 
@@ -39,7 +39,7 @@ git diff --check
 - `code.js`: generated bundle; do not edit directly.
 - `ui.html`: primary action, progress, completion, and error feedback.
 
-The structural test executes the real generator with a Plugin API double. It verifies route/state pairs, action destinations, horizontal bounds, blocked-state behavior, role-denied privacy, preserved user work, kit reuse, and safe reruns. It is **not native Figma visual QA**.
+The structural test executes the historical generator with a Plugin API double. It verifies route/state pairs, action destinations, horizontal bounds, blocked-state behavior, role-denied privacy, preserved user work, kit reuse, and safe reruns. It is not Penpot visual-review evidence.
 
 ## Run in Figma
 
@@ -49,7 +49,7 @@ The structural test executes the real generator with a Plugin API double. It ver
 4. Click **Build Low-Fi Wireframes** and wait for the completed count.
 5. Use the plugin page chooser (or Figma page list) to switch routes, then use each page's scenario index. Local states have native prototype links. Cross-page controls carry the destination in their layer names; native prototype navigation cannot cross pages. Self-targeting navigation/blocked submissions do not receive a reaction.
 
-The previous combined-page output failed native Figma reaction validation. The corrected build passes stricter structural tests for top-level, same-page, different-frame destinations; native rerun and visual review remain pending. Issue #6 is not marked complete.
+The previous combined-page output failed native Figma reaction validation. The corrected build passes stricter structural tests for top-level, same-page, different-frame destinations. It is retained as historical evidence only; Issue #6 is closed and its visual-design evidence now lives in Penpot.
 
 ## Split the existing giant page
 

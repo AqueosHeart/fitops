@@ -18,5 +18,6 @@ updated: 2026-09-24
 - [ADR 010 Promote waiting members when capacity increases](../../../docs/adr/010-promote-waitlist-on-capacity-increase.md)
 - [ADR 011 Recheck the cutoff during cancellation promotion](../../../docs/adr/011-recheck-cutoff-during-cancellation-promotion.md)
 - [ADR 012 Establish the identity security baseline](../../../docs/adr/012-identity-security-baseline.md)
+- [ADR 013 Use Penpot for FitOps visual design review](../../../docs/adr/013-use-penpot-for-visual-design.md)
 
 New material architecture decisions receive a new ADR. Accepted historical decisions are not silently rewritten; a later ADR may supersede them.

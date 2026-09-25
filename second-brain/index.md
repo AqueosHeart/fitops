@@ -2,7 +2,7 @@
 type: index
 project: FitOps
 status: active
-updated: 2026-09-24
+updated: 2026-09-25
 ---
 
 # FitOps Knowledge Index
@@ -93,3 +93,4 @@ updated: 2026-09-24
 - [[wiki/logs/2026-09-24-issue-8-revision-second-review|Issue #8 revision and second review]]
 - [[wiki/logs/2026-09-24-issue-8-independent-third-review|Issue #8 independent third review]]
 - [[wiki/logs/2026-09-25-issue-9-security-baseline|Issue #9 security baseline]]
+- [[wiki/logs/2026-09-25-penpot-replaces-figma|Penpot replaces Figma as the visual-design tool]]

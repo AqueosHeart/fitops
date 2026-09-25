@@ -6,7 +6,7 @@ The experience must make the next action obvious, expose current product state, 
 
 ## Canonical UX-flow artifact and derived views
 
-`second-brain/wiki/design/FitOps User Flows.drawio` is the editable, canonical UX information architecture and flow artifact. Its nine pages are updated first for every navigation, screen, or flow change. The Mermaid files in `docs/design/` are version-controlled review exports, and the Figma wireframes are a derived design view generated through `scripts/figma-plugin/`; neither may introduce a route, screen, or state absent from the draw.io file.
+`second-brain/wiki/design/FitOps User Flows.drawio` is the editable, canonical UX information architecture and flow artifact. Its nine pages are updated first for every navigation, screen, or flow change. The Mermaid files in `docs/design/` are version-controlled review exports, and the Penpot boards are the derived visual-design view; neither may introduce a route, screen, or state absent from the draw.io file. The local Figma generator remains historical source tooling for the existing Penpot import, not the active visual-design system.
 
 | Artifact | Purpose |
 | --- | --- |
@@ -94,9 +94,9 @@ Every interactive page or overlay must account for:
 | Server-side authorization | Booking, trainer, and administrator flows |
 | Loading, empty, conflict, failure, and success states | All role-specific flows and required-state inventory |
 
-## Complete wireframe generator
+## Penpot wireframe set
 
-The plugin now defines 26 page routes plus a separate 404 fallback, each with full desktop (1440 px) and mobile (390 px) sections. It generates 163 scenarios per device across 27 separate versioned Figma route pages. Desktop/mobile scenario frames are direct children of their page. Only different-frame, same-page transitions receive NAVIGATE reactions; cross-page destinations are labeled and reached through the plugin page chooser. The earlier combined-page run failed native reaction validation; the stricter local regression tests now pass, but native rerun and visual QA remain pending.
+The connected Penpot file contains 20 canonical numbered `— Wireframes` pages. It covers 26 page routes plus the separate 404 fallback with 163 scenarios at each 1440 px desktop and 390 px mobile size, for 326 boards. Screen names match the draw.io Page 08 inventory; the static SVG-vector boards omit prototype reactions and icons. The earlier local Figma plugin is retained as historical generation tooling, but Penpot is the active review surface.
 
 The user authorized the complete plugin expansion on 2026-09-21; this does not mark the flows approved or Issue #6 done. [Wireframe coverage](design/wireframe-coverage.md) is the derived inventory. Long pages use content-driven height; mobile tables become record cards. Forms use preset fictional examples, and recovery does not send email. No payment, subscription, trainer editing, or session deletion has been added.
 
@@ -110,9 +110,9 @@ For every add, delete, or modification:
 
 1. Update and review `FitOps User Flows.drawio` first.
 2. Update the affected Mermaid review export(s) and run `node scripts/validate-ux-sync.mjs`.
-3. Rebuild the Figma plugin when its source changed, then run **Practice Athletic Club Master Toolkit** in Figma to create a new versioned wireframe page.
-4. Visually inspect the generated desktop and Android frames before saying the Figma state is synchronized.
+3. Refresh the affected Penpot boards through the documented import workflow when the scenario source changed, preserving the one canonical 20-page inventory.
+4. Visually inspect the affected Penpot desktop and mobile boards before saying the visual-design state is synchronized.
 
 `Services`, `Facilities`, and `Contact` are public in-page landing destinations (`/#services`, `/#facilities`, and `/#contact`), not new protected product capabilities. `About Us`, Cookie Preferences, and Not Found are explicit public routes (`/about`, `/cookie-settings`, and `/404`). Pricing, Terms of Service, Privacy Policy, and the Liability Waiver are also represented as distinct public destinations. `/join` is the only public membership-entry CTA. The public header exposes `/portal/login` as a secondary `My Account` utility for existing members and protected redirects, while `Join Now` remains visually and semantically primary.
 
-`node scripts/validate-ux-sync.mjs` checks the mapped public, legal, cookie, Join, authentication, member-workspace, trainer, and administrator destinations across draw.io, the Mermaid route/access architecture, and the English-only Figma content definitions. It separately verifies the 26 page URLs in the draw.io and Mermaid sitemap, the 404 fallback, and scenario counts in draw.io Page 08. It also rejects a Landing-header Sign In action.
+`node scripts/validate-ux-sync.mjs` checks the mapped public, legal, cookie, Join, authentication, member-workspace, trainer, and administrator destinations across draw.io, the Mermaid route/access architecture, and the English-only scenario definitions used for Penpot coverage. It separately verifies the 26 page URLs in the draw.io and Mermaid sitemap, the 404 fallback, and scenario counts in draw.io Page 08. It also rejects a Landing-header Sign In action.

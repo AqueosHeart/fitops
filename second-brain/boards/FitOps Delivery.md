@@ -1,7 +1,7 @@
 ---
 type: board-mirror
 project: FitOps
-updated: 2026-09-23
+updated: 2026-09-25
 ---
 
 # FitOps Delivery Board Mirror
@@ -15,12 +15,9 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 ## Ready for Sprint 1
 
 - [#6 [DESIGN] Low-Fidelity Desktop & Mobile Booking Flow Wireframes](https://github.com/AqueosHeart/fitops/issues/6)
-  - Confirmed under **Ready for Sprint 1** in this system; added the existing `sprint:sprint-1` label to GitHub Issue #6. The issue remains open because native Figma execution and visual approval are outstanding. GitHub reports no Project attached to this issue; Project listing requires the missing `read:project` scope.
-  - draw.io is the editable UX source of truth. The Mermaid route/access architecture and English-only Figma generator statically align on 29 routes and anchors through `node scripts/validate-ux-sync.mjs`, including secondary `My Account`, primary `Join Now`, legal, cookies, 404, and the protected member workspace.
-  - The nine-page native file separates `00 Sitemap` (26 page URLs, independently checked) from `01 Route & Access Architecture` (routes, UI/system states, enrollment steps); Pages 02 through 07 retain detailed behavior, and Page 08 records wireframe coverage. Figma visual execution remains the outstanding verification step.
-- The plugin now defines 26 page routes plus a separate 404 fallback, each with full desktop (1440 px) and mobile (390 px) sections. It generates 163 scenarios per device across 20 named versioned Figma review pages; desktop/mobile scenario frames remain direct children of their page. Only different-frame, same-page transitions receive NAVIGATE reactions; cross-page destinations are labeled and reached through the plugin page chooser. The local `Manage FitOps Components` action separately scans the UI kit and maintains a Button component set with Style, Size, and Brand variants plus five neutral native components, without changing the Community template. Static checks pass; native rerun and visual QA remain pending. Issue #6 remains pending.
-  - Penpot now has all 20 review groups as a static vector mirror: 163 scenarios / 326 desktop-mobile boards, with no icons or prototype reactions. This supports review but does not satisfy the native Figma execution and approval gate; Issue #6 remains pending.
-  - On 2026-09-23, removed 12 duplicate older Penpot import pages and retained one numbered 20-page wireframe set. Live screen names match all 26 draw.io page routes, the 404 fallback, and 163 scenarios on each device. Corrected short screen backgrounds and spot-checked member booking and schedule exports. Full native Figma visual approval remains open.
+  - Closed on GitHub. ADR 013 replaces the obsolete native Figma requirement with Penpot as the visual-design tool.
+  - draw.io is the editable UX source of truth. The Mermaid route/access architecture and English-only scenario definitions align on 29 routes and anchors through `node scripts/validate-ux-sync.mjs`, including secondary `My Account`, primary `Join Now`, legal, cookies, 404, and the protected member workspace.
+  - Penpot has one canonical 20-page wireframe set: 163 scenarios / 326 desktop-mobile boards. Live screen names match all 26 draw.io page routes, the 404 fallback, and every scenario on each device. No Figma execution is required.
   - Review hub: [[../wiki/design/FitOps User Flows]]
   - Editable diagram: [[../wiki/design/FitOps User Flows.drawio]]
 - [#7 [ARCH] Domain Boundary & Use-Case Specification](https://github.com/AqueosHeart/fitops/issues/7)

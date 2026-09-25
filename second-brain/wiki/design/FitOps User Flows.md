@@ -13,7 +13,7 @@ Open the native editable diagram: [[FitOps User Flows.drawio|FitOps User Flows.d
 
 ## Native flow correction passes, 2026-09-21
 
-The editable draw.io source was corrected before its Mermaid and Figma derivatives. The sitemap resolves a 70 px collision with the Legend card, maintains taxonomy compliance, and eliminates unauthenticated direct root edges to protected workspaces. The later access-boundary pass implements ADR 006: the public header now offers secondary `My Account` access for existing members and primary `Join Now` conversion; registration is reachable only after fictional-plan selection. Footer/system routes are grouped separately, and protected-route redirects preserve only validated internal `returnTo` state. The detailed flows include recovery for dismissed waivers, expired sessions, duplicate/conflict outcomes, retries, cancellation cutoffs, promotion visibility, forbidden staff access, failed administrator saves, registration consent, existing-email redirects, invalid credentials, and rate limits.
+The editable draw.io source was corrected before its Mermaid and Penpot derivatives. The sitemap resolves a 70 px collision with the Legend card, maintains taxonomy compliance, and eliminates unauthenticated direct root edges to protected workspaces. The later access-boundary pass implements ADR 006: the public header now offers secondary `My Account` access for existing members and primary `Join Now` conversion; registration is reachable only after fictional-plan selection. Footer/system routes are grouped separately, and protected-route redirects preserve only validated internal `returnTo` state. The detailed flows include recovery for dismissed waivers, expired sessions, duplicate/conflict outcomes, retries, cancellation cutoffs, promotion visibility, forbidden staff access, failed administrator saves, registration consent, existing-email redirects, invalid credentials, and rate limits.
 
 ## Visual language and color legend
 
@@ -36,7 +36,7 @@ Every color in the diagrams has a precise architectural meaning derived from the
 
 ## Complete wireframe coverage
 
-The plugin defines 26 page routes plus a separate 404 fallback, each with full desktop (1440 px) and mobile (390 px) sections. It generates 163 scenarios per device across 20 sidebar-readable Figma review pages whose names begin with their ordered group. Related routes share a page, while every desktop/mobile scenario frame remains a direct child of that page. Legal & Misc groups Terms, Privacy, Waiver, Cookie preferences, and 404; Club information, Account access, and Trainer screens are grouped by workflow. Only different-frame, same-page transitions receive NAVIGATE reactions; cross-page destinations are labeled and reached through the plugin page chooser. The earlier combined-page run failed native reaction validation; stricter local regression tests now pass, but native rerun and visual QA remain pending.
+Penpot is the active visual-review surface under ADR 013. Its canonical set has 20 numbered `— Wireframes` pages with 163 desktop and 163 mobile boards. It maps the 26 page routes and separate 404 fallback from draw.io Page 08; the legacy Figma generator is not an approval gate.
 
 [Route, section, and state matrix](../../../docs/design/wireframe-coverage.md).
 

@@ -3,7 +3,7 @@ type: project
 status: active
 phase: requirements
 sprint: Sprint 0
-updated: 2026-09-24
+updated: 2026-09-25
 ---
 
 # FitOps
@@ -16,7 +16,7 @@ The planning foundation exists. `Practice Athletic Club`, Quiet Strength, the Mo
 
 ## FitOps component page manager
 
-The local toolkit now has a `Manage FitOps Components` action that scans the active UI kit and maintains a separate neutral component page. Its Button is a native component set with Style, Size, and Brand properties, while five additional native low-fidelity components cover core patterns. It preserves the original Community kit and unrelated user layers, and is not an approved brand system or application implementation. Native Figma execution and visual QA remain pending.
+ADR 013 supersedes the earlier Figma references in this project's historical planning record. Penpot is now the active visual-design tool; draw.io remains the editable UX-flow source, and Mermaid plus Penpot are derived artifacts. The closed Issue #6 is evidenced by the canonical Penpot inventory, not a native Figma run. The local Figma toolkit remains historical source tooling and is not a delivery gate.
 
 ## Penpot candidate token set
 
@@ -24,7 +24,7 @@ The connected Penpot `FitOps Design System` file now has a `Design Tokens` page 
 
 Lucide is the selected icon family for the planned UI. Penpot has a separate `Icons — Lucide` page with 20 upstream Lucide SVGs covering navigation/account, booking/schedule, status/feedback, and common controls. The page recommends 24 px / 2 px stroke as the default, with text labels for navigation and ambiguous actions. This records an icon-library choice, not approval of the visual identity or implementation.
 
-The connected Penpot file has one canonical set of 20 numbered `— Wireframes` pages mirrored from the local Figma plugin source: 163 scenarios, each represented by desktop (1440 px) and mobile (390 px) static SVG-vector boards. The 2026-09-23 cleanup removed 12 duplicate older import pages after comparing scenario names with the newer QA pages; groups 13–20 were kept and corrected in place. Live page inventory matches all 26 draw.io page routes, the 404 fallback, and every desktop/mobile state, with no missing or duplicate screen names. Short member/trainer/admin backgrounds were extended and sent behind content; representative booking and member-schedule boards were exported for visual review. The pages remain low fidelity, use fictional demo content, and omit icons and prototype interactions. Native Figma execution and visual approval for Issue #6 are still pending.
+The connected Penpot file has one canonical set of 20 numbered `— Wireframes` pages: 163 scenarios, each represented by desktop (1440 px) and mobile (390 px) static SVG-vector boards. The 2026-09-23 cleanup removed 12 duplicate older import pages after comparing scenario names with the newer QA pages; groups 13–20 were kept and corrected in place. Live page inventory matches all 26 draw.io page routes, the 404 fallback, and every desktop/mobile state, with no missing or duplicate screen names. Short member/trainer/admin backgrounds were extended and sent behind content; representative booking and member-schedule boards were exported for visual review. The pages remain low fidelity, use fictional demo content, and omit icons and prototype interactions. Penpot is the approved visual-design tool for Issue #6 under ADR 013.
 
 ## Critical journey
 
@@ -32,7 +32,7 @@ Issue #7 has an [[../design/Issue 7 Domain Boundaries and Use Cases|Obsidian des
 
 Issue #8 has a revised [physical schema and migration plan](../../../docs/database/physical-schema-plan.md). ADR 009 maps the conceptual `ClassSession` to one physical row while Scheduling and Booking keep separate domain views. The plan now specifies credential/JWT persistence, PostgreSQL types and constraints, lock order, and synchronized race-test obligations. ADR 010 adds FIFO promotion when an administrator increases capacity before cutoff.
 
-The [first review](../../../docs/database/physical-schema-review.md) found four high and four medium gaps; the [second review](../../../docs/database/physical-schema-second-review.md) records their design resolution and the newly closed capacity-increase fairness gap. This is document-level readiness for implementation planning, not a verified migration. Sprint 0 and Sprint 1 design gates, Issue #9 security choices, Prisma schema, committed migrations, and PostgreSQL tests remain pending. Issue #8 stays open.
+The [first review](../../../docs/database/physical-schema-review.md) found four high and four medium gaps; the [second review](../../../docs/database/physical-schema-second-review.md) records their design resolution and the newly closed capacity-increase fairness gap. This is document-level readiness for implementation planning, not a verified migration. Sprint 0 review, Prisma schema, committed migrations, and PostgreSQL tests remain pending. Issue #8 stays open.
 
 Issue #9 now has a [threat model and access-control specification](../../../docs/security/threat-model-and-access-control.md) and ADR 012. It fixes the design choices for Argon2id password hashing, generic and rate-limited credentials login, JWT lifespan and invalidation, CSRF defenses, server-side authorization, and the demo-only recovery boundary. This provides Issue #8's required identity behavior; it does not implement authentication or clear the remaining design gates.
 

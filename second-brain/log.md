@@ -248,3 +248,10 @@ updated: 2026-09-21
 - The recovery route remains informational because no email or reset-token flow is approved. The threat model defines server-side authorization and test obligations for member ownership, trainer scope, administrator operations, and concurrency safety.
 - This supplies Issue #8's required identity-security design choices. It does not create Prisma models, migrations, authentication code, PostgreSQL tests, or clear the outstanding Sprint 0/native Figma gates.
 - Session: [[wiki/logs/2026-09-25-issue-9-security-baseline]].
+
+## 2026-09-25 - Penpot replaces Figma as the visual-design tool
+
+- Added ADR 013 to make the connected Penpot `FitOps Design System` file the active FitOps visual-design tool. draw.io remains the editable UX-flow source and Mermaid plus Penpot remain derived artifacts.
+- Replaced the obsolete native Figma requirement in Issue #6 documentation with the canonical Penpot set: 20 numbered wireframe pages, 326 desktop/mobile boards, 163 scenarios per device, and coverage of 26 routes plus the 404 fallback. GitHub reports Issue #6 is closed.
+- Retained `scripts/figma-plugin/` as historical import/source tooling. It is no longer a required run, approval gate, or delivery target.
+- Session: [[wiki/logs/2026-09-25-penpot-replaces-figma]].

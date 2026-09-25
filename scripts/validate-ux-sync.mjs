@@ -46,7 +46,7 @@ for (const route of expectedRoutes) {
   if (!actualRoutes.includes(route)) missing.push(`Page ${route} missing from draw.io 00 Sitemap`);
   if (!exportedRoutes.includes(route)) missing.push(`Page ${route} missing from Mermaid sitemap`);
   if (!architecturePage.includes(route)) missing.push(`Page ${route} missing from draw.io route/access architecture`);
-  if (!routes.some(entry => entry.route === route)) missing.push(`Page ${route} missing from Figma screen definitions`);
+  if (!routes.some(entry => entry.route === route)) missing.push(`Page ${route} missing from wireframe scenario definitions`);
 }
 if (!routes.some(entry => entry.route === '/404')) missing.push('Missing separate 404 fallback screen');
 const coveragePage = drawio.match(/<diagram id="08WireframeCoverage"[\s\S]*?<\/diagram>/)?.[0] ?? '';
@@ -55,7 +55,7 @@ for (const route of routes) {
   if (!cell.includes(`route="${route.route}"`) || !cell.includes(`scenarios="${route.states.length + 1}"`)) missing.push(`Draw.io wireframe coverage differs for ${route.route}`);
 }
 for (const anchor of ['services', 'facilities', 'contact']) {
-  if (!routes.find(entry => entry.route === '/')?.sections.some(section => section.anchor === anchor)) missing.push(`Landing section ${anchor} missing from Figma definition`);
+  if (!routes.find(entry => entry.route === '/')?.sections.some(section => section.anchor === anchor)) missing.push(`Landing section ${anchor} missing from wireframe scenario definitions`);
 }
 for (const [label, routes] of [['draw.io', actualRoutes], ['Mermaid', exportedRoutes]]) {
   if (new Set(routes).size !== routes.length) missing.push(`Duplicate page in ${label} sitemap`);
@@ -66,7 +66,7 @@ for (const [match, route] of routeNodes) {
 }
 
 const spanishTokens = /\b(inicio|actividades|horario|servicios|instalaciones|tarifas|equipo|contacto|fuerza|movilidad|recuperaci[oó]n|sesiones|fictici\w*|datos|ubicaci[oó]n|horarios|privacidad|t[eé]rminos|entrena|consulta|reserva|conoce|elige|entrenamiento|centro|ciudad)\b/i;
-if (spanishTokens.test(content)) missing.push('Spanish UI copy found in the Figma wireframe content');
+if (spanishTokens.test(content)) missing.push('Spanish UI copy found in the wireframe scenario content');
 if (wireframes.includes("const access = textNode('Sign in'")) missing.push('Landing header exposes Sign In instead of My Account and Join Now');
 
 if (missing.length > 0) {
@@ -74,4 +74,4 @@ if (missing.length > 0) {
   process.exit(1);
 }
 
-console.log(`UX synchronization passed: ${expectedRoutes.length} page routes, a separate 404 screen, and ${routes.reduce((n, r) => n + 1 + r.states.length, 0)} scenarios per device match the Figma definitions and draw.io coverage. This is static coverage, not live Figma visual validation.`);
+console.log(`UX synchronization passed: ${expectedRoutes.length} page routes, a separate 404 screen, and ${routes.reduce((n, r) => n + 1 + r.states.length, 0)} scenarios per device match the Penpot coverage source and draw.io. This is structural coverage, not Penpot visual-review evidence.`);
