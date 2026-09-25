@@ -255,3 +255,10 @@ updated: 2026-09-21
 - Replaced the obsolete native Figma requirement in Issue #6 documentation with the canonical Penpot set: 20 numbered wireframe pages, 326 desktop/mobile boards, 163 scenarios per device, and coverage of 26 routes plus the 404 fallback. GitHub reports Issue #6 is closed.
 - Retained `scripts/figma-plugin/` as historical import/source tooling. It is no longer a required run, approval gate, or delivery target.
 - Session: [[wiki/logs/2026-09-25-penpot-replaces-figma]].
+
+## 2026-09-25 - Sprint 0 exit and GitHub Project setup
+
+- Linked `AqueosHeart/fitops` to the `FitOps Delivery` GitHub Project. Added Sprint, SDLC Phase, Work Type, and Risk fields; standardized Status and Priority options; created Current Sprint, Product Backlog, SDLC Roadmap, and Bugs and Debt views. GitHub reserves `Type`, so the project uses `Work Type`.
+- Added Issues #8 and #9 to the delivery plan with values. Issue #8 is In Progress for Sprint 3 / SDLC Phase 4, high risk, P1, estimate 5. Issue #9 is Done and closed for Sprint 1 / SDLC Phase 3, high risk, P1, estimate 3.
+- The Sprint 0 exit review passed from documented product, UX, architecture, data, security, Penpot, and GitHub Project evidence. No executable application or database proof exists yet.
+- Session: [[wiki/logs/2026-09-25-sprint-0-exit-and-project-setup]].

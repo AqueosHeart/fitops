@@ -39,6 +39,7 @@ updated: 2026-09-25
 - [Issue #9 threat model and server-side access control](../docs/security/threat-model-and-access-control.md)
 - [REST API](../docs/api.md)
 - [SDLC and sprint plan](../docs/delivery-plan.md)
+- [Sprint 0 exit review](../docs/reviews/sprint-0-exit-review.md)
 - [Tooling and workflow](../docs/tooling-and-workflow.md)
 
 ## Concepts
@@ -94,3 +95,4 @@ updated: 2026-09-25
 - [[wiki/logs/2026-09-24-issue-8-independent-third-review|Issue #8 independent third review]]
 - [[wiki/logs/2026-09-25-issue-9-security-baseline|Issue #9 security baseline]]
 - [[wiki/logs/2026-09-25-penpot-replaces-figma|Penpot replaces Figma as the visual-design tool]]
+- [[wiki/logs/2026-09-25-sprint-0-exit-and-project-setup|Sprint 0 exit and GitHub Project setup]]

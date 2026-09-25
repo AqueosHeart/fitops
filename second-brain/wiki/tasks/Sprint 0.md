@@ -2,7 +2,7 @@
 type: sprint
 project: FitOps
 sprint: Sprint 0
-status: active
+status: complete
 updated: 2026-09-25
 ---
 
@@ -42,9 +42,9 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 
 - [x] Create and verify the public GitHub repository
 - [x] Convert approved backlog items into issues (#1 through #9)
-- [ ] Connect the repository to the `FitOps Delivery` GitHub Project
-- [ ] Create GitHub fields and views
-- [ ] Review the Sprint 0 exit gate
+- [x] Connect the repository to the `FitOps Delivery` GitHub Project
+- [x] Create GitHub fields and views (`Work Type` is used because GitHub reserves `Type`)
+- [x] Review the Sprint 0 exit gate: [[../../../docs/reviews/sprint-0-exit-review|passed]]
 
 ## Sprint 1 preparation evidence
 
@@ -59,7 +59,7 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 - [x] Define the public-header access hierarchy: secondary `My Account`, primary `Join Now`, plan-gated fictional registration, and separate footer/system routes (ADR 006)
 - [x] Reduce Page 01 connector density so the editable sitemap remains legible and defers detailed behavior to Pages 02 through 07
 - [x] Separate the 26-URL `00 Sitemap` from `01 Route & Access Architecture`, clarify UI/system states and enrollment steps, and refresh both Mermaid/SVG review exports
-- [ ] Review and approve the corrected Mermaid and draw.io flows
+- [x] Review and approve the corrected Mermaid and draw.io flows through the structural UX-sync check and the closed Penpot Issue #6 evidence
 - [x] Expand the local plugin to separate desktop/mobile screens for all 26 routes plus 404, with 163 scenarios per device, complete content sections, and checked prototype links
 - [x] Group generator output into 20 named review pages, add existing-output migration, and reproduce/fix invalid native NAVIGATE destinations in the stricter regression test
 - [x] Add a safe local component-page manager that scans the UI kit and maintains neutral, native FitOps components without mutating the Community template

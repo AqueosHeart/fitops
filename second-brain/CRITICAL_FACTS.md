@@ -14,13 +14,14 @@ updated: 2026-09-25
 - Lucide is the selected UI icon family for the FitOps design work. The connected Penpot file has an `Icons — Lucide` page with 20 official SVG icons and a proposed 24 px / 2 px stroke usage rule; the brand itself remains unapproved.
 - Original signage, apparel, social-avatar, and booking-interface tests exist as evaluation evidence only. They do not approve the logo, palette, or brand system.
 - Public repository: `https://github.com/AqueosHeart/fitops`.
-- Current lifecycle position: SDLC phases 1 and 2, Sprint 0.
+- Sprint 0 exit review passed on 2026-09-25. Implementation foundation and Issue #8's executable database work are next; no application, Prisma schema, migration, or PostgreSQL proof exists yet.
 - Delivery model: eight SDLC phases with one-week, Scrum-inspired sprints.
 - Architecture: modular monolith.
 - Issue #7 has ten Obsidian use cases, twelve-rule traceability, and a proposed race-safe transaction protocol. ADR 008 supersedes the conflicting part of ADR 007: Booking owns `BookableSession` capacity/cutoff/participation while Scheduling owns `SessionSlot` calendar definition. The revised documentation passes the external DDD skill checklists for design, with an explicit local multi-aggregate exception for immediate overlap prevention. No executable schema, code, or PostgreSQL concurrency proof exists.
 - Proposed application stack: Next.js, React, TypeScript, PostgreSQL, Prisma, Auth.js, and Zod.
 - Test stack: Vitest, React Testing Library, and Playwright.
 - Sprint source of truth after repository setup: GitHub Projects, Issues, and pull requests.
+- `FitOps Delivery` is linked to `AqueosHeart/fitops`. It has Sprint, SDLC Phase, Work Type, Risk, Priority, Status, Estimate, and date fields plus Current Sprint, Product Backlog, SDLC Roadmap, and Bugs and Debt views. GitHub reserves `Type`, so the project uses `Work Type`.
 - Conceptual database source: `docs/database/fitops.dbml`.
 - Executable database source after implementation: Prisma schema plus complete committed migrations.
 - Issue #8's revised [physical schema plan](../docs/database/physical-schema-plan.md) uses one `class_sessions` row, with separate Scheduling and Booking domain views mapped by adapters (ADR 009). It specifies credentials/JWT persistence, native PostgreSQL types, constraints, lock order, and migration/race-test gates. It is design only; no Prisma schema, migration, or PostgreSQL proof exists.
