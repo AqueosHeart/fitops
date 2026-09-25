@@ -291,3 +291,8 @@ updated: 2026-09-21
 
 - Added a read-only booking-state repository and a transaction helper that locks the ClassSession row, then the MemberProfile row, with parameterized PostgreSQL `FOR UPDATE` queries.
 - Verification reads the full seeded booking state through both paths and confirms two bookings plus an active member under the lock.
+
+## 2026-09-25 - Booking decision services
+
+- Added transaction-scoped direct booking, waitlist join, and cancellation with FIFO promotion services. They use the documented ClassSession then MemberProfile lock order.
+- Direct booking and waitlist verification confirm duplicate participation returns `ALREADY_PARTICIPATING`. Cancellation promotion is implemented but still requires synchronized PostgreSQL race tests, including cutoff crossing and ineligible candidate cases.

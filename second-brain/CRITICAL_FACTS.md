@@ -6,7 +6,7 @@ updated: 2026-09-25
 
 # FitOps Critical Facts
 
-- Status: initial database schema, migration, and repeatable fictional seed are applied locally; repository adapters and PostgreSQL race proof remain.
+- Status: initial database schema, migration, fictional seed, booking read adapter, lock helper, booking, waitlist, and cancellation/promotion services are applied locally; PostgreSQL race proof remains.
 - Working public name: `Practice Athletic Club`; `FitOps` remains the repository and internal project codename.
 - Branding scope is identity only for the current stage; no website or application implementation is authorized by the branding work.
 - Brand status: not defined or approved. Quiet Strength, the Mona Sans lime-bar wordmark, and the palette/type system are exploratory candidates that may be retained, revised, or replaced after the brand-definition process.
@@ -14,19 +14,19 @@ updated: 2026-09-25
 - Lucide is the selected UI icon family for the FitOps design work. The connected Penpot file has an `Icons — Lucide` page with 20 official SVG icons and a proposed 24 px / 2 px stroke usage rule; the brand itself remains unapproved.
 - Original signage, apparel, social-avatar, and booking-interface tests exist as evaluation evidence only. They do not approve the logo, palette, or brand system.
 - Public repository: `https://github.com/AqueosHeart/fitops`.
-- Sprint 0 exit review passed on 2026-09-25. The local implementation foundation is pinned and verified; Issue #8's models, reviewed migration, constraints, fictional seeds, and PostgreSQL race proof are next.
+- Sprint 0 exit review passed on 2026-09-25. Issue #8 now has executable schema, seed, and initial booking write services; synchronized PostgreSQL race proof and scheduling capacity-edit behavior remain.
 - Delivery model: eight SDLC phases with one-week, Scrum-inspired sprints.
 - Architecture: modular monolith.
 - Issue #7 has ten Obsidian use cases, twelve-rule traceability, and a proposed race-safe transaction protocol. ADR 008 supersedes the conflicting part of ADR 007: Booking owns `BookableSession` capacity/cutoff/participation while Scheduling owns `SessionSlot` calendar definition. The revised documentation passes the external DDD skill checklists for design, with an explicit local multi-aggregate exception for immediate overlap prevention. No executable schema, code, or PostgreSQL concurrency proof exists.
 - Implementation stack: Next.js 16.3.6, React 19.2.8, TypeScript, PostgreSQL 16 in Docker, Prisma 7.10.0, Auth.js (`next-auth`) 4.24.15, and Zod 4.6.5. Node 24.14.x and npm 11.9.x are pinned in `web/package.json`.
 - Test stack: Vitest, React Testing Library, and Playwright.
-- `web/lib/server/prisma.ts` is the server-only shared Prisma 7 client. `npm run db:verify` reads the fictional seed data through it; booking and scheduling adapters remain unimplemented.
-- The read-only Booking Repository and `withBookingLocks` transaction helper now exist. The helper locks `class_sessions` then `member_profiles`; booking decisions and concurrency proof remain unimplemented.
+- `web/lib/server/prisma.ts` is the server-only shared Prisma 7 client. `npm run db:verify` reads the fictional seed data through it.
+- The Booking Repository and `withBookingLocks` transaction helper exist. The helper locks `class_sessions` then `member_profiles`. `bookSession`, `joinWaitlist`, and `cancelBooking` implement initial transaction-scoped decisions; they are not yet proven under concurrent PostgreSQL execution.
 - Sprint source of truth after repository setup: GitHub Projects, Issues, and pull requests.
 - `FitOps Delivery` is linked to `AqueosHeart/fitops`. It has Sprint, SDLC Phase, Work Type, Risk, Priority, Status, Estimate, and date fields plus Current Sprint, Product Backlog, SDLC Roadmap, and Bugs and Debt views. GitHub reserves `Type`, so the project uses `Work Type`.
 - Conceptual database source: `docs/database/fitops.dbml`.
 - Executable database source after implementation: Prisma schema plus complete committed migrations.
-- Issue #8's revised [physical schema plan](../docs/database/physical-schema-plan.md) uses one `class_sessions` row, with separate Scheduling and Booking domain views mapped by adapters (ADR 009). The first Prisma migration is applied to local PostgreSQL 16 with native enums, FKs, checks, partial active-participation indexes, promotion provenance, and trainer interval exclusion. Fictional seeds, repository adapters, and PostgreSQL race proof remain.
+- Issue #8's revised [physical schema plan](../docs/database/physical-schema-plan.md) uses one `class_sessions` row, with separate Scheduling and Booking domain views mapped by adapters (ADR 009). The first Prisma migration is applied to local PostgreSQL 16 with native enums, FKs, checks, partial active-participation indexes, promotion provenance, and trainer interval exclusion. Fictional seed and initial Booking write services exist; scheduling capacity edits and PostgreSQL race proof remain.
 - The [second Issue #8 review](../docs/database/physical-schema-second-review.md) resolves the first review's four high and four medium design findings. It also found the capacity-increase waitlist fairness gap; ADR 010 requires FIFO promotion in the capacity-edit transaction before cutoff. Issue #8 remains open pending the design gates and executable evidence.
 - The [independent third Issue #8 review](../docs/database/physical-schema-third-review.md) found a cancellation cutoff race, stale Issue #7 protocol text, and an undefined free-seat-plus-waitlist failure contract. ADR 011 requires cutoff rechecks after candidate member locks; Book and Join return a generic `500 PARTICIPATION_INVARIANT_BROKEN` with an alert if that inconsistent state appears. These are design corrections, not PostgreSQL proof.
 - ADR 012 establishes the Issue #9 identity baseline: Argon2id credential hashes, 15–128 character passwords, generic rate-limited login failures, eight-hour HTTP-only JWT sessions, server-side `auth_version` invalidation, same-origin checks for unsafe requests, and allowlisted internal return paths. It keeps recovery/email/MFA outside MVP. This unblocks Issue #8's identity-column behavior design but does not clear the Sprint 0 or native wireframe gates or create executable code.
