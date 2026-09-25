@@ -282,3 +282,7 @@ updated: 2026-09-21
 
 - Added a repeatable Prisma seed with six fictional `example.test` users, a trainer, administrator, program, full upcoming session, two confirmed bookings, and two FIFO waitlist entries. It creates a runtime Argon2id hash and stores no usable demo password or credential hash in source.
 - `npm run prisma:seed` passed against local PostgreSQL and produced counts of six users, one session, two confirmed bookings, and two waiting entries.
+
+## 2026-09-25 - Shared Prisma client
+
+- Added the server-only shared Prisma PostgreSQL client and `npm run db:verify`. It successfully reads the local fictional seed data.
