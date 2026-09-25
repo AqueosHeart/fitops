@@ -98,3 +98,4 @@ updated: 2026-09-25
 - [[wiki/logs/2026-09-25-sprint-0-exit-and-project-setup|Sprint 0 exit and GitHub Project setup]]
 - [[wiki/logs/2026-09-25-issue-8-implementation-foundation|Issue #8 implementation foundation]]
 - [[wiki/logs/2026-09-25-issue-8-initial-schema-migration|Issue #8 initial schema migration]]
+- [[wiki/logs/2026-09-25-issue-8-fictional-seed|Issue #8 fictional seed]]

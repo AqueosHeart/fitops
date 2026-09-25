@@ -6,7 +6,7 @@ updated: 2026-09-25
 
 # FitOps Critical Facts
 
-- Status: initial database schema and migration are applied locally; no product functionality, fictional seed, repository adapter, or PostgreSQL race proof has been implemented.
+- Status: initial database schema, migration, and repeatable fictional seed are applied locally; repository adapters and PostgreSQL race proof remain.
 - Working public name: `Practice Athletic Club`; `FitOps` remains the repository and internal project codename.
 - Branding scope is identity only for the current stage; no website or application implementation is authorized by the branding work.
 - Brand status: not defined or approved. Quiet Strength, the Mona Sans lime-bar wordmark, and the palette/type system are exploratory candidates that may be retained, revised, or replaced after the brand-definition process.

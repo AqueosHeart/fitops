@@ -277,3 +277,8 @@ updated: 2026-09-21
 - Generated and reviewed the initial migration before applying it to the empty local PostgreSQL 16 database. It adds the required checks, partial active-participation indexes, composite promotion reference, `btree_gist` trainer interval exclusion, and explicit `ON UPDATE NO ACTION` foreign keys.
 - Prisma validation, migration application, client generation, and lint passed. No fictional seed, adapters, authentication behavior, or synchronized race tests exist yet.
 - Session: [[wiki/logs/2026-09-25-issue-8-initial-schema-migration]].
+
+## 2026-09-25 - Issue #8 fictional seed
+
+- Added a repeatable Prisma seed with six fictional `example.test` users, a trainer, administrator, program, full upcoming session, two confirmed bookings, and two FIFO waitlist entries. It creates a runtime Argon2id hash and stores no usable demo password or credential hash in source.
+- `npm run prisma:seed` passed against local PostgreSQL and produced counts of six users, one session, two confirmed bookings, and two waiting entries.
