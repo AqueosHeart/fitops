@@ -10,7 +10,9 @@ export async function withBookingLocks<T>(
   memberId: string,
   operation: (tx: Prisma.TransactionClient) => Promise<T>,
 ) {
-  return prisma.$transaction(async (tx) => {
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    try {
+      return await prisma.$transaction(async (tx) => {
     const sessions = await tx.$queryRaw<LockedRow[]>`
       SELECT "id"
       FROM "class_sessions"
@@ -33,6 +35,13 @@ export async function withBookingLocks<T>(
       throw new Error("Member profile was not found.");
     }
 
-    return operation(tx);
-  });
+        return operation(tx);
+      });
+    } catch (error) {
+      const code = typeof error === "object" && error && "code" in error ? String(error.code) : undefined;
+      if ((code === "40P01" || code === "40001") && attempt < 2) continue;
+      throw error;
+    }
+  }
+  throw new Error("Unreachable transaction retry state.");
 }
