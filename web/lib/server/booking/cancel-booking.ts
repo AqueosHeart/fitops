@@ -4,10 +4,11 @@ import { withBookingLocks } from "@/lib/server/booking/with-booking-locks";
 
 export type CancelBookingResult =
   | { code: "CANCELLED"; promotedMemberId?: string }
-  | { code: "BOOKING_NOT_FOUND" | "BOOKING_CUTOFF_PASSED" | "MEMBERSHIP_INACTIVE" };
+  | { code: "BOOKING_NOT_FOUND" | "BOOKING_CUTOFF_PASSED" | "MEMBERSHIP_INACTIVE" | "SESSION_NOT_FOUND" | "MEMBER_NOT_FOUND" };
 
 export async function cancelBooking(sessionId: string, memberId: string): Promise<CancelBookingResult> {
-  return withBookingLocks(sessionId, memberId, async (tx) => {
+  try {
+    return await withBookingLocks(sessionId, memberId, async (tx) => {
     const booking = await tx.booking.findFirst({ where: { sessionId, memberId }, orderBy: { bookedAt: "desc" } });
     if (!booking) return { code: "BOOKING_NOT_FOUND" };
     if (booking.status === "CANCELLED") return { code: "CANCELLED" };
@@ -34,5 +35,11 @@ export async function cancelBooking(sessionId: string, memberId: string): Promis
       await tx.booking.create({ data: { memberId: candidate.memberId, sessionId, status: "CONFIRMED", bookedAt: freshNow, sourceWaitlistEntryId: candidate.id } });
       return { code: "CANCELLED", promotedMemberId: candidate.memberId };
     }
-  });
+    });
+  } catch (error) {
+    if (error instanceof Error && error.message === "BOOKING_CUTOFF_PASSED") return { code: "BOOKING_CUTOFF_PASSED" };
+    if (error instanceof Error && error.message === "Booking session was not found.") return { code: "SESSION_NOT_FOUND" };
+    if (error instanceof Error && error.message === "Member profile was not found.") return { code: "MEMBER_NOT_FOUND" };
+    throw error;
+  }
 }

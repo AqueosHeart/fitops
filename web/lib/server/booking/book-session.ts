@@ -1,6 +1,7 @@
 import "server-only";
 
 import { withBookingLocks } from "@/lib/server/booking/with-booking-locks";
+import { reportParticipationInvariant } from "@/lib/server/booking/operational-alert";
 
 export type BookSessionResult =
   | { code: "BOOKED"; bookingId: string }
@@ -59,6 +60,7 @@ export async function bookSession(sessionId: string, memberId: string): Promise<
       if (existingBooking || existingWaitlistEntry) return { code: "ALREADY_PARTICIPATING" };
       if (overlap) return { code: "SCHEDULE_OVERLAP" };
       if (waitingCount > 0 && confirmedCount < session.capacity) {
+        reportParticipationInvariant({ operation: "book", sessionId, memberId, confirmedCount, waitingCount });
         return { code: "PARTICIPATION_INVARIANT_BROKEN" };
       }
       if (confirmedCount >= session.capacity) return { code: "SESSION_FULL" };

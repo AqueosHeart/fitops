@@ -1,6 +1,7 @@
 import "server-only";
 
 import { withBookingLocks } from "@/lib/server/booking/with-booking-locks";
+import { reportParticipationInvariant } from "@/lib/server/booking/operational-alert";
 
 export type JoinWaitlistResult =
   | { code: "WAITLIST_JOINED"; entryId: string; position: bigint }
@@ -26,7 +27,13 @@ export async function joinWaitlist(sessionId: string, memberId: string): Promise
       if (booking || waiting) return { code: "ALREADY_PARTICIPATING" };
       const confirmedCount = await tx.booking.count({ where: { sessionId, status: "CONFIRMED" } });
       const waitingCount = await tx.waitlistEntry.count({ where: { sessionId, status: "WAITING" } });
-      if (confirmedCount < session.capacity) return waitingCount > 0 ? { code: "PARTICIPATION_INVARIANT_BROKEN" } : { code: "SEAT_AVAILABLE" };
+      if (confirmedCount < session.capacity) {
+        if (waitingCount > 0) {
+          reportParticipationInvariant({ operation: "waitlist", sessionId, memberId, confirmedCount, waitingCount });
+          return { code: "PARTICIPATION_INVARIANT_BROKEN" };
+        }
+        return { code: "SEAT_AVAILABLE" };
+      }
 
       const position = session.nextPositionKey;
       const entry = await tx.waitlistEntry.create({ data: { memberId, sessionId, status: "WAITING", positionKey: position, joinedAt: now }, select: { id: true } });
