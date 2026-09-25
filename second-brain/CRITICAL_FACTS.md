@@ -6,7 +6,7 @@ updated: 2026-09-25
 
 # FitOps Critical Facts
 
-- Status: implementation foundation exists; no product functionality, Prisma models, migration, seed, or PostgreSQL race proof has been implemented.
+- Status: initial database schema and migration are applied locally; no product functionality, fictional seed, repository adapter, or PostgreSQL race proof has been implemented.
 - Working public name: `Practice Athletic Club`; `FitOps` remains the repository and internal project codename.
 - Branding scope is identity only for the current stage; no website or application implementation is authorized by the branding work.
 - Brand status: not defined or approved. Quiet Strength, the Mona Sans lime-bar wordmark, and the palette/type system are exploratory candidates that may be retained, revised, or replaced after the brand-definition process.
@@ -24,7 +24,7 @@ updated: 2026-09-25
 - `FitOps Delivery` is linked to `AqueosHeart/fitops`. It has Sprint, SDLC Phase, Work Type, Risk, Priority, Status, Estimate, and date fields plus Current Sprint, Product Backlog, SDLC Roadmap, and Bugs and Debt views. GitHub reserves `Type`, so the project uses `Work Type`.
 - Conceptual database source: `docs/database/fitops.dbml`.
 - Executable database source after implementation: Prisma schema plus complete committed migrations.
-- Issue #8's revised [physical schema plan](../docs/database/physical-schema-plan.md) uses one `class_sessions` row, with separate Scheduling and Booking domain views mapped by adapters (ADR 009). `web/prisma.config.ts` and a valid empty PostgreSQL Prisma schema now provide the pinned connection foundation. No domain models, migration, constraints, seed, or PostgreSQL race proof exists yet.
+- Issue #8's revised [physical schema plan](../docs/database/physical-schema-plan.md) uses one `class_sessions` row, with separate Scheduling and Booking domain views mapped by adapters (ADR 009). The first Prisma migration is applied to local PostgreSQL 16 with native enums, FKs, checks, partial active-participation indexes, promotion provenance, and trainer interval exclusion. Fictional seeds, repository adapters, and PostgreSQL race proof remain.
 - The [second Issue #8 review](../docs/database/physical-schema-second-review.md) resolves the first review's four high and four medium design findings. It also found the capacity-increase waitlist fairness gap; ADR 010 requires FIFO promotion in the capacity-edit transaction before cutoff. Issue #8 remains open pending the design gates and executable evidence.
 - The [independent third Issue #8 review](../docs/database/physical-schema-third-review.md) found a cancellation cutoff race, stale Issue #7 protocol text, and an undefined free-seat-plus-waitlist failure contract. ADR 011 requires cutoff rechecks after candidate member locks; Book and Join return a generic `500 PARTICIPATION_INVARIANT_BROKEN` with an alert if that inconsistent state appears. These are design corrections, not PostgreSQL proof.
 - ADR 012 establishes the Issue #9 identity baseline: Argon2id credential hashes, 15–128 character passwords, generic rate-limited login failures, eight-hour HTTP-only JWT sessions, server-side `auth_version` invalidation, same-origin checks for unsafe requests, and allowlisted internal return paths. It keeps recovery/email/MFA outside MVP. This unblocks Issue #8's identity-column behavior design but does not clear the Sprint 0 or native wireframe gates or create executable code.

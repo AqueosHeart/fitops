@@ -270,3 +270,10 @@ updated: 2026-09-21
 - Added a valid empty Prisma 7 configuration and schema plus an ignored local `.env` and tracked `.env.example`. No domain models, migration, seed, authentication behavior, constraints, or race tests were created.
 - `npm audit --omit=dev` reports four high findings in Prisma CLI transitive development dependencies. The offered automated fix downgrades Prisma to 6, so it was not applied; reassess when Prisma 7 publishes a compatible fix.
 - Session: [[wiki/logs/2026-09-25-issue-8-implementation-foundation]].
+
+## 2026-09-25 - Issue #8 initial schema migration
+
+- Added the seven physical models, six native PostgreSQL enums, relations, named read indexes, and promotion provenance mapping to `web/prisma/schema.prisma`.
+- Generated and reviewed the initial migration before applying it to the empty local PostgreSQL 16 database. It adds the required checks, partial active-participation indexes, composite promotion reference, `btree_gist` trainer interval exclusion, and explicit `ON UPDATE NO ACTION` foreign keys.
+- Prisma validation, migration application, client generation, and lint passed. No fictional seed, adapters, authentication behavior, or synchronized race tests exist yet.
+- Session: [[wiki/logs/2026-09-25-issue-8-initial-schema-migration]].

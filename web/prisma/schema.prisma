@@ -6,3 +6,162 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+enum UserRole {
+  MEMBER        @map("member")
+  TRAINER       @map("trainer")
+  ADMINISTRATOR @map("administrator")
+
+  @@map("user_role")
+}
+
+enum MemberStatus {
+  ACTIVE   @map("active")
+  INACTIVE @map("inactive")
+
+  @@map("member_status")
+}
+
+enum MembershipPlanCode {
+  BASE          @map("base")
+  COMPLETE      @map("complete")
+  TRAINING_PLUS @map("training_plus")
+
+  @@map("membership_plan_code")
+}
+
+enum SessionStatus {
+  SCHEDULED @map("scheduled")
+  CANCELLED @map("cancelled")
+  COMPLETED @map("completed")
+
+  @@map("session_status")
+}
+
+enum BookingStatus {
+  CONFIRMED @map("confirmed")
+  CANCELLED @map("cancelled")
+
+  @@map("booking_status")
+}
+
+enum WaitlistStatus {
+  WAITING   @map("waiting")
+  PROMOTED  @map("promoted")
+  CANCELLED @map("cancelled")
+  EXPIRED   @map("expired")
+
+  @@map("waitlist_status")
+}
+
+model User {
+  id             String         @id @default(uuid()) @db.Uuid
+  email          String         @unique @db.VarChar(320)
+  name           String         @db.VarChar(120)
+  role           UserRole
+  passwordHash   String         @map("password_hash") @db.Text
+  authVersion    Int            @default(1) @map("auth_version")
+  createdAt      DateTime       @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt      DateTime       @updatedAt @map("updated_at") @db.Timestamptz(3)
+  memberProfile  MemberProfile?
+  trainerProfile TrainerProfile?
+
+  @@map("users")
+}
+
+model MemberProfile {
+  id                       String              @id @default(uuid()) @db.Uuid
+  userId                   String              @unique @map("user_id") @db.Uuid
+  status                   MemberStatus
+  selectedPlanCode         MembershipPlanCode? @map("selected_plan_code")
+  planSelectedAt           DateTime?           @map("plan_selected_at") @db.Timestamptz(3)
+  termsPrivacyAcceptedAt   DateTime?           @map("terms_privacy_accepted_at") @db.Timestamptz(3)
+  waiverSignedAt           DateTime?           @map("waiver_signed_at") @db.Timestamptz(3)
+  createdAt                DateTime            @default(now()) @map("created_at") @db.Timestamptz(3)
+  user                     User                @relation(fields: [userId], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  bookings                 Booking[]
+  waitlistEntries          WaitlistEntry[]
+
+  @@map("member_profiles")
+}
+
+model TrainerProfile {
+  id          String   @id @default(uuid()) @db.Uuid
+  userId      String   @unique @map("user_id") @db.Uuid
+  bio         String   @db.Text
+  specialties String[] @default([]) @db.Text
+  user        User     @relation(fields: [userId], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  classSessions ClassSession[]
+
+  @@map("trainer_profiles")
+}
+
+model Program {
+  id              String  @id @default(uuid()) @db.Uuid
+  slug            String  @unique @db.VarChar(100)
+  name            String  @db.VarChar(120)
+  description     String  @db.Text
+  intensity       String  @db.VarChar(30)
+  durationMinutes Int     @map("duration_minutes")
+  isPublished     Boolean @default(true) @map("is_published")
+  classSessions   ClassSession[]
+
+  @@map("programs")
+}
+
+model ClassSession {
+  id                   String         @id @default(uuid()) @db.Uuid
+  programId            String         @map("program_id") @db.Uuid
+  trainerId            String         @map("trainer_id") @db.Uuid
+  startsAt             DateTime       @map("starts_at") @db.Timestamptz(3)
+  endsAt               DateTime       @map("ends_at") @db.Timestamptz(3)
+  capacity             Int
+  bookingCutoffMinutes Int            @map("booking_cutoff_minutes")
+  status               SessionStatus  @default(SCHEDULED)
+  nextPositionKey      BigInt         @default(1) @map("next_position_key")
+  program              Program        @relation(fields: [programId], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  trainer              TrainerProfile @relation(fields: [trainerId], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  bookings             Booking[]
+  waitlistEntries      WaitlistEntry[]
+
+  @@index([startsAt, status], map: "class_sessions_start_status_idx")
+  @@index([programId, startsAt], map: "class_sessions_program_start_idx")
+  @@index([trainerId, startsAt], map: "class_sessions_trainer_start_idx")
+  @@map("class_sessions")
+}
+
+model Booking {
+  id                    String         @id @default(uuid()) @db.Uuid
+  memberId              String         @map("member_id") @db.Uuid
+  sessionId             String         @map("session_id") @db.Uuid
+  status                BookingStatus  @default(CONFIRMED)
+  bookedAt              DateTime       @map("booked_at") @db.Timestamptz(3)
+  cancelledAt           DateTime?      @map("cancelled_at") @db.Timestamptz(3)
+  sourceWaitlistEntryId String?        @unique @map("source_waitlist_entry_id") @db.Uuid
+  member                MemberProfile  @relation(fields: [memberId], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  session               ClassSession   @relation(fields: [sessionId], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  sourceWaitlistEntry   WaitlistEntry? @relation("PromotionSource", fields: [sourceWaitlistEntryId], references: [id], onDelete: Restrict, onUpdate: NoAction)
+
+  @@index([sessionId, status], map: "bookings_session_status_idx")
+  @@index([memberId, status], map: "bookings_member_status_idx")
+  @@index([memberId, sessionId], map: "bookings_member_session_idx")
+  @@map("bookings")
+}
+
+model WaitlistEntry {
+  id              String         @id @default(uuid()) @db.Uuid
+  memberId        String         @map("member_id") @db.Uuid
+  sessionId       String         @map("session_id") @db.Uuid
+  status          WaitlistStatus @default(WAITING)
+  positionKey     BigInt         @map("position_key")
+  joinedAt        DateTime       @map("joined_at") @db.Timestamptz(3)
+  resolvedAt      DateTime?      @map("resolved_at") @db.Timestamptz(3)
+  member          MemberProfile  @relation(fields: [memberId], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  session         ClassSession   @relation(fields: [sessionId], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  promotedBooking Booking?       @relation("PromotionSource")
+
+  @@index([sessionId, status, positionKey], map: "waitlist_session_order_idx")
+  @@unique([sessionId, positionKey], map: "waitlist_session_position_unique")
+  @@index([memberId, sessionId], map: "waitlist_member_session_idx")
+  @@map("waitlist_entries")
+}
