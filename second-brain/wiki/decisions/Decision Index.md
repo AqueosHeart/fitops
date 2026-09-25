@@ -17,5 +17,6 @@ updated: 2026-09-24
 - [ADR 009 Map Scheduling and Booking views to one physical session row](../../../docs/adr/009-one-physical-session-row.md)
 - [ADR 010 Promote waiting members when capacity increases](../../../docs/adr/010-promote-waitlist-on-capacity-increase.md)
 - [ADR 011 Recheck the cutoff during cancellation promotion](../../../docs/adr/011-recheck-cutoff-during-cancellation-promotion.md)
+- [ADR 012 Establish the identity security baseline](../../../docs/adr/012-identity-security-baseline.md)
 
 New material architecture decisions receive a new ADR. Accepted historical decisions are not silently rewritten; a later ADR may supersede them.

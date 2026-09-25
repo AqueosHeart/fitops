@@ -30,6 +30,7 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
   - The [first review](../../docs/database/physical-schema-review.md) found four high and four medium design gaps. The [second review](../../docs/database/physical-schema-second-review.md) records their design resolution and remaining implementation/security gates. Prisma schema, committed migrations, and PostgreSQL race evidence are pending.
   - The [independent third review](../../docs/database/physical-schema-third-review.md) corrected cancellation cutoff rechecks (ADR 011), stale Issue #7 protocol, and the invariant-error contract on Book and Join. No executable proof yet.
 - [#9 [SEC] Threat Model & Server-Side Access Control Specification](https://github.com/AqueosHeart/fitops/issues/9)
+  - [ADR 012](../../docs/adr/012-identity-security-baseline.md) and the [threat model](../../docs/security/threat-model-and-access-control.md) define the credential, JWT, CSRF, IDOR, rate-limit, redirect, and redaction requirements that Issue #8 needs. This is design evidence only; no authentication code, migration, or test exists.
 
 ## In Review
 

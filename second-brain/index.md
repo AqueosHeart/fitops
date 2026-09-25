@@ -36,6 +36,7 @@ updated: 2026-09-24
 - [Issue #8 physical schema review](../docs/database/physical-schema-review.md)
 - [Issue #8 second schema review](../docs/database/physical-schema-second-review.md)
 - [Issue #8 independent third schema review](../docs/database/physical-schema-third-review.md)
+- [Issue #9 threat model and server-side access control](../docs/security/threat-model-and-access-control.md)
 - [REST API](../docs/api.md)
 - [SDLC and sprint plan](../docs/delivery-plan.md)
 - [Tooling and workflow](../docs/tooling-and-workflow.md)
@@ -91,3 +92,4 @@ updated: 2026-09-24
 - [[wiki/logs/2026-09-23-issue-8-schema-review|Issue #8 schema review]]
 - [[wiki/logs/2026-09-24-issue-8-revision-second-review|Issue #8 revision and second review]]
 - [[wiki/logs/2026-09-24-issue-8-independent-third-review|Issue #8 independent third review]]
+- [[wiki/logs/2026-09-25-issue-9-security-baseline|Issue #9 security baseline]]

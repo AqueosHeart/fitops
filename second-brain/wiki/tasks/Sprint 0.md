@@ -77,6 +77,7 @@ Agree on the product problem, users, MVP, rules, risks, acceptance criteria, and
 - Issue #8's revised [physical schema plan](../../../docs/database/physical-schema-plan.md) uses one `class_sessions` table with separate Scheduling/Booking domain views (ADR 009). It specifies native types, constraints, auth storage, lock order, migration steps, and synchronized PostgreSQL proof. No Prisma schema, migration, or database test exists; Sprint 0 and Sprint 1 design gates still apply.
 - The [first schema review](../../../docs/database/physical-schema-review.md) identified four high and four medium findings. The [second review](../../../docs/database/physical-schema-second-review.md) records design resolutions and the ADR 010 capacity-increase FIFO promotion rule. Issue #8 stays open for executable evidence and Issue #9 security choices.
 - The [independent third review](../../../docs/database/physical-schema-third-review.md) corrected a cancellation cutoff race (ADR 011), stale Issue #7 protocol wording, and the free-seat-plus-waitlist API failure contract. These remain design corrections; Issue #8 is not complete.
+- Issue #9 now records the identity security baseline in [ADR 012](../../../docs/adr/012-identity-security-baseline.md) and the [threat model](../../../docs/security/threat-model-and-access-control.md). Prisma/migration/race evidence and the existing Sprint 0 and native Figma gates remain pending.
 
 - [[../projects/FitOps]]
 - [[../concepts/Software Development Life Cycle]]

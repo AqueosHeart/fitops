@@ -241,3 +241,10 @@ updated: 2026-09-21
 
 - A subagent reviewed the revised plan against requirements, API, Issue #7 use cases, ADRs, and DBML. It found a cancellation promotion cutoff race, stale Issue #7 edit/promotion protocol, and an undefined free-seat-plus-waitlist error. ADR 011 now requires a fresh cutoff check after each candidate member lock, with full rollback if expired.
 - Aligned the Issue #7 use cases and pseudocode with historical-row edit freeze, capacity-increase FIFO promotion, and the inconsistent free-seat-plus-waitlist response. Both Book and Join now specify generic `500 PARTICIPATION_INVARIANT_BROKEN`, server alert, and explicit repair. The [third review](../docs/database/physical-schema-third-review.md) records evidence and outstanding database proof. Issue #8 remains open.
+
+## 2026-09-25 - Issue #9 identity security baseline
+
+- Added ADR 012 and a threat model for the fictional MVP. It records Argon2id storage, 15–128 character password handling, generic rate-limited credential failures, an eight-hour HTTP-only JWT session, current-record authorization with `auth_version` invalidation, origin-based CSRF checks, return-path allowlisting, and redacted logging.
+- The recovery route remains informational because no email or reset-token flow is approved. The threat model defines server-side authorization and test obligations for member ownership, trainer scope, administrator operations, and concurrency safety.
+- This supplies Issue #8's required identity-security design choices. It does not create Prisma models, migrations, authentication code, PostgreSQL tests, or clear the outstanding Sprint 0/native Figma gates.
+- Session: [[wiki/logs/2026-09-25-issue-9-security-baseline]].
