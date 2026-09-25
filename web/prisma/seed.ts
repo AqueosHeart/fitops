@@ -39,6 +39,11 @@ async function main() {
   const passwordHash = await argon2.hash(randomBytes(32).toString("base64url"), { type: argon2.argon2id });
 
   await prisma.$transaction(async (tx) => {
+    // Reset every participation row for the deterministic demo session first.
+    // Delete bookings before waitlist rows because promoted bookings reference them.
+    await tx.booking.deleteMany({ where: { sessionId: ids.session } });
+    await tx.waitlistEntry.deleteMany({ where: { sessionId: ids.session } });
+
     await tx.user.upsert({
       where: { email: "maya.coach@example.test" },
       update: { name: "Maya Coach", role: "TRAINER", passwordHash },
