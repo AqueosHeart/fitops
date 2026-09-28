@@ -27,6 +27,14 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 - [#10 [API] Secure REST API and Server-Side Access Control](https://github.com/AqueosHeart/fitops/issues/10)
   - Active: **In Progress**, Sprint 4, SDLC Phase 4, Feature, High risk, P1, estimate 8.
   - Implements Auth.js credentials, server-side ownership/role authorization, `/api/v1` handlers, validation, anti-CSRF/origin behavior, and API contract tests. UI is explicitly downstream.
+- [#11 [UI] Member Booking Product Slice](https://github.com/AqueosHeart/fitops/issues/11)
+  - Backlog: Sprint 5, SDLC Phase 4, Feature, High risk, P1, estimate 8. Depends on Issue #10's verified API.
+- [#12 [UI] Administrator Operations Product Slice](https://github.com/AqueosHeart/fitops/issues/12)
+  - Backlog: Sprint 6, SDLC Phase 4, Feature, High risk, P1, estimate 5. Depends on the secure API and member contract.
+- [#13 [QUALITY] System Quality and Production-Candidate Evidence](https://github.com/AqueosHeart/fitops/issues/13)
+  - Backlog: Sprint 7, SDLC Phase 5, Test, High risk, P1, estimate 8. Covers E2E, accessibility, security, performance, CI, and truthful evidence.
+- [#14 [RELEASE] Deployment and Portfolio Evidence](https://github.com/AqueosHeart/fitops/issues/14)
+  - Backlog: Sprint 8, SDLC Phase 6, Maintenance, Medium risk, P2, estimate 5. Depends on Issue #13 quality evidence.
 - [#9 [SEC] Threat Model & Server-Side Access Control Specification](https://github.com/AqueosHeart/fitops/issues/9)
   - Closed and tracked as Done. [ADR 012](../../docs/adr/012-identity-security-baseline.md) and the [threat model](../../docs/security/threat-model-and-access-control.md) define the credential, JWT, CSRF, IDOR, rate-limit, redirect, and redaction requirements that Issue #8 needs.
 

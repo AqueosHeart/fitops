@@ -311,3 +311,8 @@ updated: 2026-09-21
 - Updated GitHub Issue #8 acceptance checkboxes, closed it as completed, and set its `FitOps Delivery` Project status to Done.
 - Created GitHub Issue #10, `[API] Secure REST API and Server-Side Access Control`, and triaged it as In Progress for Sprint 4 / SDLC Phase 4, Feature, High risk, P1, estimate 8.
 - Session: [[wiki/logs/2026-09-28-issue-8-closure-and-sprint-4-activation]].
+
+## 2026-09-28 - Delivery backlog visibility
+
+- Added Issues #11 through #14 to GitHub and `FitOps Delivery` to make the remaining roadmap visible: member product, administrator product, system quality, and release/portfolio evidence.
+- The Project now shows Issue #10 In Progress and the dependency-ordered Sprint 5 through Sprint 8 work as Backlog. No future-sprint implementation is claimed.
