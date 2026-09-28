@@ -1,18 +1,20 @@
 import "server-only";
 
 import { prisma } from "@/lib/server/prisma";
+import { withTransactionRetry } from "@/lib/server/booking/with-transaction-retry";
 
 export type ChangeSessionCapacityResult =
   | { code: "CAPACITY_UPDATED"; promotedMemberIds: string[] }
-  | { code: "SESSION_NOT_FOUND" | "INVALID_CAPACITY" | "CAPACITY_BELOW_CONFIRMED" | "CUTOFF_PASSED" | "CAPACITY_INCREASE_BLOCKED" };
+  | { code: "SESSION_NOT_FOUND" | "SESSION_UNAVAILABLE" | "INVALID_CAPACITY" | "CAPACITY_BELOW_CONFIRMED" | "CUTOFF_PASSED" | "CAPACITY_INCREASE_BLOCKED" };
 
 export async function changeSessionCapacity(sessionId: string, capacity: number): Promise<ChangeSessionCapacityResult> {
   if (!Number.isInteger(capacity) || capacity < 1) return { code: "INVALID_CAPACITY" };
   try {
-    return await prisma.$transaction(async (tx) => {
+    return await withTransactionRetry(() => prisma.$transaction(async (tx) => {
       const locked = await tx.$queryRaw<{ id: string }[]>`SELECT "id" FROM "class_sessions" WHERE "id" = ${sessionId}::uuid FOR UPDATE`;
       if (locked.length !== 1) return { code: "SESSION_NOT_FOUND" };
       const session = await tx.classSession.findUniqueOrThrow({ where: { id: sessionId } });
+      if (session.status !== "SCHEDULED") return { code: "SESSION_UNAVAILABLE" };
       const confirmedCount = await tx.booking.count({ where: { sessionId, status: "CONFIRMED" } });
       if (capacity < confirmedCount) return { code: "CAPACITY_BELOW_CONFIRMED" };
       const waitingCount = await tx.waitlistEntry.count({ where: { sessionId, status: "WAITING" } });
@@ -42,7 +44,7 @@ export async function changeSessionCapacity(sessionId: string, capacity: number)
         seats -= 1;
       }
       return { code: "CAPACITY_UPDATED", promotedMemberIds };
-    });
+    }));
   } catch (error) {
     if (error instanceof Error && error.message === "CUTOFF_PASSED") return { code: "CUTOFF_PASSED" };
     throw error;

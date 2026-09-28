@@ -100,3 +100,4 @@ updated: 2026-09-25
 - [[wiki/logs/2026-09-25-issue-8-initial-schema-migration|Issue #8 initial schema migration]]
 - [[wiki/logs/2026-09-25-issue-8-fictional-seed|Issue #8 fictional seed]]
 - [[wiki/logs/2026-09-25-booking-decision-services|Issue #8 booking decision services]]
+- [[wiki/logs/2026-09-28-issue-8-postgres-race-repair-loop|Issue #8 PostgreSQL race repair loop]]

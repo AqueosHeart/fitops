@@ -296,3 +296,11 @@ updated: 2026-09-21
 
 - Added transaction-scoped direct booking, waitlist join, and cancellation with FIFO promotion services. They use the documented ClassSession then MemberProfile lock order.
 - Direct booking and waitlist verification confirm duplicate participation returns `ALREADY_PARTICIPATING`. Cancellation promotion is implemented but still requires synchronized PostgreSQL race tests, including cutoff crossing and ineligible candidate cases.
+
+## 2026-09-28 - Issue #8 synchronized PostgreSQL repair loop
+
+- Independent audit, repair, and re-audit cycles corrected the TypeScript ES target, distinct booked/waiting outcomes, capacity-transaction retries, and promotion status guards.
+- Added ten UUID-isolated PostgreSQL tests that use held row locks and observed blocked workers to exercise booking, waitlist, cancellation, capacity, ineligible/multi-seat promotion, cutoff crossings, and an injected promotion-write failure with complete rollback assertions.
+- `npm run test:race` passes all ten tests. TypeScript checks pass. A production build compiled and entered TypeScript checking but did not finish within the desktop command window, so it is not recorded as a passed build.
+- Authenticated HTTP handlers, Auth.js credentials, server-side authorization, and product UI remain unimplemented and are the next safe work.
+- Session: [[wiki/logs/2026-09-28-issue-8-postgres-race-repair-loop]].

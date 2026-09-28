@@ -5,7 +5,7 @@ import { reportParticipationInvariant } from "@/lib/server/booking/operational-a
 
 export type JoinWaitlistResult =
   | { code: "WAITLIST_JOINED"; entryId: string; position: bigint }
-  | { code: "SESSION_NOT_FOUND" | "MEMBER_NOT_FOUND" | "MEMBERSHIP_INACTIVE" | "WAIVER_REQUIRED" | "SESSION_UNAVAILABLE" | "BOOKING_CUTOFF_PASSED" | "ALREADY_PARTICIPATING" | "SEAT_AVAILABLE" | "PARTICIPATION_INVARIANT_BROKEN" };
+  | { code: "SESSION_NOT_FOUND" | "MEMBER_NOT_FOUND" | "MEMBERSHIP_INACTIVE" | "WAIVER_REQUIRED" | "SESSION_UNAVAILABLE" | "BOOKING_CUTOFF_PASSED" | "ALREADY_BOOKED" | "ALREADY_WAITING" | "SEAT_AVAILABLE" | "PARTICIPATION_INVARIANT_BROKEN" };
 
 export async function joinWaitlist(sessionId: string, memberId: string): Promise<JoinWaitlistResult> {
   try {
@@ -24,7 +24,8 @@ export async function joinWaitlist(sessionId: string, memberId: string): Promise
 
       const booking = await tx.booking.findFirst({ where: { memberId, sessionId, status: "CONFIRMED" } });
       const waiting = await tx.waitlistEntry.findFirst({ where: { memberId, sessionId, status: "WAITING" } });
-      if (booking || waiting) return { code: "ALREADY_PARTICIPATING" };
+      if (booking) return { code: "ALREADY_BOOKED" };
+      if (waiting) return { code: "ALREADY_WAITING" };
       const confirmedCount = await tx.booking.count({ where: { sessionId, status: "CONFIRMED" } });
       const waitingCount = await tx.waitlistEntry.count({ where: { sessionId, status: "WAITING" } });
       if (confirmedCount < session.capacity) {

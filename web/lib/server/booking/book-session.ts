@@ -11,7 +11,8 @@ export type BookSessionResult =
   | { code: "WAIVER_REQUIRED" }
   | { code: "SESSION_UNAVAILABLE" }
   | { code: "BOOKING_CUTOFF_PASSED" }
-  | { code: "ALREADY_PARTICIPATING" }
+  | { code: "ALREADY_BOOKED" }
+  | { code: "ALREADY_WAITING" }
   | { code: "SCHEDULE_OVERLAP" }
   | { code: "SESSION_FULL" }
   | { code: "PARTICIPATION_INVARIANT_BROKEN" };
@@ -57,7 +58,8 @@ export async function bookSession(sessionId: string, memberId: string): Promise<
         },
       });
 
-      if (existingBooking || existingWaitlistEntry) return { code: "ALREADY_PARTICIPATING" };
+      if (existingBooking) return { code: "ALREADY_BOOKED" };
+      if (existingWaitlistEntry) return { code: "ALREADY_WAITING" };
       if (overlap) return { code: "SCHEDULE_OVERLAP" };
       if (waitingCount > 0 && confirmedCount < session.capacity) {
         reportParticipationInvariant({ operation: "book", sessionId, memberId, confirmedCount, waitingCount });

@@ -4,7 +4,7 @@ import { withBookingLocks } from "@/lib/server/booking/with-booking-locks";
 
 export type CancelBookingResult =
   | { code: "CANCELLED"; promotedMemberId?: string }
-  | { code: "BOOKING_NOT_FOUND" | "BOOKING_CUTOFF_PASSED" | "MEMBERSHIP_INACTIVE" | "SESSION_NOT_FOUND" | "MEMBER_NOT_FOUND" };
+  | { code: "BOOKING_NOT_FOUND" | "BOOKING_CUTOFF_PASSED" | "SESSION_UNAVAILABLE" | "MEMBERSHIP_INACTIVE" | "SESSION_NOT_FOUND" | "MEMBER_NOT_FOUND" };
 
 export async function cancelBooking(sessionId: string, memberId: string): Promise<CancelBookingResult> {
   try {
@@ -13,6 +13,7 @@ export async function cancelBooking(sessionId: string, memberId: string): Promis
     if (!booking) return { code: "BOOKING_NOT_FOUND" };
     if (booking.status === "CANCELLED") return { code: "CANCELLED" };
     const session = await tx.classSession.findUniqueOrThrow({ where: { id: sessionId } });
+    if (session.status !== "SCHEDULED") return { code: "SESSION_UNAVAILABLE" };
     const clock = await tx.$queryRaw<{ now: Date }[]>`SELECT clock_timestamp() AS "now"`;
     const now = clock[0]?.now;
     if (!now) throw new Error("Database clock was not returned.");
