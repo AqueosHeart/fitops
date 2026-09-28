@@ -1,12 +1,12 @@
 ---
 type: critical-facts
 project: FitOps
-updated: 2026-09-25
+updated: 2026-09-28
 ---
 
 # FitOps Critical Facts
 
-- Status: executable schema, migration, fictional seed, booking services, and scheduling capacity edits are applied locally. Ten synchronized PostgreSQL race and rollback proofs pass locally. Authenticated HTTP handlers, Auth.js credentials, authorization, and UI remain unimplemented.
+- Status: Issue #8 is closed in GitHub and Done in `FitOps Delivery` after verified schema, migration, fictional seed, rejected-write, and ten synchronized PostgreSQL race/rollback proofs. Issue #10 is the active Sprint 4 API/access-control implementation; HTTP handlers, Auth.js credentials, authorization, contract tests, and UI remain unimplemented.
 - Working public name: `Practice Athletic Club`; `FitOps` remains the repository and internal project codename.
 - Branding scope is identity only for the current stage; no website or application implementation is authorized by the branding work.
 - Brand status: not defined or approved. Quiet Strength, the Mona Sans lime-bar wordmark, and the palette/type system are exploratory candidates that may be retained, revised, or replaced after the brand-definition process.
@@ -14,7 +14,7 @@ updated: 2026-09-25
 - Lucide is the selected UI icon family for the FitOps design work. The connected Penpot file has an `Icons — Lucide` page with 20 official SVG icons and a proposed 24 px / 2 px stroke usage rule; the brand itself remains unapproved.
 - Original signage, apparel, social-avatar, and booking-interface tests exist as evaluation evidence only. They do not approve the logo, palette, or brand system.
 - Public repository: `https://github.com/AqueosHeart/fitops`.
-- Sprint 0 exit review passed on 2026-09-25. Issue #8 now has executable schema, seed, Booking write services, scheduling capacity edits, and ten local synchronized PostgreSQL race/rollback tests. Its HTTP/auth/UI layers remain pending.
+- Sprint 0 exit review passed on 2026-09-25. Issue #8 is closed with executable schema, seed, Booking write services, capacity edits, rejected-write tests, and ten synchronized PostgreSQL race/rollback tests. Issue #10 now owns its HTTP/auth/API-contract follow-up.
 - Delivery model: eight SDLC phases with one-week, Scrum-inspired sprints.
 - Architecture: modular monolith.
 - Issue #7 has ten Obsidian use cases, twelve-rule traceability, and a proposed race-safe transaction protocol. ADR 008 supersedes the conflicting part of ADR 007: Booking owns `BookableSession` capacity/cutoff/participation while Scheduling owns `SessionSlot` calendar definition. The revised documentation passes the external DDD skill checklists for design, with an explicit local multi-aggregate exception for immediate overlap prevention. No executable schema, code, or PostgreSQL concurrency proof exists.

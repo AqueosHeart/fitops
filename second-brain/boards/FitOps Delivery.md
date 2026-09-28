@@ -1,7 +1,7 @@
 ---
 type: board-mirror
 project: FitOps
-updated: 2026-09-25
+updated: 2026-09-28
 ---
 
 # FitOps Delivery Board Mirror
@@ -23,9 +23,10 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 - [#7 [ARCH] Domain Boundary & Use-Case Specification](https://github.com/AqueosHeart/fitops/issues/7)
   - Closed on GitHub in `c8d1262`: [[../wiki/design/Issue 7 Domain Boundaries and Use Cases]] documents ten use cases, twelve-rule mapping, ADRs 007–008, and seven race scenarios. ADR 008 resolves the DDD boundary review and the expanded context/aggregate/event artifacts pass the DDD design checklists. Schema, migrations, and PostgreSQL proof remain downstream implementation evidence.
 - [#8 [DATA] Physical Database Schema & Migration Strategy (Prisma)](https://github.com/AqueosHeart/fitops/issues/8)
-  - Open and tracked as **In Progress**, Sprint 3, SDLC Phase 4, Architecture, High risk, P1, estimate 5. Its acceptance criteria cover the executable Prisma schema, migrations, PostgreSQL proof, fictional seeds, and synchronized race tests.
-  - The reviewed migration and fictional seed are applied locally. Booking read/lock, direct booking, waitlist, cancellation/promotion, and capacity-edit services exist. Ten local synchronized PostgreSQL tests cover final seat, queue positions, cancellation/capacity interleavings, ineligible and multi-seat promotion, cutoff rollback, and injected promotion-write rollback.
-  - The [independent third review](../../docs/database/physical-schema-third-review.md) corrections are implemented for promotion cutoff rechecks and the invariant-error contract. Authenticated HTTP handlers, Auth.js credentials, authorization, and UI are still outside the implemented scope.
+  - Closed and Done. Two fresh disposable databases applied both migrations; rejected-write tests, fictional seed verification, and ten synchronized PostgreSQL race/rollback tests pass locally.
+- [#10 [API] Secure REST API and Server-Side Access Control](https://github.com/AqueosHeart/fitops/issues/10)
+  - Active: **In Progress**, Sprint 4, SDLC Phase 4, Feature, High risk, P1, estimate 8.
+  - Implements Auth.js credentials, server-side ownership/role authorization, `/api/v1` handlers, validation, anti-CSRF/origin behavior, and API contract tests. UI is explicitly downstream.
 - [#9 [SEC] Threat Model & Server-Side Access Control Specification](https://github.com/AqueosHeart/fitops/issues/9)
   - Closed and tracked as Done. [ADR 012](../../docs/adr/012-identity-security-baseline.md) and the [threat model](../../docs/security/threat-model-and-access-control.md) define the credential, JWT, CSRF, IDOR, rate-limit, redirect, and redaction requirements that Issue #8 needs.
 

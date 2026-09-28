@@ -12,7 +12,8 @@
     "db:verify": "tsx --conditions=react-server scripts/verify-database.ts",
     "booking:verify": "tsx --conditions=react-server scripts/verify-book-session.ts",
     "waitlist:verify": "tsx --conditions=react-server scripts/verify-join-waitlist.ts",
-    "test:race": "node --conditions=react-server --import tsx --test tests/integration/postgres-race.test.ts"
+    "test:race": "node --conditions=react-server --import tsx --test tests/integration/postgres-race.test.ts",
+    "test:constraints": "node --conditions=react-server --import tsx --test tests/integration/postgres-constraints.test.ts"
   },
   "dependencies": {
     "@prisma/adapter-pg": "7.10.0",

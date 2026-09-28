@@ -304,3 +304,10 @@ updated: 2026-09-21
 - `npm run test:race` passes all ten tests. TypeScript checks pass. A production build compiled and entered TypeScript checking but did not finish within the desktop command window, so it is not recorded as a passed build.
 - Authenticated HTTP handlers, Auth.js credentials, server-side authorization, and product UI remain unimplemented and are the next safe work.
 - Session: [[wiki/logs/2026-09-28-issue-8-postgres-race-repair-loop]].
+
+## 2026-09-28 - Issue #8 closure and Sprint 4 activation
+
+- Verified the remaining Issue #8 acceptance gates: two fresh disposable PostgreSQL databases each applied both committed migrations; two rejected-invalid-write tests pass; the re-seeded local data contains six fictional users, one session, two confirmed bookings, and two waiting entries.
+- Updated GitHub Issue #8 acceptance checkboxes, closed it as completed, and set its `FitOps Delivery` Project status to Done.
+- Created GitHub Issue #10, `[API] Secure REST API and Server-Side Access Control`, and triaged it as In Progress for Sprint 4 / SDLC Phase 4, Feature, High risk, P1, estimate 8.
+- Session: [[wiki/logs/2026-09-28-issue-8-closure-and-sprint-4-activation]].

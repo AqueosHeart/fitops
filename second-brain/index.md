@@ -2,7 +2,7 @@
 type: index
 project: FitOps
 status: active
-updated: 2026-09-25
+updated: 2026-09-28
 ---
 
 # FitOps Knowledge Index
@@ -12,7 +12,7 @@ updated: 2026-09-25
 - [[SOUL|Project identity]]
 - [[CRITICAL_FACTS|Critical facts]]
 - [[wiki/projects/FitOps|FitOps project memory]]
-- [[wiki/tasks/Sprint 0|Current sprint]]
+- [[wiki/tasks/Sprint 4|Current sprint]]
 - [[boards/FitOps Delivery|Delivery board mirror]]
 
 ## Product and engineering
