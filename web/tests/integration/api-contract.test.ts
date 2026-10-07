@@ -103,11 +103,18 @@ test("public catalog and session routes return contracts and reject malformed id
 test("login, rate-limit reservation, and member profile routes enforce their contracts", async () => {
   const { POST: login } = await import("@/app/api/v1/auth/login/route");
   const { parseAdminReturnTo, parseReturnTo } = await import("@/lib/server/auth/return-to");
+  const { getPortalDestination } = await import("@/lib/server/auth/portal-destination");
   const { prisma } = await import("@/lib/server/prisma");
   assert.equal(parseReturnTo("/admin"), null, "registration/member return paths never include admin routes");
   assert.equal(parseAdminReturnTo("/admin/sessions/00000000-0000-4000-8000-000000000301/participants"), "/admin/sessions/00000000-0000-4000-8000-000000000301/participants");
   assert.equal(parseAdminReturnTo("/admin/sessions/not-a-uuid/edit"), null);
   assert.equal(parseAdminReturnTo("//attacker.example"), null);
+  assert.equal(getPortalDestination({ role: "MEMBER", memberProfile: {} }, null), "/app");
+  assert.equal(getPortalDestination({ role: "MEMBER", memberProfile: {} }, "/app/bookings"), "/app/bookings");
+  assert.equal(getPortalDestination({ role: "ADMINISTRATOR", memberProfile: {} }, "/admin/sessions"), "/admin/sessions");
+  assert.equal(getPortalDestination({ role: "ADMINISTRATOR", memberProfile: {} }, null), "/app");
+  assert.equal(getPortalDestination({ role: "ADMINISTRATOR", memberProfile: null }, null), "/admin");
+  assert.equal(getPortalDestination({ role: "TRAINER", memberProfile: null }, null), "/trainer/sessions");
   const member = await prisma.user.findUniqueOrThrow({ where: { id: state.users[0] } });
   const rejectedEmail = `csrf-login-${randomUUID()}@example.test`;
   assert.equal((await login!(unsafe("/api/v1/auth/login", { email: rejectedEmail, password }, undefined, "https://attacker.example") as never)).status, 403);

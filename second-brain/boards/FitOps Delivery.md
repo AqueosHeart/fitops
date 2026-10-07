@@ -32,6 +32,7 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 - Complete: **Done**, Sprint 5, SDLC Phase 4, Feature, High risk, P1, estimate 8. PR [#16](https://github.com/AqueosHeart/fitops/pull/16) merged 2026-10-07 at `0248913b6867708a6f5bf8e1dd44a74ac32ec313`; Issue #11 is Closed.
   - Verified member UI, server-side protection, reservation-aware schedule, sign-out, and additive cancellation cutoff. API-contract (7), Prisma validation, TypeScript, lint, production build (29 routes), browser registration/login/booking/waitlist/cancellation/sign-out flows, mobile 390×844 review, and scratch-db fresh/idempotent seed checks passed. No Actions checks are configured.
 - [#12 [UI] Administrator Operations Product Slice](https://github.com/AqueosHeart/fitops/issues/12)
+  - UX follow-up: one focused admin header replaces duplicate/public navigation; signed-in My Account routes to `/app` for member-profile users or an authorized `returnTo`. Focused checks pass; authenticated browser acceptance is still outstanding, and SVG previews need regeneration.
   - Backlog: Sprint 6, SDLC Phase 4, Feature, High risk, P1, estimate 5. Depends on the secure API and member contract. Draft PR [#17](https://github.com/AqueosHeart/fitops/pull/17) from `codex/fitops-issue-12-admin-operations` is rebased onto `main` after #16 merged; it includes role-aware login return paths. API/auth/constraint/race tests (24), lint, TypeScript, Prisma validation, database verification, and production build pass. The authorized fictional account tied to the current browser sessions was promoted to ADMINISTRATOR on 2026-10-07, with its sessions and member data preserved; authenticated UI acceptance remains outstanding. No status/acceptance transition is claimed.
 - [#13 [QUALITY] System Quality and Production-Candidate Evidence](https://github.com/AqueosHeart/fitops/issues/13)
   - Backlog: Sprint 7, SDLC Phase 5, Test, High risk, P1, estimate 8. Covers E2E, accessibility, security, performance, CI, and truthful evidence.
@@ -41,6 +42,8 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
   - Closed and tracked as Done. [ADR 012](../../docs/adr/012-identity-security-baseline.md) and the [threat model](../../docs/security/threat-model-and-access-control.md) define the credential, JWT, CSRF, IDOR, rate-limit, redirect, and redaction requirements that Issue #8 needs.
 
 ## Project setup
+
+2026-10-07 Issue #12 UX follow-up: the admin shell now has one focused header (Overview, Sessions, My Account, Public site), and My Account routes valid member sessions directly to `/app` unless a role-permitted return path applies. Contract tests (7/7), focused ESLint, and TypeScript pass; authenticated browser acceptance remains open and GitHub status is unchanged.
 
 - `FitOps Delivery` is linked to `AqueosHeart/fitops`.
 - Required fields: Status, Priority, Size, Estimate, Iteration, Start date, Target date, Sprint, SDLC Phase, Work Type, and Risk. `Work Type` is the GitHub-compatible replacement for the reserved `Type` name.

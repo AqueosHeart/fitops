@@ -74,16 +74,16 @@
         <mxCell id="cookieBanner" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;stroke-dasharray=4 4;fontColor=#111310;fontSize=12;spacing=8;" value="Cookie &amp; Demo privacy banner&lt;br&gt;BANNER, not a page&lt;br&gt;Fictional data and minimal session cookies" vertex="1">
           <mxGeometry x="40" y="500" width="300" height="74" as="geometry" />
         </mxCell>
-        <mxCell id="publicNav" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Public header&lt;br&gt;Primary navigation, secondary My Account utility, and primary Join Now CTA&lt;br&gt;&lt;font color=&quot;#5C6159&quot;&gt;Route groups are listed below.&lt;/font&gt;" vertex="1">
+        <mxCell id="publicNav" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="Public header&lt;br&gt;Programs, Schedule, Plans, My Account, and Join Now&lt;br&gt;Public pages only; protected workspaces use role-specific shells." vertex="1">
           <mxGeometry x="360" y="220" width="420" height="94" as="geometry" />
         </mxCell>
-        <mxCell id="login" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="My Account /portal/login&lt;br&gt;Existing-member access and demo persona switcher&lt;br&gt;&lt;font color=&quot;#5C6159&quot;&gt;Routes by role: /app · /trainer/sessions · /admin&lt;/font&gt;" vertex="1">
+        <mxCell id="login" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="My Account /portal/login&lt;br&gt;Anonymous: sign in; active member session: go to /app&lt;br&gt;&lt;font color=&quot;#5C6159&quot;&gt;Restore only a validated, role-permitted returnTo.&lt;/font&gt;" vertex="1">
           <mxGeometry x="840" y="220" width="260" height="94" as="geometry" />
         </mxCell>
         <mxCell id="join" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1E3A8A;strokeColor=#1E3A8A;fontColor=#FFFFFF;fontSize=13;fontStyle=1;spacing=8;" value="Join Now /join&lt;br&gt;Choose a fictional plan. No payment or card data.&lt;br&gt;Existing member? Use My Account." vertex="1">
           <mxGeometry x="1140" y="220" width="300" height="94" as="geometry" />
         </mxCell>
-        <mxCell id="authHub" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;stroke-dasharray=4 4;fontColor=#111310;fontSize=12;spacing=8;" value="Protected-route guard&lt;br&gt;SYSTEM BEHAVIOR, not a page&lt;br&gt;Unauthenticated: My Account + validated returnTo; wrong role: deny access." vertex="1">
+        <mxCell id="authHub" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;stroke-dasharray=4 4;fontColor=#111310;fontSize=12;spacing=8;" value="Protected-route guard&lt;br&gt;SYSTEM BEHAVIOR, not a page&lt;br&gt;Unauthenticated: My Account + validated returnTo; wrong role: deny access; reload current role per request." vertex="1">
           <mxGeometry x="1500" y="220" width="280" height="94" as="geometry" />
         </mxCell>
 
@@ -1239,6 +1239,9 @@
         <mxCell id="overview" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#111310;strokeColor=#C7F134;fontColor=#F2F0E8;fontSize=13;spacing=8;" value="Operations overview&lt;br&gt;Session occupancy and waitlist counts" vertex="1">
           <mxGeometry x="650" y="310" width="250" height="70" as="geometry" />
         </mxCell>
+        <mxCell id="adminShell" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;stroke-dasharray=4 4;fontColor=#111310;fontSize=12;spacing=8;" value="Administrator shell&lt;br&gt;Overview, Sessions, My Account, Public site&lt;br&gt;Hide public marketing links and Join Now." vertex="1">
+          <mxGeometry x="1020" y="310" width="250" height="80" as="geometry" />
+        </mxCell>
         <mxCell id="sessions" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#111310;strokeColor=#C7F134;fontColor=#F2F0E8;fontSize=13;spacing=8;" value="Open session manager" vertex="1">
           <mxGeometry x="650" y="430" width="250" height="60" as="geometry" />
         </mxCell>
@@ -1307,7 +1310,10 @@
         <mxCell id="e-a-02" value="No" edge="1" parent="1" source="role" target="forbidden" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-a-03" value="Yes" edge="1" parent="1" source="role" target="overview" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+        <mxCell id="e-a-03" value="Yes" edge="1" parent="1" source="role" target="adminShell" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-a-shell-overview" edge="1" parent="1" source="adminShell" target="overview" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e-a-04" edge="1" parent="1" source="authorityNote" target="overview" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=none;strokeColor=#8B5CF6;fontSize=11;fontColor=#8B5CF6;labelBackgroundColor=#FFFFFF;">
@@ -1440,14 +1446,14 @@
         <mxCell id="e_redirect" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Booking intent redirect&lt;br&gt;Preserves returnTo=/sessions/:id" vertex="1">
           <mxGeometry x="600" y="110" width="250" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="e_direct" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Direct route access&lt;br&gt;Existing member opens /portal/login; new visitor opens /join" vertex="1">
+        <mxCell id="e_direct" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Direct route access&lt;br&gt;Protected route sends anonymous user to My Account with returnTo" vertex="1">
           <mxGeometry x="960" y="110" width="250" height="60" as="geometry" />
         </mxCell>
         <mxCell id="auth_check" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="Already authenticated?" vertex="1">
           <mxGeometry x="600" y="210" width="250" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="already_auth" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Redirect to role dashboard&lt;br&gt;or restore returnTo intent" vertex="1">
-          <mxGeometry x="960" y="210" width="250" height="70" as="geometry" />
+        <mxCell id="already_auth" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Valid session: restore allowed returnTo;&lt;br&gt;otherwise member profile → /app;&lt;br&gt;staff-only user → role workspace" vertex="1">
+          <mxGeometry x="940" y="200" width="300" height="90" as="geometry" />
         </mxCell>
         <mxCell id="auth_fork" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Select user action:&lt;br&gt;Member Portal Login (/portal/login) or Join (/join)" vertex="1">
           <mxGeometry x="600" y="320" width="250" height="60" as="geometry" />
@@ -1540,7 +1546,7 @@
         <mxCell id="s_issue" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1EAF5;strokeColor=#1E3A8A;fontColor=#111310;fontSize=13;spacing=8;" value="Set HTTP-only, Secure, SameSite session cookie&lt;br&gt;Log USER_AUTHENTICATED audit event" vertex="1">
           <mxGeometry x="800" y="1030" width="280" height="65" as="geometry" />
         </mxCell>
-        <mxCell id="s_rbac" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Server-Side RBAC Routing&lt;br&gt;Inspect role claim in session" vertex="1">
+        <mxCell id="s_rbac" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Server-Side RBAC Routing&lt;br&gt;Reload current user role and profile from database" vertex="1">
           <mxGeometry x="800" y="1130" width="280" height="65" as="geometry" />
         </mxCell>
         <mxCell id="s_role" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4D6;strokeColor=#7A4B00;fontColor=#111310;fontSize=12;spacing=8;" value="User Role" vertex="1">
@@ -1801,7 +1807,7 @@
         <mxCell id="e-s-05" value="Administrator" edge="1" parent="1" source="s_role" target="a_dash" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e-auth-existing-rbac" value="Restore role dashboard or validated returnTo" edge="1" parent="1" source="already_auth" target="s_rbac" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#1F4D32;fontSize=11;fontColor=#1F4D32;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e-auth-existing-rbac" value="Allowed returnTo; otherwise member /app or staff role home" edge="1" parent="1" source="already_auth" target="s_rbac" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#1F4D32;fontSize=11;fontColor=#1F4D32;labelBackgroundColor=#FFFFFF;"><mxGeometry relative="1" as="geometry" /></mxCell>
 
         <!-- Lifecycle & Expiry Edges -->
         <mxCell id="e-m-01" edge="1" parent="1" source="sess_mon" target="sess_check" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#40443F;fontSize=11;fontColor=#40443F;labelBackgroundColor=#FFFFFF;">

@@ -410,3 +410,10 @@ updated: 2026-09-21
 - In one conditional transaction, restored the unrelated inactive account to MEMBER and promoted the unique fictional member account with active sessions to ADMINISTRATOR. Verified four sessions and its member profile, one booking, and one waitlist entry remained unchanged.
 - Role resolution reloads the user from PostgreSQL on each protected request. The user can refresh `/admin`; authenticated browser acceptance is not yet verified.
 - Details: [[wiki/logs/2026-10-07-issue-12-admin-test-account]].
+
+## 2026-10-07 — Issue #12 admin shell and account routing
+
+- Consolidated admin navigation into one focused header: Overview, Sessions, My Account, and Public site. Removed the public marketing nav/Join Now and duplicate operations subnav from admin routes.
+- `/portal/login` now resolves a valid Better Auth session server-side, honoring an allowlisted destination only if permitted for the current role; otherwise member-profile accounts go to `/app`, and staff-only accounts go to their role workspace.
+- Updated draw.io source, Mermaid route/admin flows, FitOps project and Sprint 5 notes, delivery mirror, and this log. API-contract test passes 7/7; targeted ESLint, TypeScript, production build (33 routes), UX structural validator, and anonymous login/admin redirect HTTP checks pass. Initial concurrent test attempt hit local DB transaction timeouts; isolated rerun passed. Mermaid CLI package resolution stalled, so SVG previews remain stale. Authenticated browser acceptance remains outstanding.
+- Details: [[wiki/logs/2026-10-07-issue-12-admin-shell-account-routing]]; [[wiki/tasks/Sprint 5]].
