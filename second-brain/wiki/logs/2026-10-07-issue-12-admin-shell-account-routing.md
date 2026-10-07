@@ -30,3 +30,10 @@ Simplify the administrator UI header and make My Account recognize a valid exist
 ## Next safe action
 
 Refresh the local browser and verify the admin header and My Account redirect using the already authenticated fictional test account; continue the remaining Issue #12 acceptance scenarios without exposing credentials or altering demo data.
+
+## Acceptance follow-up (2026-10-07)
+
+- User confirmed the separately requested local account was fictional. Read-only verification showed it already had the `ADMINISTRATOR` role; its profile, active sessions, bookings, and waitlist entries were preserved without a write. The address is not recorded.
+- Repeated `test:api-contract` exposed a flaky test fixture caused by assuming concurrent registration completion order. Updated it to resolve member/admin fixtures by their labels; rerun passed 7/7, including admin operations and role boundaries.
+- Full ESLint and TypeScript checks passed after the fixture fix. The production build had passed immediately before this test-only change.
+- Renderer package execution stalled again with a pinned Mermaid CLI version, so SVG previews remain pending. The local browser-control service exposed no user browser tab; authenticated visual/interaction acceptance still needs a browser session.

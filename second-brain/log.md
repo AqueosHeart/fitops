@@ -417,3 +417,10 @@ updated: 2026-09-21
 - `/portal/login` now resolves a valid Better Auth session server-side, honoring an allowlisted destination only if permitted for the current role; otherwise member-profile accounts go to `/app`, and staff-only accounts go to their role workspace.
 - Updated draw.io source, Mermaid route/admin flows, FitOps project and Sprint 5 notes, delivery mirror, and this log. API-contract test passes 7/7; targeted ESLint, TypeScript, production build (33 routes), UX structural validator, and anonymous login/admin redirect HTTP checks pass. Initial concurrent test attempt hit local DB transaction timeouts; isolated rerun passed. Mermaid CLI package resolution stalled, so SVG previews remain stale. Authenticated browser acceptance remains outstanding.
 - Details: [[wiki/logs/2026-10-07-issue-12-admin-shell-account-routing]]; [[wiki/tasks/Sprint 5]].
+
+## 2026-10-07 — Issue #12 acceptance follow-up
+
+- User confirmed the newly requested local account was fictional. Read-only inspection showed it already held ADMINISTRATOR; its existing member profile, sessions, bookings, and waitlist records were left unchanged. The address is intentionally not copied to project notes.
+- A repeated API-contract run exposed a nondeterministic test fixture: concurrent registrations were indexed by completion order. Changed lookups to stable test labels; rerun passes 7/7, including admin creation/edit/FIFO/cutoff and role-boundary contracts. ESLint and TypeScript pass; prior production build remains green.
+- Mermaid CLI package execution stalled twice (including a pinned-version attempt); SVG previews remain stale. Authenticated browser UI acceptance remains open because no user browser tab/session is exposed to the local browser-control surface.
+- Details: [[wiki/logs/2026-10-07-issue-12-admin-shell-account-routing]]; [[wiki/tasks/Sprint 5]].

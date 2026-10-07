@@ -10,7 +10,7 @@ process.env.BETTER_AUTH_URL = "http://localhost:3000";
 const password = "contract-test-password-123";
 const origin = "http://localhost:3000";
 const ids = { program: "00000000-0000-4000-8000-000000000201" };
-const state: { cookies: Record<string, string>; users: string[]; memberIds: Record<string, string>; trainerId?: string; secondTrainerId?: string; sessionIds: string[] } = { cookies: {}, users: [], memberIds: {}, sessionIds: [] };
+const state: { cookies: Record<string, string>; users: string[]; userIds: Record<string, string>; memberIds: Record<string, string>; trainerId?: string; secondTrainerId?: string; sessionIds: string[] } = { cookies: {}, users: [], userIds: {}, memberIds: {}, sessionIds: [] };
 
 function request(path: string, init: RequestInit = {}, cookie?: string) {
   const headers = new Headers(init.headers);
@@ -41,6 +41,7 @@ async function register(label: string) {
   const { prisma } = await import("@/lib/server/prisma");
   const user = await prisma.user.findUniqueOrThrow({ where: { email } });
   state.users.push(user.id);
+  state.userIds[label] = user.id;
   if (label.startsWith("member-")) state.memberIds[label] = (await prisma.memberProfile.findUniqueOrThrow({ where: { userId: user.id } })).id;
   state.cookies[label] = cookieFrom(response);
   return user;
@@ -115,7 +116,7 @@ test("login, rate-limit reservation, and member profile routes enforce their con
   assert.equal(getPortalDestination({ role: "ADMINISTRATOR", memberProfile: {} }, null), "/app");
   assert.equal(getPortalDestination({ role: "ADMINISTRATOR", memberProfile: null }, null), "/admin");
   assert.equal(getPortalDestination({ role: "TRAINER", memberProfile: null }, null), "/trainer/sessions");
-  const member = await prisma.user.findUniqueOrThrow({ where: { id: state.users[0] } });
+  const member = await prisma.user.findUniqueOrThrow({ where: { id: state.userIds["member-one"] } });
   const rejectedEmail = `csrf-login-${randomUUID()}@example.test`;
   assert.equal((await login!(unsafe("/api/v1/auth/login", { email: rejectedEmail, password }, undefined, "https://attacker.example") as never)).status, 403);
   const { createHash: hash } = await import("node:crypto");
@@ -133,7 +134,7 @@ test("login, rate-limit reservation, and member profile routes enforce their con
   const success = await login!(unsafe("/api/v1/auth/login", { email: member.email, password, returnTo: "/app/bookings" }) as never);
   assert.equal(success.status, 200);
   assert.equal((await success.json()).data.destination, "/app/bookings");
-  const admin = await prisma.user.findUniqueOrThrow({ where: { id: state.users[4] } });
+  const admin = await prisma.user.findUniqueOrThrow({ where: { id: state.userIds.admin } });
   const adminSuccess = await login!(unsafe("/api/v1/auth/login", { email: admin.email, password, returnTo: "/admin/sessions/new" }) as never);
   assert.equal(adminSuccess.status, 200);
   assert.equal((await adminSuccess.json()).data.destination, "/admin/sessions/new", "administrator login preserves an explicitly allowlisted admin return path");
@@ -177,7 +178,7 @@ test("login, rate-limit reservation, and member profile routes enforce their con
     assert.equal((await prisma.authLoginAttempt.findUniqueOrThrow({ where: { key: rateKey("email", expiredWindowEmail) } })).failureCount, 1);
     await prisma.authLoginAttempt.deleteMany({ where: { key: rateKey("email", expiredWindowEmail) } });
 
-    const successfulMember = await prisma.user.findUniqueOrThrow({ where: { id: state.users[0] } });
+    const successfulMember = await prisma.user.findUniqueOrThrow({ where: { id: state.userIds["member-one"] } });
     const successEmail = successfulMember.email.toLowerCase();
     const { clearEmailLoginFailures } = await import("@/lib/server/auth/login-rate-limit");
     await clearEmailLoginFailures(successEmail);
