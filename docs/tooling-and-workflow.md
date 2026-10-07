@@ -131,6 +131,10 @@ The API contract will live at `docs/openapi.yaml` once implementation starts. Th
 
 OpenAPI is authoritative for paths, methods, parameters, request bodies, response shapes, and status codes. Domain rules remain authoritative in product requirements and domain tests.
 
+## Lint and dependency audit
+
+`web/eslint.config.mjs` uses ESLint flat config with direct, version-pinned core, TypeScript, React, React Hooks, JSX accessibility, and import rules. The Next-specific ESLint preset is intentionally omitted under [ADR 015](adr/015-replace-vulnerable-next-eslint-config.md) because its transitive dependency tree contains the unpatched `braces` stack-exhaustion advisory. Consequently, `@next/next/*` lint rules are not currently applied. Keep `npm run lint`, TypeScript, the production build, and the focused integration suites as separate verification gates; restore the Next preset only after a compatible, fully audited release exists and has passed the same gates.
+
 ## Decision ownership map
 
 | Concern | Working tool | Repository source of truth |

@@ -59,6 +59,8 @@ Creates a fictional demo member identity and active `MemberProfile` after valida
 
 User, profile, selected plan, `termsPrivacyAcceptedAt`, and `waiverSignedAt` are committed atomically. No PAR-Q answers or health information are stored. Existing fictional demo profiles without a signed waiver use the in-app waiver step before a booking attempt.
 
+If Better Auth cannot issue the initial database session after account creation, the handler removes the new user, credential account, member profile, and any partial session before returning `500 INTERNAL_ERROR`; the failed registration does not leave an unusable account.
+
 The handler validates an internal `returnTo` value and then redirects or responds with the restored member-workspace destination. It never accepts an external redirect URL.
 
 Expected failures:
@@ -67,6 +69,7 @@ Expected failures:
 - `422 CONSENT_REQUIRED`
 - `422 INVALID_PLAN_CODE`
 - `422 INVALID_RETURN_TO`
+- `500 INTERNAL_ERROR` if the initial session cannot be issued; the account creation is rolled back
 
 ### `POST /api/v1/auth/login`
 
@@ -149,11 +152,13 @@ Internally, this command creates the Scheduling `SessionSlot` and publishes its 
 
 ### `PATCH /api/v1/admin/sessions/{sessionId}`
 
-Updates allowed session fields. Capacity cannot be reduced below confirmed bookings.
+Updates one or more of `programId`, `trainerId`, `startsAt`, `endsAt`, `capacity`, and `bookingCutoffMinutes`. Unknown fields (including `status`), an empty object, malformed values, and bodies over 16 KiB are rejected. Session cancellation/deletion remain outside this endpoint.
 
-Once a session has ever had a booking or waitlist entry, only Booking capacity may change, and it cannot be set below confirmed occupancy. Program, trainer, start/end, cutoff, and status changes are rejected with `409 SESSION_HAS_PARTICIPANTS`, including after all historical entries are inactive. Before participation has ever existed, program, trainer, start/end, capacity, and cutoff may change with normal validation; trainer-time overlap is checked under concurrent writes. Session cancellation/deletion are not part of this endpoint in the MVP. Capacity writes serialize with booking and promotion using the BookableSession lock defined by ADRs 007 and 008.
+Once any booking or waitlist entry has ever existed, only capacity may change, and it cannot be set below confirmed occupancy. Program, trainer, start/end, or cutoff changes return `409 SESSION_HAS_PARTICIPANTS`, even when all historical entries are inactive. Before participation has ever existed, those Scheduling fields may change with normal reference and interval validation; trainer-time overlap is checked while holding the trainer row lock and remains backed by the PostgreSQL exclusion constraint. Capacity writes serialize with booking and promotion using the BookableSession lock defined by ADRs 007 and 008.
 
-Capacity increases before the configured cutoff promote the first currently eligible waiting members in FIFO order within the same transaction, filling newly available seats until none or no eligible waiters remain. Ineligible entries become `expired`. The response returns the final capacity and confirmed/waiting counts; public and protected views refresh from committed state. If cutoff has passed and waiting entries remain, an increase returns `409 WAITLIST_CUTOFF_PASSED` without changing capacity. A decrease remains subject to the confirmed-occupancy floor. [ADR 010](adr/010-promote-waitlist-on-capacity-increase.md) records this rule. Direct booking never leaps ahead of a waiting entry if an inconsistent free-seat-plus-waitlist state is encountered.
+Other domain failures include `422 INVALID_REFERENCE`, `422 INVALID_INTERVAL`, `422 INVALID_CUTOFF`, and `409 TRAINER_OVERLAP`. Capacity below confirmed occupancy returns `409 CAPACITY_BELOW_CONFIRMED`; if an increase has waiters after cutoff, it returns `409 WAITLIST_CUTOFF_PASSED`, without changing session or queue state.
+
+Capacity increases before the configured cutoff promote the first currently eligible waiting members in FIFO order within the same transaction, filling newly available seats until none or no eligible waiters remain. Ineligible entries become `expired`. The response returns the updated session fields, final capacity, confirmed/waiting counts, and promoted member IDs; public and protected views refresh from committed state. A decrease remains subject to the confirmed-occupancy floor. [ADR 010](adr/010-promote-waitlist-on-capacity-increase.md) records this rule. Direct booking never leaps ahead of a waiting entry if an inconsistent free-seat-plus-waitlist state is encountered.
 
 ### `GET /api/v1/admin/sessions/{sessionId}/participants`
 

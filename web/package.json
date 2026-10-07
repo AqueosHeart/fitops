@@ -13,15 +13,18 @@
     "booking:verify": "tsx --conditions=react-server scripts/verify-book-session.ts",
     "waitlist:verify": "tsx --conditions=react-server scripts/verify-join-waitlist.ts",
     "test:race": "node --conditions=react-server --import tsx --test tests/integration/postgres-race.test.ts",
-    "test:constraints": "node --conditions=react-server --import tsx --test tests/integration/postgres-constraints.test.ts"
+    "test:constraints": "node --conditions=react-server --import tsx --test tests/integration/postgres-constraints.test.ts",
+    "test:auth-api": "node --conditions=react-server --import tsx --test tests/integration/auth-api.test.ts",
+    "test:api-contract": "node --conditions=react-server --import tsx --test tests/integration/api-contract.test.ts"
   },
   "dependencies": {
+    "@better-auth/prisma-adapter": "1.7.6",
     "@prisma/adapter-pg": "7.10.0",
     "@prisma/client": "7.10.0",
     "argon2": "0.45.1",
+    "better-auth": "1.7.6",
     "dotenv": "18.0.4",
     "next": "16.3.6",
-    "next-auth": "4.24.15",
     "pg": "8.23.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
@@ -34,15 +37,30 @@
     "@types/pg": "8.23.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.3.6",
+    "@eslint/js": "9.39.5",
+    "eslint": "9.39.5",
+    "eslint-import-resolver-typescript": "3.10.1",
+    "eslint-plugin-import": "2.32.0",
+    "eslint-plugin-jsx-a11y": "6.10.2",
+    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "globals": "16.4.0",
     "prisma": "7.10.0",
     "tailwindcss": "^4",
     "tsx": "4.23.15",
-    "typescript": "^5"
+    "typescript": "^5",
+    "typescript-eslint": "8.70.1"
   },
   "engines": {
     "node": "24.14.x",
     "npm": "11.9.x"
+  },
+  "overrides": {
+    "@prisma/config": {
+      "deepmerge-ts": "^8.0.2"
+    },
+    "prisma": {
+      "mysql2": "^3.24.5"
+    }
   }
 }

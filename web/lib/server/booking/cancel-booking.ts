@@ -6,10 +6,10 @@ export type CancelBookingResult =
   | { code: "CANCELLED"; promotedMemberId?: string }
   | { code: "BOOKING_NOT_FOUND" | "BOOKING_CUTOFF_PASSED" | "SESSION_UNAVAILABLE" | "MEMBERSHIP_INACTIVE" | "SESSION_NOT_FOUND" | "MEMBER_NOT_FOUND" };
 
-export async function cancelBooking(sessionId: string, memberId: string): Promise<CancelBookingResult> {
+export async function cancelBooking(sessionId: string, memberId: string, bookingId?: string): Promise<CancelBookingResult> {
   try {
     return await withBookingLocks(sessionId, memberId, async (tx) => {
-    const booking = await tx.booking.findFirst({ where: { sessionId, memberId }, orderBy: { bookedAt: "desc" } });
+    const booking = await tx.booking.findFirst({ where: { id: bookingId, sessionId, memberId }, orderBy: { bookedAt: "desc" } });
     if (!booking) return { code: "BOOKING_NOT_FOUND" };
     if (booking.status === "CANCELLED") return { code: "CANCELLED" };
     const session = await tx.classSession.findUniqueOrThrow({ where: { id: sessionId } });

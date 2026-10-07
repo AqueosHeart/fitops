@@ -5,6 +5,12 @@ import { prisma } from "../../lib/server/prisma";
 const sessionId = "00000000-0000-4000-8000-000000000301";
 const bookedMemberId = "00000000-0000-4000-8000-000000000021";
 
+test.before(async () => {
+  // A connection failure also rejects a write. Prove the database is reachable
+  // first so assert.rejects below demonstrates a constraint, not an outage.
+  await prisma.$queryRaw`SELECT 1`;
+});
+
 test.after(async () => {
   await prisma.$disconnect();
 });

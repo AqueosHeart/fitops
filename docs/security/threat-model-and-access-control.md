@@ -8,8 +8,8 @@ FitOps is a fictional gym-operations portfolio app. It stores only demo data, bu
 
 | Asset | Security property |
 | --- | --- |
-| Password hash and Auth.js secret | Confidential; never returned, logged, or committed. |
-| JWT cookie | Confidential and integrity-protected; usable only through the browser's secure cookie path. |
+| Credential hash and Better Auth secret | Confidential; never returned, logged, or committed. |
+| Better Auth session cookie | Confidential and integrity-protected; usable only through the browser's secure cookie path. |
 | User, MemberProfile, TrainerProfile | Accessed only by the authenticated owner or the narrowly authorized staff operation. |
 | Bookings and waitlist entries | Owner-safe for member operations; staff reads are scoped by role and purpose. |
 | Session capacity, cutoff, and queue order | Changed only by the authorized transaction protocol in ADRs 007 through 011. |
@@ -20,7 +20,7 @@ FitOps is a fictional gym-operations portfolio app. It stores only demo data, bu
 ```text
 Browser input and cookies
   -> Next.js route handler: Zod validation, origin check, request limits
-  -> authenticated identity resolver: JWT signature, expiry, auth_version
+  -> Better Auth session resolver: token lookup, expiry, current user, auth_version
   -> use case: role, ownership, member/trainer eligibility
   -> repository transaction: scoped query and database constraints
   -> PostgreSQL
@@ -34,8 +34,8 @@ Client controls, route visibility, and supplied identifiers are untrusted. The s
 | --- | --- | --- |
 | Password disclosure or offline cracking | Argon2id parameters from ADR 012, random salts, redacted logs, TLS-only transport | Verify hash format/parameters; search logs and responses for passwords; reject plaintext seed data. |
 | User enumeration or credential stuffing | Generic failure response and email/IP rate limits | Compare unknown-email and wrong-password responses; exceed each limit; show a successful login clears only the appropriate counter. |
-| Stolen or stale JWT | HTTP-only secure cookie, eight-hour lifetime, current-user reload and `auth_version` comparison on every protected request | Alter/expire token; increment `auth_version`; verify protected routes reject both. |
-| CSRF against booking or administration | Same-origin checks for unsafe requests, Auth.js CSRF controls, no credentialed CORS | Cross-site or missing-Origin POST/DELETE/PATCH fails with no state change; valid same-origin request succeeds. |
+| Stolen or stale session | HTTP-only secure cookie, eight-hour lifetime, server session lookup, current-user reload and `auth_version` comparison on every protected request | Revoke/expire a session; increment `auth_version`; verify protected routes reject both. |
+| CSRF against booking or administration | Same-origin checks for unsafe requests, Better Auth route protections, no credentialed CORS | Cross-site or missing-Origin POST/DELETE/PATCH fails with no state change; valid same-origin request succeeds. |
 | Open redirect after login or registration | Allowlisted internal `returnTo` parser | Reject `https://`, `//host`, encoded bypasses, backslashes, and unknown routes; accept approved member routes. |
 | Member IDOR | Derive member identity from session and scope every booking/waitlist query by owner | Member A cannot read, cancel, or leave Member B's resources even with valid IDs. |
 | Trainer or administrator privilege escalation | Reload role/profile from database; separate role guards per use case | Member cannot call trainer/admin endpoints; trainer cannot access another trainer's schedule or admin participants. |
@@ -69,7 +69,7 @@ A staff user can also act as a member only through an owned, active MemberProfil
 ## Security configuration and operations
 
 - Production requires HTTPS and HSTS. Development can use an explicit local exception that never ships as production configuration.
-- Required secrets are environment variables, validated at startup and excluded from Git. The Auth.js secret is generated with cryptographically secure randomness and is never reused across environments.
+- Required secrets are environment variables, validated at startup and excluded from Git. The Better Auth secret is generated with cryptographically secure randomness and is never reused across environments.
 - Logs retain a request ID, outcome code, endpoint, and rate-limit event. They exclude passwords, token/cookie values, authorization headers, raw emails, connection strings, and profile details.
 - Dependency updates use the pinned lockfile and vulnerability review before release. The app has no third-party login, payment, email, or analytics credential in MVP.
 - The public demo is reset only through an explicit environment-targeted command. It never runs against an arbitrary connection string or a non-demo database.

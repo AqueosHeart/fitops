@@ -6,6 +6,40 @@ updated: 2026-09-21
 
 # FitOps Activity Log
 
+## 2026-10-07 - Issue #10 zero-vulnerability lint-toolchain resolution
+
+- After owner authorization, removed `eslint-config-next` and its vulnerable Next plugin/fast-glob/micromatch/braces chain. Added pinned direct ESLint core, TypeScript, React, React Hooks, JSX accessibility, and import tooling; retained the existing `npm run lint` gate.
+- Added ADR 015. Explicit tradeoff: Next-specific `@next/next/*` lint rules are unavailable until a compatible audited plugin release can be restored. Kept `no-control-regex` enabled globally and suppressed it only at the security return-path validator's intentional ASCII-control filter.
+- Verified full dependency audit 0 findings, no installed `braces` or `eslint-config-next`, lint passes, 24 integration tests pass, TypeScript passes, Prisma validate/generate pass, production build generates 14 static pages, and `git diff --check` passes. Next: publish authorized branch and open PR; CI/review pending.
+- Session: [[wiki/logs/2026-10-07-issue-10-eslint-advisory-resolution]].
+
+## 2026-10-07 - Issue #10 `braces` audit follow-up
+
+- Verified `npm ls` and `npm explain` dependency path: `eslint-config-next@16.3.6 -> @next/eslint-plugin-next@16.3.6 -> fast-glob@3.3.1 -> micromatch@4.0.8 -> braces@3.0.3`; npm marks it dev-only. `npm audit --omit=dev --audit-level=high` reports 0 vulnerabilities.
+- Confirmed there is no patched published `braces` release. The proposed upstream depth-limit fix PR is closed and has a reported compatibility regression. Rejected an unsafe override/fork and npm's forced Next ESLint v14 downgrade; preserve the Next 16 lint rules and track for an upstream fix.
+- Fresh verification rerun passes all 24 focused PostgreSQL-backed integration tests, lint, TypeScript, Prisma validation/generation, and production build with all 14 static pages. Registry check: official `eslint-config-next@16.4.0` still reaches `fast-glob@3.3.1`; `braces` remains 3.0.3.
+- Session: [[wiki/logs/2026-10-07-issue-10-braces-audit-follow-up]].
+
+## 2026-10-06 - Issue #10 API closure continuation and expanded matrix
+
+- Added database-backed API contract assertions for booking/waitlist inactive membership and waiver rejection, full/cutoff behavior, duplicate waitlist, repeated waitlist removal/cancellation and promoted-entry handling, plus before/after no-change checks for waiver CSRF and invalid/unknown-field administrator capacity updates.
+- Expanded route proof for booking/waitlist seat, duplicate, overlap, cutoff and invariant outcomes; no-state-change on rejected unsafe writes; oversized registration; trainer isolation; administrator invalid references, capacity floor, FIFO promotion, cutoff, trainer overlap, and the documented PATCH scheduling-edit/history rules; plus limiter email/IP concurrency, expired-window, and successful-login reset.
+- Fixed the admin session-create error mapping discovered by the trainer-overlap integration test: PostgreSQL exclusion violations now return `409 TRAINER_OVERLAP`.
+- Updated `PATCH /api/v1/admin/sessions/{sessionId}` to support documented program/trainer/time/cutoff/capacity edits before participation history, while enforcing capacity-only changes after any booking or waitlist history. Status changes remain out of scope. All edits are serialized on the session row; trainer reassignment/time edits lock and check the trainer assignment, backed by the exclusion constraint.
+- `npm run test:auth-api` (5/5), `npm run test:api-contract` (7/7), `npm run test:constraints` (2/2), `npm run test:race` (10/10), `npm run lint`, `npx tsc --noEmit`, and `git diff --check` pass with local PostgreSQL reachable. Issue #10 stays In Progress because broader malformed-body coverage and final acceptance review remain.
+- Updated the closure report, Sprint 4/project/board notes, and this session record with the exact evidence and remaining boundary.
+- Session: [[wiki/logs/2026-10-06-issue-10-api-closure-continuation]].
+
+## 2026-09-28 — Better Auth implementation baseline for Issue #10
+
+- Replaced the unused Auth.js dependency with pinned Better Auth 1.7.6 and its Prisma adapter after the project owner selected Better Auth for login.
+- Added ADR 014, which supersedes only ADR 012's Auth.js/JWT implementation choice while retaining Argon2id, eight-hour sessions, same-origin checks, `auth_version`, and fictional-data constraints.
+- Added reviewed Prisma migrations for Better Auth users/sessions/accounts/verifications, session `auth_version`, credential-rate-limit records, and an explicit restoration migration for Issue #8's composite promotion-provenance constraint after Prisma could not represent it.
+- Added the Better Auth handler with non-MVP account-management routes blocked, custom registration/login entry points, a current-user resolver, same-origin protection, return-path validation, and membership/waiver handlers. Route-level integration tests and the remaining Issue #10 endpoint surface are still incomplete; Issue #10 remains In Progress.
+- Verification rerun: database seed/verification, booking and waitlist verification, rejected-write checks, ten synchronized PostgreSQL races, Better Auth registration/session/origin tests, lint, TypeScript, Prisma validation, and a production build with an ephemeral test secret passed. The ordinary build correctly fails without `BETTER_AUTH_SECRET`, so local `.env` must be configured before starting the app. `npm audit --omit=dev --audit-level=high` reports four Prisma-transitive advisories; its only automated fix force-downgrades Prisma, so it was not applied.
+- Continued Issue #10 with public plan/program/session reads, member booking reads and cancellation, waitlist removal, trainer/admin reads, administrator session create/capacity edits, and participant reads. Review found resource-ID cancellation and promotion-race defects; cancellation now targets the requested booking and waitlist removal uses the established session/member lock order. The full per-endpoint contract-test matrix remains incomplete, so Issue #10 stays In Progress.
+- Follow-up test report now has nine passing authentication/API integration tests, lint, TypeScript, and diff validation. The new route-contract suite reaches all 17 current `/api/v1` handlers with real sessions and fictional records; it proves selected validation, authorization, IDOR, CSRF, domain-error, and success cases. Issue #10 remains In Progress because every documented domain edge and unsafe-write no-state-change outcome still needs proof.
+
 ## 2026-09-22 - Penpot Lucide icon library
 
 - Added `Icons — Lucide` to the connected Penpot file with 20 official icon SVGs grouped for navigation/account, booking/schedule, status/feedback, and common controls. The board documents a 24 px / 2 px default and accessible labeling guidance.
@@ -316,3 +350,12 @@ updated: 2026-09-21
 
 - Added Issues #11 through #14 to GitHub and `FitOps Delivery` to make the remaining roadmap visible: member product, administrator product, system quality, and release/portfolio evidence.
 - The Project now shows Issue #10 In Progress and the dependency-ordered Sprint 5 through Sprint 8 work as Backlog. No future-sprint implementation is claimed.
+
+## 2026-10-07 - Issue #10 local acceptance closure review
+
+- Added malformed JSON, unknown-field, oversized-body, and oversized declared-length rejection checks for body-parsing endpoints, with state assertions for rejected unsafe writes. Added missing-session and unknown-cancellation checks, exact `ALREADY_WAITING`/`ALREADY_BOOKED` assertions, and proof that removing a promoted waitlist entry preserves both its linked booking and entry.
+- Hardened registration cleanup: if the initial Better Auth session request fails or throws after identity/profile/account creation, a transaction removes the incomplete registration. Integration tests verify no user, profile, credential account, or session remains. Registration response redaction is also asserted.
+- Resumed `fitops-postgres` after Docker Desktop restart. Auth (5), API contract (7), PostgreSQL constraints (2), synchronized races (10), lint, TypeScript, diff check, and production build pass. Build used only a temporary process-scoped secret; no `.env` file was edited.
+- `npm audit fix` updated patched `sharp` and `source-map-js`. Tested npm overrides upgrade Prisma CLI/config transitive `deepmerge-ts` to 8.0.2 and `mysql2` to 3.24.5 while retaining Prisma 7.10.0; Prisma validate/generate pass and `npm audit --omit=dev --audit-level=high` reports zero vulnerabilities. Full audit retains five high findings through unpatched development-only `braces` in the Next ESLint chain; npm's force-fix would downgrade the Next ESLint config to v14 and was not applied.
+- Public GitHub Issue #10 remains Open and no branch/PR is attached. Local acceptance passes, but implementation/report are unpublished pending user authorization and upstream CI/review.
+- Session: [[wiki/logs/2026-10-07-issue-10-final-local-acceptance-review]].

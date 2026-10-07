@@ -2,7 +2,7 @@
 type: index
 project: FitOps
 status: active
-updated: 2026-09-28
+updated: 2026-10-07
 ---
 
 # FitOps Knowledge Index
@@ -101,3 +101,9 @@ updated: 2026-09-28
 - [[wiki/logs/2026-09-25-issue-8-fictional-seed|Issue #8 fictional seed]]
 - [[wiki/logs/2026-09-25-booking-decision-services|Issue #8 booking decision services]]
 - [[wiki/logs/2026-09-28-issue-8-postgres-race-repair-loop|Issue #8 PostgreSQL race repair loop]]
+- [[wiki/logs/2026-09-28-better-auth-issue-10-baseline|Better Auth Issue #10 baseline]]
+- [[wiki/logs/2026-09-28-issue-10-follow-up-test-report|Issue #10 authentication/API follow-up test report]]
+- [[wiki/logs/2026-10-06-issue-10-api-closure-continuation|Issue #10 API closure continuation and expanded contract verification]]
+- [[wiki/logs/2026-10-07-issue-10-final-local-acceptance-review|Issue #10 final local acceptance review]]
+- [[wiki/logs/2026-10-07-issue-10-braces-audit-follow-up|Issue #10 `braces` audit follow-up]]
+- [[wiki/logs/2026-10-07-issue-10-eslint-advisory-resolution|Issue #10 lint advisory resolution]]

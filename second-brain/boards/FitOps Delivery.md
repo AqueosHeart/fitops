@@ -1,7 +1,7 @@
 ---
 type: board-mirror
 project: FitOps
-updated: 2026-09-28
+updated: 2026-10-07
 ---
 
 # FitOps Delivery Board Mirror
@@ -26,7 +26,8 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
   - Closed and Done. Two fresh disposable databases applied both migrations; rejected-write tests, fictional seed verification, and ten synchronized PostgreSQL race/rollback tests pass locally.
 - [#10 [API] Secure REST API and Server-Side Access Control](https://github.com/AqueosHeart/fitops/issues/10)
   - Active: **In Progress**, Sprint 4, SDLC Phase 4, Feature, High risk, P1, estimate 8.
-  - Implements Auth.js credentials, server-side ownership/role authorization, `/api/v1` handlers, validation, anti-CSRF/origin behavior, and API contract tests. UI is explicitly downstream.
+  - Implements Better Auth credentials/database sessions, server-side ownership/role authorization, `/api/v1` handlers, validation, anti-CSRF/origin behavior, and API contract tests. UI is explicitly downstream.
+  - Latest local evidence: on 2026-10-07, auth (5), API-contract (7), PostgreSQL-constraint (2), and synchronized race (10) tests pass, along with lint, TypeScript, diff check, Prisma validation/generation, production build (14 static pages), and full dependency audit (0 findings). ADR 015 replaces the vulnerable Next ESLint chain with pinned React, Hooks, JSX accessibility, TypeScript, import, and ESLint core rules; `@next/next/*` checks are intentionally not applied pending an audit-clean compatible plugin. All 17 handlers have contract evidence, including no-mutation rejection cases, booking/waitlist edges, trainer isolation, admin scheduling/capacity rules, limiter behavior, redaction, and registration cleanup. GitHub Issue #10 remains Open; branch publication and upstream CI/review are pending.
 - [#11 [UI] Member Booking Product Slice](https://github.com/AqueosHeart/fitops/issues/11)
   - Backlog: Sprint 5, SDLC Phase 4, Feature, High risk, P1, estimate 8. Depends on Issue #10's verified API.
 - [#12 [UI] Administrator Operations Product Slice](https://github.com/AqueosHeart/fitops/issues/12)

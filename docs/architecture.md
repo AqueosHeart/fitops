@@ -87,7 +87,7 @@ Per [ADR 007](adr/007-booking-consistency-boundary.md), [ADR 008](adr/008-bookin
 
 ## Authentication and authorization
 
-- The design uses Auth.js Credentials with an HTTP-only JWT session and custom credential persistence in `users`; no database session table is planned. The server reloads current user/profile state on protected requests and compares `auth_version` to invalidate old tokens when needed. Issue #9 must verify the security parameters before implementation.
+- Better Auth Credentials uses HTTP-only database-backed sessions and credential-account persistence. The server reloads current user/profile state on protected requests and enforces `auth_version` plus role and profile scope at the use-case boundary. ADR 014 supersedes ADR 012's Auth.js/JWT-specific implementation wording.
 - Public marketing routes and the authenticated workspace use distinct layouts. A public header exposes secondary `My Account` access and primary `Join Now`; it does not expose a generic global Sign In action.
 - `/join` carries optional, validated `returnTo` intent. New fictional members select a plan before registration; existing members reach `/portal/login` from My Account, Join, or a protected-route redirect.
 - Only an approved internal return path may be restored after authentication. The server rejects external or malformed `returnTo` values to prevent open redirects.

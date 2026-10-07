@@ -31,6 +31,8 @@ const members = [
   ["00000000-0000-4000-8000-000000000014", "00000000-0000-4000-8000-000000000024", "taylor.chen@example.test", "Taylor Chen"],
 ] as const;
 
+const demoUserIds = [ids.trainerUser, ids.adminUser, ...members.map(([userId]) => userId)];
+
 async function main() {
   const now = new Date();
   const startsAt = new Date(now.getTime() + 48 * 60 * 60 * 1000);
@@ -39,6 +41,10 @@ async function main() {
   const passwordHash = await argon2.hash(randomBytes(32).toString("base64url"), { type: argon2.argon2id });
 
   await prisma.$transaction(async (tx) => {
+    // Credentials are rebuilt below. Remove all old sessions so reseeding cannot
+    // retain authority authenticated with a previous generated credential hash.
+    await tx.authSession.deleteMany({ where: { userId: { in: demoUserIds } } });
+
     // Reset every participation row for the deterministic demo session first.
     // Delete bookings before waitlist rows because promoted bookings reference them.
     await tx.booking.deleteMany({ where: { sessionId: ids.session } });
@@ -49,10 +55,20 @@ async function main() {
       update: { name: "Maya Coach", role: "TRAINER", passwordHash },
       create: { id: ids.trainerUser, email: "maya.coach@example.test", name: "Maya Coach", role: "TRAINER", passwordHash },
     });
+    await tx.authAccount.upsert({
+      where: { providerId_accountId: { providerId: "credential", accountId: ids.trainerUser } },
+      update: { password: passwordHash },
+      create: { userId: ids.trainerUser, providerId: "credential", accountId: ids.trainerUser, password: passwordHash },
+    });
     await tx.user.upsert({
       where: { email: "admin@example.test" },
       update: { name: "Practice Admin", role: "ADMINISTRATOR", passwordHash },
       create: { id: ids.adminUser, email: "admin@example.test", name: "Practice Admin", role: "ADMINISTRATOR", passwordHash },
+    });
+    await tx.authAccount.upsert({
+      where: { providerId_accountId: { providerId: "credential", accountId: ids.adminUser } },
+      update: { password: passwordHash },
+      create: { userId: ids.adminUser, providerId: "credential", accountId: ids.adminUser, password: passwordHash },
     });
     await tx.trainerProfile.upsert({
       where: { userId: ids.trainerUser },
@@ -62,6 +78,11 @@ async function main() {
 
     for (const [userId, profileId, email, name] of members) {
       await tx.user.upsert({ where: { email }, update: { name, role: "MEMBER", passwordHash }, create: { id: userId, email, name, role: "MEMBER", passwordHash } });
+      await tx.authAccount.upsert({
+        where: { providerId_accountId: { providerId: "credential", accountId: userId } },
+        update: { password: passwordHash },
+        create: { userId, providerId: "credential", accountId: userId, password: passwordHash },
+      });
       await tx.memberProfile.upsert({ where: { userId }, update: { status: "ACTIVE", selectedPlanCode: "COMPLETE", planSelectedAt: now, termsPrivacyAcceptedAt: now, waiverSignedAt: now }, create: { id: profileId, userId, status: "ACTIVE", selectedPlanCode: "COMPLETE", planSelectedAt: now, termsPrivacyAcceptedAt: now, waiverSignedAt: now } });
     }
 
