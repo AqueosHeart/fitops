@@ -403,3 +403,10 @@ updated: 2026-09-21
 - With explicit user authorization, promoted the unique non-seed fictional `@example.test` test account from MEMBER to ADMINISTRATOR in the local database using a conditional transaction.
 - Verified the new role and preserved its member profile, one booking, and one waitlist entry; no account identifier or credential was recorded. Issue #12 remains Backlog pending authenticated browser acceptance.
 - Details: [[wiki/logs/2026-10-07-issue-12-admin-test-account]].
+
+## 2026-10-07 — Issue #12 browser account mismatch corrected
+
+- The admin screenshot still showed a signed-in member denial. Read-only inspection of active session ownership showed the browser account differed from the inactive test account first promoted; no credentials or full identifiers were read or recorded.
+- In one conditional transaction, restored the unrelated inactive account to MEMBER and promoted the unique fictional member account with active sessions to ADMINISTRATOR. Verified four sessions and its member profile, one booking, and one waitlist entry remained unchanged.
+- Role resolution reloads the user from PostgreSQL on each protected request. The user can refresh `/admin`; authenticated browser acceptance is not yet verified.
+- Details: [[wiki/logs/2026-10-07-issue-12-admin-test-account]].
