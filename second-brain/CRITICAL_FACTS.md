@@ -6,7 +6,7 @@ updated: 2026-10-07
 
 # FitOps Critical Facts
 
-- Status: Issues #8, #10, and #11 are closed and Done in `FitOps Delivery`; PR #15 merged at `ee5839203e15879309187a6b811532ff15b56f3a` and PR #16 merged at `0248913b6867708a6f5bf8e1dd44a74ac32ec313` on 2026-10-07. Issue #12 administrator UI is underway on local branch `codex/fitops-issue-12-admin-operations`, now rebased onto merged `main`; it remains Backlog until browser acceptance and the Sprint 6 transition.
+- Status: Issues #8, #10, and #11 are closed and Done in `FitOps Delivery`; PR #15 merged at `ee5839203e15879309187a6b811532ff15b56f3a` and PR #16 merged at `0248913b6867708a6f5bf8e1dd44a74ac32ec313` on 2026-10-07. Issue #12 administrator UI is in Draft PR [#17](https://github.com/AqueosHeart/fitops/pull/17) from `codex/fitops-issue-12-admin-operations`, rebased onto merged `main`; it remains Backlog until browser acceptance and the Sprint 6 transition.
 - Working public name: `Practice Athletic Club`; `FitOps` remains the repository and internal project codename.
 - Branding scope is identity only for the current stage; no website or application implementation is authorized by the branding work.
 - Brand status: not defined or approved. Quiet Strength, the Mona Sans lime-bar wordmark, and the palette/type system are exploratory candidates that may be retained, revised, or replaced after the brand-definition process.

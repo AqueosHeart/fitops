@@ -391,3 +391,9 @@ updated: 2026-09-21
 - Rebased `codex/fitops-issue-12-admin-operations` onto the merged main. The admin branch remains local and Issue #12 remains Backlog; authenticated UI acceptance is outstanding.
 - Re-run on the merged stack: auth 5, API contract 7, DB constraints 2, PostgreSQL races 10, lint, TypeScript, Prisma validate, read-only `db:verify`, production build (34 routes), and `git diff --check` passed. No Actions checks are configured.
 - Details: [[wiki/logs/2026-10-07-issue-11-member-product-slice]]; [[wiki/logs/2026-10-07-issue-12-admin-operations-start]]; [[wiki/tasks/Sprint 5]].
+
+## 2026-10-07 — Issue #12 draft PR published
+
+- Pushed `codex/fitops-issue-12-admin-operations` and opened Draft PR [#17](https://github.com/AqueosHeart/fitops/pull/17) against `main`; its review description lists the authenticated browser acceptance still required. Issue #12 remains Backlog.
+- Fixed the login return-path mismatch discovered while verifying the admin gate: only administrators may land on allowlisted `/admin` routes; member registration remains member-only. API-contract (7), auth (5), lint, and build (34 routes) pass after the fix.
+- Details: [[wiki/logs/2026-10-07-issue-12-admin-operations-start]]; [[wiki/tasks/Sprint 5]].
