@@ -21,7 +21,7 @@ Deliver the member-facing Practice Athletic Club journey on the verified API: pu
 
 ## Implementation checkpoint (2026-10-07)
 
-- Local branch: `codex/fitops-issue-11-member-slice`; GitHub Issue #11 is In Progress. No commit or PR has been created for this work.
+- Branch `codex/fitops-issue-11-member-slice` was committed as `262c337` and pushed in [PR #16](https://github.com/AqueosHeart/fitops/pull/16). GitHub Project status is In Review; no Actions checks are configured. Issue #11 remains open pending review and merge.
 - Implemented locally: public landing/programs/pricing/schedule/session detail; fictional plan selection and registration; portal login; server-guarded member dashboard, reservation-aware schedule, bookings, profile/security/sign-out; booking and waitlist actions; accessible cancellation confirmation dialog; waiver and legal/support pages; client API error mapping.
 - Additive API response: `/api/v1/me/bookings` exposes the configured `cancellationCutoffAt`; API documentation and integration assertion were updated.
 - Fresh fictional seed includes a future available class and a full class with an ordered waitlist. Database verification checks both. A scratch DB accepted all six migrations, fresh seed and `db:verify`, then a second seed/verify cycle with counts stable. The existing local DB gained matching future fixtures while preserving its original past session and participation rows.
@@ -30,10 +30,11 @@ Deliver the member-facing Practice Athletic Club journey on the verified API: pu
 
 ## Remaining acceptance gates
 
-- The implementation is verified locally and staged for repository review; keep Issue #11 In Progress until the pull request review and acceptance disposition are complete.
+- PR #16 is open for implementation review. No automated GitHub checks are configured; local verification is recorded above. Keep Issue #11 In Review until review feedback is resolved and the PR is merged.
 - Browser-visible failure copy and exhaustive accessibility review remain future quality work; keep this separate from Issue #11 unless acceptance requires it.
-- Keep Issue #11 In Progress until implementation review and all acceptance criteria are reflected in verified project evidence.
-- Update Issue #11 evidence only after acceptance; keep it In Progress until every gate is demonstrated.
+- A browser-created account and active waitlist record exist in the local database beyond the baseline seed fixtures. Their fictional status is unconfirmed; do not delete/reset or include identifiers in notes until the user confirms.
+- Keep Issue #11 open until implementation review and all acceptance criteria are reflected in verified project evidence.
+- Update Issue #11 evidence only after acceptance; keep it In Review until review feedback is resolved and PR #16 is merged, then verify the Done transition.
 
 ## Verified dependencies
 

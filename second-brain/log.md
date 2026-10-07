@@ -371,3 +371,10 @@ updated: 2026-09-21
 - Created local branch `codex/fitops-issue-11-member-slice` from updated `origin/main`; implemented partial public/member UI, server-side route guard, cancellation cutoff UI/API field, and improved future-session demo seed.
 - API-contract suite (7), Prisma validation, TypeScript, lint, production build (29 routes), and diff/secrets checks passed. A fresh scratch DB applied all six migrations and passed fresh plus idempotent seed verification, then was removed. The existing local DB gained two future fixtures and a fictional test member; its original historical data was preserved. Browser verified fictional registration/login, booking, full waitlist, cancellation/leave, mobile views, dialog keyboard behavior, sign-out, and protected redirect. Issue #11 remains In Progress, with local uncommitted changes and no PR.
 - Details and next safe steps: [[wiki/logs/2026-10-07-issue-11-member-product-slice]]; [[wiki/tasks/Sprint 5]].
+
+## 2026-10-07 — Issue #11 local verification and PR handoff
+
+- Re-ran API-contract tests (7 passing), TypeScript, lint, Prisma validation, production build (29 routes), `db:verify`, and `git diff --check`; all passed. The API test cleaned its temporary records. No GitHub Actions checks are configured for this repository.
+- Committed the member product slice as `262c337`, pushed branch `codex/fitops-issue-11-member-slice`, opened PR #16, and moved the FitOps Delivery item to In Review. Issue #11 remains open pending review and merge.
+- Local development auth config now has a generated key only in ignored `web/.env.local`; no key or account identifier is stored in the repository. The local database has additional browser-created account/reservation data beyond the baseline; its fictional status is unconfirmed, so no cleanup or seed reset was run.
+- Details: [[wiki/logs/2026-10-07-issue-11-member-product-slice]]; [[wiki/tasks/Sprint 5]].

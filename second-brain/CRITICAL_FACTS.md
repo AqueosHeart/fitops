@@ -6,7 +6,7 @@ updated: 2026-10-07
 
 # FitOps Critical Facts
 
-- Status: Issues #8 and #10 are closed and Done in `FitOps Delivery`; PR #15 merged to `main` on 2026-10-07 (`ee5839203e15879309187a6b811532ff15b56f3a`). Issue #11, Member Booking Product Slice, is In Progress in Sprint 5. Its local implementation is partial; browser interaction, fresh seeded fixture, and full acceptance verification remain outstanding.
+- Status: Issues #8 and #10 are closed and Done in `FitOps Delivery`; PR #15 merged to `main` on 2026-10-07 (`ee5839203e15879309187a6b811532ff15b56f3a`). Issue #11, Member Booking Product Slice, is In Review in Sprint 5 via open PR #16. Local tests/build and recorded browser acceptance evidence pass; merge/review disposition remains outstanding.
 - Working public name: `Practice Athletic Club`; `FitOps` remains the repository and internal project codename.
 - Branding scope is identity only for the current stage; no website or application implementation is authorized by the branding work.
 - Brand status: not defined or approved. Quiet Strength, the Mona Sans lime-bar wordmark, and the palette/type system are exploratory candidates that may be retained, revised, or replaced after the brand-definition process.
