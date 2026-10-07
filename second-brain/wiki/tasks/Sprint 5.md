@@ -32,7 +32,7 @@ Deliver the member-facing Practice Athletic Club journey on the verified API: pu
 
 - PR #16 is open for implementation review. No automated GitHub checks are configured; local verification is recorded above. Keep Issue #11 In Review until review feedback is resolved and the PR is merged.
 - Browser-visible failure copy and exhaustive accessibility review remain future quality work; keep this separate from Issue #11 unless acceptance requires it.
-- A browser-created account and active waitlist record exist in the local database beyond the baseline seed fixtures. Their fictional status is unconfirmed; do not delete/reset or include identifiers in notes until the user confirms.
+- A browser-created fictional account and active waitlist record exist in the local database beyond the baseline seed fixtures; the user confirmed the account is fictional. No address or identifier is stored in notes. Do not delete/reset demo state without reviewing impact.
 - Keep Issue #11 open until implementation review and all acceptance criteria are reflected in verified project evidence.
 - Update Issue #11 evidence only after acceptance; keep it In Review until review feedback is resolved and PR #16 is merged, then verify the Done transition.
 

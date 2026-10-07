@@ -376,5 +376,5 @@ updated: 2026-09-21
 
 - Re-ran API-contract tests (7 passing), TypeScript, lint, Prisma validation, production build (29 routes), `db:verify`, and `git diff --check`; all passed. The API test cleaned its temporary records. No GitHub Actions checks are configured for this repository.
 - Committed the member product slice as `262c337`, pushed branch `codex/fitops-issue-11-member-slice`, opened PR #16, and moved the FitOps Delivery item to In Review. Issue #11 remains open pending review and merge.
-- Local development auth config now has a generated key only in ignored `web/.env.local`; no key or account identifier is stored in the repository. The local database has additional browser-created account/reservation data beyond the baseline; its fictional status is unconfirmed, so no cleanup or seed reset was run.
+- Local development auth config now has a generated key only in ignored `web/.env.local`; no key or account identifier is stored in the repository. The user confirmed the additional browser-created account and active waitlist entry are fictional; no address or identifier was recorded, and no cleanup or seed reset was run.
 - Details: [[wiki/logs/2026-10-07-issue-11-member-product-slice]]; [[wiki/tasks/Sprint 5]].
