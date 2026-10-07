@@ -26,4 +26,6 @@ Finish the remaining Issue #10 dependency-audit work and publish the completed b
 
 ## Delivery status
 
-Branch: `codex/fitops-planning-checkpoint`. Push and PR creation are authorized and remain the next action. Issue #10 stays open until PR CI and maintainer review/closure.
+- Commit `761f91f` is pushed to `codex/fitops-planning-checkpoint`.
+- PR [#15](https://github.com/AqueosHeart/fitops/pull/15) is open against `main` and includes `Closes #10`; GitHub reports CLEAN.
+- No Actions workflow/checks are configured in the repository. Issue #10 stays open until maintainer review and merge.

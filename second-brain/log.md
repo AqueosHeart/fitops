@@ -6,6 +6,12 @@ updated: 2026-09-21
 
 # FitOps Activity Log
 
+## 2026-10-07 - Issue #10 published for review
+
+- Committed the verified Issue #10 implementation and continuity updates as `761f91f` on `codex/fitops-planning-checkpoint` and pushed the authorized branch.
+- Opened [PR #15](https://github.com/AqueosHeart/fitops/pull/15) against `main` with `Closes #10`; GitHub reports CLEAN. `gh pr checks` reports no checks because the repository has no configured Actions workflow. Issue #10 is still Open pending maintainer review/merge.
+- Session: [[wiki/logs/2026-10-07-issue-10-eslint-advisory-resolution]].
+
 ## 2026-10-07 - Issue #10 zero-vulnerability lint-toolchain resolution
 
 - After owner authorization, removed `eslint-config-next` and its vulnerable Next plugin/fast-glob/micromatch/braces chain. Added pinned direct ESLint core, TypeScript, React, React Hooks, JSX accessibility, and import tooling; retained the existing `npm run lint` gate.
