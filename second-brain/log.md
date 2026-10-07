@@ -437,3 +437,10 @@ updated: 2026-09-21
 - Database-backed workspace is unavailable: `npm run db:verify` returns Prisma `ECONNREFUSED`; Docker CLI cannot reach the Linux engine pipe. No Docker/WSL or database changes were made.
 - Corrected continuity notes: the fictional account requested for admin access already had ADMINISTRATOR; no role/account data changed in the read-only verification.
 - Route-access and admin Mermaid SVG previews are regenerated, XML-parse successfully, and passed visual inspection. Structural UX sync passed. Authenticated Issue #12 acceptance remains pending database recovery.
+## 2026-10-07 - FitOps second-computer local setup
+
+- Added root Docker Compose PostgreSQL 16 for local development, bound only to loopback port 5433 with a persistent named volume.
+- Added a Windows first-clone guide using committed Prisma migrations and fictional seed records; updated stale root project status and web READMEs.
+- Added optional `FITOPS_DEMO_PASSWORD` support for fresh seed runs, validated against the existing 15-128 character password policy. The private `.env` remains ignored; absent a value, seed credentials stay randomly generated.
+- No live database export, credential hashes, sessions, user account data, actual `.env` files, or Docker volume contents were added. Example environment files contain placeholders only. This is local development portability, not production deployment.
+- Docker engine is unavailable on this computer, so actual Compose startup and database verification must be performed after Docker/WSL recovery or on the home computer.

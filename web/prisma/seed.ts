@@ -48,7 +48,11 @@ async function main() {
   const availableEndsAt = new Date(availableStartsAt.getTime() + 60 * 60 * 1000);
   const fullStartsAt = new Date(availableStartsAt.getTime() + 24 * 60 * 60 * 1000);
   const fullEndsAt = new Date(fullStartsAt.getTime() + 60 * 60 * 1000);
-  const passwordHash = await argon2.hash(randomBytes(32).toString("base64url"), { type: argon2.argon2id });
+  const configuredDemoPassword = process.env.FITOPS_DEMO_PASSWORD;
+  if (configuredDemoPassword && (configuredDemoPassword.length < 15 || configuredDemoPassword.length > 128)) {
+    throw new Error("FITOPS_DEMO_PASSWORD must be 15-128 characters when set.");
+  }
+  const passwordHash = await argon2.hash(configuredDemoPassword || randomBytes(32).toString("base64url"), { type: argon2.argon2id });
 
   await prisma.$transaction(async (tx) => {
     // Credentials are rebuilt below. Remove all old sessions so reseeding cannot

@@ -18,6 +18,7 @@ updated: 2026-10-07
 ## Product and engineering
 
 - [Project overview](../README.md)
+- [Local development on another computer](../docs/local-development.md)
 - [Product requirements](../docs/product-requirements.md)
 - [UX plan](../docs/ux-plan.md)
 - [Complete wireframe coverage](../docs/design/wireframe-coverage.md)
