@@ -199,6 +199,7 @@ test("login, rate-limit reservation, and member profile routes enforce their con
 
 test("member booking, waitlist, cancellation, and IDOR routes enforce owner scope", async () => {
   const sessionA = await createSession();
+  const { GET: listBookings } = await import("@/app/api/v1/me/bookings/route");
   const { POST: book } = await import("@/app/api/v1/sessions/[sessionId]/bookings/route");
   const { POST: joinWaitlist } = await import("@/app/api/v1/sessions/[sessionId]/waitlist/route");
   const { DELETE: cancelBooking } = await import("@/app/api/v1/bookings/[bookingId]/route");
@@ -221,6 +222,12 @@ test("member booking, waitlist, cancellation, and IDOR routes enforce owner scop
   const booked = (await book!(unsafe(`/api/v1/sessions/${sessionA}/bookings`, {}, state.cookies["member-one"]) as never, bookingContext))!;
   assert.equal(booked.status, 201);
   const bookingId = (await booked.json()).data.bookingId as string;
+  const listedReservations = await listBookings!(request("/api/v1/me/bookings", {}, state.cookies["member-one"]) as never);
+  const listedBooking = (await listedReservations!.json()).data.bookings.find((item: { bookingId: string }) => item.bookingId === bookingId);
+  const cutoffSession = await (await import("@/lib/server/prisma")).prisma.classSession.findUniqueOrThrow({ where: { id: sessionA }, select: { startsAt: true, endsAt: true, bookingCutoffMinutes: true } });
+  assert.equal(listedBooking.startsAt, cutoffSession.startsAt.toISOString());
+  assert.equal(listedBooking.endsAt, cutoffSession.endsAt.toISOString());
+  assert.equal(listedBooking.cancellationCutoffAt, new Date(cutoffSession.startsAt.getTime() - cutoffSession.bookingCutoffMinutes * 60_000).toISOString(), "reservation listing exposes the configured server cutoff for display");
   const waiting = (await joinWaitlist!(unsafe(`/api/v1/sessions/${sessionA}/waitlist`, {}, state.cookies["member-two"]) as never, bookingContext))!;
   assert.equal(waiting.status, 201);
   const waitingEntryId = (await waiting.json()).data.entryId as string;

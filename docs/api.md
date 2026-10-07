@@ -89,7 +89,7 @@ Records an authenticated MemberProfile owner's explicit acceptance from the exis
 
 ### `GET /api/v1/me/bookings`
 
-Returns the authenticated member's upcoming confirmed bookings and waitlist entries.
+Returns the authenticated member's upcoming confirmed bookings and active waitlist entries. Each confirmed booking includes `startsAt`, `endsAt`, and `cancellationCutoffAt` (the session start minus its configured cutoff) so the interface can explain whether cancellation is currently available. The server remains authoritative and rechecks the cutoff during `DELETE /api/v1/bookings/{bookingId}`.
 
 ### `POST /api/v1/sessions/{sessionId}/bookings`
 

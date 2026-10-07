@@ -18,10 +18,16 @@ const ids = {
   adminUser: "00000000-0000-4000-8000-000000000103",
   program: "00000000-0000-4000-8000-000000000201",
   session: "00000000-0000-4000-8000-000000000301",
+  availableSession: "00000000-0000-4000-8000-000000000302",
+  fullSession: "00000000-0000-4000-8000-000000000303",
   bookingOne: "00000000-0000-4000-8000-000000000401",
   bookingTwo: "00000000-0000-4000-8000-000000000402",
   waitOne: "00000000-0000-4000-8000-000000000501",
   waitTwo: "00000000-0000-4000-8000-000000000502",
+  fullBookingOne: "00000000-0000-4000-8000-000000000403",
+  fullBookingTwo: "00000000-0000-4000-8000-000000000404",
+  fullWaitOne: "00000000-0000-4000-8000-000000000503",
+  fullWaitTwo: "00000000-0000-4000-8000-000000000504",
 };
 
 const members = [
@@ -38,6 +44,10 @@ async function main() {
   const startsAt = new Date(now.getTime() + 48 * 60 * 60 * 1000);
   startsAt.setUTCMinutes(0, 0, 0);
   const endsAt = new Date(startsAt.getTime() + 60 * 60 * 1000);
+  const availableStartsAt = new Date(startsAt.getTime() + 72 * 60 * 60 * 1000);
+  const availableEndsAt = new Date(availableStartsAt.getTime() + 60 * 60 * 1000);
+  const fullStartsAt = new Date(availableStartsAt.getTime() + 24 * 60 * 60 * 1000);
+  const fullEndsAt = new Date(fullStartsAt.getTime() + 60 * 60 * 1000);
   const passwordHash = await argon2.hash(randomBytes(32).toString("base64url"), { type: argon2.argon2id });
 
   await prisma.$transaction(async (tx) => {
@@ -49,6 +59,8 @@ async function main() {
     // Delete bookings before waitlist rows because promoted bookings reference them.
     await tx.booking.deleteMany({ where: { sessionId: ids.session } });
     await tx.waitlistEntry.deleteMany({ where: { sessionId: ids.session } });
+    await tx.booking.deleteMany({ where: { sessionId: ids.fullSession } });
+    await tx.waitlistEntry.deleteMany({ where: { sessionId: ids.fullSession } });
 
     await tx.user.upsert({
       where: { email: "maya.coach@example.test" },
@@ -88,10 +100,16 @@ async function main() {
 
     await tx.program.upsert({ where: { slug: "strength-foundations" }, update: { name: "Strength Foundations", description: "Fictional beginner strength class.", intensity: "Moderate", durationMinutes: 60, isPublished: true }, create: { id: ids.program, slug: "strength-foundations", name: "Strength Foundations", description: "Fictional beginner strength class.", intensity: "Moderate", durationMinutes: 60 } });
     await tx.classSession.upsert({ where: { id: ids.session }, update: { programId: ids.program, trainerId: ids.trainerProfile, startsAt, endsAt, capacity: 2, bookingCutoffMinutes: 30, status: "SCHEDULED", nextPositionKey: 3n }, create: { id: ids.session, programId: ids.program, trainerId: ids.trainerProfile, startsAt, endsAt, capacity: 2, bookingCutoffMinutes: 30, status: "SCHEDULED", nextPositionKey: 3n } });
+    await tx.classSession.upsert({ where: { id: ids.availableSession }, update: { programId: ids.program, trainerId: ids.trainerProfile, startsAt: availableStartsAt, endsAt: availableEndsAt, capacity: 6, bookingCutoffMinutes: 30, status: "SCHEDULED", nextPositionKey: 1n }, create: { id: ids.availableSession, programId: ids.program, trainerId: ids.trainerProfile, startsAt: availableStartsAt, endsAt: availableEndsAt, capacity: 6, bookingCutoffMinutes: 30, status: "SCHEDULED", nextPositionKey: 1n } });
+    await tx.classSession.upsert({ where: { id: ids.fullSession }, update: { programId: ids.program, trainerId: ids.trainerProfile, startsAt: fullStartsAt, endsAt: fullEndsAt, capacity: 2, bookingCutoffMinutes: 30, status: "SCHEDULED", nextPositionKey: 3n }, create: { id: ids.fullSession, programId: ids.program, trainerId: ids.trainerProfile, startsAt: fullStartsAt, endsAt: fullEndsAt, capacity: 2, bookingCutoffMinutes: 30, status: "SCHEDULED", nextPositionKey: 3n } });
     await tx.booking.upsert({ where: { id: ids.bookingOne }, update: { memberId: members[0][1], sessionId: ids.session, status: "CONFIRMED", bookedAt: now, cancelledAt: null }, create: { id: ids.bookingOne, memberId: members[0][1], sessionId: ids.session, status: "CONFIRMED", bookedAt: now } });
     await tx.booking.upsert({ where: { id: ids.bookingTwo }, update: { memberId: members[1][1], sessionId: ids.session, status: "CONFIRMED", bookedAt: now, cancelledAt: null }, create: { id: ids.bookingTwo, memberId: members[1][1], sessionId: ids.session, status: "CONFIRMED", bookedAt: now } });
     await tx.waitlistEntry.upsert({ where: { id: ids.waitOne }, update: { memberId: members[2][1], sessionId: ids.session, status: "WAITING", positionKey: 1n, joinedAt: now, resolvedAt: null }, create: { id: ids.waitOne, memberId: members[2][1], sessionId: ids.session, status: "WAITING", positionKey: 1n, joinedAt: now } });
     await tx.waitlistEntry.upsert({ where: { id: ids.waitTwo }, update: { memberId: members[3][1], sessionId: ids.session, status: "WAITING", positionKey: 2n, joinedAt: now, resolvedAt: null }, create: { id: ids.waitTwo, memberId: members[3][1], sessionId: ids.session, status: "WAITING", positionKey: 2n, joinedAt: now } });
+    await tx.booking.upsert({ where: { id: ids.fullBookingOne }, update: { memberId: members[0][1], sessionId: ids.fullSession, status: "CONFIRMED", bookedAt: now, cancelledAt: null }, create: { id: ids.fullBookingOne, memberId: members[0][1], sessionId: ids.fullSession, status: "CONFIRMED", bookedAt: now } });
+    await tx.booking.upsert({ where: { id: ids.fullBookingTwo }, update: { memberId: members[1][1], sessionId: ids.fullSession, status: "CONFIRMED", bookedAt: now, cancelledAt: null }, create: { id: ids.fullBookingTwo, memberId: members[1][1], sessionId: ids.fullSession, status: "CONFIRMED", bookedAt: now } });
+    await tx.waitlistEntry.upsert({ where: { id: ids.fullWaitOne }, update: { memberId: members[2][1], sessionId: ids.fullSession, status: "WAITING", positionKey: 1n, joinedAt: now, resolvedAt: null }, create: { id: ids.fullWaitOne, memberId: members[2][1], sessionId: ids.fullSession, status: "WAITING", positionKey: 1n, joinedAt: now } });
+    await tx.waitlistEntry.upsert({ where: { id: ids.fullWaitTwo }, update: { memberId: members[3][1], sessionId: ids.fullSession, status: "WAITING", positionKey: 2n, joinedAt: now, resolvedAt: null }, create: { id: ids.fullWaitTwo, memberId: members[3][1], sessionId: ids.fullSession, status: "WAITING", positionKey: 2n, joinedAt: now } });
   });
 
   console.log("Fictional FitOps seed data is ready.");

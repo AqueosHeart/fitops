@@ -2,7 +2,7 @@
 type: sprint
 project: FitOps
 sprint: Sprint 4
-status: active
+status: complete
 updated: 2026-10-07
 ---
 
@@ -12,12 +12,12 @@ updated: 2026-10-07
 
 Implement fictional enrollment, session, booking, cancellation, and waitlist endpoints with demo authentication, validated internal return paths, and server-side authorization.
 
-## Active work
+## Completed work
 
-- [ ] Issue #10: Better Auth Credentials/database sessions, `auth_version` invalidation, rate limiting, and safe internal redirects.
-- [ ] Issue #10: Zod-validated `/api/v1` route handlers and stable contract error mapping.
-- [ ] Issue #10: Member, trainer, and administrator ownership/role enforcement.
-- [ ] Issue #10: API tests for validation, authorization, IDOR, expected domain failures, and success paths.
+- [x] Issue #10: Better Auth Credentials/database sessions, `auth_version` invalidation, rate limiting, and safe internal redirects.
+- [x] Issue #10: Zod-validated `/api/v1` route handlers and stable contract error mapping.
+- [x] Issue #10: Member, trainer, and administrator ownership/role enforcement.
+- [x] Issue #10: API tests for validation, authorization, IDOR, expected domain failures, and success paths.
 
 ## Latest verification
 
@@ -28,6 +28,7 @@ Implement fictional enrollment, session, booking, cancellation, and waitlist end
 - 2026-10-07 pre-migration verification snapshot: auth 5/5, API contract 7/7, PostgreSQL constraints 2/2, races 10/10, lint, TypeScript, Prisma validation/generation, and production build (14 static pages) passed. Registry check showed official `eslint-config-next@16.4.0` still used `@next/eslint-plugin-next@16.4.0 -> fast-glob@3.3.1`, and published `braces` remained 3.0.3.
 - 2026-10-07 approved lint-toolchain resolution: under ADR 015, removed `eslint-config-next` and replaced it with pinned ESLint core, TypeScript, React, Hooks, JSX accessibility, and import rules. The intentional tradeoff is no `@next/next/*` rules pending a patched, audit-clean compatible plugin. Full audit now reports 0 vulnerabilities; lint passes. All four integration suites (24/24), TypeScript, Prisma validation/generation, production build (14 static pages), and diff check pass.
 - 2026-10-07 delivery: committed as `761f91f` and pushed to `codex/fitops-planning-checkpoint`. PR [#15](https://github.com/AqueosHeart/fitops/pull/15) is open against `main` and includes `Closes #10`. GitHub reports CLEAN but no Actions checks exist; maintainer review/merge is required. Issue #10 remains Open.
+- 2026-10-07 closure: PR [#15](https://github.com/AqueosHeart/fitops/pull/15) merged to `main` at `ee5839203e15879309187a6b811532ff15b56f3a`; Issue #10 is Closed and `FitOps Delivery` status is Done. No Actions checks are configured.
 
 ## Verified dependencies
 

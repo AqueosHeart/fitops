@@ -12,7 +12,7 @@ updated: 2026-10-07
 - [[SOUL|Project identity]]
 - [[CRITICAL_FACTS|Critical facts]]
 - [[wiki/projects/FitOps|FitOps project memory]]
-- [[wiki/tasks/Sprint 4|Current sprint]]
+- [[wiki/tasks/Sprint 5|Current sprint]]
 - [[boards/FitOps Delivery|Delivery board mirror]]
 
 ## Product and engineering
