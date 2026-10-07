@@ -32,7 +32,7 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 - Active: **In Review**, Sprint 5, SDLC Phase 4, Feature, High risk, P1, estimate 8. Depends on Issue #10's verified API.
   - PR [#16](https://github.com/AqueosHeart/fitops/pull/16) contains the member UI, server-side protection, reservation-aware schedule, sign-out, and additive cancellation cutoff. API-contract (7), Prisma validation, TypeScript, lint, production build (29 routes), browser registration/login/booking/waitlist/cancellation/sign-out flows, mobile 390×844 review, and scratch-db fresh/idempotent seed checks passed. No Actions checks are configured; wait for review and merge before marking Done.
 - [#12 [UI] Administrator Operations Product Slice](https://github.com/AqueosHeart/fitops/issues/12)
-  - Backlog: Sprint 6, SDLC Phase 4, Feature, High risk, P1, estimate 5. Depends on the secure API and member contract.
+  - Backlog: Sprint 6, SDLC Phase 4, Feature, High risk, P1, estimate 5. Depends on the secure API and member contract. A partial local stacked branch `codex/fitops-issue-12-admin-operations` is based on open PR #16; API-contract (7), targeted lint, and production build pass, but browser acceptance and dependency merge remain outstanding. No status/acceptance transition is claimed.
 - [#13 [QUALITY] System Quality and Production-Candidate Evidence](https://github.com/AqueosHeart/fitops/issues/13)
   - Backlog: Sprint 7, SDLC Phase 5, Test, High risk, P1, estimate 8. Covers E2E, accessibility, security, performance, CI, and truthful evidence.
 - [#14 [RELEASE] Deployment and Portfolio Evidence](https://github.com/AqueosHeart/fitops/issues/14)

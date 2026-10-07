@@ -108,4 +108,5 @@ updated: 2026-10-07
 - [[wiki/logs/2026-10-07-issue-10-braces-audit-follow-up|Issue #10 `braces` audit follow-up]]
 - [[wiki/logs/2026-10-07-issue-10-eslint-advisory-resolution|Issue #10 lint advisory resolution]]
 - [[wiki/logs/2026-10-07-issue-11-member-product-slice|Issue #11 member product slice and PR #16 review handoff]]
+- [[wiki/logs/2026-10-07-issue-12-admin-operations-start|Issue #12 administrator operations started as dependent work]]
 - [[wiki/tasks/Sprint 5|Sprint 5 Member Booking Product Slice]]

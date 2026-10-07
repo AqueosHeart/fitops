@@ -36,6 +36,12 @@ Deliver the member-facing Practice Athletic Club journey on the verified API: pu
 - Keep Issue #11 open until implementation review and all acceptance criteria are reflected in verified project evidence.
 - Update Issue #11 evidence only after acceptance; keep it In Review until review feedback is resolved and PR #16 is merged, then verify the Done transition.
 
+## Downstream stacked preparation (not Sprint 5 completion)
+
+- On 2026-10-07, local branch `codex/fitops-issue-12-admin-operations` was started from PR #16's member branch to preserve Issue #12's dependency. It contains an incomplete administrator UI slice and is not merged; Issue #12 remains Backlog / Sprint 6.
+- Implemented locally: protected admin overview and session manager, filtered listing, create/edit forms, occupancy/history-aware controls, fictional participant and ordered waitlist views, and role-guarded program/trainer options. API-contract (7), targeted ESLint, and optimized production build (34 routes) pass.
+- Remaining before Issue #12 acceptance: review and merge PR #16; run authenticated browser acceptance for administrator overview, create, safe edits/capacity promotion, participant/waitlist view, plus member/trainer denial; address findings; run final full checks and publish a dependent PR. Keep #12 Backlog until GitHub confirms the proper Sprint 6 start.
+
 ## Verified dependencies
 
 - [x] Issue #10 merged and closed; `FitOps Delivery` records Done.

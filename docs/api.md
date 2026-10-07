@@ -142,7 +142,11 @@ Each item contains `sessionId`, program name, `startsAt`, `endsAt`, session stat
 
 ### `GET /api/v1/admin/sessions`
 
-Returns operational session information, including confirmed and waiting counts.
+Returns operational session information, including confirmed and waiting counts. The administrator UI also receives program/trainer identifiers, configured booking cutoff, and a boolean participation-history indicator so it can present safe edit controls without exposing participant names in the list.
+
+### `GET /api/v1/admin/options`
+
+Returns published program IDs/names and trainer-profile IDs/names for administrator session forms. Requires an authenticated administrator; member and trainer roles are forbidden.
 
 ### `POST /api/v1/admin/sessions`
 

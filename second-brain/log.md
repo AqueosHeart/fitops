@@ -378,3 +378,9 @@ updated: 2026-09-21
 - Committed the member product slice as `262c337`, pushed branch `codex/fitops-issue-11-member-slice`, opened PR #16, and moved the FitOps Delivery item to In Review. Issue #11 remains open pending review and merge.
 - Local development auth config now has a generated key only in ignored `web/.env.local`; no key or account identifier is stored in the repository. The user confirmed the additional browser-created account and active waitlist entry are fictional; no address or identifier was recorded, and no cleanup or seed reset was run.
 - Details: [[wiki/logs/2026-10-07-issue-11-member-product-slice]]; [[wiki/tasks/Sprint 5]].
+
+## 2026-10-07 — Issue #12 administrator operations started as dependent work
+
+- PR #16 remains open, so administrator UI work is on a local branch stacked on its member branch; Issue #12 stays Backlog/Sprint 6 and no acceptance closure is claimed.
+- Implemented protected admin overview/list/create/edit/participants screens and admin-only form options; documented the response contract. API-contract 7/7, targeted ESLint, and production build (34 routes) pass. Authenticated browser acceptance and dependency merge are still required.
+- Details: [[wiki/logs/2026-10-07-issue-12-admin-operations-start]]; [[wiki/tasks/Sprint 5]].

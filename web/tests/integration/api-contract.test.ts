@@ -335,6 +335,7 @@ test("booking and waitlist domain failures preserve database state", async () =>
 test("trainer and administrator routes enforce role boundaries and return successful contracts", async () => {
   const { GET: trainerSessions } = await import("@/app/api/v1/trainer/sessions/route");
   const { GET: adminSessions, POST: create } = await import("@/app/api/v1/admin/sessions/route");
+  const { GET: adminOptions } = await import("@/app/api/v1/admin/options/route");
   const { PATCH, mapSessionUpdateResult } = await import("@/app/api/v1/admin/sessions/[sessionId]/route");
   const { GET: participants } = await import("@/app/api/v1/admin/sessions/[sessionId]/participants/route");
   assert.equal((await trainerSessions!(request("/api/v1/trainer/sessions", {}, state.cookies["member-one"]) as never)).status, 403);
@@ -351,6 +352,8 @@ test("trainer and administrator routes enforce role boundaries and return succes
   assert.ok(!trainerTwoIds.includes(trainerOneSession), "assignment isolation is symmetric");
   assert.equal((await adminSessions!(request("/api/v1/admin/sessions", {}, state.cookies["member-one"]) as never))!.status, 403);
   assert.equal((await adminSessions!(request("/api/v1/admin/sessions", {}, state.cookies.admin) as never))!.status, 200);
+  assert.equal((await adminOptions!(request("/api/v1/admin/options", {}, state.cookies["member-one"]) as never)).status, 403);
+  assert.equal((await adminOptions!(request("/api/v1/admin/options", {}, state.cookies.admin) as never)).status, 200);
   const sessionsBeforeInvalidPayload = await (await import("@/lib/server/prisma")).prisma.classSession.count();
   for (const [label, body] of [
     ["unknown field", JSON.stringify({ unknown: true })],
