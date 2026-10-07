@@ -37,3 +37,15 @@ Refresh the local browser and verify the admin header and My Account redirect us
 - Repeated `test:api-contract` exposed a flaky test fixture caused by assuming concurrent registration completion order. Updated it to resolve member/admin fixtures by their labels; rerun passed 7/7, including admin operations and role boundaries.
 - Full ESLint and TypeScript checks passed after the fixture fix. The production build had passed immediately before this test-only change.
 - Renderer package execution stalled again with a pinned Mermaid CLI version, so SVG previews remain pending. The local browser-control service exposed no user browser tab; authenticated visual/interaction acceptance still needs a browser session.
+
+## Renderer recovery (continued after interruption)
+
+- The shared npm npx cache referenced a missing temporary `package.json`; a fresh temporary cache resolved this. Mermaid CLI 12.0.0 was installed there with lifecycle scripts disabled, leaving repository dependencies unchanged.
+- Configured Mermaid CLI to use the existing local Edge executable, regenerated both affected SVG previews, confirmed their admin/account labels, and visually inspected the route-access and admin-flow renders.
+- SVG preview work is complete. Authenticated browser interaction checks still require a browser tab with the user's local session; none is exposed to the current browser-control surface.
+
+## Local browser retry
+
+- Port 3000 belongs to the AARC Next.js server, so FitOps was started on `127.0.0.1:3001` and `/admin` was opened in a visible Codex browser tab.
+- The focused admin navigation renders, but workspace data reports temporarily unavailable. Read-only `npm run db:verify` fails with Prisma `ECONNREFUSED`; `docker ps` confirms the Docker Desktop Linux engine pipe is absent. No Docker/WSL restart, configuration change, or database mutation was performed.
+- The browser acceptance gate remains open. Once Docker/WSL and the database are restored, refresh `/admin` at port 3001, authenticate manually if prompted, and continue only with the fictional local records.

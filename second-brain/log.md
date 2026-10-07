@@ -424,3 +424,16 @@ updated: 2026-09-21
 - A repeated API-contract run exposed a nondeterministic test fixture: concurrent registrations were indexed by completion order. Changed lookups to stable test labels; rerun passes 7/7, including admin creation/edit/FIFO/cutoff and role-boundary contracts. ESLint and TypeScript pass; prior production build remains green.
 - Mermaid CLI package execution stalled twice (including a pinned-version attempt); SVG previews remain stale. Authenticated browser UI acceptance remains open because no user browser tab/session is exposed to the local browser-control surface.
 - Details: [[wiki/logs/2026-10-07-issue-12-admin-shell-account-routing]]; [[wiki/tasks/Sprint 5]].
+
+## 2026-10-07 — Mermaid previews regenerated after renderer recovery
+
+- Installed Mermaid CLI 12.0.0 into an isolated temporary npm cache with install scripts disabled; configured Puppeteer to use the already-installed local Edge executable. This avoided project dependency changes and browser downloads.
+- Regenerated `docs/design/route-access-architecture.svg` and `docs/design/user-flow-admin.svg`, verified their labels against the Mermaid sources, and visually inspected both rendered previews. The earlier stalled-renderer note is superseded by this result.
+- Authenticated browser acceptance remains outstanding; the local browser-control surface exposes no signed-in user tab.
+- Details: [[wiki/logs/2026-10-07-issue-12-admin-shell-account-routing]].
+## 2026-10-07 - FitOps admin browser retry blocked by Docker engine
+
+- Resolved the local port conflict: AARC owns 3000; launched FitOps on 3001 and confirmed the admin navigation shell renders.
+- Database-backed workspace is unavailable: `npm run db:verify` returns Prisma `ECONNREFUSED`; Docker CLI cannot reach the Linux engine pipe. No Docker/WSL or database changes were made.
+- Corrected continuity notes: the fictional account requested for admin access already had ADMINISTRATOR; no role/account data changed in the read-only verification.
+- Route-access and admin Mermaid SVG previews are regenerated, XML-parse successfully, and passed visual inspection. Structural UX sync passed. Authenticated Issue #12 acceptance remains pending database recovery.
