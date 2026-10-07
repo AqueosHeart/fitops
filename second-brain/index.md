@@ -54,6 +54,7 @@ updated: 2026-10-07
 
 ## Activity
 
+- [[wiki/logs/2026-10-07-issue-12-admin-test-account|Issue #12 fictional admin test account enabled]]
 - [[wiki/logs/2026-09-21-complete-wireframe-plugin|Complete desktop and mobile wireframe plugin]]
 
 - [[wiki/logs/2026-09-21-sitemap-architecture-separation|Page-only sitemap and route/access architecture separation]]

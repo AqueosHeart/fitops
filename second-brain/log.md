@@ -397,3 +397,9 @@ updated: 2026-09-21
 - Pushed `codex/fitops-issue-12-admin-operations` and opened Draft PR [#17](https://github.com/AqueosHeart/fitops/pull/17) against `main`; its review description lists the authenticated browser acceptance still required. Issue #12 remains Backlog.
 - Fixed the login return-path mismatch discovered while verifying the admin gate: only administrators may land on allowlisted `/admin` routes; member registration remains member-only. API-contract (7), auth (5), lint, and build (34 routes) pass after the fix.
 - Details: [[wiki/logs/2026-10-07-issue-12-admin-operations-start]]; [[wiki/tasks/Sprint 5]].
+
+## 2026-10-07 — Issue #12 fictional admin test account enabled
+
+- With explicit user authorization, promoted the unique non-seed fictional `@example.test` test account from MEMBER to ADMINISTRATOR in the local database using a conditional transaction.
+- Verified the new role and preserved its member profile, one booking, and one waitlist entry; no account identifier or credential was recorded. Issue #12 remains Backlog pending authenticated browser acceptance.
+- Details: [[wiki/logs/2026-10-07-issue-12-admin-test-account]].
