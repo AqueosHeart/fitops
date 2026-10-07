@@ -384,3 +384,10 @@ updated: 2026-09-21
 - PR #16 remains open, so administrator UI work is on a local branch stacked on its member branch; Issue #12 stays Backlog/Sprint 6 and no acceptance closure is claimed.
 - Implemented protected admin overview/list/create/edit/participants screens and admin-only form options; documented the response contract. API-contract 7/7, targeted ESLint, and production build (34 routes) pass. Authenticated browser acceptance and dependency merge are still required.
 - Details: [[wiki/logs/2026-10-07-issue-12-admin-operations-start]]; [[wiki/tasks/Sprint 5]].
+
+## 2026-10-07 — Issue #11 merged and Issue #12 branch rebased
+
+- Reviewed and merged PR #16 to `main` at `0248913b6867708a6f5bf8e1dd44a74ac32ec313`; GitHub closed Issue #11 and records its Project status as Done. The issue checklist now contains verified acceptance evidence.
+- Rebased `codex/fitops-issue-12-admin-operations` onto the merged main. The admin branch remains local and Issue #12 remains Backlog; authenticated UI acceptance is outstanding.
+- Re-run on the merged stack: auth 5, API contract 7, DB constraints 2, PostgreSQL races 10, lint, TypeScript, Prisma validate, read-only `db:verify`, production build (34 routes), and `git diff --check` passed. No Actions checks are configured.
+- Details: [[wiki/logs/2026-10-07-issue-11-member-product-slice]]; [[wiki/logs/2026-10-07-issue-12-admin-operations-start]]; [[wiki/tasks/Sprint 5]].

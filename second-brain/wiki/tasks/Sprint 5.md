@@ -21,7 +21,7 @@ Deliver the member-facing Practice Athletic Club journey on the verified API: pu
 
 ## Implementation checkpoint (2026-10-07)
 
-- Branch `codex/fitops-issue-11-member-slice` was committed as `262c337` and pushed in [PR #16](https://github.com/AqueosHeart/fitops/pull/16). GitHub Project status is In Review; no Actions checks are configured. Issue #11 remains open pending review and merge.
+- Branch `codex/fitops-issue-11-member-slice` was committed as `262c337` and pushed in [PR #16](https://github.com/AqueosHeart/fitops/pull/16), merged to `main` at `0248913b6867708a6f5bf8e1dd44a74ac32ec313` on 2026-10-07. Issue #11 is Closed and GitHub Project status is Done; no Actions checks are configured.
 - Implemented locally: public landing/programs/pricing/schedule/session detail; fictional plan selection and registration; portal login; server-guarded member dashboard, reservation-aware schedule, bookings, profile/security/sign-out; booking and waitlist actions; accessible cancellation confirmation dialog; waiver and legal/support pages; client API error mapping.
 - Additive API response: `/api/v1/me/bookings` exposes the configured `cancellationCutoffAt`; API documentation and integration assertion were updated.
 - Fresh fictional seed includes a future available class and a full class with an ordered waitlist. Database verification checks both. A scratch DB accepted all six migrations, fresh seed and `db:verify`, then a second seed/verify cycle with counts stable. The existing local DB gained matching future fixtures while preserving its original past session and participation rows.
@@ -30,17 +30,16 @@ Deliver the member-facing Practice Athletic Club journey on the verified API: pu
 
 ## Remaining acceptance gates
 
-- PR #16 is open for implementation review. No automated GitHub checks are configured; local verification is recorded above. Keep Issue #11 In Review until review feedback is resolved and the PR is merged.
+- PR #16 is merged and Issue #11 is Closed/Done. No automated GitHub checks are configured; local and browser verification is recorded above.
 - Browser-visible failure copy and exhaustive accessibility review remain future quality work; keep this separate from Issue #11 unless acceptance requires it.
 - A browser-created fictional account and active waitlist record exist in the local database beyond the baseline seed fixtures; the user confirmed the account is fictional. No address or identifier is stored in notes. Do not delete/reset demo state without reviewing impact.
-- Keep Issue #11 open until implementation review and all acceptance criteria are reflected in verified project evidence.
-- Update Issue #11 evidence only after acceptance; keep it In Review until review feedback is resolved and PR #16 is merged, then verify the Done transition.
+- Issue #11 acceptance checkboxes and verification evidence were updated after merge; Issue #11 remains Done unless new defects are found.
 
 ## Downstream stacked preparation (not Sprint 5 completion)
 
-- On 2026-10-07, local branch `codex/fitops-issue-12-admin-operations` was started from PR #16's member branch to preserve Issue #12's dependency. It contains an incomplete administrator UI slice and is not merged; Issue #12 remains Backlog / Sprint 6.
-- Implemented locally: protected admin overview and session manager, filtered listing, create/edit forms, occupancy/history-aware controls, fictional participant and ordered waitlist views, and role-guarded program/trainer options. API-contract (7), targeted ESLint, and optimized production build (34 routes) pass.
-- Remaining before Issue #12 acceptance: review and merge PR #16; run authenticated browser acceptance for administrator overview, create, safe edits/capacity promotion, participant/waitlist view, plus member/trainer denial; address findings; run final full checks and publish a dependent PR. Keep #12 Backlog until GitHub confirms the proper Sprint 6 start.
+- On 2026-10-07, local branch `codex/fitops-issue-12-admin-operations` was started from PR #16's member branch and rebased onto `main` after PR #16 merged. It contains an incomplete administrator UI slice and is not merged; Issue #12 remains Backlog / Sprint 6.
+- Implemented locally: protected admin overview and session manager, filtered listing, create/edit forms, occupancy/history-aware controls, fictional participant and ordered waitlist views, role-guarded program/trainer options, and role-aware login return paths. API/auth/constraint/race tests (24), lint, TypeScript, Prisma validation, read-only `db:verify`, and optimized production build (34 routes) pass. HTTP checks confirm unauthenticated admin routes preserve their return path to portal login.
+- Remaining before Issue #12 acceptance: run authenticated browser acceptance for administrator overview, create, safe edits/capacity promotion, participant/waitlist view, plus member/trainer denial; address findings; run final full checks and publish a PR. Keep #12 Backlog until GitHub confirms the proper Sprint 6 start.
 
 ## Verified dependencies
 

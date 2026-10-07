@@ -73,7 +73,7 @@ Expected failures:
 
 ### `POST /api/v1/auth/login`
 
-Authenticates an existing member or a fictional demo persona and restores a validated internal `returnTo` destination. This endpoint is reached from the secondary public-header `My Account` utility, `/join`, a protected-route redirect, or a direct `/portal/login` request; it is not a generic global Sign In action.
+Authenticates an existing account and restores a validated internal `returnTo` destination. Member destinations remain restricted to the member-workspace allowlist. Administrator destinations are separately allowlisted and honored only when the signed-in account has the `ADMINISTRATOR` role; other roles are sent to `/app`. Registration continues to reject administrator paths. This endpoint is reached from the secondary public-header `My Account` utility, `/join`, a protected-route redirect, or a direct `/portal/login` request; it is not a generic global Sign In action.
 
 ### `GET /api/v1/me/membership`
 
