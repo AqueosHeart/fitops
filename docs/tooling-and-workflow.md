@@ -6,7 +6,7 @@ FitOps will keep project execution and engineering evidence close to the code. G
 
 Design artifacts will use the format that best matches their purpose:
 
-- Figma for low-fidelity and high-fidelity interface design
+- Penpot for low-fidelity and high-fidelity interface design
 - draw.io for editable UX flow and sitemap diagrams, with Mermaid review exports stored in Markdown
 - DBML for the reviewed conceptual database diagram
 - Prisma schema and committed migrations for the executable database definition
@@ -60,22 +60,18 @@ Create these views:
 
 ### System
 
-Use one Figma file named `FitOps Product Design`.
+Use the connected Penpot file named `FitOps Design System`.
 
-### Figma pages
+### Penpot pages
 
-1. Foundations
-2. User flows
-3. Low-fidelity desktop
-4. Low-fidelity mobile
-5. Components
-6. High-fidelity desktop
-7. High-fidelity mobile
-8. Prototype and handoff
+1. `Design Tokens`
+2. `Icons — Lucide`
+3. `01 · Public · Home — Wireframes` through `20 · Admin · Participants — Wireframes`
+4. Future high-fidelity and handoff pages, added only after the low-fidelity review
 
 ### Repository evidence
 
-Figma is the working design environment, but important decisions must remain reviewable from the repository. `second-brain/wiki/design/FitOps User Flows.drawio` is the editable source of truth for UX navigation and flow architecture: change it before updating derived Mermaid exports or Figma frames. The derived work must preserve the approved public-discovery, Join, and protected-workspace boundary. Export approved flows or frames into `docs/design/` and link the Figma file from the project README when it exists.
+Penpot is the working visual-design environment, but important decisions must remain reviewable from the repository. `second-brain/wiki/design/FitOps User Flows.drawio` is the editable source of truth for UX navigation and flow architecture: change it before updating derived Mermaid exports or Penpot boards. The derived work must preserve the approved public-discovery, Join, and protected-workspace boundary. Export approved review evidence into `docs/design/` when useful.
 
 No screenshot is treated as a specification by itself. States, rules, and acceptance criteria remain in version-controlled documents and issues.
 
@@ -135,13 +131,17 @@ The API contract will live at `docs/openapi.yaml` once implementation starts. Th
 
 OpenAPI is authoritative for paths, methods, parameters, request bodies, response shapes, and status codes. Domain rules remain authoritative in product requirements and domain tests.
 
+## Lint and dependency audit
+
+`web/eslint.config.mjs` uses ESLint flat config with direct, version-pinned core, TypeScript, React, React Hooks, JSX accessibility, and import rules. The Next-specific ESLint preset is intentionally omitted under [ADR 015](adr/015-replace-vulnerable-next-eslint-config.md) because its transitive dependency tree contains the unpatched `braces` stack-exhaustion advisory. Consequently, `@next/next/*` lint rules are not currently applied. Keep `npm run lint`, TypeScript, the production build, and the focused integration suites as separate verification gates; restore the Next preset only after a compatible, fully audited release exists and has passed the same gates.
+
 ## Decision ownership map
 
 | Concern | Working tool | Repository source of truth |
 |---|---|---|
 | Sprint and backlog | GitHub Projects | GitHub Issues and linked pull requests |
 | UX flow and navigation architecture | draw.io | `second-brain/wiki/design/FitOps User Flows.drawio` |
-| UX visual design and prototypes | Figma | Approved frames derived from draw.io plus UX requirements |
+| UX visual design and prototypes | Penpot | Approved boards derived from draw.io plus UX requirements |
 | Architecture diagrams | Mermaid | Markdown files under `docs/` |
 | Conceptual database model | dbdiagram.io or editor with DBML | `docs/database/fitops.dbml` |
 | Physical database model | Prisma | `prisma/schema.prisma` and migrations |
@@ -154,6 +154,6 @@ OpenAPI is authoritative for paths, methods, parameters, request bodies, respons
 1. Create the GitHub repository.
 2. Create the `FitOps Delivery` GitHub Project and its fields and views.
 3. Convert the existing Sprint 0 requirements into GitHub Issues.
-4. Create the Figma file and low-fidelity pages.
+4. Create the Penpot file and low-fidelity pages.
 5. Add the initial DBML file from the reviewed data model.
 6. Review the Sprint 0 exit gate before beginning Sprint 1.

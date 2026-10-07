@@ -11,9 +11,11 @@ MemberProfile 1---* Booking *---1 ClassSession
 MemberProfile 1---* WaitlistEntry *---1 ClassSession
 ```
 
-## Logical ownership after ADR 008
+## Logical ownership after ADRs 008 and 009
 
-The current `ClassSession` entry is a conceptual product record, not a claim that one future ORM entity serves every domain model. Scheduling uses a `SessionSlot` view for program, trainer, and interval; Booking uses a `BookableSession` view for capacity, cutoff, status, and participation. Issue #8 may represent these with separate physical tables or a carefully mapped implementation, but no context may import another context's ORM model. `MemberReservationCalendar` is a Booking aggregate that may be represented through confirmed-booking intervals rather than a separate persisted table.
+`ClassSession` is the conceptual product record. [ADR 009](adr/009-one-physical-session-row.md) chooses one physical `class_sessions` table mapped through separate repository ports: Scheduling uses a `SessionSlot` view for program, trainer, and interval; Booking uses a `BookableSession` view for capacity, cutoff, status, interval, and participation. Domain code does not import Prisma models or another context's adapter. `MemberReservationCalendar` uses the member-profile row as its lock anchor and confirmed-booking intervals rather than a separate persisted table.
+
+The revised field-level mapping, constraints, and migration proof plan are in [Issue #8's schema plan](database/physical-schema-plan.md). They remain design evidence until an executable schema and PostgreSQL tests exist.
 
 ## Entities
 
@@ -23,6 +25,8 @@ The current `ClassSession` entry is a conceptual product record, not a claim tha
 - `email` unique normalized email
 - `name`
 - `role` member, trainer, or administrator
+- `passwordHash` credential verifier for fictional demo accounts; never plaintext
+- `authVersion` positive integer used to invalidate older JWT sessions
 - `createdAt`
 - `updatedAt`
 
@@ -68,7 +72,7 @@ No payment method, billing address, transaction, invoice, subscription-provider 
 - `capacity` positive integer
 - `bookingCutoffMinutes` non-negative integer
 - `status` scheduled, cancelled, or completed
-- `version` integer for concurrency control if required
+- `nextPositionKey` positive session-local waitlist counter
 
 ### Booking
 
@@ -78,6 +82,7 @@ No payment method, billing address, transaction, invoice, subscription-provider 
 - `status` confirmed or cancelled
 - `bookedAt`
 - `cancelledAt` nullable
+- `sourceWaitlistEntryId` nullable; links a promoted booking to the matching waitlist entry
 
 ### WaitlistEntry
 
@@ -96,9 +101,13 @@ No payment method, billing address, transaction, invoice, subscription-provider 
 - Session end later than session start
 - Unique active booking per member and session
 - Unique waiting entry per member and session
+- One active confirmed booking **or** waiting entry per member/session, enforced by the shared transaction protocol across both tables
 - Unique, monotonically allocated `positionKey` per session; resolved entries may leave gaps
+- No overlapping trainer intervals, backed by a PostgreSQL exclusion constraint
+- Program, trainer, interval, cutoff, and status freeze after any participation row has ever existed; capacity can still change if it remains at or above confirmed occupancy
 - Participation mutations serialize on their session row and, when a member can receive a confirmed seat, on their member-profile row; this protects capacity and cross-session overlap beyond what simple uniqueness can express
 - Admin capacity edits use the same session row lock and reject capacity below confirmed occupancy
+- Capacity increases before cutoff promote eligible waiting members in FIFO order in the edit transaction; an increase after cutoff is rejected while waiting entries remain
 - Foreign-key integrity for every relationship
 - Timestamps stored in UTC and displayed in the selected local timezone
 

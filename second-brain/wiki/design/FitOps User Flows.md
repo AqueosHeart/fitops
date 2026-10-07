@@ -13,7 +13,7 @@ Open the native editable diagram: [[FitOps User Flows.drawio|FitOps User Flows.d
 
 ## Native flow correction passes, 2026-09-21
 
-The editable draw.io source was corrected before its Mermaid and Figma derivatives. The sitemap resolves a 70 px collision with the Legend card, maintains taxonomy compliance, and eliminates unauthenticated direct root edges to protected workspaces. The later access-boundary pass implements ADR 006: the public header now offers secondary `My Account` access for existing members and primary `Join Now` conversion; registration is reachable only after fictional-plan selection. Footer/system routes are grouped separately, and protected-route redirects preserve only validated internal `returnTo` state. The detailed flows include recovery for dismissed waivers, expired sessions, duplicate/conflict outcomes, retries, cancellation cutoffs, promotion visibility, forbidden staff access, failed administrator saves, registration consent, existing-email redirects, invalid credentials, and rate limits.
+The editable draw.io source was corrected before its Mermaid and Penpot derivatives. The sitemap resolves a 70 px collision with the Legend card, maintains taxonomy compliance, and eliminates unauthenticated direct root edges to protected workspaces. The later access-boundary pass implements ADR 006: the public header now offers secondary `My Account` access for existing members and primary `Join Now` conversion; registration is reachable only after fictional-plan selection. Footer/system routes are grouped separately, and protected-route redirects preserve only validated internal `returnTo` state. The detailed flows include recovery for dismissed waivers, expired sessions, duplicate/conflict outcomes, retries, cancellation cutoffs, promotion visibility, forbidden staff access, failed administrator saves, registration consent, existing-email redirects, invalid credentials, and rate limits.
 
 ## Visual language and color legend
 
@@ -36,7 +36,7 @@ Every color in the diagrams has a precise architectural meaning derived from the
 
 ## Complete wireframe coverage
 
-The plugin now defines 26 page routes plus a separate 404 fallback, each with full desktop (1440 px) and mobile (390 px) sections. It generates 163 scenarios per device across 27 separate versioned Figma route pages. Desktop/mobile scenario frames are direct children of their page. Only different-frame, same-page transitions receive NAVIGATE reactions; cross-page destinations are labeled and reached through the plugin page chooser. The earlier combined-page run failed native reaction validation; the stricter local regression tests now pass, but native rerun and visual QA remain pending.
+Penpot is the active visual-review surface under ADR 013. Its canonical set has 20 numbered `— Wireframes` pages with 163 desktop and 163 mobile boards. It maps the 26 page routes and separate 404 fallback from draw.io Page 08; the legacy Figma generator is not an approval gate.
 
 [Route, section, and state matrix](../../../docs/design/wireframe-coverage.md).
 
@@ -332,10 +332,10 @@ flowchart TD
     CreateForm --> ValidateCreate["Validate fields, capacity, dates, trainer, trainer-time overlap"] --> CreateValid{Valid?}
     CreateValid -- No --> CreateErrors["Show field-level and conflict errors"] --> CreateForm
     CreateValid -- Yes --> CreateSave["Submit create request with CSRF token"] --> Created["Session created and logged in audit trail; refresh list"]
-    Action -- Edit session --> EditForm[Edit allowed scheduling fields]
-    EditForm --> ValidateEdit["Validate fields, trainer overlap, capacity not below confirmed bookings"] --> EditValid{Valid?}
+    Action -- Edit session --> EditForm["Edit allowed fields; capacity increase may promote eligible waiting members"]
+    EditForm --> ValidateEdit["Validate fields, trainer overlap, capacity floor, cutoff, and FIFO promotion on increase"] --> EditValid{Valid?}
     EditValid -- No --> EditErrors["Show errors; preserve values"] --> EditForm
-    EditValid -- Yes --> EditSave["Submit update request with CSRF token"] --> Updated["Session updated and logged; refetch affected views"]
+    EditValid -- Yes --> EditSave["Submit update request with CSRF token"] --> Updated["Session updated; eligible waiters promoted on capacity increase; refetch affected views"]
     Action -- View participants --> Participants["Show fictional confirmed members and ordered waitlist"] --> Sessions
     CreateSave -. unexpected failure .-> SaveFailure["Show request ID and retry"]
     EditSave -. unexpected failure .-> SaveFailure
@@ -391,7 +391,7 @@ flowchart TD
     SelectPersona --> IssueDemo["Issue demo session token instantaneously"]:::success --> SessionIssue
 
     SessionIssue["Set HTTP-only session cookie<br/>Log USER_AUTHENTICATED audit event"]:::security
-    SessionIssue --> RBACRoute["Server-Side RBAC Gatekeeper<br/>Inspect decrypted session role"]
+    SessionIssue --> RBACRoute["Server-Side RBAC Gatekeeper<br/>Verify JWT and reload current user/profile"]
     RBACRoute --> RoleDecision{Session Role}
     RoleDecision -- Member --> MemberDash["/app or validated returnTo member route"]:::success
     RoleDecision -- Trainer --> TrainerDash["/trainer/sessions"]
@@ -399,14 +399,14 @@ flowchart TD
 
     %% Session Lifecycle & Expiry
     SessionLife["Protected Request"] --> SessionCheck{Session active & valid?}
-    SessionCheck -- Valid --> UpdateActive["Authorize request & touch lastActiveAt"]:::success
+    SessionCheck -- Valid --> UpdateActive["Authorize using current database role and profile"]:::success
     SessionCheck -- Expired / 401 --> ExpiryModal["Non-destructive Re-Auth Modal<br/>Preserve in-progress booking or form context"]:::note
     ExpiryModal --> ReauthAction["Enter password or re-select demo persona"] --> ReauthSuccess["Restore session and replay pending mutation"]:::success --> UpdateActive
 
     %% Account Recovery & Sign Out
     ForgotLink([Forgot password?]) --> ForgotInput["Enter email on /auth/forgot-password"]
-    ForgotInput --> ForgotSim["Fictional portfolio response: Generic feedback without enumeration"]:::note
-    SignOutAction([User clicks Sign Out]) --> RevokeSession["Server revokes session in DB & clears session cookies"]:::security --> SignOutDone["Redirect to Home / with toast confirmation"]:::success
+    ForgotInput --> ForgotSim["Demo recovery guidance without account enumeration; no email or reset link sent"]:::note
+    SignOutAction([User clicks Sign Out]) --> RevokeSession["Clear current HTTP-only JWT cookie; no database session"]:::security --> SignOutDone["Redirect to Home / with toast confirmation"]:::success
 ```
 
 ---

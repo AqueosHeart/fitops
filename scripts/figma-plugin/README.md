@@ -1,18 +1,23 @@
-# Practice Athletic Club Master Toolkit
+# Practice Athletic Club Master Toolkit (legacy Figma tooling)
 
-This local Figma development plugin preserves its existing source-of-truth reminder and brand action. **Build Low-Fi Wireframes** now creates complete page mockups instead of grouped route-coverage cards.
+This local Figma development plugin is retained as historical source tooling for the Penpot wireframe import. Under ADR 013, Penpot is FitOps' active visual-design tool; running this plugin is optional and is not an approval or delivery gate.
 
 ## Output
 
 - 26 page routes plus a separate `/404` fallback, each with its own desktop and mobile screen.
 - 163 scenarios per device: **163 desktop + 163 mobile frames** (326 total).
 - Desktop width 1440 px; mobile width 390 px. Content-driven page heights expose every section. Dialog scenarios use 1024/844 px viewport mockups with a dimmed background.
-- 27 separate versioned Figma pages, one per route/fallback. Each has paired desktop/mobile scenarios and a compact local index. All screen frames are direct children of their page.
+- 20 named, versioned Figma review pages. Related routes share a page while every desktop/mobile scenario remains a direct-child frame. Legal & Misc contains Terms, Privacy, Waiver, Cookie preferences, and 404.
+- Page names begin with the ordered review group, for example `01 · Public · Home — FitOps 2026-09-22 v1`, so Figma's sidebar exposes the useful name before the version marker.
 - Separate public and protected shells, desktop workspace navigation, mobile roster cards, complete public footer links, and named landing anchors.
 - Booking, full-class waitlist, cancellation, promotion, consent, validation, inactive membership, recovery, role denial, loading, empty, failure, pending, and success examples.
 - Selected-plan and selected-session examples survive the demonstrated enrollment paths.
 
 The figures and forms are fictional mockups. Prototype buttons move between preset examples; fields do not submit real requests. Recovery explicitly sends no email. Neutral styling does not approve the brand.
+
+## Manage FitOps Components
+
+**Manage FitOps Components** scans eligible UI-kit pages for component and variant-set counts, then creates or updates a separate `FitOps Components` page. Its `FitOps / Button` is a native component set with `Style` (Filled, Outline, Destructive), `Size` (S, M, L), and `Brand` (Neutral) properties. Five additional neutral components cover text field, status badge, session card, warning notice, and empty state. A rerun restores or refreshes only names beginning with `FitOps /`; the original Community template and all unrelated layers are preserved. It is a low-fidelity building-block library, not an approved brand system or production React implementation.
 
 Every run preserves previous pages. An interrupted/failed generation marks its new pages `[Incomplete]` for inspection. Progress is reported during each route and while actions are linked. The generator reuses a suitable primary button and fonts from existing kit pages when available; otherwise it builds editable neutral fallback elements.
 
@@ -34,7 +39,7 @@ git diff --check
 - `code.js`: generated bundle; do not edit directly.
 - `ui.html`: primary action, progress, completion, and error feedback.
 
-The structural test executes the real generator with a Plugin API double. It verifies route/state pairs, action destinations, horizontal bounds, blocked-state behavior, role-denied privacy, preserved user work, kit reuse, and safe reruns. It is **not native Figma visual QA**.
+The structural test executes the historical generator with a Plugin API double. It verifies route/state pairs, action destinations, horizontal bounds, blocked-state behavior, role-denied privacy, preserved user work, kit reuse, and safe reruns. It is not Penpot visual-review evidence.
 
 ## Run in Figma
 
@@ -44,8 +49,10 @@ The structural test executes the real generator with a Plugin API double. It ver
 4. Click **Build Low-Fi Wireframes** and wait for the completed count.
 5. Use the plugin page chooser (or Figma page list) to switch routes, then use each page's scenario index. Local states have native prototype links. Cross-page controls carry the destination in their layer names; native prototype navigation cannot cross pages. Self-targeting navigation/blocked submissions do not receive a reaction.
 
-The previous combined-page output failed native Figma reaction validation. The corrected build passes stricter structural tests for top-level, same-page, different-frame destinations; native rerun and visual review remain pending. Issue #6 is not marked complete.
+The previous combined-page output failed native Figma reaction validation. The corrected build passes stricter structural tests for top-level, same-page, different-frame destinations. It is retained as historical evidence only; Issue #6 is closed and its visual-design evidence now lives in Penpot.
 
 ## Split the existing giant page
 
-Reload the rebuilt plugin, select the old `FitOps Wireframes / Complete / ...` page, then click **Split current combined page**. The action moves existing screens into separate route pages without redrawing them, clears invalid reactions, restores valid local reactions, and retains original annotations on the old page. It does not regenerate prototype actions that were never written before the earlier failure; use Build Low-Fi Wireframes for a fresh, fully linked local-state version. The split action refuses unrelated pages.
+Reload the rebuilt plugin, select the old `FitOps Wireframes / Complete / ...` page or any page in an earlier `FitOps Wireframes / YYYY-MM-DD vN / ...` version, then click **Regroup existing wireframes**. The action moves existing screens into named review groups without redrawing them, clears invalid reactions, restores valid local reactions, and retains original annotations on the source pages. It does not regenerate prototype actions that were never written before the earlier failure; use Build Low-Fi Wireframes for a fresh, fully linked local-state version. The regroup action refuses unrelated pages.
+
+When a source page contains only generated screens and its index, regrouping removes it so the old prefix-first names no longer crowd the sidebar. A source page containing other layers is retained as `Archive · … — annotations retained`.

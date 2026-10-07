@@ -26,6 +26,7 @@ class Node {
   resize(w,h){assert(w>0&&h>0&&Number.isFinite(w)&&Number.isFinite(h),'Invalid dimensions');this._width=w;this._height=h;}
   resizeWithoutConstraints(w,h){this.resize(w,h);}
   appendChild(n){if(n.parent){const i=n.parent.children.indexOf(n);if(i>=0)n.parent.children.splice(i,1);}this.children.push(n);n.parent=this;}
+  remove(){if(!this.parent)return;const i=this.parent.children.indexOf(this);if(i>=0)this.parent.children.splice(i,1);this.parent=undefined;}
   async loadAsync(){}
   setRelaunchData(data){this.relaunchData=data;}
   getStyledTextSegments(){return [{fontName:this.fontName}];}
@@ -52,14 +53,26 @@ const original=new Node('FRAME');original.name='Do not modify';existing.appendCh
 function create(type){const n=new Node(type);if(type==='PAGE')root.appendChild(n);else currentPage.appendChild(n);return n;}
 const figma={root,mixed:Symbol('mixed'),ui:{postMessage:m=>messages.push(m)},viewport:{scrollAndZoomIntoView(){}},
   get currentPage(){return currentPage;},async setCurrentPageAsync(p){currentPage=p;},
-  createFrame:()=>create('FRAME'),createText:()=>create('TEXT'),createRectangle:()=>create('RECTANGLE'),createSection:()=>create('SECTION'),createPage:()=>create('PAGE'),
+  createFrame:()=>create('FRAME'),createText:()=>create('TEXT'),createRectangle:()=>create('RECTANGLE'),createSection:()=>create('SECTION'),createPage:()=>create('PAGE'),createComponent:()=>create('COMPONENT'),combineAsVariants:(nodes,parent)=>{const set=new Node('COMPONENT_SET');parent.appendChild(set);for(const node of nodes)set.appendChild(node);return set;},
   async listAvailableFontsAsync(){return ['Regular','Bold'].map(style=>({fontName:{family:'Mona Sans',style}}));},
   async loadFontAsync(font){loadedFonts.add(JSON.stringify(font));}
   ,async getNodeByIdAsync(id){return registry.get(id)||null;}
 };
-const content=readFileSync('scripts/figma-plugin/wireframe-content.js','utf8'),renderer=readFileSync('scripts/figma-plugin/wireframes.js','utf8');
+const manager=readFileSync('scripts/figma-plugin/component-manager.js','utf8'),content=readFileSync('scripts/figma-plugin/wireframe-content.js','utf8'),renderer=readFileSync('scripts/figma-plugin/wireframes.js','utf8');
 const context=vm.createContext({figma,console,setTimeout,Map,Promise});
-vm.runInContext(content+'\n'+renderer+'\nglobalThis.routes=WIREFRAME_ROUTES; globalThis.run=buildFitOpsWireframes; globalThis.frames=()=>wfFrames;',context);
+vm.runInContext(manager+'\n'+content+'\n'+renderer+'\nglobalThis.routes=WIREFRAME_ROUTES; globalThis.groups=WF_PAGE_GROUPS; globalThis.run=buildFitOpsWireframes; globalThis.frames=()=>wfFrames; globalThis.manageComponents=buildFitOpsComponents;',context);
+const componentLibrary=await context.manageComponents();
+assert.equal(componentLibrary.managedCount,6,'Component manager must create the button variant set plus five declared components');
+assert.equal(componentLibrary.page.name,'FitOps Components');
+const componentPage=componentLibrary.page;
+const buttonSet=componentPage.findAllWithCriteria({types:['COMPONENT_SET']}).find(node=>node.name==='FitOps / Button');
+assert(buttonSet,'Button must be a native component set');
+assert.equal(buttonSet.children.length,9,'Button set must expose Style, Size, and Brand combinations');
+assert(buttonSet.children.some(node=>node.name==='Style=Filled, Size=S, Brand=Neutral'),'Required Filled/S/Neutral button variant is missing');
+const componentIds=componentPage.findAllWithCriteria({types:['COMPONENT','COMPONENT_SET']}).filter(node=>node.name.startsWith('FitOps / ')).map(node=>node.id);
+const refreshedComponents=await context.manageComponents();
+assert.equal(refreshedComponents.managedCount,6,'Component manager rerun must not duplicate library items');
+assert.deepEqual(componentPage.findAllWithCriteria({types:['COMPONENT','COMPONENT_SET']}).filter(node=>node.name.startsWith('FitOps / ')).map(node=>node.id),componentIds,'Component manager must update existing native components in place');
 const result=await context.run();
 assert.equal(existing.children.length,1);assert.equal(existing.children[0],original);
 const frames=context.frames();
@@ -67,8 +80,11 @@ const expected=[...readFileSync('docs/design/sitemap.mmd','utf8').matchAll(/^\s+
 assert.deepEqual([...context.routes.map(r=>r.route)].sort(),expected.sort());
 const scenarioCount=context.routes.reduce((n,r)=>n+1+r.states.length,0);
 assert.equal(result.screenCount,scenarioCount*2);
-assert.equal(result.pageCount,27);
-assert.equal(new Set([...frames.values()].map(f=>f.parent.id)).size,27,'Routes were not split across pages');
+assert.equal(result.pageCount,20);
+assert.equal(new Set([...frames.values()].map(f=>f.parent.id)).size,20,'Routes were not assigned to their named review groups');
+assert.deepEqual([...context.groups.find(group=>group.id==='legalMisc').routeIds],['terms','privacy','waiver','cookies','notFound'],'Legal and miscellaneous routes were not grouped together');
+assert.deepEqual([...context.groups.flatMap(group=>group.routeIds)].sort(),[...context.routes.map(route=>route.id)].sort(),'Each route must belong to exactly one named review group');
+for(const device of ['desktop','mobile'])assert.equal(new Set(['terms','privacy','waiver','cookies','notFound'].map(id=>frames.get(`${device}:${id}`).parent.id)).size,1,'Legal and miscellaneous screens must share one Figma page');
 for(const route of context.routes){
   for(const state of [{id:'ready'},...route.states]){
     for(const device of ['desktop','mobile']){
@@ -113,7 +129,7 @@ function snapshot(n){return {type:n.type,name:n.name,x:n.x,y:n.y,width:n.width,h
 const directory=join(tmpdir(),'fitops-wireframe-review');mkdirSync(directory,{recursive:true});
 const keys=['desktop:home','mobile:home','desktop:register','mobile:register','desktop:adminEdit@capacity','mobile:adminEdit@capacity','mobile:participants@pace','desktop:memberSchedule@full','mobile:bookings@cancel','mobile:terms','mobile:trainerSession'];
 writeFileSync(join(directory,'screens.json'),JSON.stringify(Object.fromEntries(keys.map(k=>[k,snapshot(frames.get(k))]))));
-console.log(`PASS: ${expected.length} distinct route/fallback screens, ${scenarioCount} scenarios per device, ${result.actionCount} valid same-page actions, no horizontal overflow, denied-state privacy, and existing-page preservation. Native Figma visual QA still required.`);
+console.log(`PASS: ${expected.length} distinct route/fallback screens, ${scenarioCount} scenarios per device across ${result.pageCount} named review pages, ${result.actionCount} valid same-page actions, no horizontal overflow, denied-state privacy, and existing-page preservation. Native Figma visual QA still required.`);
 console.log(`Local preview data: ${join(directory,'screens.json')}`);
 
 // A second run must reuse a discovered kit button while preserving both prior output and user work.
@@ -125,7 +141,7 @@ button.createInstance=()=>{const n=create('INSTANCE');n.layoutMode='NONE';const 
 const second=await context.run();
 assert.notEqual(currentPage,firstPage);assert.equal(firstPage.children.length,firstChildCount);assert.equal(existing.children[0],original);
 assert.equal(second.screenCount,result.screenCount);assert(currentPage.findAllWithCriteria({types:['INSTANCE']}).length>0,'Kit components were not reused');
-assert(currentPage.name.includes('v2 / 01 Home'),'Output version not unique');
+assert(currentPage.name.includes('01 · Public · Home')&&currentPage.name.endsWith('v2'),'Output version not unique');
 console.log('PASS: rerun keeps prior pages, discovers the existing kit, loads its fonts, reuses button instances, and creates a unique output version.');
 
 // Reproduce the user's old combined-page structure and repair it without rebuilding screens.
@@ -142,6 +158,6 @@ assert.equal(retainedNote.parent,legacy,'Original annotation was lost');
 for(const frame of moved)assert.equal(frame.parent.type,'PAGE','Split left nested destination');
 assert.equal(new Set(moved.map(f=>f.parent.id)).size,2);
 const before=root.children.length;
-await assert.rejects(()=>vm.runInContext('splitCurrentFitOpsWireframes()',context),/Select the old/);
+await assert.rejects(()=>vm.runInContext('splitCurrentFitOpsWireframes()',context),/Select an old/);
 assert.equal(root.children.length,before,'Unsafe split mutated an unrelated page');
-console.log('PASS: legacy split moves existing screen objects into route pages, preserves annotations, and rejects unrelated pages before mutation.');
+console.log('PASS: legacy regrouping moves screen objects into named review pages, preserves annotations, and rejects unrelated pages before mutation.');

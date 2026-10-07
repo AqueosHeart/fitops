@@ -1,0 +1,238 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  MEMBER        @map("member")
+  TRAINER       @map("trainer")
+  ADMINISTRATOR @map("administrator")
+
+  @@map("user_role")
+}
+
+enum MemberStatus {
+  ACTIVE   @map("active")
+  INACTIVE @map("inactive")
+
+  @@map("member_status")
+}
+
+enum MembershipPlanCode {
+  BASE          @map("base")
+  COMPLETE      @map("complete")
+  TRAINING_PLUS @map("training_plus")
+
+  @@map("membership_plan_code")
+}
+
+enum SessionStatus {
+  SCHEDULED @map("scheduled")
+  CANCELLED @map("cancelled")
+  COMPLETED @map("completed")
+
+  @@map("session_status")
+}
+
+enum BookingStatus {
+  CONFIRMED @map("confirmed")
+  CANCELLED @map("cancelled")
+
+  @@map("booking_status")
+}
+
+enum WaitlistStatus {
+  WAITING   @map("waiting")
+  PROMOTED  @map("promoted")
+  CANCELLED @map("cancelled")
+  EXPIRED   @map("expired")
+
+  @@map("waitlist_status")
+}
+
+model User {
+  id             String         @id @default(uuid()) @db.Uuid
+  email          String         @unique @db.VarChar(320)
+  name           String         @db.VarChar(120)
+  emailVerified  Boolean        @default(false) @map("email_verified")
+  image          String?        @db.Text
+  role           UserRole       @default(MEMBER)
+  passwordHash   String         @map("password_hash") @db.Text
+  authVersion    Int            @default(1) @map("auth_version")
+  createdAt      DateTime       @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt      DateTime       @updatedAt @map("updated_at") @db.Timestamptz(3)
+  memberProfile  MemberProfile?
+  trainerProfile TrainerProfile?
+  authSessions   AuthSession[]
+  authAccounts  AuthAccount[]
+
+  @@map("users")
+}
+
+model AuthSession {
+  id        String   @id @default(uuid()) @db.Uuid
+  token     String   @unique @db.Text
+  userId    String   @map("user_id") @db.Uuid
+  expiresAt DateTime @map("expires_at") @db.Timestamptz(3)
+  ipAddress String?  @map("ip_address") @db.VarChar(64)
+  userAgent String?  @map("user_agent") @db.Text
+  authVersion Int    @map("auth_version")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([userId], map: "auth_sessions_user_idx")
+  @@map("auth_sessions")
+}
+
+model AuthRateLimit {
+  id          String @id @default(uuid()) @db.Uuid
+  key         String @unique @db.Text
+  count       Int
+  lastRequest BigInt @map("last_request")
+
+  @@map("auth_rate_limits")
+}
+
+model AuthLoginAttempt {
+  id              String   @id @default(uuid()) @db.Uuid
+  key             String   @unique @db.Char(64)
+  failureCount    Int      @default(0) @map("failure_count")
+  windowStartedAt DateTime @default(now()) @map("window_started_at") @db.Timestamptz(3)
+
+  @@map("auth_login_attempts")
+}
+
+model AuthAccount {
+  id                    String    @id @default(uuid()) @db.Uuid
+  accountId             String    @map("account_id") @db.VarChar(320)
+  providerId            String    @map("provider_id") @db.VarChar(120)
+  userId                String    @map("user_id") @db.Uuid
+  accessToken           String?   @map("access_token") @db.Text
+  refreshToken          String?   @map("refresh_token") @db.Text
+  idToken               String?   @map("id_token") @db.Text
+  accessTokenExpiresAt  DateTime? @map("access_token_expires_at") @db.Timestamptz(3)
+  refreshTokenExpiresAt DateTime? @map("refresh_token_expires_at") @db.Timestamptz(3)
+  scope                 String?   @db.Text
+  password              String?   @db.Text
+  createdAt             DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt             DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([providerId, accountId], map: "auth_accounts_provider_account_unique")
+  @@index([userId], map: "auth_accounts_user_idx")
+  @@map("auth_accounts")
+}
+
+model AuthVerification {
+  id         String   @id @default(uuid()) @db.Uuid
+  identifier String   @db.Text
+  value      String   @db.Text
+  expiresAt  DateTime @map("expires_at") @db.Timestamptz(3)
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt  DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  @@index([identifier], map: "auth_verifications_identifier_idx")
+  @@map("auth_verifications")
+}
+
+model MemberProfile {
+  id                       String              @id @default(uuid()) @db.Uuid
+  userId                   String              @unique @map("user_id") @db.Uuid
+  status                   MemberStatus
+  selectedPlanCode         MembershipPlanCode? @map("selected_plan_code")
+  planSelectedAt           DateTime?           @map("plan_selected_at") @db.Timestamptz(3)
+  termsPrivacyAcceptedAt   DateTime?           @map("terms_privacy_accepted_at") @db.Timestamptz(3)
+  waiverSignedAt           DateTime?           @map("waiver_signed_at") @db.Timestamptz(3)
+  createdAt                DateTime            @default(now()) @map("created_at") @db.Timestamptz(3)
+  user                     User                @relation(fields: [userId], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  bookings                 Booking[]
+  waitlistEntries          WaitlistEntry[]
+
+  @@map("member_profiles")
+}
+
+model TrainerProfile {
+  id          String   @id @default(uuid()) @db.Uuid
+  userId      String   @unique @map("user_id") @db.Uuid
+  bio         String   @db.Text
+  specialties String[] @default([]) @db.Text
+  user        User     @relation(fields: [userId], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  classSessions ClassSession[]
+
+  @@map("trainer_profiles")
+}
+
+model Program {
+  id              String  @id @default(uuid()) @db.Uuid
+  slug            String  @unique @db.VarChar(100)
+  name            String  @db.VarChar(120)
+  description     String  @db.Text
+  intensity       String  @db.VarChar(30)
+  durationMinutes Int     @map("duration_minutes")
+  isPublished     Boolean @default(true) @map("is_published")
+  classSessions   ClassSession[]
+
+  @@map("programs")
+}
+
+model ClassSession {
+  id                   String         @id @default(uuid()) @db.Uuid
+  programId            String         @map("program_id") @db.Uuid
+  trainerId            String         @map("trainer_id") @db.Uuid
+  startsAt             DateTime       @map("starts_at") @db.Timestamptz(3)
+  endsAt               DateTime       @map("ends_at") @db.Timestamptz(3)
+  capacity             Int
+  bookingCutoffMinutes Int            @map("booking_cutoff_minutes")
+  status               SessionStatus  @default(SCHEDULED)
+  nextPositionKey      BigInt         @default(1) @map("next_position_key")
+  program              Program        @relation(fields: [programId], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  trainer              TrainerProfile @relation(fields: [trainerId], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  bookings             Booking[]
+  waitlistEntries      WaitlistEntry[]
+
+  @@index([startsAt, status], map: "class_sessions_start_status_idx")
+  @@index([programId, startsAt], map: "class_sessions_program_start_idx")
+  @@index([trainerId, startsAt], map: "class_sessions_trainer_start_idx")
+  @@map("class_sessions")
+}
+
+model Booking {
+  id                    String         @id @default(uuid()) @db.Uuid
+  memberId              String         @map("member_id") @db.Uuid
+  sessionId             String         @map("session_id") @db.Uuid
+  status                BookingStatus  @default(CONFIRMED)
+  bookedAt              DateTime       @map("booked_at") @db.Timestamptz(3)
+  cancelledAt           DateTime?      @map("cancelled_at") @db.Timestamptz(3)
+  sourceWaitlistEntryId String?        @unique @map("source_waitlist_entry_id") @db.Uuid
+  member                MemberProfile  @relation(fields: [memberId], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  session               ClassSession   @relation(fields: [sessionId], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  sourceWaitlistEntry   WaitlistEntry? @relation("PromotionSource", fields: [sourceWaitlistEntryId], references: [id], onDelete: Restrict, onUpdate: NoAction)
+
+  @@index([sessionId, status], map: "bookings_session_status_idx")
+  @@index([memberId, status], map: "bookings_member_status_idx")
+  @@index([memberId, sessionId], map: "bookings_member_session_idx")
+  @@map("bookings")
+}
+
+model WaitlistEntry {
+  id              String         @id @default(uuid()) @db.Uuid
+  memberId        String         @map("member_id") @db.Uuid
+  sessionId       String         @map("session_id") @db.Uuid
+  status          WaitlistStatus @default(WAITING)
+  positionKey     BigInt         @map("position_key")
+  joinedAt        DateTime       @map("joined_at") @db.Timestamptz(3)
+  resolvedAt      DateTime?      @map("resolved_at") @db.Timestamptz(3)
+  member          MemberProfile  @relation(fields: [memberId], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  session         ClassSession   @relation(fields: [sessionId], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  promotedBooking Booking?       @relation("PromotionSource")
+
+  @@index([sessionId, status, positionKey], map: "waitlist_session_order_idx")
+  @@unique([sessionId, positionKey], map: "waitlist_session_position_unique")
+  @@index([memberId, sessionId], map: "waitlist_member_session_idx")
+  @@map("waitlist_entries")
+}

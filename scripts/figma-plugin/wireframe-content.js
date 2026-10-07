@@ -50,7 +50,7 @@ const WF_ADMIN_STATES = (id) => [
   WF_STATE('validation','Check the highlighted fields','Enter a valid session time, positive capacity, and a trainer.',{tone:'danger',actionTargets:{'Create session':id+'@validation','Save changes':id+'@validation'},fieldErrors:{'End time':'End time must be after start time.','Capacity':'Use a positive whole number.'},actions:[WF_ACTION('Review corrected example',id)]}),
   WF_STATE('overlap','Scheduling conflict','Marcus already leads a session at this time. Choose another trainer or time.',{tone:'danger',actionTargets:{'Create session':id+'@overlap','Save changes':id+'@overlap'},fieldErrors:{Trainer:'Trainer is unavailable at this time.'},actions:[WF_ACTION('Review another time',id)]}),
   WF_STATE('error','Changes were not saved','Your entries are preserved. Try again. Reference: DEMO-205.',{tone:'danger',actions:[WF_ACTION('Retry save',id+'@saved','primary'),WF_ACTION('Keep editing',id)]}),
-  WF_STATE('saved','Session saved','The session list now reflects the saved fictional schedule.',{tone:'success',mode:'success',actions:[WF_ACTION('Return to sessions','adminSessions','primary')]})
+  WF_STATE('saved','Session saved',id==='adminEdit'?'The session list reflects the update. A capacity increase promotes eligible waiting members in FIFO order before the result is shown.':'The session list now reflects the saved fictional schedule.',{tone:'success',mode:'success',actions:[WF_ACTION('Return to sessions','adminSessions','primary')]})
 ];
 
 const WIREFRAME_ROUTES = [
@@ -208,7 +208,7 @@ const WIREFRAME_ROUTES = [
   {id:'adminEdit',route:'/admin/sessions/:id/edit',label:'Edit session',shell:'admin',title:'Edit Lower Body Tempo',description:'Review existing reservations before changing the session.',sections:[
     WF_TEXT('Current occupancy','12 confirmed members · Capacity 16 · No waiting entries. Capacity cannot be reduced below 12.'),
     WF_FORM('Session details',WF_ADMIN_FIELDS,[WF_ACTION('Save changes','adminEdit@saved','primary'),WF_ACTION('Discard changes','adminSessions')]),
-    WF_TEXT('Scheduling safeguards','Trainer and participant conflicts must be resolved before a schedule change is saved.',[WF_ACTION('View participants','participants')])
+    WF_TEXT('Scheduling safeguards','Trainer and participant conflicts must be resolved before a schedule change is saved. Increasing capacity may promote eligible waiting members in the same transaction.',[WF_ACTION('View participants','participants')])
   ],states:[...WF_ADMIN_STATES('adminEdit'),WF_STATE('capacity','Capacity conflicts with reservations','There are 12 confirmed members. A capacity of 10 cannot be saved.',{tone:'danger',actionTargets:{'Save changes':'adminEdit@capacity'},fieldErrors:{Capacity:'Minimum capacity is 12 for this session.'},fieldValues:{Capacity:'10'},actions:[WF_ACTION('Restore valid capacity','adminEdit','primary')]}),WF_STATE('memberConflict','A member has an overlapping reservation','Changing the time would conflict with an existing participant booking.',{tone:'danger',actionTargets:{'Save changes':'adminEdit@memberConflict'},fieldErrors:{'Start time':'Choose a time without participant conflicts.'},actions:[WF_ACTION('Review original time','adminEdit')]})]},
   {id:'participants',route:'/admin/sessions/:id/participants',label:'Participants',shell:'admin',title:'Lower Body Tempo participants',description:'Fictional confirmed members and ordered waiting entries.',sections:[
     WF_TEXT('Session summary','Tuesday 7:00–7:45 AM · Marcus Vance\n12 confirmed / 16 capacity · 0 waiting'),
@@ -217,6 +217,36 @@ const WIREFRAME_ROUTES = [
   ],states:[...WF_COLLECTION_STATES('participants','participants'),WF_STATE('pace','Pace Intervals participants','Tuesday 6:30 PM · Lena Ortiz · 12 confirmed / 12 capacity.',{sections:[{type:'table',title:'Confirmed members',columns:['Member','Status'],rows:Array.from({length:12},(_,i)=>[`Demo Member ${String(i+1).padStart(2,'0')}`,'Confirmed'])},{type:'table',title:'Ordered waitlist',columns:['Position','Member','Joined'],rows:[['1','Demo Member 13','September 21 · 10:00'],['2','Alex Morgan','September 21 · 10:05']]},WF_TEXT('Session actions','Waitlist order follows joining order.',[WF_ACTION('Back to sessions','adminSessions','primary')])]})]},
   {id:'notFound',route:'/404',label:'Not Found',shell:'public',title:'We could not find that page',description:'The address may be incorrect or the page may no longer be available.',sections:[WF_TEXT('Find your way back','Browse the public site or open your account.',[WF_ACTION('Go Home','home','primary'),WF_ACTION('View schedule','schedule'),WF_ACTION('My Account','login')])],states:[]}
 ];
+
+// Figma pages are review groups. Routes and scenario frames remain distinct top-level frames.
+const WF_PAGE_GROUPS = [
+  {id:'home',label:'Public · Home',routeIds:['home']},
+  {id:'programs',label:'Public · Programs',routeIds:['programs']},
+  {id:'schedule',label:'Public · Schedule',routeIds:['schedule']},
+  {id:'session',label:'Public · Session detail',routeIds:['session']},
+  {id:'trainers',label:'Public · Trainers',routeIds:['trainers']},
+  {id:'clubInfo',label:'Public · Club information',routeIds:['pricing','about']},
+  {id:'legalMisc',label:'Legal & Misc · Terms, Privacy, Waiver, Cookies, 404',routeIds:['terms','privacy','waiver','cookies','notFound']},
+  {id:'join',label:'Enrollment · Choose plan',routeIds:['join']},
+  {id:'register',label:'Enrollment · Registration',routeIds:['register']},
+  {id:'accountAccess',label:'Account · Login & recovery',routeIds:['login','recovery']},
+  {id:'dashboard',label:'Member · Dashboard',routeIds:['dashboard']},
+  {id:'memberSchedule',label:'Member · Schedule & booking',routeIds:['memberSchedule']},
+  {id:'bookings',label:'Member · My bookings',routeIds:['bookings']},
+  {id:'profile',label:'Member · Profile & security',routeIds:['profile']},
+  {id:'trainer',label:'Trainer · Assigned sessions',routeIds:['trainer','trainerSession']},
+  {id:'admin',label:'Admin · Operations overview',routeIds:['admin']},
+  {id:'adminSessions',label:'Admin · Session manager',routeIds:['adminSessions']},
+  {id:'adminCreate',label:'Admin · Create session',routeIds:['adminCreate']},
+  {id:'adminEdit',label:'Admin · Edit session',routeIds:['adminEdit']},
+  {id:'participants',label:'Admin · Participants',routeIds:['participants']}
+];
+
+function wfGroupForRoute(route) {
+  const group=WF_PAGE_GROUPS.find(entry=>entry.routeIds.includes(route.id));
+  if(!group)throw new Error(`No Figma page group for ${route.id}`);
+  return group;
+}
 
 // Session variants share the same route; the selected session survives Join/Login.
 const wfResetSession = WF_TEXT('Reset Mobility','Tuesday, September 22 · 8:00–8:30 PM\nReset · Nora Silva · Mobility space\n6 confirmed / 14 capacity · 8 spots available\nBooking and cancellation close at 7:30 PM.');

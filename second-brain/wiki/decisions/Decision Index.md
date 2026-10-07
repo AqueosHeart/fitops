@@ -1,7 +1,7 @@
 ---
 type: decision-index
 project: FitOps
-updated: 2026-09-21
+updated: 2026-10-07
 ---
 
 # FitOps Decision Index
@@ -14,5 +14,12 @@ updated: 2026-09-21
 - [ADR 006 Add a secondary My Account utility to the public header](../../../docs/adr/006-public-my-account-utility.md)
 - [ADR 007 Keep seat allocation and waitlist promotion in one consistency boundary](../../../docs/adr/007-booking-consistency-boundary.md)
 - [ADR 008 Give Booking ownership of the reservable session](../../../docs/adr/008-booking-owns-reservable-session.md)
+- [ADR 009 Map Scheduling and Booking views to one physical session row](../../../docs/adr/009-one-physical-session-row.md)
+- [ADR 010 Promote waiting members when capacity increases](../../../docs/adr/010-promote-waitlist-on-capacity-increase.md)
+- [ADR 011 Recheck the cutoff during cancellation promotion](../../../docs/adr/011-recheck-cutoff-during-cancellation-promotion.md)
+- [ADR 012 Establish the identity security baseline](../../../docs/adr/012-identity-security-baseline.md)
+- [ADR 013 Use Penpot for FitOps visual design review](../../../docs/adr/013-use-penpot-for-visual-design.md)
+- [ADR 014 Use Better Auth for credentials and sessions](../../../docs/adr/014-use-better-auth-for-credentials-and-sessions.md)
+- [ADR 015 Replace the vulnerable Next ESLint config with direct lint plugins](../../../docs/adr/015-replace-vulnerable-next-eslint-config.md)
 
 New material architecture decisions receive a new ADR. Accepted historical decisions are not silently rewritten; a later ADR may supersede them.

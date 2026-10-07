@@ -2,7 +2,7 @@
 type: index
 project: FitOps
 status: active
-updated: 2026-09-21
+updated: 2026-10-07
 ---
 
 # FitOps Knowledge Index
@@ -12,7 +12,7 @@ updated: 2026-09-21
 - [[SOUL|Project identity]]
 - [[CRITICAL_FACTS|Critical facts]]
 - [[wiki/projects/FitOps|FitOps project memory]]
-- [[wiki/tasks/Sprint 0|Current sprint]]
+- [[wiki/tasks/Sprint 4|Current sprint]]
 - [[boards/FitOps Delivery|Delivery board mirror]]
 
 ## Product and engineering
@@ -22,6 +22,7 @@ updated: 2026-09-21
 - [UX plan](../docs/ux-plan.md)
 - [Complete wireframe coverage](../docs/design/wireframe-coverage.md)
 - [[wiki/design/FitOps User Flows|FitOps user-flow review hub]]
+- [[wiki/design/Issue 7 Domain Boundaries and Use Cases|Issue #7 domain boundaries, use cases, and race design]]
 - [[wiki/design/FitOps User Flows.drawio|Editable draw.io user-flow file]]
 - [Practice Athletic Club brand identity guidelines](../docs/brand/brand-identity.md)
 - [Practice Athletic Club brand foundation](../docs/brand/brand-foundation.md)
@@ -31,8 +32,14 @@ updated: 2026-09-21
 - [Practice Athletic Club color and type system](../docs/brand/color-and-type-system.md)
 - [Architecture](../docs/architecture.md)
 - [Data model](../docs/data-model.md)
+- [Issue #8 physical schema and migration plan](../docs/database/physical-schema-plan.md)
+- [Issue #8 physical schema review](../docs/database/physical-schema-review.md)
+- [Issue #8 second schema review](../docs/database/physical-schema-second-review.md)
+- [Issue #8 independent third schema review](../docs/database/physical-schema-third-review.md)
+- [Issue #9 threat model and server-side access control](../docs/security/threat-model-and-access-control.md)
 - [REST API](../docs/api.md)
 - [SDLC and sprint plan](../docs/delivery-plan.md)
+- [Sprint 0 exit review](../docs/reviews/sprint-0-exit-review.md)
 - [Tooling and workflow](../docs/tooling-and-workflow.md)
 
 ## Concepts
@@ -69,3 +76,34 @@ updated: 2026-09-21
 - [[raw/06-flash_notes/2026-09-14-conversation-record|Planning conversation record]]
 
 - [[wiki/logs/2026-09-21-wireframe-page-split-fix|Wireframe page split and native reaction fix]]
+
+- [[wiki/logs/2026-09-22-wireframe-review-groups|Named wireframe review groups]]
+
+- [[wiki/logs/2026-09-22-wireframe-sidebar-names|Sidebar-readable wireframe page names]]
+
+- [[wiki/logs/2026-09-22-fitops-component-page-manager|FitOps component page manager]]
+- [[wiki/logs/2026-09-22-penpot-exploratory-design-tokens|Penpot exploratory design tokens]]
+- [[wiki/logs/2026-09-22-penpot-design-tokens-page|Penpot Design Tokens page and layout proposals]]
+- [[wiki/logs/2026-09-22-penpot-lucide-icon-library|Penpot Lucide icon library page]]
+- [[wiki/logs/2026-09-22-penpot-wireframe-mirror|Penpot wireframe mirror from plugin source]]
+- [[wiki/logs/2026-09-22-issue-6-ready-for-sprint-1|Issue #6 Ready for Sprint 1 status sync]]
+- [[wiki/logs/2026-09-23-penpot-wireframe-consolidation|Penpot wireframe consolidation and draw.io coverage audit]]
+- [[wiki/logs/2026-09-23-issue-7-use-case-boundary-draft|Issue #7 use case and boundary draft]]
+- [[wiki/logs/2026-09-23-issue-8-schema-design-start|Issue #8 schema design start]]
+- [[wiki/logs/2026-09-23-issue-8-schema-review|Issue #8 schema review]]
+- [[wiki/logs/2026-09-24-issue-8-revision-second-review|Issue #8 revision and second review]]
+- [[wiki/logs/2026-09-24-issue-8-independent-third-review|Issue #8 independent third review]]
+- [[wiki/logs/2026-09-25-issue-9-security-baseline|Issue #9 security baseline]]
+- [[wiki/logs/2026-09-25-penpot-replaces-figma|Penpot replaces Figma as the visual-design tool]]
+- [[wiki/logs/2026-09-25-sprint-0-exit-and-project-setup|Sprint 0 exit and GitHub Project setup]]
+- [[wiki/logs/2026-09-25-issue-8-implementation-foundation|Issue #8 implementation foundation]]
+- [[wiki/logs/2026-09-25-issue-8-initial-schema-migration|Issue #8 initial schema migration]]
+- [[wiki/logs/2026-09-25-issue-8-fictional-seed|Issue #8 fictional seed]]
+- [[wiki/logs/2026-09-25-booking-decision-services|Issue #8 booking decision services]]
+- [[wiki/logs/2026-09-28-issue-8-postgres-race-repair-loop|Issue #8 PostgreSQL race repair loop]]
+- [[wiki/logs/2026-09-28-better-auth-issue-10-baseline|Better Auth Issue #10 baseline]]
+- [[wiki/logs/2026-09-28-issue-10-follow-up-test-report|Issue #10 authentication/API follow-up test report]]
+- [[wiki/logs/2026-10-06-issue-10-api-closure-continuation|Issue #10 API closure continuation and expanded contract verification]]
+- [[wiki/logs/2026-10-07-issue-10-final-local-acceptance-review|Issue #10 final local acceptance review]]
+- [[wiki/logs/2026-10-07-issue-10-braces-audit-follow-up|Issue #10 `braces` audit follow-up]]
+- [[wiki/logs/2026-10-07-issue-10-eslint-advisory-resolution|Issue #10 lint advisory resolution]]

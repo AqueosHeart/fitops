@@ -24,13 +24,13 @@ flowchart TD
     CreateValid -- Yes --> CreateSave[Submit create request]
     CreateSave --> Created["Session created<br/>Refresh session list"]:::success
 
-    Action -- Edit session --> EditForm[Edit allowed scheduling fields]
-    EditForm --> ValidateEdit["Validate fields, trainer-time overlap, and capacity not below confirmed bookings"]
+    Action -- Edit session --> EditForm["Edit allowed fields; capacity increase may promote eligible waitlist members"]
+    EditForm --> ValidateEdit["Validate fields, trainer overlap, capacity floor, cutoff, and FIFO promotion on increase"]
     ValidateEdit --> EditValid{Valid?}
     EditValid -- No --> EditErrors["Show field-level and conflict errors<br/>Preserve entered values"]:::error
     EditErrors --> EditForm
     EditValid -- Yes --> EditSave[Submit update request]
-    EditSave --> Updated["Session updated<br/>Refetch affected public and protected views"]:::success
+    EditSave --> Updated["Session updated<br/>Capacity increase promotes first eligible waiters in the same transaction<br/>Refetch affected public and protected views"]:::success
 
     Action -- View participants --> Participants[Show fictional confirmed members and ordered waitlist entries]
     Participants --> Sessions

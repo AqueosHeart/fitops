@@ -46,3 +46,7 @@ date: 2026-09-23
 ### Final documentation consistency check
 
 - Rechecked the final artifacts with the architecture-patterns skill. Corrected stale references that described ADR 007 as the ownership boundary: ADR 008 now carries that role, while ADR 007 retains transaction safeguards. GitHub Issue #7 remains open and has only its original `## Summary` body, so the repository documents are the available local completion criteria.
+
+## GitHub closure
+
+- Published the completed documentation design in `c8d1262` and closed [GitHub Issue #7](https://github.com/AqueosHeart/fitops/issues/7). The closure covers the documented design scope; executable schema, migrations, and PostgreSQL concurrency tests remain downstream evidence.

@@ -6,6 +6,52 @@ updated: 2026-09-21
 
 # FitOps Activity Log
 
+## 2026-10-07 - Issue #10 published for review
+
+- Committed the verified Issue #10 implementation and continuity updates as `761f91f` on `codex/fitops-planning-checkpoint` and pushed the authorized branch.
+- Opened [PR #15](https://github.com/AqueosHeart/fitops/pull/15) against `main` with `Closes #10`; GitHub reports CLEAN. `gh pr checks` reports no checks because the repository has no configured Actions workflow. Issue #10 is still Open pending maintainer review/merge.
+- Session: [[wiki/logs/2026-10-07-issue-10-eslint-advisory-resolution]].
+
+## 2026-10-07 - Issue #10 zero-vulnerability lint-toolchain resolution
+
+- After owner authorization, removed `eslint-config-next` and its vulnerable Next plugin/fast-glob/micromatch/braces chain. Added pinned direct ESLint core, TypeScript, React, React Hooks, JSX accessibility, and import tooling; retained the existing `npm run lint` gate.
+- Added ADR 015. Explicit tradeoff: Next-specific `@next/next/*` lint rules are unavailable until a compatible audited plugin release can be restored. Kept `no-control-regex` enabled globally and suppressed it only at the security return-path validator's intentional ASCII-control filter.
+- Verified full dependency audit 0 findings, no installed `braces` or `eslint-config-next`, lint passes, 24 integration tests pass, TypeScript passes, Prisma validate/generate pass, production build generates 14 static pages, and `git diff --check` passes. Next: publish authorized branch and open PR; CI/review pending.
+- Session: [[wiki/logs/2026-10-07-issue-10-eslint-advisory-resolution]].
+
+## 2026-10-07 - Issue #10 `braces` audit follow-up
+
+- Verified `npm ls` and `npm explain` dependency path: `eslint-config-next@16.3.6 -> @next/eslint-plugin-next@16.3.6 -> fast-glob@3.3.1 -> micromatch@4.0.8 -> braces@3.0.3`; npm marks it dev-only. `npm audit --omit=dev --audit-level=high` reports 0 vulnerabilities.
+- Confirmed there is no patched published `braces` release. The proposed upstream depth-limit fix PR is closed and has a reported compatibility regression. Rejected an unsafe override/fork and npm's forced Next ESLint v14 downgrade; preserve the Next 16 lint rules and track for an upstream fix.
+- Fresh verification rerun passes all 24 focused PostgreSQL-backed integration tests, lint, TypeScript, Prisma validation/generation, and production build with all 14 static pages. Registry check: official `eslint-config-next@16.4.0` still reaches `fast-glob@3.3.1`; `braces` remains 3.0.3.
+- Session: [[wiki/logs/2026-10-07-issue-10-braces-audit-follow-up]].
+
+## 2026-10-06 - Issue #10 API closure continuation and expanded matrix
+
+- Added database-backed API contract assertions for booking/waitlist inactive membership and waiver rejection, full/cutoff behavior, duplicate waitlist, repeated waitlist removal/cancellation and promoted-entry handling, plus before/after no-change checks for waiver CSRF and invalid/unknown-field administrator capacity updates.
+- Expanded route proof for booking/waitlist seat, duplicate, overlap, cutoff and invariant outcomes; no-state-change on rejected unsafe writes; oversized registration; trainer isolation; administrator invalid references, capacity floor, FIFO promotion, cutoff, trainer overlap, and the documented PATCH scheduling-edit/history rules; plus limiter email/IP concurrency, expired-window, and successful-login reset.
+- Fixed the admin session-create error mapping discovered by the trainer-overlap integration test: PostgreSQL exclusion violations now return `409 TRAINER_OVERLAP`.
+- Updated `PATCH /api/v1/admin/sessions/{sessionId}` to support documented program/trainer/time/cutoff/capacity edits before participation history, while enforcing capacity-only changes after any booking or waitlist history. Status changes remain out of scope. All edits are serialized on the session row; trainer reassignment/time edits lock and check the trainer assignment, backed by the exclusion constraint.
+- `npm run test:auth-api` (5/5), `npm run test:api-contract` (7/7), `npm run test:constraints` (2/2), `npm run test:race` (10/10), `npm run lint`, `npx tsc --noEmit`, and `git diff --check` pass with local PostgreSQL reachable. Issue #10 stays In Progress because broader malformed-body coverage and final acceptance review remain.
+- Updated the closure report, Sprint 4/project/board notes, and this session record with the exact evidence and remaining boundary.
+- Session: [[wiki/logs/2026-10-06-issue-10-api-closure-continuation]].
+
+## 2026-09-28 — Better Auth implementation baseline for Issue #10
+
+- Replaced the unused Auth.js dependency with pinned Better Auth 1.7.6 and its Prisma adapter after the project owner selected Better Auth for login.
+- Added ADR 014, which supersedes only ADR 012's Auth.js/JWT implementation choice while retaining Argon2id, eight-hour sessions, same-origin checks, `auth_version`, and fictional-data constraints.
+- Added reviewed Prisma migrations for Better Auth users/sessions/accounts/verifications, session `auth_version`, credential-rate-limit records, and an explicit restoration migration for Issue #8's composite promotion-provenance constraint after Prisma could not represent it.
+- Added the Better Auth handler with non-MVP account-management routes blocked, custom registration/login entry points, a current-user resolver, same-origin protection, return-path validation, and membership/waiver handlers. Route-level integration tests and the remaining Issue #10 endpoint surface are still incomplete; Issue #10 remains In Progress.
+- Verification rerun: database seed/verification, booking and waitlist verification, rejected-write checks, ten synchronized PostgreSQL races, Better Auth registration/session/origin tests, lint, TypeScript, Prisma validation, and a production build with an ephemeral test secret passed. The ordinary build correctly fails without `BETTER_AUTH_SECRET`, so local `.env` must be configured before starting the app. `npm audit --omit=dev --audit-level=high` reports four Prisma-transitive advisories; its only automated fix force-downgrades Prisma, so it was not applied.
+- Continued Issue #10 with public plan/program/session reads, member booking reads and cancellation, waitlist removal, trainer/admin reads, administrator session create/capacity edits, and participant reads. Review found resource-ID cancellation and promotion-race defects; cancellation now targets the requested booking and waitlist removal uses the established session/member lock order. The full per-endpoint contract-test matrix remains incomplete, so Issue #10 stays In Progress.
+- Follow-up test report now has nine passing authentication/API integration tests, lint, TypeScript, and diff validation. The new route-contract suite reaches all 17 current `/api/v1` handlers with real sessions and fictional records; it proves selected validation, authorization, IDOR, CSRF, domain-error, and success cases. Issue #10 remains In Progress because every documented domain edge and unsafe-write no-state-change outcome still needs proof.
+
+## 2026-09-22 - Penpot Lucide icon library
+
+- Added `Icons — Lucide` to the connected Penpot file with 20 official icon SVGs grouped for navigation/account, booking/schedule, status/feedback, and common controls. The board documents a 24 px / 2 px default and accessible labeling guidance.
+- Lucide is the selected UI icon family; the page and usage rules remain reviewable design guidance. This does not approve the FitOps brand or constitute application implementation.
+- Session: [[wiki/logs/2026-09-22-penpot-lucide-icon-library]].
+
 ## 2026-09-21
 
 - Simplified Page 01 after visual review showed connector crossings and unreadable labels. Removed decorative route-inventory and long cross-workspace arrows, added clear group headings and route-copy explanations, and retained only high-signal transitions. Updated the Mermaid sitemap and Obsidian review hub to the same sparse-map convention.
@@ -127,3 +173,195 @@ updated: 2026-09-21
 
 - User-reported Figma failure reproduced in stricter tests. Generator now produces 27 route pages with top-level frames, no self/cross-page NAVIGATE, and a page chooser. Added a migration action for existing combined output. Native rerun remains pending.
 - [[wiki/logs/2026-09-21-wireframe-page-split-fix]].
+
+
+## 2026-09-22 - Named wireframe review groups
+
+- Consolidated the 27 route pages into 20 named review pages while keeping every route/state screen separate and top-level. Legal & Misc contains Terms, Privacy, Waiver, Cookie preferences, and 404; related Club information, Account access, and Trainer routes are grouped by workflow.
+- Rebuilt the plugin and verified grouping, prototype constraints, static UX synchronization, and layout checks. Native Figma visual QA remains pending.
+- Session: [[wiki/logs/2026-09-22-wireframe-review-groups]].
+
+
+## 2026-09-22 - Sidebar-readable wireframe page names
+
+- Reordered generated Figma page names so the sidebar begins with the numbered review group, such as `01 · Public · Home`, followed by the version marker. Existing prefix-first versions remain supported by regrouping.
+- Session: [[wiki/logs/2026-09-22-wireframe-sidebar-names]].
+
+
+## 2026-09-22 - FitOps component page manager
+
+- Added `Manage FitOps Components` to the local Practice Athletic Club Master Toolkit. It scans eligible kit pages and creates or refreshes a native Button component set with Style, Size, and Brand variants plus five neutral low-fidelity components on a separate `FitOps Components` page, preserving the Community kit and unrelated user layers.
+- Rebuilt the plugin and passed structural component rerun coverage, wireframe generator checks, UX synchronization, JavaScript syntax checks, and whitespace validation. Native Figma Desktop execution and visual QA remain pending.
+- Session: [[wiki/logs/2026-09-22-fitops-component-page-manager]].
+
+
+## 2026-09-22 - Penpot exploratory design tokens
+
+- Added 25 tokens to a new inactive `Practice Exploratory` set in the connected Penpot `FitOps Design System` file: 11 colors, 9 font sizes, and 5 Mona Sans weights. Kept the existing `Global` set and `FitOps` theme unchanged.
+- Values follow the existing exploratory brand references; no unsupported spacing, radii, shadows, or other values were added. The token set does not approve the brand.
+- Session: [[wiki/logs/2026-09-22-penpot-exploratory-design-tokens]].
+
+
+## 2026-09-22 - Penpot Design Tokens page and layout proposals
+
+- Created and visually reviewed a dedicated `Design Tokens` page in the connected Penpot file. It documents existing color/type references and proposes a 4 px spacing scale plus responsive grid examples at 1440, 768, and 390 px.
+- Added the 8 spacing values to a separate inactive `FitOps Layout Proposal` set. Current catalog read shows `Practice Exploratory` active, `Global` inactive, and the `FitOps` theme inactive with no sets; activation does not constitute brand approval.
+- Line-height/tracking and exact layout breakpoints remain unresolved; the page labels spacing and grid values as proposals.
+- Session: [[wiki/logs/2026-09-22-penpot-design-tokens-page]].
+
+
+## 2026-09-22 - Penpot wireframe mirror from plugin source
+
+- Created 20 numbered review pages in the connected Penpot file from the local Figma plugin's existing route/state definitions: 163 scenarios and 326 desktop/mobile SVG-vector screen groups. Kept the low-fidelity structure and fictional data; no icons or prototype reactions were added.
+- Exported and visually reviewed the Home desktop and Admin Participants boards; both have readable light canvases and clear screen content. Page and board counts match the plugin's definitions.
+- This Penpot mirror does not claim native Figma execution or visual approval; the native Figma Issue #6 gate remains pending.
+- Session: [[wiki/logs/2026-09-22-penpot-wireframe-mirror]].
+
+
+## 2026-09-22 - Issue #6 Ready for Sprint 1 status sync
+
+- Confirmed Issue #6 is listed under Ready for Sprint 1 in the local delivery system and added the existing `sprint:sprint-1` label to GitHub Issue #6. GitHub verification shows the issue remains open and has no attached Project item.
+- Native Figma execution and visual approval remain outstanding, so the issue was not marked complete. Project board access is unavailable to the current GitHub connection because it lacks `read:project` scope.
+- Session: [[wiki/logs/2026-09-22-issue-6-ready-for-sprint-1]].
+## 2026-09-23 - Penpot wireframe consolidation and draw.io coverage audit
+
+- Removed 12 redundant older Penpot import pages after verifying their screen-name inventories match the newer QA pages. Renamed the retained 20 groups consistently as `— Wireframes`; Design Tokens, Icons, and kit pages were preserved.
+- Matched the live 326 desktop/mobile boards to all 26 draw.io page routes, the separate 404 fallback, and 163 scenarios per device with no missing, extra, or duplicate names. Corrected 76 short member/trainer/admin screen backgrounds and exported representative member booking and schedule boards for visual review.
+- Static Penpot mirrors still lack prototype interactions and do not complete native Figma visual approval for Issue #6.
+- Session: [[wiki/logs/2026-09-23-penpot-wireframe-consolidation]].
+
+## 2026-09-23 - Issue #7 use case and boundary draft
+
+- Adapted the supplied use case template into an Obsidian specification and reviewed candidate boundaries with four DDD skill checklists.
+- Identified unresolved consistency and eligibility questions; Issue #7 remains open and implementation readiness is not claimed.
+- Session: [[wiki/logs/2026-09-23-issue-7-use-case-boundary-draft]].
+
+### Same-day expansion
+
+- Expanded the draft to ten use cases and applied eight DDD skill stages to existing requirements and flow evidence. Corrected the cancellation review against the current flow and recorded waiver, trainer API, and session-edit gaps.
+
+### Exit-evidence upgrade
+
+- Aligned ten use cases with the editable UX source and updated requirements, REST API, conceptual data model, and DBML. Added ADR 007, twelve-rule traceability, and a transaction protocol with seven concurrent test scenarios.
+- Design review is documented; executable schema and PostgreSQL concurrency tests remain unimplemented. Issue #7 was not closed.
+
+### Same-day DDD skill audit
+
+- Checked the Issue #7 artifacts against upstream DDD skill validation lists. Withdrew subjective review scores and marked context/aggregate backtracking and incomplete modeling artifacts. Corrected member-profile authorization and documented the existing in-app waiver action in the API. Issue #7 remains open.
+
+### Same-day DDD closure revision
+
+- Added ADR 008 to give Booking BookableSession capacity/cutoff/participation ownership and retain Scheduling's calendar responsibility. Expanded context, aggregate, event, port, and contract-map artifacts; the revised design passes the DDD checklists with a documented local multi-aggregate exception. Implementation evidence remains pending.
+
+- Clarified that MemberReservationCalendar uses the owned member-profile row as its physical lock anchor until the data-schema work selects a representation; the session-first lock protocol remains unchanged.
+
+- Final documentation check corrected stale ADR 007-only references: ADR 008 is the ownership boundary and ADR 007 keeps transaction safeguards. GitHub Issue #7 remains open with no stated acceptance criteria beyond its title/summary.
+
+### GitHub closure
+
+- Published the reviewed design artifacts in `c8d1262` and closed [GitHub Issue #7](https://github.com/AqueosHeart/fitops/issues/7). The issue is closed as documentation/design scope; executable schema, migrations, and PostgreSQL concurrency evidence remain assigned to downstream work.
+
+## 2026-09-23 Issue #8 schema design start
+
+- Drafted `docs/database/physical-schema-plan.md` from Issue #7, ADR 008, the conceptual DBML, requirements, and API. Proposed separate one-to-one Scheduling/Booking session tables with a shared public ID, database constraints, session-local waitlist key allocation, migration review, and synchronized PostgreSQL race tests.
+- Issue #8 remains open. No Prisma schema, SQL migration, PostgreSQL test, or application behavior was created. Authentication persistence and trainer-specialty representation remain design checks before implementation.
+
+### Same-day deep review
+
+- Audited the proposal against Issue #7, ADRs 007–008, requirements, API, conceptual model, and current PostgreSQL/Prisma/Auth.js documentation. Recorded four high and four medium findings in `docs/database/physical-schema-review.md`.
+- The design is not ready to migrate: session snapshots can drift, authentication storage is undefined, cross-table participation transitions need a complete contract, and native types/FK actions are missing. No executable schema or PostgreSQL proof exists; Issue #8 stays open.
+
+## 2026-09-24 Issue #8 revision and second review
+
+- Revised the physical plan, conceptual DBML, architecture, requirements, API, and related UX copy. ADR 009 selects one physical `class_sessions` row mapped to separate Scheduling and Booking domain views; the plan now names auth storage, PostgreSQL types, constraints, foreign-key actions, indexes, lock order, and migration/test obligations.
+- The second review records design resolutions for the prior four high and four medium findings. It found a further capacity-increase fairness gap; ADR 010 requires FIFO promotion of eligible waiters inside the administrator edit transaction before cutoff, with rollback on failure and a post-cutoff restriction.
+- Static DBML parsing, draw.io XML parsing, Mermaid rendering, wireframe generation, and UX synchronization checks passed. No Prisma schema, migration, PostgreSQL execution, or native visual approval exists. Issue #8 remains open under the Sprint 0 and Sprint 1 design gates and Issue #9 security decisions.
+
+### Independent third schema review
+
+- A subagent reviewed the revised plan against requirements, API, Issue #7 use cases, ADRs, and DBML. It found a cancellation promotion cutoff race, stale Issue #7 edit/promotion protocol, and an undefined free-seat-plus-waitlist error. ADR 011 now requires a fresh cutoff check after each candidate member lock, with full rollback if expired.
+- Aligned the Issue #7 use cases and pseudocode with historical-row edit freeze, capacity-increase FIFO promotion, and the inconsistent free-seat-plus-waitlist response. Both Book and Join now specify generic `500 PARTICIPATION_INVARIANT_BROKEN`, server alert, and explicit repair. The [third review](../docs/database/physical-schema-third-review.md) records evidence and outstanding database proof. Issue #8 remains open.
+
+## 2026-09-25 - Issue #9 identity security baseline
+
+- Added ADR 012 and a threat model for the fictional MVP. It records Argon2id storage, 15–128 character password handling, generic rate-limited credential failures, an eight-hour HTTP-only JWT session, current-record authorization with `auth_version` invalidation, origin-based CSRF checks, return-path allowlisting, and redacted logging.
+- The recovery route remains informational because no email or reset-token flow is approved. The threat model defines server-side authorization and test obligations for member ownership, trainer scope, administrator operations, and concurrency safety.
+- This supplies Issue #8's required identity-security design choices. It does not create Prisma models, migrations, authentication code, PostgreSQL tests, or clear the outstanding Sprint 0/native Figma gates.
+- Session: [[wiki/logs/2026-09-25-issue-9-security-baseline]].
+
+## 2026-09-25 - Penpot replaces Figma as the visual-design tool
+
+- Added ADR 013 to make the connected Penpot `FitOps Design System` file the active FitOps visual-design tool. draw.io remains the editable UX-flow source and Mermaid plus Penpot remain derived artifacts.
+- Replaced the obsolete native Figma requirement in Issue #6 documentation with the canonical Penpot set: 20 numbered wireframe pages, 326 desktop/mobile boards, 163 scenarios per device, and coverage of 26 routes plus the 404 fallback. GitHub reports Issue #6 is closed.
+- Retained `scripts/figma-plugin/` as historical import/source tooling. It is no longer a required run, approval gate, or delivery target.
+- Session: [[wiki/logs/2026-09-25-penpot-replaces-figma]].
+
+## 2026-09-25 - Sprint 0 exit and GitHub Project setup
+
+- Linked `AqueosHeart/fitops` to the `FitOps Delivery` GitHub Project. Added Sprint, SDLC Phase, Work Type, and Risk fields; standardized Status and Priority options; created Current Sprint, Product Backlog, SDLC Roadmap, and Bugs and Debt views. GitHub reserves `Type`, so the project uses `Work Type`.
+- Added Issues #8 and #9 to the delivery plan with values. Issue #8 is In Progress for Sprint 3 / SDLC Phase 4, high risk, P1, estimate 5. Issue #9 is Done and closed for Sprint 1 / SDLC Phase 3, high risk, P1, estimate 3.
+- The Sprint 0 exit review passed from documented product, UX, architecture, data, security, Penpot, and GitHub Project evidence. No executable application or database proof exists yet.
+- Session: [[wiki/logs/2026-09-25-sprint-0-exit-and-project-setup]].
+
+## 2026-09-25 - Issue #8 implementation foundation
+
+- Added `web/` as the Next.js 16.3.6 application foundation with TypeScript, ESLint, and Tailwind. The generated application passes lint and a production build.
+- Pinned Node 24.14.x, npm 11.9.x, Prisma 7.10.0, PostgreSQL driver packages, Zod 4.6.5, and `next-auth` 4.24.15. PostgreSQL 16 runs locally in Docker and the `fitops` database connection was verified.
+- Added a valid empty Prisma 7 configuration and schema plus an ignored local `.env` and tracked `.env.example`. No domain models, migration, seed, authentication behavior, constraints, or race tests were created.
+- `npm audit --omit=dev` reports four high findings in Prisma CLI transitive development dependencies. The offered automated fix downgrades Prisma to 6, so it was not applied; reassess when Prisma 7 publishes a compatible fix.
+- Session: [[wiki/logs/2026-09-25-issue-8-implementation-foundation]].
+
+## 2026-09-25 - Issue #8 initial schema migration
+
+- Added the seven physical models, six native PostgreSQL enums, relations, named read indexes, and promotion provenance mapping to `web/prisma/schema.prisma`.
+- Generated and reviewed the initial migration before applying it to the empty local PostgreSQL 16 database. It adds the required checks, partial active-participation indexes, composite promotion reference, `btree_gist` trainer interval exclusion, and explicit `ON UPDATE NO ACTION` foreign keys.
+- Prisma validation, migration application, client generation, and lint passed. No fictional seed, adapters, authentication behavior, or synchronized race tests exist yet.
+- Session: [[wiki/logs/2026-09-25-issue-8-initial-schema-migration]].
+
+## 2026-09-25 - Issue #8 fictional seed
+
+- Added a repeatable Prisma seed with six fictional `example.test` users, a trainer, administrator, program, full upcoming session, two confirmed bookings, and two FIFO waitlist entries. It creates a runtime Argon2id hash and stores no usable demo password or credential hash in source.
+- `npm run prisma:seed` passed against local PostgreSQL and produced counts of six users, one session, two confirmed bookings, and two waiting entries.
+
+## 2026-09-25 - Shared Prisma client
+
+- Added the server-only shared Prisma PostgreSQL client and `npm run db:verify`. It successfully reads the local fictional seed data.
+
+## 2026-09-25 - Booking repository and locks
+
+- Added a read-only booking-state repository and a transaction helper that locks the ClassSession row, then the MemberProfile row, with parameterized PostgreSQL `FOR UPDATE` queries.
+- Verification reads the full seeded booking state through both paths and confirms two bookings plus an active member under the lock.
+
+## 2026-09-25 - Booking decision services
+
+- Added transaction-scoped direct booking, waitlist join, and cancellation with FIFO promotion services. They use the documented ClassSession then MemberProfile lock order.
+- Direct booking and waitlist verification confirm duplicate participation returns `ALREADY_PARTICIPATING`. Cancellation promotion is implemented but still requires synchronized PostgreSQL race tests, including cutoff crossing and ineligible candidate cases.
+
+## 2026-09-28 - Issue #8 synchronized PostgreSQL repair loop
+
+- Independent audit, repair, and re-audit cycles corrected the TypeScript ES target, distinct booked/waiting outcomes, capacity-transaction retries, and promotion status guards.
+- Added ten UUID-isolated PostgreSQL tests that use held row locks and observed blocked workers to exercise booking, waitlist, cancellation, capacity, ineligible/multi-seat promotion, cutoff crossings, and an injected promotion-write failure with complete rollback assertions.
+- `npm run test:race` passes all ten tests. TypeScript checks pass. A production build compiled and entered TypeScript checking but did not finish within the desktop command window, so it is not recorded as a passed build.
+- Authenticated HTTP handlers, Auth.js credentials, server-side authorization, and product UI remain unimplemented and are the next safe work.
+- Session: [[wiki/logs/2026-09-28-issue-8-postgres-race-repair-loop]].
+
+## 2026-09-28 - Issue #8 closure and Sprint 4 activation
+
+- Verified the remaining Issue #8 acceptance gates: two fresh disposable PostgreSQL databases each applied both committed migrations; two rejected-invalid-write tests pass; the re-seeded local data contains six fictional users, one session, two confirmed bookings, and two waiting entries.
+- Updated GitHub Issue #8 acceptance checkboxes, closed it as completed, and set its `FitOps Delivery` Project status to Done.
+- Created GitHub Issue #10, `[API] Secure REST API and Server-Side Access Control`, and triaged it as In Progress for Sprint 4 / SDLC Phase 4, Feature, High risk, P1, estimate 8.
+- Session: [[wiki/logs/2026-09-28-issue-8-closure-and-sprint-4-activation]].
+
+## 2026-09-28 - Delivery backlog visibility
+
+- Added Issues #11 through #14 to GitHub and `FitOps Delivery` to make the remaining roadmap visible: member product, administrator product, system quality, and release/portfolio evidence.
+- The Project now shows Issue #10 In Progress and the dependency-ordered Sprint 5 through Sprint 8 work as Backlog. No future-sprint implementation is claimed.
+
+## 2026-10-07 - Issue #10 local acceptance closure review
+
+- Added malformed JSON, unknown-field, oversized-body, and oversized declared-length rejection checks for body-parsing endpoints, with state assertions for rejected unsafe writes. Added missing-session and unknown-cancellation checks, exact `ALREADY_WAITING`/`ALREADY_BOOKED` assertions, and proof that removing a promoted waitlist entry preserves both its linked booking and entry.
+- Hardened registration cleanup: if the initial Better Auth session request fails or throws after identity/profile/account creation, a transaction removes the incomplete registration. Integration tests verify no user, profile, credential account, or session remains. Registration response redaction is also asserted.
+- Resumed `fitops-postgres` after Docker Desktop restart. Auth (5), API contract (7), PostgreSQL constraints (2), synchronized races (10), lint, TypeScript, diff check, and production build pass. Build used only a temporary process-scoped secret; no `.env` file was edited.
+- `npm audit fix` updated patched `sharp` and `source-map-js`. Tested npm overrides upgrade Prisma CLI/config transitive `deepmerge-ts` to 8.0.2 and `mysql2` to 3.24.5 while retaining Prisma 7.10.0; Prisma validate/generate pass and `npm audit --omit=dev --audit-level=high` reports zero vulnerabilities. Full audit retains five high findings through unpatched development-only `braces` in the Next ESLint chain; npm's force-fix would downgrade the Next ESLint config to v14 and was not applied.
+- Public GitHub Issue #10 remains Open and no branch/PR is attached. Local acceptance passes, but implementation/report are unpublished pending user authorization and upstream CI/review.
+- Session: [[wiki/logs/2026-10-07-issue-10-final-local-acceptance-review]].

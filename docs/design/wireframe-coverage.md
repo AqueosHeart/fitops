@@ -1,6 +1,6 @@
 # Wireframe coverage
 
-Derived from draw.io Page 08. Each scenario is rendered at 1440 px desktop and 390 px mobile. Output uses 27 separate route pages with top-level frames. Native reactions connect different frames on the same page; the plugin chooser opens other routes. These are editable mockups with preset fictional prototype transitions, not live application functions.
+Derived from draw.io Page 08. Each scenario is represented in Penpot at 1440 px desktop and 390 px mobile. The canonical file uses 20 named `— Wireframes` pages. Legal & Misc groups Terms, Privacy, Waiver, Cookie preferences, and 404; Club information, Account access, and Trainer screens are grouped by workflow. The boards are static editable SVG-vector mockups with preset fictional content, not live application functions.
 
 | Route | Sections | Additional states |
 | --- | --- | --- |

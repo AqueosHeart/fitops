@@ -46,6 +46,8 @@ Provides authorized use cases for managing sessions and viewing operational stat
 
 Administration is an application-facing orchestration module, not a fifth bounded context or independent owner of session and participation records. ADR 008 defines the Scheduling/Booking ownership boundary; ADR 007 retains the transaction safeguards it references.
 
+ADR 009 maps the Scheduling `SessionSlot` and Booking `BookableSession` views to one physical `class_sessions` row for the single-database MVP. Their repository adapters expose only their owned domain contracts, while a shared application transaction coordinator locks the row and member profile as required. This prevents duplicated physical session intervals from drifting without merging the domain boundaries.
+
 ## Suggested source structure
 
 ```text
@@ -77,15 +79,15 @@ tests/
 
 ## Transaction boundaries
 
-Booking, cancellation, and waitlist promotion require database transactions. Capacity is checked and updated within the transaction so concurrent requests cannot overbook a session.
+Booking, cancellation, and waitlist promotion require database transactions. Confirmed occupancy is checked under the session row lock; booking or cancellation does not change configured capacity.
 
-The database must enforce uniqueness for active member-session participation. Application checks provide useful errors, while database constraints remain the final consistency guard.
+The database enforces unique confirmed bookings and unique waiting entries per member/session separately. The shared locked transaction enforces the cross-table rule that a member cannot be both confirmed and waiting, as well as capacity and overlap; synchronized PostgreSQL tests must prove these paths.
 
-Per [ADR 007](adr/007-booking-consistency-boundary.md) and [ADR 008](adr/008-booking-owns-reservable-session.md), participation mutations lock the affected BookableSession row, then the MemberReservationCalendar lock anchor, currently its owned `member_profiles` row, when a confirmation or promotion is possible. Rules are rechecked under those locks. This serializes final-seat allocation and member overlap checks across sessions; Booking capacity edits use the same session lock. Cancellation, expiry of ineligible waiting entries, and first-eligible promotion commit together. Bounded transaction retries handle serialization failures and deadlocks. Cross-table participation, overlap, and capacity are protected by this protocol and database integration tests, not by uniqueness constraints alone.
+Per [ADR 007](adr/007-booking-consistency-boundary.md), [ADR 008](adr/008-booking-owns-reservable-session.md), [ADR 009](adr/009-one-physical-session-row.md), and [ADR 010](adr/010-promote-waitlist-on-capacity-increase.md), participation mutations lock the affected physical `class_sessions` row, then the MemberReservationCalendar lock anchor, currently its owned `member_profiles` row, when a confirmation or promotion is possible. Rules are rechecked under those locks. This serializes final-seat allocation and member overlap checks across sessions; Booking capacity edits use the same session lock. Cancellation or a capacity increase before cutoff can promote eligible waiters in the same transaction. Bounded whole-transaction retries handle serialization failures and deadlocks. Cross-table participation, overlap, and capacity are protected by this protocol and PostgreSQL integration tests, not by uniqueness constraints alone.
 
 ## Authentication and authorization
 
-- Authentication establishes user identity through a server-managed session.
+- Better Auth Credentials uses HTTP-only database-backed sessions and credential-account persistence. The server reloads current user/profile state on protected requests and enforces `auth_version` plus role and profile scope at the use-case boundary. ADR 014 supersedes ADR 012's Auth.js/JWT-specific implementation wording.
 - Public marketing routes and the authenticated workspace use distinct layouts. A public header exposes secondary `My Account` access and primary `Join Now`; it does not expose a generic global Sign In action.
 - `/join` carries optional, validated `returnTo` intent. New fictional members select a plan before registration; existing members reach `/portal/login` from My Account, Join, or a protected-route redirect.
 - Only an approved internal return path may be restored after authentication. The server rejects external or malformed `returnTo` values to prevent open redirects.

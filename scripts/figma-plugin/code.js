@@ -765,6 +765,22 @@ figma.ui.onmessage = async (msg) => {
     return;
   }
 
+  if (msg.type === 'build-components') {
+    toolkitBusy = true;
+    try {
+      figma.notify('Scanning the kit and managing FitOps components...');
+      await buildFitOpsComponents();
+      figma.notify('✓ FitOps component page is ready.');
+    } catch (error) {
+      console.error(error);
+      figma.ui.postMessage({ type: 'components-error', message: error instanceof Error ? error.message : String(error) });
+      figma.notify('Component page update stopped. See the plugin status for details.', { error: true });
+    } finally {
+      toolkitBusy = false;
+    }
+    return;
+  }
+
   if (msg.type === 'build-wireframes' || msg.type === 'split-wireframes') {
     toolkitBusy = true;
     try {
@@ -801,6 +817,115 @@ figma.ui.onmessage = async (msg) => {
     figma.closePlugin();
   }
 };
+
+// Managed, neutral components for the FitOps low-fidelity review kit.
+// This never rewrites a Community template's own Components page.
+const FOC = {ink:'#20242B',muted:'#626B77',paper:'#FFFFFF',canvas:'#F6F7F9',border:'#D7DBE0',blue:'#245BCC',danger:'#A52722',success:'#196444',warning:'#815500'};
+const foPaint = hex => ({type:'SOLID',color:{r:parseInt(hex.slice(1,3),16)/255,g:parseInt(hex.slice(3,5),16)/255,b:parseInt(hex.slice(5,7),16)/255}});
+const FOC_PAGE_NAME = 'FitOps Components';
+const FOC_PREFIX = 'FitOps / ';
+
+async function foText(value, size, bold, color) {
+  const text = figma.createText();
+  const available = await figma.listAvailableFontsAsync();
+  const font = {family:available.some(item => item.fontName.family === 'Mona Sans') ? 'Mona Sans' : 'Inter',style:bold ? 'Bold' : 'Regular'};
+  await figma.loadFontAsync(font);
+  text.fontName = font;
+  text.fontSize = size;
+  text.fills = [foPaint(color)];
+  text.characters = value;
+  return text;
+}
+
+function foClearChildren(node) { for (const child of [...node.children]) child.remove(); }
+
+async function foComponent(page, spec, x, y) {
+  const componentName = spec.fullName ?? `${FOC_PREFIX}${spec.name}`;
+  let component = page.findAllWithCriteria({types:['COMPONENT']}).find(node => node.name === componentName);
+  const restored = !component;
+  if (!component) {
+    component = figma.createComponent();
+    page.appendChild(component);
+    component.name = componentName;
+    component.description = 'Managed by Practice Athletic Club Master Toolkit. Re-run Manage FitOps Components to restore its defined low-fidelity structure.';
+  }
+  component.x = x; component.y = y; component.resize(spec.width, spec.height);
+  component.layoutMode = 'VERTICAL'; component.primaryAxisSizingMode = 'AUTO'; component.counterAxisSizingMode = 'FIXED';
+  component.paddingTop = spec.padding ?? 14; component.paddingRight = spec.padding ?? 14;
+  component.paddingBottom = spec.padding ?? 14; component.paddingLeft = spec.padding ?? 14;
+  component.itemSpacing = spec.gap ?? 8; component.cornerRadius = spec.radius ?? 8;
+  component.fills = [foPaint(spec.fill ?? FOC.paper)]; component.strokes = [foPaint(spec.stroke ?? FOC.border)]; component.strokeWeight = 1;
+  foClearChildren(component);
+  for (const line of spec.lines) {
+    const text = await foText(line.value, line.size, Boolean(line.bold), line.color ?? FOC.ink);
+    text.name = line.name ?? 'Label'; text.resize(Math.max(1, spec.width - (spec.padding ?? 14) * 2), text.height); text.textAutoResize = 'HEIGHT';
+    component.appendChild(text);
+  }
+  return {component, restored};
+}
+
+async function foButtonSet(page) {
+  let set = page.findAllWithCriteria({types:['COMPONENT_SET']}).find(node => node.name === `${FOC_PREFIX}Button`);
+  const variants = [];
+  let restored = 0;
+  const sizes = [{name:'S',height:32,fontSize:12},{name:'M',height:40,fontSize:13},{name:'L',height:48,fontSize:14}];
+  const styles = [
+    {name:'Filled',fill:FOC.blue,stroke:FOC.blue,color:FOC.paper},
+    {name:'Outline',fill:FOC.paper,stroke:FOC.border,color:FOC.ink},
+    {name:'Destructive',fill:FOC.danger,stroke:FOC.danger,color:FOC.paper}
+  ];
+  for (const style of styles) for (const size of sizes) {
+    const fullName = `Style=${style.name}, Size=${size.name}, Brand=Neutral`;
+    const result = await foComponent(page, {fullName,width:220,height:size.height,fill:style.fill,stroke:style.stroke,padding:Math.max(8,(size.height - size.fontSize) / 2),radius:6,lines:[{value:'Button',size:size.fontSize,bold:true,color:style.color}]}, 0, 0);
+    variants.push(result.component);
+    if (result.restored) restored++;
+  }
+  if (!set) {
+    set = figma.combineAsVariants(variants, page);
+    set.name = `${FOC_PREFIX}Button`;
+    set.description = 'Managed native variant set. Properties: Style, Size, and Brand. Brand remains Neutral until FitOps brand approval.';
+  } else {
+    for (const variant of variants) if (variant.parent !== set) set.appendChild(variant);
+  }
+  set.x = 80; set.y = 210;
+  return {set, restored};
+}
+
+async function foUpsertPageLabel(page, name, value, x, y, size, color) {
+  let text = page.findAllWithCriteria({types:['TEXT']}).find(node => node.name === name);
+  if (!text) { text = await foText(value, size, false, color); page.appendChild(text); text.name = name; }
+  else { await figma.loadFontAsync(text.fontName); text.characters = value; text.fontSize = size; text.fills = [foPaint(color)]; }
+  text.x = x; text.y = y; return text;
+}
+
+async function buildFitOpsComponents() {
+  const kitPages = figma.root.children.filter(page => !/^FitOps Components$/i.test(page.name) && !/FitOps .*—/.test(page.name) && /components|kit|library|ui/i.test(page.name));
+  let kitComponentCount = 0;
+  for (const page of kitPages) { await page.loadAsync(); kitComponentCount += page.findAllWithCriteria({types:['COMPONENT','COMPONENT_SET']}).length; }
+  let page = figma.root.children.find(candidate => candidate.name === FOC_PAGE_NAME);
+  const createdPage = !page;
+  if (!page) { page = figma.createPage(); page.name = FOC_PAGE_NAME; }
+  await figma.setCurrentPageAsync(page);
+  await foUpsertPageLabel(page, 'FitOps / Component Page / Title', 'FitOps Components', 80, 64, 30, FOC.ink);
+  await foUpsertPageLabel(page, 'FitOps / Component Page / Scope', 'Neutral, editable low-fidelity building blocks for the FitOps review wireframes. The Community template remains untouched.', 80, 106, 14, FOC.muted);
+  await foUpsertPageLabel(page, 'FitOps / Component Page / Audit', `Template scan: ${kitComponentCount} reusable components or variant sets across ${kitPages.length} kit page${kitPages.length === 1 ? '' : 's'}. Managed components are refreshed safely on rerun.`, 80, 132, 12, FOC.muted);
+  const button = await foButtonSet(page);
+  const specs = [
+    {name:'Field / Text input',width:320,height:76,fill:FOC.paper,stroke:FOC.border,lines:[{value:'Field label',size:12,bold:true,color:FOC.ink},{value:'Preset fictional value',size:14,color:FOC.muted}]},
+    {name:'Badge / Status',width:220,height:48,fill:'#EAF6EF',stroke:'#8CC9A3',padding:12,radius:20,lines:[{value:'Confirmed',size:13,bold:true,color:FOC.success}]},
+    {name:'Card / Session',width:360,height:132,fill:FOC.paper,stroke:FOC.border,lines:[{value:'Lower Body Tempo',size:16,bold:true},{value:'Tuesday · 7:00 AM · 45 min',size:13,color:FOC.muted},{value:'12 confirmed / 16 capacity',size:13,color:FOC.muted}]},
+    {name:'Notice / Warning',width:360,height:92,fill:'#FFF7E7',stroke:'#E5C379',lines:[{value:'Cancellation cutoff',size:14,bold:true,color:FOC.warning},{value:'This fictional example uses the session-specific policy.',size:12,color:FOC.warning}]},
+    {name:'Empty state / Default',width:360,height:116,fill:FOC.canvas,stroke:FOC.border,lines:[{value:'Nothing scheduled yet',size:16,bold:true},{value:'Try another week or return to the schedule.',size:13,color:FOC.muted}]}
+  ];
+  let restored = button.restored;
+  for (const [index, spec] of specs.entries()) { const result = await foComponent(page, spec, 490 + (index % 2) * 410, 210 + Math.floor(index / 2) * 190); if (result.restored) restored++; }
+  const managedNodes = page.findAllWithCriteria({types:['COMPONENT','COMPONENT_SET']});
+  const managed = managedNodes.filter(node => node.name.startsWith(FOC_PREFIX)).length;
+  figma.ui.postMessage({type:'components-complete',pageId:page.id,pageName:page.name,managedCount:managed,restoredCount:restored,kitComponentCount,createdPage});
+  page.selection = managedNodes.filter(node => node.name.startsWith(FOC_PREFIX));
+  figma.viewport.scrollAndZoomIntoView(page.selection);
+  return {page,managedCount:managed,restoredCount:restored,kitComponentCount,createdPage};
+}
 
 // Derived from draw.io Page 08. Fictional examples only; no app business logic.
 const WF_ACTION = (label, target, kind = 'secondary') => ({label, target, kind});
@@ -854,7 +979,7 @@ const WF_ADMIN_STATES = (id) => [
   WF_STATE('validation','Check the highlighted fields','Enter a valid session time, positive capacity, and a trainer.',{tone:'danger',actionTargets:{'Create session':id+'@validation','Save changes':id+'@validation'},fieldErrors:{'End time':'End time must be after start time.','Capacity':'Use a positive whole number.'},actions:[WF_ACTION('Review corrected example',id)]}),
   WF_STATE('overlap','Scheduling conflict','Marcus already leads a session at this time. Choose another trainer or time.',{tone:'danger',actionTargets:{'Create session':id+'@overlap','Save changes':id+'@overlap'},fieldErrors:{Trainer:'Trainer is unavailable at this time.'},actions:[WF_ACTION('Review another time',id)]}),
   WF_STATE('error','Changes were not saved','Your entries are preserved. Try again. Reference: DEMO-205.',{tone:'danger',actions:[WF_ACTION('Retry save',id+'@saved','primary'),WF_ACTION('Keep editing',id)]}),
-  WF_STATE('saved','Session saved','The session list now reflects the saved fictional schedule.',{tone:'success',mode:'success',actions:[WF_ACTION('Return to sessions','adminSessions','primary')]})
+  WF_STATE('saved','Session saved',id==='adminEdit'?'The session list reflects the update. A capacity increase promotes eligible waiting members in FIFO order before the result is shown.':'The session list now reflects the saved fictional schedule.',{tone:'success',mode:'success',actions:[WF_ACTION('Return to sessions','adminSessions','primary')]})
 ];
 
 const WIREFRAME_ROUTES = [
@@ -1012,7 +1137,7 @@ const WIREFRAME_ROUTES = [
   {id:'adminEdit',route:'/admin/sessions/:id/edit',label:'Edit session',shell:'admin',title:'Edit Lower Body Tempo',description:'Review existing reservations before changing the session.',sections:[
     WF_TEXT('Current occupancy','12 confirmed members · Capacity 16 · No waiting entries. Capacity cannot be reduced below 12.'),
     WF_FORM('Session details',WF_ADMIN_FIELDS,[WF_ACTION('Save changes','adminEdit@saved','primary'),WF_ACTION('Discard changes','adminSessions')]),
-    WF_TEXT('Scheduling safeguards','Trainer and participant conflicts must be resolved before a schedule change is saved.',[WF_ACTION('View participants','participants')])
+    WF_TEXT('Scheduling safeguards','Trainer and participant conflicts must be resolved before a schedule change is saved. Increasing capacity may promote eligible waiting members in the same transaction.',[WF_ACTION('View participants','participants')])
   ],states:[...WF_ADMIN_STATES('adminEdit'),WF_STATE('capacity','Capacity conflicts with reservations','There are 12 confirmed members. A capacity of 10 cannot be saved.',{tone:'danger',actionTargets:{'Save changes':'adminEdit@capacity'},fieldErrors:{Capacity:'Minimum capacity is 12 for this session.'},fieldValues:{Capacity:'10'},actions:[WF_ACTION('Restore valid capacity','adminEdit','primary')]}),WF_STATE('memberConflict','A member has an overlapping reservation','Changing the time would conflict with an existing participant booking.',{tone:'danger',actionTargets:{'Save changes':'adminEdit@memberConflict'},fieldErrors:{'Start time':'Choose a time without participant conflicts.'},actions:[WF_ACTION('Review original time','adminEdit')]})]},
   {id:'participants',route:'/admin/sessions/:id/participants',label:'Participants',shell:'admin',title:'Lower Body Tempo participants',description:'Fictional confirmed members and ordered waiting entries.',sections:[
     WF_TEXT('Session summary','Tuesday 7:00–7:45 AM · Marcus Vance\n12 confirmed / 16 capacity · 0 waiting'),
@@ -1021,6 +1146,36 @@ const WIREFRAME_ROUTES = [
   ],states:[...WF_COLLECTION_STATES('participants','participants'),WF_STATE('pace','Pace Intervals participants','Tuesday 6:30 PM · Lena Ortiz · 12 confirmed / 12 capacity.',{sections:[{type:'table',title:'Confirmed members',columns:['Member','Status'],rows:Array.from({length:12},(_,i)=>[`Demo Member ${String(i+1).padStart(2,'0')}`,'Confirmed'])},{type:'table',title:'Ordered waitlist',columns:['Position','Member','Joined'],rows:[['1','Demo Member 13','September 21 · 10:00'],['2','Alex Morgan','September 21 · 10:05']]},WF_TEXT('Session actions','Waitlist order follows joining order.',[WF_ACTION('Back to sessions','adminSessions','primary')])]})]},
   {id:'notFound',route:'/404',label:'Not Found',shell:'public',title:'We could not find that page',description:'The address may be incorrect or the page may no longer be available.',sections:[WF_TEXT('Find your way back','Browse the public site or open your account.',[WF_ACTION('Go Home','home','primary'),WF_ACTION('View schedule','schedule'),WF_ACTION('My Account','login')])],states:[]}
 ];
+
+// Figma pages are review groups. Routes and scenario frames remain distinct top-level frames.
+const WF_PAGE_GROUPS = [
+  {id:'home',label:'Public · Home',routeIds:['home']},
+  {id:'programs',label:'Public · Programs',routeIds:['programs']},
+  {id:'schedule',label:'Public · Schedule',routeIds:['schedule']},
+  {id:'session',label:'Public · Session detail',routeIds:['session']},
+  {id:'trainers',label:'Public · Trainers',routeIds:['trainers']},
+  {id:'clubInfo',label:'Public · Club information',routeIds:['pricing','about']},
+  {id:'legalMisc',label:'Legal & Misc · Terms, Privacy, Waiver, Cookies, 404',routeIds:['terms','privacy','waiver','cookies','notFound']},
+  {id:'join',label:'Enrollment · Choose plan',routeIds:['join']},
+  {id:'register',label:'Enrollment · Registration',routeIds:['register']},
+  {id:'accountAccess',label:'Account · Login & recovery',routeIds:['login','recovery']},
+  {id:'dashboard',label:'Member · Dashboard',routeIds:['dashboard']},
+  {id:'memberSchedule',label:'Member · Schedule & booking',routeIds:['memberSchedule']},
+  {id:'bookings',label:'Member · My bookings',routeIds:['bookings']},
+  {id:'profile',label:'Member · Profile & security',routeIds:['profile']},
+  {id:'trainer',label:'Trainer · Assigned sessions',routeIds:['trainer','trainerSession']},
+  {id:'admin',label:'Admin · Operations overview',routeIds:['admin']},
+  {id:'adminSessions',label:'Admin · Session manager',routeIds:['adminSessions']},
+  {id:'adminCreate',label:'Admin · Create session',routeIds:['adminCreate']},
+  {id:'adminEdit',label:'Admin · Edit session',routeIds:['adminEdit']},
+  {id:'participants',label:'Admin · Participants',routeIds:['participants']}
+];
+
+function wfGroupForRoute(route) {
+  const group=WF_PAGE_GROUPS.find(entry=>entry.routeIds.includes(route.id));
+  if(!group)throw new Error(`No Figma page group for ${route.id}`);
+  return group;
+}
 
 // Session variants share the same route; the selected session survives Join/Login.
 const wfResetSession = WF_TEXT('Reset Mobility','Tuesday, September 22 · 8:00–8:30 PM\nReset · Nora Silva · Mobility space\n6 confirmed / 14 capacity · 8 spots available\nBooking and cancellation close at 7:30 PM.');
@@ -1270,35 +1425,43 @@ async function openFitOpsWireframePage(pageId) {
   const entry=wfGeneratedPages.find(p=>p.page.id===pageId);
   if(!entry)return;
   await figma.setCurrentPageAsync(entry.page);
-  const desktop=wfFrames.get(`desktop:${entry.route.id}`),mobile=wfFrames.get(`mobile:${entry.route.id}`);
+  const route=entry.routes[0];
+  const desktop=wfFrames.get(`desktop:${route.id}`),mobile=wfFrames.get(`mobile:${route.id}`);
   const available=[desktop,mobile].filter(Boolean);
   if(available.length){entry.page.selection=[available[0]];figma.viewport.scrollAndZoomIntoView(available);}
 }
 
 async function splitCurrentFitOpsWireframes(){
   const source=figma.currentPage;
-  if(!source.name.startsWith('FitOps Wireframes / Complete /'))throw new Error('Select the old FitOps Wireframes / Complete page first, then click Split current combined page.');
-  const candidates=source.findAllWithCriteria({types:['FRAME']}).filter(n=>n.parent?.type==='SECTION'&&n.parent.parent===source&&/^[DM] \/ .+ \/ [^/]+$/.test(n.name));
-  if(!candidates.length)throw new Error('No original combined-page wireframe screens were found on this page.');
+  const combined=source.name.startsWith('FitOps Wireframes / Complete /');
+  const legacyVersion=source.name.match(/^(FitOps Wireframes \/ \d{4}-\d{2}-\d{2} v\d+) \/ \d+ /)?.[1];
+  const namedVersion=source.name.match(/— FitOps (\d{4}-\d{2}-\d{2} v\d+)$/)?.[1];
+  if(!combined&&!legacyVersion&&!namedVersion)throw new Error('Select an old combined page or any page from the wireframe version you want to regroup.');
+  const sourcePages=combined?[source]:legacyVersion?figma.root.children.filter(page=>page.name.startsWith(legacyVersion+' / ')):figma.root.children.filter(page=>page.name.endsWith('— FitOps '+namedVersion));
+  const candidates=sourcePages.flatMap(page=>page.findAllWithCriteria({types:['FRAME']}).filter(node=>/^[DM] \/ .+ \/ [^/]+$/.test(node.name)&&(node.parent===page||(node.parent?.type==='SECTION'&&node.parent.parent===page))));
+  if(!candidates.length)throw new Error('No generated wireframe screens were found in this version.');
   const records=candidates.map(frame=>{const [,device,url,state]=frame.name.match(/^([DM]) \/ (.+) \/ ([^/]+)$/);return {frame,device:device==='D'?'desktop':'mobile',route:WIREFRAME_ROUTES.find(r=>r.route===url),state};});
   if(records.some(r=>!r.route))throw new Error('An unrecognized route was found. No screens were moved.');
   const saved=[];
-  const oldIndex=source.children.find(n=>n.name==='START HERE / Route and scenario index');
-  for(const root of [...candidates,...(oldIndex?[oldIndex]:[])]){
+  const oldIndexes=sourcePages.flatMap(page=>page.children.filter(node=>node.name==='START HERE / Route and scenario index'||node.name.startsWith('START HERE / ')));
+  for(const root of [...candidates,...oldIndexes]){
     const nodes=[root,...root.findAllWithCriteria({types:['FRAME','INSTANCE','TEXT','RECTANGLE']})];
-    for(const node of nodes){if(node.reactions?.length){if(root!==oldIndex)saved.push({node,reactions:node.reactions});await node.setReactionsAsync([]);}}
+    for(const node of nodes){if(node.reactions?.length){if(!oldIndexes.includes(root))saved.push({node,reactions:node.reactions});await node.setReactionsAsync([]);}}
   }
   wfFrames=new Map();wfGeneratedPages=[];
-  for(const route of WIREFRAME_ROUTES){
-    const owned=records.filter(r=>r.route===route);if(!owned.length)continue;
-    const page=figma.createPage();page.name=wfUniqueName(`FitOps Split / ${String(wfGeneratedPages.length+1).padStart(2,'0')} ${route.label}`);wfGeneratedPages.push({page,route});
+  for(const group of WF_PAGE_GROUPS){
+    const routes=group.routeIds.map(id=>WIREFRAME_ROUTES.find(route=>route.id===id));
+    const owned=records.filter(record=>routes.includes(record.route));if(!owned.length)continue;
+    const page=figma.createPage();page.name=wfUniqueName(`${String(wfGeneratedPages.length+1).padStart(2,'0')} · ${group.label} — Regrouped`);wfGeneratedPages.push({page,group,routes});
     let y=80;
-    for(const state of [...new Set(owned.map(r=>r.state))]){
-      let height=0;
-      for(const item of owned.filter(r=>r.state===state)){page.appendChild(item.frame);item.frame.x=item.device==='desktop'?0:1510;item.frame.y=y;height=Math.max(height,item.frame.height);wfFrames.set(`${item.device}:${route.id}${state==='ready'?'':'@'+state}`,item.frame);}
-      y+=height+140;
+    for(const route of routes){
+      for(const state of [...new Set(owned.filter(item=>item.route===route).map(item=>item.state))]){
+        let height=0;
+        for(const item of owned.filter(item=>item.route===route&&item.state===state)){page.appendChild(item.frame);item.frame.x=item.device==='desktop'?0:1510;item.frame.y=y;height=Math.max(height,item.frame.height);wfFrames.set(`${item.device}:${route.id}${state==='ready'?'':'@'+state}`,item.frame);}
+        y+=height+140;
+      }
     }
-    wfProgress(`Split ${route.label}: ${owned.length} existing screens moved`);
+    wfProgress(`Split ${group.label}: ${owned.length} existing screens moved`);
   }
   let linked=0;
   for(const {node,reactions} of saved){
@@ -1315,10 +1478,14 @@ async function splitCurrentFitOpsWireframes(){
     }
     if(allowed.length){await node.setReactionsAsync(allowed);linked++;}
   }
-  if(oldIndex)oldIndex.name='Legacy index / screens moved to separate route pages';
-  source.name+=' [Split - original annotations retained]';
+  await figma.setCurrentPageAsync(wfGeneratedPages[0].page);
+  for(const index of oldIndexes)index.remove();
+  for(const page of sourcePages){
+    if(!page.children.length)page.remove();
+    else page.name=`Archive · ${page.name} — annotations retained`;
+  }
   await openFitOpsWireframePage(wfGeneratedPages[0].page.id);
-  const result={type:'wireframes-complete',pageName:'Split existing wireframes',pageCount:wfGeneratedPages.length,moduleCount:wfGeneratedPages.length,desktopCount:records.filter(r=>r.device==='desktop').length,mobileCount:records.filter(r=>r.device==='mobile').length,screenCount:records.length,actionCount:linked,pages:wfGeneratedPages.map(({page,route})=>({id:page.id,label:route.label,route:route.route}))};
+  const result={type:'wireframes-complete',pageName:'Regrouped existing wireframes',pageCount:wfGeneratedPages.length,moduleCount:wfGeneratedPages.length,desktopCount:records.filter(r=>r.device==='desktop').length,mobileCount:records.filter(r=>r.device==='mobile').length,screenCount:records.length,actionCount:linked,pages:wfGeneratedPages.map(({page,group,routes})=>({id:page.id,label:group.label,route:routes.map(route=>route.route).join(' · ')}))};
   figma.ui.postMessage(result);return result;
 }
 
@@ -1326,31 +1493,35 @@ async function buildFitOpsWireframes(){
   wfLinks=[];wfFrames=new Map();wfAnchors=new Map();wfGeneratedPages=[];
   wfProgress('Reading the existing UI kit and loading available fonts…');
   await wfPrepareResources();
-  const base='FitOps Wireframes / '+new Date().toISOString().slice(0,10);
-  let version=1,runPrefix=base+' v1';
-  while(figma.root.children.some(p=>p.name.startsWith(runPrefix+' /')))runPrefix=base+' v'+(++version);
+  const runDate=new Date().toISOString().slice(0,10);
+  let version=1,runLabel=`FitOps ${runDate} v1`;
+  while(figma.root.children.some(page=>page.name.endsWith('— '+runLabel)))runLabel=`FitOps ${runDate} v${++version}`;
   let localActionCount=0,crossPageCount=0,selfActionCount=0;
   try {
-    for(const [index,route] of WIREFRAME_ROUTES.entries()){
-      const page=figma.createPage();page.name=`${runPrefix} / ${String(index+1).padStart(2,'0')} ${route.label}`;
-      wfGeneratedPages.push({page,route});await figma.setCurrentPageAsync(page);
-      wfProgress(`${index+1}/${WIREFRAME_ROUTES.length} · ${route.label}: separate page, desktop + mobile`);
-      const overview=wfStack(1960,'VERTICAL',14,24,WF_COLORS.white);overview.name='START HERE / '+route.label;page.appendChild(overview);overview.x=0;overview.y=0;
+    for(const [index,group] of WF_PAGE_GROUPS.entries()){
+      const routes=group.routeIds.map(id=>WIREFRAME_ROUTES.find(route=>route.id===id));
+      const page=figma.createPage();page.name=`${String(index+1).padStart(2,'0')} · ${group.label} — ${runLabel}`;
+      wfGeneratedPages.push({page,group,routes});await figma.setCurrentPageAsync(page);
+      wfProgress(`${index+1}/${WF_PAGE_GROUPS.length} · ${group.label}: grouped desktop + mobile screens`);
+      const overview=wfStack(1960,'VERTICAL',14,24,WF_COLORS.white);overview.name='START HERE / '+group.label;page.appendChild(overview);overview.x=0;overview.y=0;
       overview.setRelaunchData({open:'Open the FitOps wireframe page chooser'});
-      overview.appendChild(wfText(`${route.label} · ${route.route}`,1912,30,true));
-      overview.appendChild(wfText('Desktop 1440 px / Mobile 390 px. Local scenarios are clickable. Use the plugin page chooser for another route; cross-page controls carry destination names in their layer labels. Inputs use preset fictional examples.',1912,15));
-      const scenarios=[{id:'ready'},...route.states],pairs=[];
-      for(const state of scenarios){
-        const desktop=wfScreen(route,state.id==='ready'?{}:state,'desktop'),mobile=wfScreen(route,state.id==='ready'?{}:state,'mobile');
-        page.appendChild(desktop);page.appendChild(mobile);
-        for(const [device,frame] of [['desktop',desktop],['mobile',mobile]])wfFrames.set(`${device}:${route.id}${state.id==='ready'?'':'@'+state.id}`,frame);
-        pairs.push({desktop,mobile,state});
-        const row=wfStack(1912,'HORIZONTAL',16);row.appendChild(wfText(state.id==='ready'?'Ready':state.title,720,14,true));
-        row.appendChild(wfAction(WF_ACTION('Desktop preview',route.id+(state.id==='ready'?'':'@'+state.id)),280,'desktop'));
-        row.appendChild(wfAction(WF_ACTION('Mobile preview',route.id+(state.id==='ready'?'':'@'+state.id)),280,'mobile'));overview.appendChild(row);
-      }
+      overview.appendChild(wfText(group.label,1912,30,true));
+      overview.appendChild(wfText(`${routes.map(route=>`${route.label} (${route.route})`).join(' · ')}. Desktop 1440 px / Mobile 390 px. Local scenarios are clickable. Use the plugin page chooser for another group; cross-page controls carry destination names in their layer labels. Inputs use preset fictional examples.`,1912,15));
       let y=overview.height+100;
-      for(const {desktop,mobile} of pairs){desktop.x=0;desktop.y=y;mobile.x=1510;mobile.y=y;y+=Math.max(desktop.height,mobile.height)+140;}
+      for(const route of routes){
+        const scenarios=[{id:'ready'},...route.states],pairs=[];
+        overview.appendChild(wfText(`${route.label} · ${route.route}`,1912,18,true));
+        for(const state of scenarios){
+          const desktop=wfScreen(route,state.id==='ready'?{}:state,'desktop'),mobile=wfScreen(route,state.id==='ready'?{}:state,'mobile');
+          page.appendChild(desktop);page.appendChild(mobile);
+          for(const [device,frame] of [['desktop',desktop],['mobile',mobile]])wfFrames.set(`${device}:${route.id}${state.id==='ready'?'':'@'+state.id}`,frame);
+          pairs.push({desktop,mobile,state});
+          const row=wfStack(1912,'HORIZONTAL',16);row.appendChild(wfText(`${route.label} · ${state.id==='ready'?'Ready':state.title}`,720,14,true));
+          row.appendChild(wfAction(WF_ACTION('Desktop preview',route.id+(state.id==='ready'?'':'@'+state.id)),280,'desktop'));
+          row.appendChild(wfAction(WF_ACTION('Mobile preview',route.id+(state.id==='ready'?'':'@'+state.id)),280,'mobile'));overview.appendChild(row);
+        }
+        for(const {desktop,mobile} of pairs){desktop.x=0;desktop.y=y;mobile.x=1510;mobile.y=y;y+=Math.max(desktop.height,mobile.height)+140;}
+      }
       await new Promise(resolve=>setTimeout(resolve,0));
     }
     for(const [index,link] of wfLinks.entries()){
@@ -1380,7 +1551,7 @@ async function buildFitOpsWireframes(){
       await link.node.setReactionsAsync([{trigger:link.trigger||{type:'ON_CLICK'},actions:[{type:'NODE',destinationId:target.id,navigation:'NAVIGATE',transition:null,preserveScrollPosition:false}]}]);localActionCount++;
     }
     await openFitOpsWireframePage(wfGeneratedPages[0].page.id);
-    const result={type:'wireframes-complete',pageName:'FitOps route pages',pageCount:wfGeneratedPages.length,moduleCount:wfGeneratedPages.length,screenCount:wfFrames.size,desktopCount:wfFrames.size/2,mobileCount:wfFrames.size/2,actionCount:localActionCount,crossPageCount,selfActionCount,pages:wfGeneratedPages.map(({page,route})=>({id:page.id,label:route.label,route:route.route}))};
+    const result={type:'wireframes-complete',pageName:'FitOps grouped route pages',pageCount:wfGeneratedPages.length,moduleCount:wfGeneratedPages.length,screenCount:wfFrames.size,desktopCount:wfFrames.size/2,mobileCount:wfFrames.size/2,actionCount:localActionCount,crossPageCount,selfActionCount,pages:wfGeneratedPages.map(({page,group,routes})=>({id:page.id,label:group.label,route:routes.map(route=>route.route).join(' · ')}))};
     figma.ui.postMessage(result);return result;
   }catch(error){for(const {page} of wfGeneratedPages)page.name+=' [Incomplete]';throw error;}
 }
