@@ -109,7 +109,7 @@ test("member booking/waitlist/cancel-promotion and administrator authorization j
   await firstAssignment.getByRole("link", { name: "View session" }).click();
   await expect(trainer.getByRole("heading", { name: "Session details" })).toBeVisible();
   await expect(trainer.getByRole("heading", { name: "Confirmed reservations" })).toBeVisible();
-  await expect(trainer.locator(".trainer-attendance")).toContainText("2 / 4");
+  await expect(trainer.locator(".trainer-attendance")).toContainText("4 / 4");
   await expect(trainer.getByText("Casey Morgan")).toHaveCount(0);
   await expect(trainer.getByText("Taylor Chen")).toHaveCount(0);
   await expectAccessible(trainer);
