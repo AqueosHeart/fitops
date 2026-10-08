@@ -490,3 +490,10 @@ updated: 2026-09-21
 - Branch was pushed and draft PR #18 opened. The first Actions attempt exposed missing generated Next.js route types before `tsc` and unmasked ephemeral test values in job metadata; workflow now runs `next typegen` first and masks generated values before export. Rerun is pending.
 - Pending: passing GitHub Actions, DB-backed integration/concurrency tests, browser E2E and axe results, and browser runtime performance measurement. The local Docker Linux engine did not respond to `docker info`; no live or deployed database was used.
 - Details: [[wiki/logs/2026-10-08-issue-13-quality-start]].
+
+## 2026-10-08 - Issue #13 CI accessibility findings corrected locally
+
+- CI run 37841999623 passed isolated PostgreSQL migration/seed, database/API/constraint/concurrency suites, lint/type-check, full audit, and production build. The browser run stopped at the landing-page axe scan.
+- Axe identified muted text at 4.43–4.45:1 against two soft backgrounds and ARIA labels/busy state on generic loading-grid divs without a semantic role. Darkened the shared muted token to `#62655b` (calculated 4.86:1 or higher on affected backgrounds) and assigned `role="status"` to named loading regions. Local lint and TypeScript pass.
+- CI rerun, complete E2E flow, remaining axe scans, and browser runtime performance review remain pending. No live database or server was modified.
+- Details: [[wiki/logs/2026-10-08-issue-13-accessibility-fix]].
