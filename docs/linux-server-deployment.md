@@ -53,8 +53,9 @@ Studio is an on-demand Compose profile. It can read and directly edit every FitO
 
 ```sh
 cd /home/sebastian/fitops
-sudo docker compose --profile studio --env-file .env -f deploy/compose.linux.yaml up -d studio
-sudo docker compose --profile studio --env-file .env -f deploy/compose.linux.yaml logs --tail=30 studio
+sudo docker compose --profile studio --env-file .env -f deploy/compose.linux.yaml up -d studio-proxy
+sudo docker compose --profile studio --env-file .env -f deploy/compose.linux.yaml ps
+sudo docker compose --profile studio --env-file .env -f deploy/compose.linux.yaml logs --tail=30 studio studio-proxy
 ```
 
 On the computer where you want to use the browser, keep this command running in a terminal:

@@ -10,7 +10,7 @@ The owner wants a visual way to inspect and edit the server's Prisma-managed dat
 
 ## Decision
 
-- Add Prisma Studio as an on-demand `studio` Compose profile using the same built app image and the private database connection.
+- Add Prisma Studio as an on-demand `studio` Compose profile using the same built app image and the private database connection. The current Prisma CLI binds to loopback inside its container, so a companion proxy shares Studio's network namespace and forwards to its loopback listener.
 - Publish Studio only on server loopback at `127.0.0.1:5555`; do not publish its port on the LAN interface or internet.
 - Access it from a workstation using SSH local forwarding to `127.0.0.1:5555`. Stop the Studio profile after use; leave the FitOps app and database running.
 - Make direct database editing risks explicit. Do not seed again or modify booking/auth/session rows casually.

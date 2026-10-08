@@ -49,10 +49,20 @@ services:
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?schema=public
     command: ["npx", "prisma", "studio", "--port", "5555", "--browser", "none"]
     ports:
-      - "127.0.0.1:5555:5555"
+      - "127.0.0.1:5555:5556"
     networks:
       - private
       - lan
+
+  studio-proxy:
+    image: fitops-app
+    profiles: ["studio"]
+    restart: "no"
+    depends_on:
+      studio:
+        condition: service_started
+    network_mode: service:studio
+    command: ["node", "scripts/prisma-studio-proxy.mjs"]
 
 volumes:
   fitops-postgres:
