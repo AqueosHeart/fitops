@@ -487,5 +487,6 @@ updated: 2026-09-21
 - PR #17 merged to `main` at `08fbdd894c27436de2a52d8efe5c722c2e43dc56`; Issue #12 is Closed / Done / Sprint 6. Issue #13 was moved from Backlog to In Progress in Sprint 7, preserving its existing assignment.
 - Branch `codex/fitops-issue-13-quality` updates Next.js to 16.3.8, adds Playwright/axe critical-journey coverage, a PostgreSQL-backed GitHub Actions quality workflow, ignored test-output paths, and an evidence report.
 - Verified locally: zero full lockfile audit findings, lint, TypeScript, Prisma Client generation, production build (42 routes / 33 static page entries), Playwright discovery, and build artifact-size measurements. The deployed Linux app was not changed.
-- Pending: GitHub Actions run, DB-backed integration/concurrency tests, browser E2E and axe results, and browser runtime performance measurement. The local Docker Linux engine did not respond to `docker info`; no live or deployed database was used.
+- Branch was pushed and draft PR #18 opened. The first Actions attempt exposed missing generated Next.js route types before `tsc` and unmasked ephemeral test values in job metadata; workflow now runs `next typegen` first and masks generated values before export. Rerun is pending.
+- Pending: passing GitHub Actions, DB-backed integration/concurrency tests, browser E2E and axe results, and browser runtime performance measurement. The local Docker Linux engine did not respond to `docker info`; no live or deployed database was used.
 - Details: [[wiki/logs/2026-10-08-issue-13-quality-start]].

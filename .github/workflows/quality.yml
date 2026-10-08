@@ -44,8 +44,14 @@ jobs:
       - name: Create ephemeral test credentials
         shell: bash
         run: |
-          echo "BETTER_AUTH_SECRET=$(openssl rand -hex 32)" >> "$GITHUB_ENV"
-          echo "FITOPS_DEMO_PASSWORD=$(openssl rand -hex 16)" >> "$GITHUB_ENV"
+          demo_secret=$(openssl rand -hex 32)
+          demo_password=$(openssl rand -hex 16)
+          echo "::add-mask::$demo_secret"
+          echo "::add-mask::$demo_password"
+          {
+            echo "BETTER_AUTH_SECRET=$demo_secret"
+            echo "FITOPS_DEMO_PASSWORD=$demo_password"
+          } >> "$GITHUB_ENV"
       - name: Install dependencies
         working-directory: web
         run: npm ci
@@ -69,6 +75,7 @@ jobs:
         working-directory: web
         run: |
           npm run lint
+          npx next typegen
           npx tsc --noEmit
       - name: Audit all dependencies
         working-directory: web

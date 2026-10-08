@@ -6,7 +6,7 @@ updated: 2026-10-08
 
 # FitOps Critical Facts
 
-- Status: Issues #8, #10, #11, and #12 are closed and Done in `FitOps Delivery`; PR #17 merged to `main` at `08fbdd894c27436de2a52d8efe5c722c2e43dc56` on 2026-10-08. Issue #13 is Open / In Progress / Sprint 7 on `codex/fitops-issue-13-quality`; acceptance and CI are not complete.
+- Status: Issues #8, #10, #11, and #12 are closed and Done in `FitOps Delivery`; PR #17 merged to `main` at `08fbdd894c27436de2a52d8efe5c722c2e43dc56` on 2026-10-08. Issue #13 is Open / In Progress / Sprint 7; draft PR #18 is open, with the initial CI type-generation failure corrected and rerun pending. Acceptance is not complete.
 - Working public name: `Practice Athletic Club`; `FitOps` remains the repository and internal project codename.
 - Branding scope is identity only for the current stage; no website or application implementation is authorized by the branding work.
 - Brand status: not defined or approved. Quiet Strength, the Mona Sans lime-bar wordmark, and the palette/type system are exploratory candidates that may be retained, revised, or replaced after the brand-definition process.
