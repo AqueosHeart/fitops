@@ -42,6 +42,7 @@ updated: 2026-10-08
 - [REST API](../docs/api.md)
 - [SDLC and sprint plan](../docs/delivery-plan.md)
 - [Issue #13 quality and production-candidate evidence](../docs/quality/issue-13-evidence.md)
+- [Issue #13 focused security review](../docs/reviews/issue-13-security-review.md)
 - [Sprint 0 exit review](../docs/reviews/sprint-0-exit-review.md)
 - [Tooling and workflow](../docs/tooling-and-workflow.md)
 
