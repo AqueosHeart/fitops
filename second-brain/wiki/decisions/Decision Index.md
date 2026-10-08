@@ -22,5 +22,6 @@ updated: 2026-10-08
 - [ADR 014 Use Better Auth for credentials and sessions](../../../docs/adr/014-use-better-auth-for-credentials-and-sessions.md)
 - [ADR 015 Replace the vulnerable Next ESLint config with direct lint plugins](../../../docs/adr/015-replace-vulnerable-next-eslint-config.md)
 - [ADR 016 Run FitOps as an isolated LAN-only Linux Compose project](../../../docs/adr/016-lan-only-linux-fitops-deployment.md)
+- [ADR 017 Provide on-demand Prisma Studio over an SSH tunnel](../../../docs/adr/017-prisma-studio-over-ssh-tunnel.md)
 
 New material architecture decisions receive a new ADR. Accepted historical decisions are not silently rewritten; a later ADR may supersede them.

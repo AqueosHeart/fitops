@@ -47,6 +47,30 @@ curl --fail --silent --show-error http://192.168.1.208:3001/portal/login >/dev/n
 
 If needed, inspect only FitOps logs with `sudo docker compose --env-file .env -f deploy/compose.linux.yaml logs --tail=100 app db`. Keep port 3001 private to the LAN. No firewall or router changes are part of this deployment.
 
+## Open Prisma Studio securely
+
+Studio is an on-demand Compose profile. It can read and directly edit every FitOps table, so its host port is bound to loopback only and must be reached through SSH forwarding—not exposed on the LAN. Start it on the server:
+
+```sh
+cd /home/sebastian/fitops
+sudo docker compose --profile studio --env-file .env -f deploy/compose.linux.yaml up -d studio
+sudo docker compose --profile studio --env-file .env -f deploy/compose.linux.yaml logs --tail=30 studio
+```
+
+On the computer where you want to use the browser, keep this command running in a terminal:
+
+```sh
+ssh -N -L 5555:127.0.0.1:5555 sebastian@192.168.1.208
+```
+
+Then open <http://127.0.0.1:5555>. Close Studio when you are done:
+
+```sh
+sudo docker compose --profile studio --env-file .env -f deploy/compose.linux.yaml stop studio
+```
+
+The SSH tunnel is temporary; close its terminal to end forwarding. Studio edits go directly to PostgreSQL and bypass FitOps application rules. Use it only for this fictional demo database, and do not edit authentication/session or booking rows unless you intend the consequences.
+
 ## Stop and rollback
 
 To stop the application while retaining its database, run `sudo docker compose --env-file .env -f deploy/compose.linux.yaml down` in the project directory. To roll back code, check out the previous known-good Git commit and rebuild. Preserve the volume unless a deliberate database deletion is intended. AARC remains independently managed by its own service and deployment process.
