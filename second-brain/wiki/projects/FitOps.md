@@ -3,7 +3,7 @@ type: project
 status: active
 phase: development
 sprint: Sprint 5 active
-updated: 2026-10-07
+updated: 2026-10-08
 ---
 
 # FitOps
@@ -65,6 +65,8 @@ Visitor discovers the club, uses primary Join Now to choose a fictional plan or 
 Deployed from branch `codex/fitops-issue-12-admin-operations` (app source at commit `8951e16`) to `/home/sebastian/fitops`, bound only to `192.168.1.208:3001`, with a separate PostgreSQL 16 volume and private database network. All six migrations applied; one fictional seed and `db:verify` passed (6 users, 3 sessions, 4 confirmed bookings, 4 waitlist entries). From the Windows workstation, the login page returns 200 and anonymous `/admin` redirects to `/portal/login?returnTo=%2Fadmin`. A server-side seeded-admin login and protected `/admin` request both returned 200. AARC remains active on port 3000 and was not modified. The app is LAN-only, without TLS. `npm audit --omit=dev` identifies a high-severity Next.js 16.3.6 finding, so do not expose publicly until updated and reviewed. Issue #12 authenticated interactive browser acceptance and Issue #14 production/release gates remain open.
 
 Deployment topology is recorded in [ADR 016](../../../docs/adr/016-lan-only-linux-fitops-deployment.md); operational instructions are in [the LAN deployment guide](../../../docs/linux-server-deployment.md).
+
+Prisma Studio is running on demand in its `studio` Compose profile, published only at server loopback `127.0.0.1:5555`. An SSH tunnel from the Windows workstation is active and the UI HTML/JS asset return HTTP 200 at local `http://127.0.0.1:5555`. Studio writes bypass application invariants; see [ADR 017](../../../docs/adr/017-prisma-studio-over-ssh-tunnel.md). Close the Studio container and tunnel after use.
 
 ## Connections
 

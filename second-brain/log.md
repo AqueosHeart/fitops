@@ -14,6 +14,13 @@ updated: 2026-09-21
 - AARC service/database/port were not modified. The HTTP service remains LAN-only; `npm audit --omit=dev` reports a high-severity finding in Next.js 16.3.6. See ADR 016 and the session note. No secrets were recorded.
 - Details: [[wiki/logs/2026-10-08-fitops-lan-deployment]].
 
+## 2026-10-08 — Prisma Studio over SSH tunnel
+
+- Added an on-demand Compose Studio profile plus a small same-network-namespace proxy because Prisma CLI binds Studio to container loopback.
+- Deployed it with server host binding `127.0.0.1:5555`, and opened a Windows SSH local tunnel. Studio HTML and JS asset both return HTTP 200 through `http://127.0.0.1:5555`; AARC ports and services are unchanged.
+- Studio directly edits the fictional FitOps DB and bypasses application rules. Stop the profile and close the tunnel after use. ADR 017 records the decision.
+- Details: [[wiki/logs/2026-10-08-fitops-lan-deployment]].
+
 ## 2026-10-07 - Issue #10 published for review
 
 - Committed the verified Issue #10 implementation and continuity updates as `761f91f` on `codex/fitops-planning-checkpoint` and pushed the authorized branch.
