@@ -2,6 +2,7 @@ import "server-only";
 
 const allowedPaths = new Set(["/app", "/app/schedule", "/app/bookings", "/app/profile/security"]);
 const adminSessionPath = /^\/admin\/sessions\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\/(edit|participants)$/i;
+const trainerSessionPath = /^\/trainer\/sessions\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 function isSafeRelativePath(value: unknown): value is string {
   if (typeof value !== "string" || value.length === 0 || value.length > 200) return false;
@@ -27,4 +28,9 @@ export function parseAdminReturnTo(value: unknown): string | null {
   return value === "/admin" || value === "/admin/sessions" || value === "/admin/sessions/new" || adminSessionPath.test(value)
     ? value
     : null;
+}
+
+export function parseTrainerReturnTo(value: unknown): string | null {
+  if (!isSafeRelativePath(value)) return null;
+  return value === "/trainer/sessions" || trainerSessionPath.test(value) ? value : null;
 }

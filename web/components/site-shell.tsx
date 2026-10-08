@@ -1,13 +1,14 @@
 import Link from "next/link";
 
-type HeaderMode = "public" | "member" | "admin";
+type HeaderMode = "public" | "member" | "admin" | "trainer";
 
 export function SiteHeader({ mode = "public" }: { mode?: HeaderMode }) {
   const member = mode === "member";
   const admin = mode === "admin";
+  const trainer = mode === "trainer";
   return (
-    <header className={`site-header${member ? " site-header-member" : ""}${admin ? " site-header-admin" : ""}`}>
-      <Link className="wordmark" href={admin ? "/admin" : member ? "/app" : "/"} aria-label={admin ? "Practice Athletic Club operations home" : "Practice Athletic Club home"}>
+    <header className={`site-header${member ? " site-header-member" : ""}${admin ? " site-header-admin" : ""}${trainer ? " site-header-trainer" : ""}`}>
+      <Link className="wordmark" href={admin ? "/admin" : member ? "/app" : trainer ? "/trainer/sessions" : "/"} aria-label={admin ? "Practice Athletic Club operations home" : trainer ? "Practice Athletic Club trainer home" : "Practice Athletic Club home"}>
         <span className="wordmark-mark" aria-hidden="true">P</span>
         <span>practice<span className="wordmark-light"> athletic club</span></span>
       </Link>
@@ -23,6 +24,8 @@ export function SiteHeader({ mode = "public" }: { mode?: HeaderMode }) {
             <Link href="/admin">Overview</Link>
             <Link href="/admin/sessions">Sessions</Link>
           </>
+        ) : trainer ? (
+          <Link href="/trainer/sessions" aria-current="page">Assigned sessions</Link>
         ) : (
           <>
             <Link href="/#programs">Programs</Link>
@@ -32,7 +35,9 @@ export function SiteHeader({ mode = "public" }: { mode?: HeaderMode }) {
         )}
       </nav>
       <div className="header-actions">
-        {member ? <Link className="button button-quiet button-small" href="/app/profile/security">My account</Link> : admin ? (
+        {member ? <Link className="button button-quiet button-small" href="/app/profile/security">My account</Link> : trainer ? (
+          <><Link className="account-link" href="/portal/login?returnTo=%2Ftrainer%2Fsessions">My Account</Link><Link className="button button-dark button-small" href="/">Public site</Link></>
+        ) : admin ? (
           <>
             <Link className="account-link" href="/portal/login">My Account</Link>
             <Link className="button button-dark button-small" href="/">Public site</Link>

@@ -34,6 +34,11 @@ Build a reproducible, truthful quality gate for the FitOps production candidate.
 
 - Await maintainer review and merge of PR #18; leave Issue #13 open until the reviewed change lands.
 
+## Parallel tracked follow-up (outside Sprint 7 scope)
+
+- Issue #19 moved to In Progress in the GitHub Delivery project while PR #18 awaits human review; Sprint 7's goal and acceptance remain Issue #13 only.
+- Its implementation is on `codex/fitops-issue-19-trainer-workspace`. Local lint, TypeScript, UX sync, E2E discovery, and production build pass. The DB-backed API suite was attempted but blocked at setup by `ECONNREFUSED` to local PostgreSQL `127.0.0.1:5432`; no DB/server was changed. Isolated GitHub CI/browser verification remains necessary.
+
 ## Environment boundary
 
 The Windows Docker Linux engine did not respond to `docker info`, so local database-backed verification was not attempted. Do not use the deployed demo database for automated tests. The GitHub workflow creates a disposable PostgreSQL 16 database with fictional seed data. The Linux deployment remains on Next.js 16.3.6 and LAN-only; this sprint has not deployed or altered that server.

@@ -1145,7 +1145,7 @@
         <mxCell id="empty" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;fontColor=#111310;fontSize=12;spacing=8;" value="No assigned upcoming sessions" vertex="1">
           <mxGeometry x="970" y="570" width="250" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="list" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Show assigned sessions and attendee counts" vertex="1">
+        <mxCell id="list" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Show upcoming sessions assigned to this trainer; filter by program; display confirmed counts only" vertex="1">
           <mxGeometry x="600" y="570" width="250" height="60" as="geometry" />
         </mxCell>
         <mxCell id="select" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F0E8;strokeColor=#111310;fontColor=#111310;fontSize=13;spacing=8;" value="Select an assigned session" vertex="1">
@@ -1157,7 +1157,7 @@
         <mxCell id="forbidden2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7DFDC;strokeColor=#9E2E25;fontColor=#111310;fontSize=13;spacing=8;" value="Access denied" vertex="1">
           <mxGeometry x="970" y="780" width="250" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="detail" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Read-only session details and attendee count&lt;br&gt;No trainer editing in version one" vertex="1">
+        <mxCell id="detail" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEBD8;strokeColor=#1F4D32;fontColor=#111310;fontSize=13;spacing=8;" value="Read-only session time and aggregate confirmed-count / capacity overview&lt;br&gt;No attendee names or trainer editing in version one" vertex="1">
           <mxGeometry x="600" y="910" width="250" height="70" as="geometry" />
         </mxCell>
 

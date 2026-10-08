@@ -503,3 +503,12 @@ updated: 2026-09-21
 - CI run 37846080789 on `fff390b` passed the full quality gate, including all three axe scans and desktop/mobile synthetic LCP/CLS budgets. The Playwright report has raw metric JSON attachments; this is not field CWV.
 - Focused security review recorded no critical/high application-code issue in the covered paths; it identified trusted-proxy/IP-throttling and TLS/HSTS deployment gates, explicitly left safe defaults unchanged, and assigned these to Issue #14.
 - Final CI run 37847213151 passed against `fbe6d5f`. Issue #13 acceptance criteria were checked against evidence, and PR #18 is ready for review; Issue #13 remains open until review and merge. No PR was merged and no deployment or database was changed.
+
+## 2026-10-08 - Issue #19 trainer workspace started
+
+- Moved Issue #19 to In Progress in FitOps Delivery while keeping it outside Sprint 7's Issue #13 goal.
+- Implemented protected trainer session list/detail routes and APIs; detail queries are scoped by both session and current trainer and return aggregate counts only. Added safe trainer login return paths and My Account routing.
+- Updated the editable draw.io trainer flow, wireframe coverage, and API contract.
+- Local ESLint, TypeScript, UX synchronization, E2E discovery, and production build pass. DB contract suite was attempted but blocked by `ECONNREFUSED` on local PostgreSQL port 5432; no production/LAN database was changed.
+- Added manual dispatch to the existing quality workflow so the stacked branch can run the isolated PostgreSQL/browser gate before PR #18 merges.
+- Next: push as a stacked PR based on PR #18, dispatch quality CI for its head SHA, then correct any failures before checking Issue #19 acceptance.

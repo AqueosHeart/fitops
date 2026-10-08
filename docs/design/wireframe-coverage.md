@@ -23,11 +23,13 @@ Derived from draw.io Page 08. Each scenario is represented in Penpot at 1440 px 
 | `/app/schedule` | Find a session; Tuesday, September 22 · club local time; Browse the week | loading, empty, error, filtered, details, full, confirmed, waitlisted, waiver, duplicate, alreadyWaiting, overlap, cutoff, spotOpened, inactive, forbidden, expired, failed, resetDetails, submitting, joining |
 | `/app/bookings` | Upcoming confirmed reservations; Waitlist entries | loading, empty, error, waiting, cancel, cancelled, remaining, cancelCutoff, cancelError, leave, left, promoted, promotedCancel, leaveError, resetConfirmed, resetCancel, resetCancelled, cancelling |
 | `/app/profile/security` | Demo profile; Membership; Consent record; Current session | inactive, loading, error |
-| `/trainer/sessions` | Filter assignments; Upcoming assignments; Trainer access | loading, empty, error, filtered, denied |
-| `/trainer/sessions/:id` | Lower Body Tempo; Class preparation; Attendance overview | loading, error, denied, foundations |
+| `/trainer/sessions` | Filter assignments by program; Upcoming assignments; Trainer access | loading skeleton, empty, request error with retry/reference, filtered, denied |
+| `/trainer/sessions/:id` | Class preparation; Session schedule; Attendance overview (confirmed count / capacity only) | loading skeleton, error with retry/reference, unassigned/unknown session, denied |
 | `/admin` | Today at the club; Session occupancy; Manage the schedule | loading, empty, error, denied |
 | `/admin/sessions` | Filter sessions; Scheduled sessions; Result navigation | loading, empty, error, filtered |
 | `/admin/sessions/new` | Session details; Before saving | validation, overlap, error, saved, submitting |
 | `/admin/sessions/:id/edit` | Current occupancy; Session details; Scheduling safeguards | validation, overlap, error, saved, capacity, memberConflict, submitting |
 | `/admin/sessions/:id/participants` | Session summary; Confirmed members; Ordered waitlist; Session actions | loading, empty, error, pace |
 | `/404` | Find your way back | None |
+
+Trainer workspace implementation evidence is tracked by Issue #19. The Page 05 trainer flow remains the editable authority for assignment checks and read-only behavior; its detail now explicitly excludes attendee names and identifies the count as aggregate-only. Penpot boards remain static reference boards; the interface implements the mapped routes and states without adding routes or write actions.

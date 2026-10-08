@@ -103,19 +103,24 @@ test("public catalog and session routes return contracts and reject malformed id
 
 test("login, rate-limit reservation, and member profile routes enforce their contracts", async () => {
   const { POST: login } = await import("@/app/api/v1/auth/login/route");
-  const { parseAdminReturnTo, parseReturnTo } = await import("@/lib/server/auth/return-to");
+  const { parseAdminReturnTo, parseReturnTo, parseTrainerReturnTo } = await import("@/lib/server/auth/return-to");
   const { getPortalDestination } = await import("@/lib/server/auth/portal-destination");
   const { prisma } = await import("@/lib/server/prisma");
   assert.equal(parseReturnTo("/admin"), null, "registration/member return paths never include admin routes");
   assert.equal(parseAdminReturnTo("/admin/sessions/00000000-0000-4000-8000-000000000301/participants"), "/admin/sessions/00000000-0000-4000-8000-000000000301/participants");
   assert.equal(parseAdminReturnTo("/admin/sessions/not-a-uuid/edit"), null);
   assert.equal(parseAdminReturnTo("//attacker.example"), null);
+  assert.equal(parseTrainerReturnTo("/trainer/sessions"), "/trainer/sessions");
+  assert.equal(parseTrainerReturnTo("/trainer/sessions/00000000-0000-4000-8000-000000000301"), "/trainer/sessions/00000000-0000-4000-8000-000000000301");
+  assert.equal(parseTrainerReturnTo("/trainer/sessions/not-a-uuid"), null);
+  assert.equal(parseTrainerReturnTo("//attacker.example"), null);
   assert.equal(getPortalDestination({ role: "MEMBER", memberProfile: {} }, null), "/app");
   assert.equal(getPortalDestination({ role: "MEMBER", memberProfile: {} }, "/app/bookings"), "/app/bookings");
   assert.equal(getPortalDestination({ role: "ADMINISTRATOR", memberProfile: {} }, "/admin/sessions"), "/admin/sessions");
   assert.equal(getPortalDestination({ role: "ADMINISTRATOR", memberProfile: {} }, null), "/app");
   assert.equal(getPortalDestination({ role: "ADMINISTRATOR", memberProfile: null }, null), "/admin");
   assert.equal(getPortalDestination({ role: "TRAINER", memberProfile: null }, null), "/trainer/sessions");
+  assert.equal(getPortalDestination({ role: "TRAINER", memberProfile: null }, "/trainer/sessions/00000000-0000-4000-8000-000000000301"), "/trainer/sessions/00000000-0000-4000-8000-000000000301");
   const member = await prisma.user.findUniqueOrThrow({ where: { id: state.userIds["member-one"] } });
   const rejectedEmail = `csrf-login-${randomUUID()}@example.test`;
   assert.equal((await login!(unsafe("/api/v1/auth/login", { email: rejectedEmail, password }, undefined, "https://attacker.example") as never)).status, 403);
@@ -142,6 +147,13 @@ test("login, rate-limit reservation, and member profile routes enforce their con
   assert.equal(memberAdminAttempt.status, 200);
   assert.equal((await memberAdminAttempt.json()).data.destination, "/app", "a member cannot use an administrator return path");
   assert.equal((await login!(unsafe("/api/v1/auth/login", { email: member.email, password, returnTo: "https://attacker.example" }) as never)).status, 422);
+  const trainer = await prisma.user.findUniqueOrThrow({ where: { id: state.userIds.trainer } });
+  const trainerLogin = await login!(unsafe("/api/v1/auth/login", { email: trainer.email, password, returnTo: "/trainer/sessions" }) as never);
+  assert.equal((await trainerLogin.json()).data.destination, "/trainer/sessions");
+  const trainerSessionReturn = await login!(unsafe("/api/v1/auth/login", { email: trainer.email, password, returnTo: "/trainer/sessions/00000000-0000-4000-8000-000000000301" }) as never);
+  assert.equal((await trainerSessionReturn.json()).data.destination, "/trainer/sessions/00000000-0000-4000-8000-000000000301");
+  const memberTrainerAttempt = await login!(unsafe("/api/v1/auth/login", { email: member.email, password, returnTo: "/trainer/sessions" }) as never);
+  assert.equal((await memberTrainerAttempt.json()).data.destination, "/app", "a member cannot use a trainer return path");
   const wrong = await login!(unsafe("/api/v1/auth/login", { email: member.email, password: "incorrect-password-123" }) as never);
   assert.equal(wrong.status, 401);
   assert.equal((await wrong.json()).error.code, "INVALID_CREDENTIALS");
@@ -354,14 +366,26 @@ test("booking and waitlist domain failures preserve database state", async () =>
 
 test("trainer and administrator routes enforce role boundaries and return successful contracts", async () => {
   const { GET: trainerSessions } = await import("@/app/api/v1/trainer/sessions/route");
+  const { GET: trainerSessionDetail } = await import("@/app/api/v1/trainer/sessions/[sessionId]/route");
   const { GET: adminSessions, POST: create } = await import("@/app/api/v1/admin/sessions/route");
   const { GET: adminOptions } = await import("@/app/api/v1/admin/options/route");
   const { PATCH, mapSessionUpdateResult } = await import("@/app/api/v1/admin/sessions/[sessionId]/route");
   const { GET: participants } = await import("@/app/api/v1/admin/sessions/[sessionId]/participants/route");
   assert.equal((await trainerSessions!(request("/api/v1/trainer/sessions", {}, state.cookies["member-one"]) as never)).status, 403);
+  assert.equal((await trainerSessions!(request("/api/v1/trainer/sessions", {}, state.cookies.admin) as never)).status, 403);
   assert.equal((await trainerSessions!(request("/api/v1/trainer/sessions", {}, state.cookies.trainer) as never)).status, 200);
   const trainerOneSession = await createSession(state.trainerId);
   const trainerTwoSession = await createSession(state.secondTrainerId);
+  const detailContext = { params: Promise.resolve({ sessionId: trainerOneSession }) };
+  const trainerDetailResponse = await trainerSessionDetail!(request(`/api/v1/trainer/sessions/${trainerOneSession}`, {}, state.cookies.trainer) as never, detailContext);
+  assert.equal(trainerDetailResponse.status, 200);
+  const trainerDetail = (await trainerDetailResponse.json()).data.session;
+  assert.deepEqual(Object.keys(trainerDetail).sort(), ["capacity", "confirmedCount", "endsAt", "program", "sessionId", "startsAt", "status"].sort());
+  assert.equal(JSON.stringify(trainerDetail).includes("Casey Morgan"), false, "trainer detail returns aggregate attendance only");
+  assert.equal((await trainerSessionDetail!(request(`/api/v1/trainer/sessions/${trainerTwoSession}`, {}, state.cookies.trainer) as never, { params: Promise.resolve({ sessionId: trainerTwoSession }) })).status, 404, "another trainer's assignment is indistinguishable from missing");
+  assert.equal((await trainerSessionDetail!(request(`/api/v1/trainer/sessions/${trainerOneSession}`, {}, state.cookies["member-one"]) as never, detailContext)).status, 403);
+  assert.equal((await trainerSessionDetail!(request(`/api/v1/trainer/sessions/${trainerOneSession}`, {}, state.cookies.admin) as never, detailContext)).status, 403);
+  assert.equal((await trainerSessionDetail!(request(`/api/v1/trainer/sessions/${trainerOneSession}`) as never, detailContext)).status, 401);
   const trainerOneResponse = await trainerSessions!(request("/api/v1/trainer/sessions", {}, state.cookies.trainer) as never);
   const trainerTwoResponse = await trainerSessions!(request("/api/v1/trainer/sessions", {}, state.cookies["trainer-two"]) as never);
   const trainerOneIds = (await trainerOneResponse.json()).data.sessions.map((session: { sessionId: string }) => session.sessionId);
