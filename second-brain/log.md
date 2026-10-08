@@ -497,3 +497,4 @@ updated: 2026-09-21
 - Axe identified muted text at 4.43–4.45:1 against two soft backgrounds and ARIA labels/busy state on generic loading-grid divs without a semantic role. Darkened the shared muted token to `#62655b` (calculated 4.86:1 or higher on affected backgrounds) and assigned `role="status"` to named loading regions. Local lint and TypeScript pass.
 - CI rerun, complete E2E flow, remaining axe scans, and browser runtime performance review remain pending. No live database or server was modified.
 - Details: [[wiki/logs/2026-10-08-issue-13-accessibility-fix]].
+- Follow-up run 37842824345 passed the landing axe scan and exposed that the generic E2E `getByRole("status")` selector matched both the success alert and loading status. Scoped the assertion to the success notice. Full flow and remaining scans are pending another CI run.

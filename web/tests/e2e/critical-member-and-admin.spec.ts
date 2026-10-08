@@ -46,7 +46,7 @@ test("member booking/waitlist/cancel-promotion and administrator authorization j
 
   await member.goto(`/app/schedule?sessionId=${seededSessionId}`);
   await member.getByRole("button", { name: "Join waitlist" }).click();
-  await expect(member.getByRole("status")).toContainText("waitlist at position 3");
+  await expect(member.locator(".state-success[role='status']")).toContainText("waitlist at position 3");
   await member.goto("/app/bookings");
   await expect(member.getByRole("heading", { name: "Waitlist entries" })).toBeVisible();
   await expect(member.getByText("Position 3")).toBeVisible();
