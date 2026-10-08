@@ -467,3 +467,10 @@ updated: 2026-09-21
 - Added optional `FITOPS_DEMO_PASSWORD` support for fresh seed runs, validated against the existing 15-128 character password policy. The private `.env` remains ignored; absent a value, seed credentials stay randomly generated.
 - No live database export, credential hashes, sessions, user account data, actual `.env` files, or Docker volume contents were added. Example environment files contain placeholders only. This is local development portability, not production deployment.
 - Docker engine is unavailable on this computer, so actual Compose startup and database verification must be performed after Docker/WSL recovery or on the home computer.
+
+## 2026-10-08 - Issue #12 acceptance completed on isolated test data
+
+- Applied all six migrations and seeded a disposable PostgreSQL database on the LAN host; `db:verify` reported six fictional users, three sessions, four confirmed bookings, and four waitlist entries.
+- API-contract integration suite passed 7/7 against PostgreSQL. Authenticated browser acceptance passed admin overview/create/edit/roster, a capacity increase from 2 to 3 with Casey Morgan FIFO-promoted ahead of Taylor Chen, and member/trainer denials on `/admin`.
+- Removed the temporary DB, local Next.js instances, browser tab, and SSH tunnels. The deployed FitOps demo database and AARC were not changed. Issue #12 remains Backlog and Draft PR #17 pending review/Sprint 6 transition.
+- Details: [[wiki/logs/2026-10-08-issue-12-acceptance]].
