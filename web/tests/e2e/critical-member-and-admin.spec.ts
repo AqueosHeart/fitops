@@ -81,7 +81,7 @@ test("member booking/waitlist/cancel-promotion and administrator authorization j
   await expect(seededBooking.getByRole("button", { name: "Cancel booking" })).toBeEnabled();
   await seededBooking.getByRole("button", { name: "Cancel booking" }).click();
   await otherMember.getByRole("button", { name: "Confirm cancellation" }).click();
-  await expect(otherMember.getByRole("status")).toContainText("reservation was cancelled");
+  await expect(otherMember.locator(".state-success[role='status']")).toContainText("reservation was cancelled");
 
   await member.reload();
   const promotedBooking = member.locator("article.booking-row").filter({ has: member.locator(`a[href="/sessions/${seededSessionId}"]`) });
@@ -93,7 +93,9 @@ test("member booking/waitlist/cancel-promotion and administrator authorization j
   const trainerContext = await browser.newContext();
   const trainer = await trainerContext.newPage();
   captureRuntimeErrors(trainer, runtimeErrors);
-  await signIn(trainer, "maya.coach@example.test", "/trainer/sessions");
+  await signIn(trainer, "maya.coach@example.test", "/app");
+  const trainerSessions = await trainer.request.get("/api/v1/trainer/sessions");
+  expect(trainerSessions.status()).toBe(200);
   await trainer.goto("/admin");
   await expect(trainer.getByText("Administrator access is required for this workspace.")).toBeVisible();
   expect(runtimeErrors).toEqual([]);

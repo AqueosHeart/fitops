@@ -6,14 +6,17 @@ export default defineConfig({
   testDir: "./tests/e2e",
   fullyParallel: false,
   forbidOnly: Boolean(process.env.CI),
-  retries: process.env.CI ? 1 : 0,
+  // This journey mutates a seeded database; CI creates a fresh database per run,
+  // so a failed attempt must be rerun as a new job rather than against dirty state.
+  retries: 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: process.env.CI ? [["list"], ["html", { open: "never" }]] : "list",
   timeout: 45_000,
   expect: { timeout: 8_000 },
   use: {
     baseURL,
-    trace: "retain-on-failure",
+    // Playwright traces include request headers and authenticated session cookies.
+    trace: "off",
     screenshot: "only-on-failure",
     video: "retain-on-failure",
   },
