@@ -15,7 +15,8 @@
     "test:race": "node --conditions=react-server --import tsx --test tests/integration/postgres-race.test.ts",
     "test:constraints": "node --conditions=react-server --import tsx --test tests/integration/postgres-constraints.test.ts",
     "test:auth-api": "node --conditions=react-server --import tsx --test tests/integration/auth-api.test.ts",
-    "test:api-contract": "node --conditions=react-server --import tsx --test tests/integration/api-contract.test.ts"
+    "test:api-contract": "node --conditions=react-server --import tsx --test tests/integration/api-contract.test.ts",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@better-auth/prisma-adapter": "1.7.6",
@@ -24,7 +25,7 @@
     "argon2": "0.45.1",
     "better-auth": "1.7.6",
     "dotenv": "18.0.4",
-    "next": "16.3.6",
+    "next": "16.3.8",
     "pg": "8.23.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
@@ -38,6 +39,8 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@eslint/js": "9.39.5",
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.64.0",
     "eslint": "9.39.5",
     "eslint-import-resolver-typescript": "3.10.1",
     "eslint-plugin-import": "2.32.0",

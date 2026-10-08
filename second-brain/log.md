@@ -481,3 +481,11 @@ updated: 2026-09-21
 - Confirmed GitHub PR #17 is open, head `8a6c93b7a3f14e8447d73c44b5cd9005d78f23b3`, with no configured CI checks, review requests, or submitted reviews. Marked it Ready for review; this is not a code approval or a merge.
 - GitHub Projects still records Issue #12 as Backlog / Sprint 6. No sprint start, project status change, issue closure, or deployment DB write occurred.
 - Details: [[wiki/logs/2026-10-08-issue-12-review]].
+
+## 2026-10-08 - Issue #13 quality gate started
+
+- PR #17 merged to `main` at `08fbdd894c27436de2a52d8efe5c722c2e43dc56`; Issue #12 is Closed / Done / Sprint 6. Issue #13 was moved from Backlog to In Progress in Sprint 7, preserving its existing assignment.
+- Branch `codex/fitops-issue-13-quality` updates Next.js to 16.3.8, adds Playwright/axe critical-journey coverage, a PostgreSQL-backed GitHub Actions quality workflow, ignored test-output paths, and an evidence report.
+- Verified locally: zero full lockfile audit findings, lint, TypeScript, Prisma Client generation, production build (42 routes / 33 static page entries), Playwright discovery, and build artifact-size measurements. The deployed Linux app was not changed.
+- Pending: GitHub Actions run, DB-backed integration/concurrency tests, browser E2E and axe results, and browser runtime performance measurement. The local Docker Linux engine did not respond to `docker info`; no live or deployed database was used.
+- Details: [[wiki/logs/2026-10-08-issue-13-quality-start]].

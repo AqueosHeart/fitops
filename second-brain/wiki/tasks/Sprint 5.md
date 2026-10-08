@@ -2,7 +2,7 @@
 type: sprint
 project: FitOps
 sprint: Sprint 5
-status: active
+status: complete
 updated: 2026-10-08
 ---
 
@@ -12,12 +12,16 @@ updated: 2026-10-08
 
 Deliver the member-facing Practice Athletic Club journey on the verified API: public discovery, schedule, fictional enrollment, portal login, and member bookings.
 
-## Active work
+## Delivered work
 
-- [ ] Issue #11: accurate public discovery and session availability.
-- [ ] Issue #11: plan selection, registration/login, protected member workspace, and return paths.
-- [ ] Issue #11: waiver, booking/waitlist, cancellation, errors, and server-authoritative outcomes.
-- [ ] Issue #11: desktop/mobile accessibility and end-to-end verification against approved flows.
+- [x] Issue #11: accurate public discovery and session availability.
+- [x] Issue #11: plan selection, registration/login, protected member workspace, and return paths.
+- [x] Issue #11: waiver, booking/waitlist, cancellation, errors, and server-authoritative outcomes.
+- [x] Issue #11: desktop/mobile accessibility and end-to-end verification against approved flows.
+
+## Sprint status (2026-10-08)
+
+The Sprint 5 goal is delivered: Issue #11 is Closed / Done and assigned Sprint 5 in GitHub Projects. Issue #12 is separately Closed / Done in Sprint 6. Issue #13 is Open / In Progress / Sprint 7; its acceptance checks are not complete.
 
 ## Implementation checkpoint (2026-10-07)
 
@@ -37,18 +41,18 @@ Deliver the member-facing Practice Athletic Club journey on the verified API: pu
 
 ## Downstream stacked preparation (not Sprint 5 completion)
 
-- LAN deploy follow-up (2026-10-08): deployed isolated FitOps on the authorized Linux host at `192.168.1.208:3001`, separate from AARC. Six migrations, single fictional seed, DB verification, LAN HTTP access, anonymous admin redirect, and a server-side authenticated admin route check passed. AARC remains on port 3000. A high-severity npm audit finding exists for the pinned Next.js 16.3.6; the deployment stays private-LAN only. Interactive browser acceptance and Issue #14 production/release gates remain open.
+- LAN deploy follow-up (2026-10-08): deployed isolated FitOps on the authorized LAN Linux host at port 3001, separate from AARC. Six migrations, single fictional seed, DB verification, LAN HTTP access, anonymous admin redirect, and a server-side authenticated admin route check passed. AARC remains on port 3000. The deployed app remains on Next.js 16.3.6 and private LAN only; local quality work updates the repository to 16.3.8 but has not deployed it. Issues #13/#14 release gates remain open.
 - Prisma Studio follow-up (2026-10-08): on-demand Studio profile and loopback proxy deployed; host port `127.0.0.1:5555` is reachable through a local SSH tunnel only. Studio UI and JavaScript asset returned 200 from the Windows workstation. Studio can directly mutate tables and bypass app rules; close its service/tunnel when not in use. ADR 017 records the decision.
-- Admin acceptance and review follow-up (2026-10-08): signed-in browser verified overview, sessions/filter and empty result, fictional roster/FIFO ordering, form rendering, staff `/portal/login` return, and 390 px responsive layout after `58f2760`. On an isolated disposable PostgreSQL instance, browser session creation passed; capacity increase from 2 to 3 promoted FIFO waiter Casey Morgan while Taylor Chen remained waiting; member and trainer sessions both saw the admin-only denial at `/admin`. API-contract tests passed 7/7 against PostgreSQL. A focused review of auth/role boundaries, admin API and UI found no blocking defect. PR #17 is Ready for human review; temporary DB/app/tunnel were removed and no deployed demo DB rows were changed. GitHub Project still records Issue #12 Backlog / Sprint 6; no sprint transition or Done status is claimed.
+- Admin acceptance and review follow-up (2026-10-08): signed-in browser verified overview, sessions/filter and empty result, fictional roster/FIFO ordering, form rendering, staff `/portal/login` return, and 390 px responsive layout after `58f2760`. On an isolated disposable PostgreSQL instance, browser session creation passed; capacity increase from 2 to 3 promoted FIFO waiter Casey Morgan while Taylor Chen remained waiting; member and trainer sessions both saw the admin-only denial at `/admin`. API-contract tests passed 7/7 against PostgreSQL. A focused review found no blocking defect. PR #17 merged at `08fbdd894c27436de2a52d8efe5c722c2e43dc56`; Issue #12 is Closed / Done / Sprint 6. Temporary acceptance resources were removed, and no deployed demo DB rows were changed.
 
-- UX follow-up (2026-10-07): draw.io and Mermaid route/admin flows specify a single admin header (Overview, Sessions, My Account, Public site) and an existing valid member session routed from My Account to `/app`. Implementation consolidates the header and adds server-side role-aware `/portal/login` redirects. API-contract (7/7), ESLint, TypeScript, production build, UX structural validator, and anonymous HTTP redirects pass; authenticated browser acceptance is outstanding. Test setup now identifies concurrent fixture users by label instead of relying on insertion order. The fictional account requested for admin access was already ADMINISTRATOR; no role or account data was changed. Both affected SVG previews were regenerated with Mermaid CLI 12.0.0 and inspected via local Edge. On 2026-10-07 the FitOps browser attempt used port 3001 because AARC occupies 3000; its admin shell renders but database requests fail with `ECONNREFUSED` while Docker's Linux engine is unreachable. Do not claim authenticated acceptance until Docker/WSL and the local database recover.
+- Historical UX follow-up (2026-10-07, superseded): the admin header and role-aware `/portal/login` redirects were implemented and later covered by Issue #12's authenticated acceptance. API-contract, lint, TypeScript, production build, and UX structural validation passed; route-flow previews were regenerated and inspected. The local Docker outage at that time was an environment-specific limitation and did not block the later disposable-PostgreSQL acceptance.
 
-- Local portability follow-up (2026-10-07): added `compose.yaml` for loopback-only PostgreSQL 16 with persistent volume, `docs/local-development.md` for a fresh Windows checkout, and optional private seed-password support so the fictional seeded admin can sign in. Migrations and seed reconstruct a new local dataset; no live DB dump, credentials, session tokens, or local user activity are committed. This is developer setup only and does not close Issue #14 deployment scope or the Issue #12 browser gate.
+- Local portability follow-up (2026-10-07): added `compose.yaml` for loopback-only PostgreSQL 16 with persistent volume, `docs/local-development.md` for a fresh Windows checkout, and optional private seed-password support so the fictional seeded admin can sign in. Migrations and seed reconstruct a new local dataset; no live DB dump, credentials, session tokens, or local user activity are committed. This is developer setup only, not Issue #14 production-release evidence.
 
-- On 2026-10-07, branch `codex/fitops-issue-12-admin-operations` was started from PR #16's member branch and rebased onto `main` after PR #16 merged. Draft PR #17 contains the incomplete administrator UI slice and is not merged; Issue #12 remains Backlog / Sprint 6.
+- Historical checkpoint (2026-10-07, superseded): branch `codex/fitops-issue-12-admin-operations` was started from PR #16's member branch, rebased onto `main`, then completed and merged as PR #17 on 2026-10-08.
 - Implemented locally: protected admin overview and session manager, filtered listing, create/edit forms, occupancy/history-aware controls, fictional participant and ordered waitlist views, role-guarded program/trainer options, and role-aware login return paths. API/auth/constraint/race tests (24), lint, TypeScript, Prisma validation, read-only `db:verify`, and optimized production build (34 routes) pass. HTTP checks confirm unauthenticated admin routes preserve their return path to portal login.
-- For browser acceptance, the user authorized promoting the fictional member account tied to the current browser sessions from MEMBER to ADMINISTRATOR. A first account mismatch was corrected: the unrelated inactive test account was restored to MEMBER, and the current account's four sessions, member profile, booking, and waitlist entry were preserved. Refresh `/admin` in the existing session; do not expose credentials in chat.
-- Historical acceptance checklist above is superseded by the 2026-10-08 evidence. Remaining before Issue #12 closure: obtain human PR review/approval and merge; transition the issue only when Sprint 6 is actually started in GitHub Projects. Keep the issue Backlog for now.
+- Historical test-account checkpoint: the fictional account used for the completed Issue #12 acceptance already had ADMINISTRATOR access. A separate inactive synthetic account was restored to MEMBER; the active account's profile and participation rows were preserved. No credentials or contact details are recorded here.
+- Issue #12 acceptance is complete and closed. Issue #13 is now In Progress in Sprint 7; see [the Issue #13 evidence report](../../../docs/quality/issue-13-evidence.md) for current verified and pending evidence.
 
 ## Verified dependencies
 

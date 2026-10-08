@@ -12,7 +12,7 @@ updated: 2026-10-08
 - [[SOUL|Project identity]]
 - [[CRITICAL_FACTS|Critical facts]]
 - [[wiki/projects/FitOps|FitOps project memory]]
-- [[wiki/tasks/Sprint 5|Current sprint]]
+- [[wiki/tasks/Sprint 7|Current sprint]]
 - [[boards/FitOps Delivery|Delivery board mirror]]
 
 ## Product and engineering
@@ -41,6 +41,7 @@ updated: 2026-10-08
 - [Issue #9 threat model and server-side access control](../docs/security/threat-model-and-access-control.md)
 - [REST API](../docs/api.md)
 - [SDLC and sprint plan](../docs/delivery-plan.md)
+- [Issue #13 quality and production-candidate evidence](../docs/quality/issue-13-evidence.md)
 - [Sprint 0 exit review](../docs/reviews/sprint-0-exit-review.md)
 - [Tooling and workflow](../docs/tooling-and-workflow.md)
 
@@ -56,6 +57,8 @@ updated: 2026-10-08
 
 ## Activity
 
+- [[wiki/logs/2026-10-08-issue-13-quality-start|Issue #13 quality gate implementation and verification boundary]]
+- [[wiki/tasks/Sprint 5|Completed Sprint 5 member booking slice]]
 - [[wiki/logs/2026-10-07-issue-12-admin-test-account|Issue #12 fictional admin test account enabled]]
 - [[wiki/logs/2026-10-07-issue-12-admin-shell-account-routing|Issue #12 admin shell and signed-in My Account routing]]
 - [[wiki/logs/2026-10-08-fitops-lan-deployment|FitOps LAN deployment continuation]]
