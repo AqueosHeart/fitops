@@ -134,7 +134,7 @@ test("member booking/waitlist/cancel-promotion and administrator authorization j
   await expect(trainer.getByRole("heading", { name: "Assigned sessions" })).toBeVisible();
   await trainer.route("**/api/v1/trainer/sessions", (route) => route.fulfill({ status: 503, contentType: "application/json", body: JSON.stringify({ error: { message: "Temporary failure", requestId: "trainer-test-request" } }) }));
   await trainer.reload();
-  await expect(trainer.getByRole("alert")).toContainText("trainer-test-request");
+  await expect(trainer.locator(".trainer-state-error")).toContainText("trainer-test-request");
   await trainer.unroute("**/api/v1/trainer/sessions");
   await trainer.getByRole("button", { name: "Retry" }).click();
   await expect(trainer.getByRole("heading", { name: "Assigned sessions" })).toBeVisible();

@@ -513,4 +513,5 @@ updated: 2026-09-21
 - Added manual dispatch to the existing quality workflow so the stacked branch can run the isolated PostgreSQL/browser gate before PR #18 merges.
 - First isolated run [37852249660](https://github.com/AqueosHeart/fitops/actions/runs/37852249660) passed DB contracts, lint/typecheck, audit, and build. E2E stopped at a strict alert locator because the Next route announcer is also an alert; changed assertions to exact copy.
 - Second isolated run [37852930865](https://github.com/AqueosHeart/fitops/actions/runs/37852930865) passed those same suites and reached trainer detail, exposing the post-promotion 4/4 fixture count rather than 2/4; corrected the stale assertion.
-- Next: push the corrected count and rerun quality CI for the stacked PR before checking Issue #19 acceptance.
+- Third isolated run [37853306547](https://github.com/AqueosHeart/fitops/actions/runs/37853306547) passed DB, type, audit, and build gates and reached the simulated API failure; its final broad alert locator hit the Next route announcer. Changed it to target the trainer-state error element.
+- Next: push the selector fix and rerun quality CI for the stacked PR before checking Issue #19 acceptance.

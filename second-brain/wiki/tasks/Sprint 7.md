@@ -40,6 +40,7 @@ Build a reproducible, truthful quality gate for the FitOps production candidate.
 - Its implementation is on `codex/fitops-issue-19-trainer-workspace`. Local lint, TypeScript, UX sync, E2E discovery, and production build pass. The DB-backed API suite was attempted but blocked at setup by `ECONNREFUSED` to local PostgreSQL `127.0.0.1:5432`; no DB/server was changed. Isolated GitHub CI/browser verification remains necessary.
 - Isolated CI run [37852249660](https://github.com/AqueosHeart/fitops/actions/runs/37852249660) passed migrations/seed, DB contracts, lint/typecheck, audit, and build. The E2E journey stopped at a strict `getByRole("alert")` selector because Next's route announcer is also an alert; the test now targets the exact denial copy and is being rerun.
 - Run [37852930865](https://github.com/AqueosHeart/fitops/actions/runs/37852930865) passed those same suites and advanced through denial states to trainer detail. It exposed a stale 2/4 expectation: the earlier admin capacity increase promoted two waitlisted demo attendees, correctly producing 4/4. The browser assertion now expects the resulting aggregate count; rerun pending.
+- Run [37853306547](https://github.com/AqueosHeart/fitops/actions/runs/37853306547) passed DB, type, audit, and build gates and advanced through loading, empty, denial, responsive/detail, and accessibility checks to the simulated API failure. The last `getByRole("alert")` assertion hit the same Next route-announcer ambiguity; it now targets `.trainer-state-error` and needs another browser run.
 
 ## Environment boundary
 
