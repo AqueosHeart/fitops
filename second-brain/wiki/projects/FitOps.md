@@ -60,6 +60,10 @@ Visitor discovers the club, uses primary Join Now to choose a fictional plan or 
 - Transactional enforcement of capacity and waitlist promotion
 - Public demo and repository claims must be verifiable
 
+## Current deployment status (2026-10-08)
+
+User authorized an isolated LAN-only deployment to `192.168.1.208`, under `/home/sebastian/fitops`, bound to port 3001 with a separate PostgreSQL 16 volume. AARC owns port 3000 and must not be changed. Deployment config and instructions are in `deploy/compose.linux.yaml` and `docs/linux-server-deployment.md`. Local Compose config, lint, TypeScript, Prisma validation, and optimized build passed. Remote deployment, database seed/verification, and authenticated browser acceptance are not yet confirmed.
+
 ## Connections
 
 - [[../../CRITICAL_FACTS]]

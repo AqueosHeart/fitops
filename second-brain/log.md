@@ -6,6 +6,14 @@ updated: 2026-09-21
 
 # FitOps Activity Log
 
+## 2026-10-08 — FitOps LAN deployment continuation
+
+- User authorized deployment of the fictional FitOps demo to the separate Linux host, isolated from AARC.
+- Added Node 24 Docker build, LAN-only Compose config (private PostgreSQL volume; app bound to `192.168.1.208:3001`), example environment template, and deployment/rollback guide.
+- Passed Compose config validation, ESLint, TypeScript, Prisma validation, and Next production build locally. Remote deployment and DB/browser acceptance remain unverified.
+- No credentials or live data were recorded; AARC service/database/port were not modified.
+- Details: [[wiki/logs/2026-10-08-fitops-lan-deployment]].
+
 ## 2026-10-07 - Issue #10 published for review
 
 - Committed the verified Issue #10 implementation and continuity updates as `761f91f` on `codex/fitops-planning-checkpoint` and pushed the authorized branch.
