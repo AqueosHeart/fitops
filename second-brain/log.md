@@ -14,6 +14,14 @@ updated: 2026-09-21
 - AARC service/database/port were not modified. The HTTP service remains LAN-only; `npm audit --omit=dev` reports a high-severity finding in Next.js 16.3.6. See ADR 016 and the session note. No secrets were recorded.
 - Details: [[wiki/logs/2026-10-08-fitops-lan-deployment]].
 
+## 2026-10-08 — Admin browser acceptance and mobile overflow fix
+
+- Signed-in browser verified the admin overview, list filter and empty state, fictional roster/FIFO waitlist, create/edit forms, and valid admin My Account return path.
+- Fixed the hidden Actions table-header text that extended document width at phone size. Commit `58f2760` was pushed and deployed by rebuilding/recreating only the FitOps app container; PostgreSQL remained healthy and no DB rows changed.
+- Post-deploy mobile measurement confirms document width equals viewport width; horizontal scroll is isolated to the table wrapper. Lint, TypeScript, and production build passed. API-contract integration test failed because local PostgreSQL on port 5432 is unavailable; it was not redirected to the live DB.
+- Remaining Issue #12 gates: mutation-based create/capacity-promotion acceptance, member/trainer denial in browser, and subsequent review/transition. PR #17 remains Draft.
+- Details: [[wiki/logs/2026-10-08-fitops-lan-deployment]].
+
 ## 2026-10-08 — Prisma Studio over SSH tunnel
 
 - Added an on-demand Compose Studio profile plus a small same-network-namespace proxy because Prisma CLI binds Studio to container loopback.
