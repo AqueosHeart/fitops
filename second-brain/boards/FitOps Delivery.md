@@ -1,7 +1,7 @@
 ---
 type: board-mirror
 project: FitOps
-updated: 2026-10-07
+updated: 2026-10-08
 ---
 
 # FitOps Delivery Board Mirror
@@ -35,7 +35,7 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
   - UX follow-up: one focused admin header replaces duplicate/public navigation; signed-in My Account routes to `/app` for member-profile users or an authorized `returnTo`. Contract/API, lint, type, build, and UX coverage checks pass. Concurrent fixture lookup was made deterministic. The requested fictional local account already had the admin role, so no permission mutation was needed. Route-access and admin SVG previews were regenerated and visually inspected. AARC owns port 3000; FitOps is running on 3001, but its admin data is unavailable because Docker's Linux engine is unreachable (`db:verify` returns `ECONNREFUSED`). Authenticated browser acceptance remains outstanding until the database is back.
   - Backlog: Sprint 6, SDLC Phase 4, Feature, High risk, P1, estimate 5. Depends on the secure API and member contract. Draft PR [#17](https://github.com/AqueosHeart/fitops/pull/17) from `codex/fitops-issue-12-admin-operations` is rebased onto `main` after #16 merged; it includes role-aware login return paths. API/auth/constraint/race tests (24), lint, TypeScript, Prisma validation, database verification, and production build pass. Read-only verification confirmed the fictional account requested for admin access already had the ADMINISTRATOR role; no role or account data was changed. Authenticated UI acceptance remains outstanding. No status/acceptance transition is claimed.
   - Local work-at-home setup now has a Compose PostgreSQL service and migration/seed guide. It creates a fresh fictional database per computer and does not sync current local activity. Production deployment and Issue #12 browser acceptance remain open.
-  - 2026-10-08 LAN deployment follow-up: isolated deployment configuration for `/home/sebastian/fitops`, private DB volume, and `192.168.1.208:3001` added on the existing draft branch. Local static/config/build checks pass; server start, DB seed/verify, and authenticated browser acceptance remain pending. AARC port 3000 and service are explicitly out of scope.
+  - 2026-10-08 LAN deployment follow-up: FitOps is running from `/home/sebastian/fitops` on `192.168.1.208:3001` with its own private PostgreSQL volume. Migrations, one-time fictional seed, DB verification, public login HTTP 200, unauthenticated admin redirect, and server-side authenticated admin HTTP 200 passed. AARC remains active on port 3000 and was untouched. The deployment is LAN-only; a high-severity audit finding in pinned Next.js 16.3.6 must be resolved before broader exposure. Interactive browser acceptance remains open.
 - [#13 [QUALITY] System Quality and Production-Candidate Evidence](https://github.com/AqueosHeart/fitops/issues/13)
   - Backlog: Sprint 7, SDLC Phase 5, Test, High risk, P1, estimate 8. Covers E2E, accessibility, security, performance, CI, and truthful evidence.
 - [#14 [RELEASE] Deployment and Portfolio Evidence](https://github.com/AqueosHeart/fitops/issues/14)

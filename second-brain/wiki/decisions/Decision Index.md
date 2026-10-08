@@ -1,7 +1,7 @@
 ---
 type: decision-index
 project: FitOps
-updated: 2026-10-07
+updated: 2026-10-08
 ---
 
 # FitOps Decision Index
@@ -21,5 +21,6 @@ updated: 2026-10-07
 - [ADR 013 Use Penpot for FitOps visual design review](../../../docs/adr/013-use-penpot-for-visual-design.md)
 - [ADR 014 Use Better Auth for credentials and sessions](../../../docs/adr/014-use-better-auth-for-credentials-and-sessions.md)
 - [ADR 015 Replace the vulnerable Next ESLint config with direct lint plugins](../../../docs/adr/015-replace-vulnerable-next-eslint-config.md)
+- [ADR 016 Run FitOps as an isolated LAN-only Linux Compose project](../../../docs/adr/016-lan-only-linux-fitops-deployment.md)
 
 New material architecture decisions receive a new ADR. Accepted historical decisions are not silently rewritten; a later ADR may supersede them.

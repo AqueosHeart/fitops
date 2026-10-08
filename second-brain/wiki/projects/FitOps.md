@@ -62,7 +62,9 @@ Visitor discovers the club, uses primary Join Now to choose a fictional plan or 
 
 ## Current deployment status (2026-10-08)
 
-User authorized an isolated LAN-only deployment to `192.168.1.208`, under `/home/sebastian/fitops`, bound to port 3001 with a separate PostgreSQL 16 volume. AARC owns port 3000 and must not be changed. Deployment config and instructions are in `deploy/compose.linux.yaml` and `docs/linux-server-deployment.md`. Local Compose config, lint, TypeScript, Prisma validation, and optimized build passed. Remote deployment, database seed/verification, and authenticated browser acceptance are not yet confirmed.
+Deployed from branch `codex/fitops-issue-12-admin-operations` (app source at commit `8951e16`) to `/home/sebastian/fitops`, bound only to `192.168.1.208:3001`, with a separate PostgreSQL 16 volume and private database network. All six migrations applied; one fictional seed and `db:verify` passed (6 users, 3 sessions, 4 confirmed bookings, 4 waitlist entries). From the Windows workstation, the login page returns 200 and anonymous `/admin` redirects to `/portal/login?returnTo=%2Fadmin`. A server-side seeded-admin login and protected `/admin` request both returned 200. AARC remains active on port 3000 and was not modified. The app is LAN-only, without TLS. `npm audit --omit=dev` identifies a high-severity Next.js 16.3.6 finding, so do not expose publicly until updated and reviewed. Issue #12 authenticated interactive browser acceptance and Issue #14 production/release gates remain open.
+
+Deployment topology is recorded in [ADR 016](../../../docs/adr/016-lan-only-linux-fitops-deployment.md); operational instructions are in [the LAN deployment guide](../../../docs/linux-server-deployment.md).
 
 ## Connections
 

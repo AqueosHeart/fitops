@@ -1,7 +1,7 @@
 ---
 type: critical-facts
 project: FitOps
-updated: 2026-10-07
+updated: 2026-10-08
 ---
 
 # FitOps Critical Facts
@@ -26,7 +26,7 @@ updated: 2026-10-07
 - 2026-10-07 flow previews: regenerated the route-access and administrator Mermaid SVGs with CLI 12.0.0 via local Edge after isolating a corrupt/slow npm cache; both rendered previews were visually inspected. Authenticated browser acceptance remains the Issue #12 UI gate.
 - 2026-10-07 local browser attempt: AARC occupies port 3000, so FitOps was started on port 3001. Its admin shell renders but reports the workspace temporarily unavailable; read-only `db:verify` returns `ECONNREFUSED`, and Docker CLI cannot reach `dockerDesktopLinuxEngine`. No Docker/WSL restart or configuration change was made. Recheck only after the user restores Docker/WSL and the database is reachable.
 - Local portability setup (2026-10-07): repository now includes loopback-only PostgreSQL 16 Compose with a persistent local volume, a second-computer setup guide, and optional private seed-password support for fresh demo databases. Git distributes schema/migrations/fictional seed, not a live DB dump or account/session data. This is local-development setup, not production deployment evidence.
-- LAN deployment preparation (2026-10-08): branch adds a Linux Compose deployment with a dedicated private PostgreSQL volume, app port 3001 bound to `192.168.1.208`, Node 24 container build, and host-local secret setup instructions. Static config, lint, type-check, Prisma validation, and production build pass. Server deployment remains pending Docker/sudo and authenticated browser verification; AARC port 3000/service/DB are out of scope and must remain untouched.
+- LAN deployment (2026-10-08): FitOps runs from `/home/sebastian/fitops` as a separate Compose project with its own PostgreSQL 16 volume; DB has no host port and HTTP binds only to `192.168.1.208:3001`. Six migrations applied; one fictional seed and `db:verify` passed (6 users, 3 sessions, 4 confirmed bookings, 4 waitlist entries). HTTP login page returns 200 from the Windows workstation; anonymous `/admin` redirects to login; server-side demo admin login and protected `/admin` returned 200. AARC remains active on 3000 and was not modified. Keep LAN-only: `npm audit --omit=dev` reports high-severity Next.js 16.3.6 advisories; no public exposure until framework update and broader release gates.
 - `web/lib/server/prisma.ts` is the server-only shared Prisma 7 client. `npm run db:verify` reads the fictional seed data through it.
 - The Booking Repository and `withBookingLocks` transaction helper exist. The helper locks `class_sessions` then `member_profiles`. `bookSession`, `joinWaitlist`, `cancelBooking`, and capacity edits use transaction-scoped decisions; ten synchronized PostgreSQL tests now cover their key interleavings and rollback paths.
 - Sprint source of truth after repository setup: GitHub Projects, Issues, and pull requests.

@@ -2,6 +2,8 @@
 
 This deployment runs a separate fictional FitOps demo beside the AARC application. It uses its own PostgreSQL 16 container and named volume on an internal-only database network, keeps PostgreSQL off host ports, and binds the web app only to the private LAN address `192.168.1.208:3001`. The app also joins a separate bridge network so Docker can publish that host port. It does not use or modify AARC's service, database, reverse proxy, or port 3000. Do not use this setup for public internet access: it has no TLS or production hardening.
 
+As of 2026-10-08, `npm audit --omit=dev` reports a high-severity advisory affecting the pinned Next.js 16.3.6; an update outside the current version pin is available. Keep this instance private until the framework is updated and the full verification gate passes.
+
 ## First deployment
 
 On the Linux host, clone the intended branch to `/home/sebastian/fitops`, then create a private environment file:

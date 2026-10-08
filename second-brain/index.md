@@ -2,7 +2,7 @@
 type: index
 project: FitOps
 status: active
-updated: 2026-10-07
+updated: 2026-10-08
 ---
 
 # FitOps Knowledge Index

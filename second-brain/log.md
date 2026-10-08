@@ -10,8 +10,8 @@ updated: 2026-09-21
 
 - User authorized deployment of the fictional FitOps demo to the separate Linux host, isolated from AARC.
 - Added Node 24 Docker build, LAN-only Compose config (private PostgreSQL volume; app bound to `192.168.1.208:3001`), example environment template, and deployment/rollback guide.
-- Passed Compose config validation, ESLint, TypeScript, Prisma validation, and Next production build locally. Remote deployment and DB/browser acceptance remain unverified.
-- No credentials or live data were recorded; AARC service/database/port were not modified.
+- Passed Compose config validation, ESLint, TypeScript, Prisma validation, and Next production build locally. Deployed commit `8951e16`; six migrations, one-time fictional seed, and `db:verify` passed. LAN login returned HTTP 200, anonymous admin redirected, and server-side authenticated admin returned HTTP 200.
+- AARC service/database/port were not modified. The HTTP service remains LAN-only; `npm audit --omit=dev` reports a high-severity finding in Next.js 16.3.6. See ADR 016 and the session note. No secrets were recorded.
 - Details: [[wiki/logs/2026-10-08-fitops-lan-deployment]].
 
 ## 2026-10-07 - Issue #10 published for review
