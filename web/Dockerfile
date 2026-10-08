@@ -2,6 +2,9 @@ FROM node:24.14.0-bookworm-slim AS build
 
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y --no-install-recommends openssl ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
 # Prisma config requires these values at build time; use inert placeholders only.
 ENV DATABASE_URL=postgresql://build:build@127.0.0.1:5432/build?schema=public
 ENV BETTER_AUTH_SECRET=build-only-placeholder-secret-build-only-placeholder
@@ -18,6 +21,9 @@ FROM node:24.14.0-bookworm-slim AS runtime
 
 ENV NODE_ENV=production
 WORKDIR /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends openssl ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY --from=build --chown=node:node /app ./
 USER node
