@@ -19,8 +19,8 @@ async function requireAdmin(request: NextRequest) {
 export async function GET(request: NextRequest) {
   const admin = await requireAdmin(request);
   if ("error" in admin) return admin.error;
-  const sessions = await prisma.classSession.findMany({ include: { program: true, trainer: { include: { user: { select: { name: true } } } }, _count: { select: { bookings: { where: { status: "CONFIRMED" } }, waitlistEntries: { where: { status: "WAITING" } } } } }, orderBy: { startsAt: "asc" } });
-  return jsonData({ sessions: sessions.map((session) => ({ sessionId: session.id, program: session.program.name, trainer: session.trainer.user.name, startsAt: session.startsAt.toISOString(), endsAt: session.endsAt.toISOString(), status: session.status.toLowerCase(), capacity: session.capacity, confirmedCount: session._count.bookings, waitingCount: session._count.waitlistEntries })) });
+  const sessions = await prisma.classSession.findMany({ include: { program: true, trainer: { include: { user: { select: { name: true } } } }, bookings: { take: 1, select: { id: true } }, waitlistEntries: { take: 1, select: { id: true } }, _count: { select: { bookings: { where: { status: "CONFIRMED" } }, waitlistEntries: { where: { status: "WAITING" } } } } }, orderBy: { startsAt: "asc" } });
+  return jsonData({ sessions: sessions.map((session) => ({ sessionId: session.id, programId: session.programId, trainerId: session.trainerId, program: session.program.name, trainer: session.trainer.user.name, startsAt: session.startsAt.toISOString(), endsAt: session.endsAt.toISOString(), status: session.status.toLowerCase(), capacity: session.capacity, bookingCutoffMinutes: session.bookingCutoffMinutes, confirmedCount: session._count.bookings, waitingCount: session._count.waitlistEntries, hasParticipationHistory: session.bookings.length > 0 || session.waitlistEntries.length > 0 })) });
 }
 
 export async function POST(request: NextRequest) {

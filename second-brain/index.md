@@ -2,7 +2,7 @@
 type: index
 project: FitOps
 status: active
-updated: 2026-10-07
+updated: 2026-10-08
 ---
 
 # FitOps Knowledge Index
@@ -18,6 +18,8 @@ updated: 2026-10-07
 ## Product and engineering
 
 - [Project overview](../README.md)
+- [Local development on another computer](../docs/local-development.md)
+- [LAN-only Linux server deployment](../docs/linux-server-deployment.md)
 - [Product requirements](../docs/product-requirements.md)
 - [UX plan](../docs/ux-plan.md)
 - [Complete wireframe coverage](../docs/design/wireframe-coverage.md)
@@ -54,6 +56,11 @@ updated: 2026-10-07
 
 ## Activity
 
+- [[wiki/logs/2026-10-07-issue-12-admin-test-account|Issue #12 fictional admin test account enabled]]
+- [[wiki/logs/2026-10-07-issue-12-admin-shell-account-routing|Issue #12 admin shell and signed-in My Account routing]]
+- [[wiki/logs/2026-10-08-fitops-lan-deployment|FitOps LAN deployment continuation]]
+- [[wiki/logs/2026-10-08-issue-12-acceptance|Issue #12 administrator acceptance]]
+- [[wiki/logs/2026-10-08-issue-12-review|Issue #12 review and handoff]]
 - [[wiki/logs/2026-09-21-complete-wireframe-plugin|Complete desktop and mobile wireframe plugin]]
 
 - [[wiki/logs/2026-09-21-sitemap-architecture-separation|Page-only sitemap and route/access architecture separation]]
@@ -108,4 +115,5 @@ updated: 2026-10-07
 - [[wiki/logs/2026-10-07-issue-10-braces-audit-follow-up|Issue #10 `braces` audit follow-up]]
 - [[wiki/logs/2026-10-07-issue-10-eslint-advisory-resolution|Issue #10 lint advisory resolution]]
 - [[wiki/logs/2026-10-07-issue-11-member-product-slice|Issue #11 member product slice and PR #16 review handoff]]
+- [[wiki/logs/2026-10-07-issue-12-admin-operations-start|Issue #12 administrator operations started as dependent work]]
 - [[wiki/tasks/Sprint 5|Sprint 5 Member Booking Product Slice]]

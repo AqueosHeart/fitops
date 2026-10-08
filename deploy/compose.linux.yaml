@@ -1,0 +1,74 @@
+name: fitops
+
+services:
+  db:
+    image: postgres:16.9-bookworm
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:?Set POSTGRES_USER in .env}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: ${POSTGRES_DB:?Set POSTGRES_DB in .env}
+    volumes:
+      - fitops-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\""]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    networks:
+      - private
+
+  app:
+    build:
+      context: ../web
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?schema=public
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:?Set BETTER_AUTH_SECRET in .env}
+      BETTER_AUTH_URL: ${BETTER_AUTH_URL:?Set BETTER_AUTH_URL in .env}
+      FITOPS_DEMO_PASSWORD: ${FITOPS_DEMO_PASSWORD:?Set FITOPS_DEMO_PASSWORD in .env before seeding}
+    ports:
+      - "${FITOPS_BIND_ADDRESS:-127.0.0.1}:3001:3000"
+    networks:
+      - private
+      - lan
+
+  studio:
+    image: fitops-app
+    profiles: ["studio"]
+    restart: "no"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?schema=public
+    command: ["npx", "prisma", "studio", "--port", "5555", "--browser", "none"]
+    ports:
+      - "127.0.0.1:5555:5556"
+    networks:
+      - private
+      - lan
+
+  studio-proxy:
+    image: fitops-app
+    profiles: ["studio"]
+    restart: "no"
+    depends_on:
+      studio:
+        condition: service_started
+    network_mode: service:studio
+    command: ["node", "scripts/prisma-studio-proxy.mjs"]
+
+volumes:
+  fitops-postgres:
+
+networks:
+  private:
+    internal: true
+  lan:
+    driver: bridge

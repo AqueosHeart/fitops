@@ -5,7 +5,8 @@ flowchart TD
 
     Start([User signs in]) --> Role{Administrator role?}
     Role -- No --> Forbidden["Access denied<br/>Return to permitted experience"]:::error --> Start
-    Role -- Yes --> Overview["Operations overview<br/>Session occupancy and waitlist counts"]
+    Role -- Yes --> Shell["Administrator shell<br/>Overview, Sessions, My Account, Public site<br/>Hide public marketing links and Join Now"]
+    Shell --> Overview["Operations overview<br/>Session occupancy and waitlist counts"]
     Overview --> Sessions[Open session manager]
     Sessions --> LoadState{Session-list result}
     LoadState -- Loading --> Loading[Show table loading state]

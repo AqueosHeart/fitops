@@ -6,6 +6,29 @@ updated: 2026-09-21
 
 # FitOps Activity Log
 
+## 2026-10-08 — FitOps LAN deployment continuation
+
+- User authorized deployment of the fictional FitOps demo to the separate Linux host, isolated from AARC.
+- Added Node 24 Docker build, LAN-only Compose config (private PostgreSQL volume; app bound to `192.168.1.208:3001`), example environment template, and deployment/rollback guide.
+- Passed Compose config validation, ESLint, TypeScript, Prisma validation, and Next production build locally. Deployed commit `8951e16`; six migrations, one-time fictional seed, and `db:verify` passed. LAN login returned HTTP 200, anonymous admin redirected, and server-side authenticated admin returned HTTP 200.
+- AARC service/database/port were not modified. The HTTP service remains LAN-only; `npm audit --omit=dev` reports a high-severity finding in Next.js 16.3.6. See ADR 016 and the session note. No secrets were recorded.
+- Details: [[wiki/logs/2026-10-08-fitops-lan-deployment]].
+
+## 2026-10-08 — Admin browser acceptance and mobile overflow fix
+
+- Signed-in browser verified the admin overview, list filter and empty state, fictional roster/FIFO waitlist, create/edit forms, and valid admin My Account return path.
+- Fixed the hidden Actions table-header text that extended document width at phone size. Commit `58f2760` was pushed and deployed by rebuilding/recreating only the FitOps app container; PostgreSQL remained healthy and no DB rows changed.
+- Post-deploy mobile measurement confirms document width equals viewport width; horizontal scroll is isolated to the table wrapper. Lint, TypeScript, and production build passed. API-contract integration test failed because local PostgreSQL on port 5432 is unavailable; it was not redirected to the live DB.
+- Remaining Issue #12 gates: mutation-based create/capacity-promotion acceptance, member/trainer denial in browser, and subsequent review/transition. PR #17 remains Draft.
+- Details: [[wiki/logs/2026-10-08-fitops-lan-deployment]].
+
+## 2026-10-08 — Prisma Studio over SSH tunnel
+
+- Added an on-demand Compose Studio profile plus a small same-network-namespace proxy because Prisma CLI binds Studio to container loopback.
+- Deployed it with server host binding `127.0.0.1:5555`, and opened a Windows SSH local tunnel. Studio HTML and JS asset both return HTTP 200 through `http://127.0.0.1:5555`; AARC ports and services are unchanged.
+- Studio directly edits the fictional FitOps DB and bypasses application rules. Stop the profile and close the tunnel after use. ADR 017 records the decision.
+- Details: [[wiki/logs/2026-10-08-fitops-lan-deployment]].
+
 ## 2026-10-07 - Issue #10 published for review
 
 - Committed the verified Issue #10 implementation and continuity updates as `761f91f` on `codex/fitops-planning-checkpoint` and pushed the authorized branch.
@@ -378,3 +401,83 @@ updated: 2026-09-21
 - Committed the member product slice as `262c337`, pushed branch `codex/fitops-issue-11-member-slice`, opened PR #16, and moved the FitOps Delivery item to In Review. Issue #11 remains open pending review and merge.
 - Local development auth config now has a generated key only in ignored `web/.env.local`; no key or account identifier is stored in the repository. The user confirmed the additional browser-created account and active waitlist entry are fictional; no address or identifier was recorded, and no cleanup or seed reset was run.
 - Details: [[wiki/logs/2026-10-07-issue-11-member-product-slice]]; [[wiki/tasks/Sprint 5]].
+
+## 2026-10-07 — Issue #12 administrator operations started as dependent work
+
+- PR #16 remains open, so administrator UI work is on a local branch stacked on its member branch; Issue #12 stays Backlog/Sprint 6 and no acceptance closure is claimed.
+- Implemented protected admin overview/list/create/edit/participants screens and admin-only form options; documented the response contract. API-contract 7/7, targeted ESLint, and production build (34 routes) pass. Authenticated browser acceptance and dependency merge are still required.
+- Details: [[wiki/logs/2026-10-07-issue-12-admin-operations-start]]; [[wiki/tasks/Sprint 5]].
+
+## 2026-10-07 — Issue #11 merged and Issue #12 branch rebased
+
+- Reviewed and merged PR #16 to `main` at `0248913b6867708a6f5bf8e1dd44a74ac32ec313`; GitHub closed Issue #11 and records its Project status as Done. The issue checklist now contains verified acceptance evidence.
+- Rebased `codex/fitops-issue-12-admin-operations` onto the merged main. The admin branch remains local and Issue #12 remains Backlog; authenticated UI acceptance is outstanding.
+- Re-run on the merged stack: auth 5, API contract 7, DB constraints 2, PostgreSQL races 10, lint, TypeScript, Prisma validate, read-only `db:verify`, production build (34 routes), and `git diff --check` passed. No Actions checks are configured.
+- Details: [[wiki/logs/2026-10-07-issue-11-member-product-slice]]; [[wiki/logs/2026-10-07-issue-12-admin-operations-start]]; [[wiki/tasks/Sprint 5]].
+
+## 2026-10-07 — Issue #12 draft PR published
+
+- Pushed `codex/fitops-issue-12-admin-operations` and opened Draft PR [#17](https://github.com/AqueosHeart/fitops/pull/17) against `main`; its review description lists the authenticated browser acceptance still required. Issue #12 remains Backlog.
+- Fixed the login return-path mismatch discovered while verifying the admin gate: only administrators may land on allowlisted `/admin` routes; member registration remains member-only. API-contract (7), auth (5), lint, and build (34 routes) pass after the fix.
+- Details: [[wiki/logs/2026-10-07-issue-12-admin-operations-start]]; [[wiki/tasks/Sprint 5]].
+
+## 2026-10-07 — Issue #12 fictional admin test account enabled
+
+- With explicit user authorization, promoted the unique non-seed fictional `@example.test` test account from MEMBER to ADMINISTRATOR in the local database using a conditional transaction.
+- Verified the new role and preserved its member profile, one booking, and one waitlist entry; no account identifier or credential was recorded. Issue #12 remains Backlog pending authenticated browser acceptance.
+- Details: [[wiki/logs/2026-10-07-issue-12-admin-test-account]].
+
+## 2026-10-07 — Issue #12 browser account mismatch corrected
+
+- The admin screenshot still showed a signed-in member denial. Read-only inspection of active session ownership showed the browser account differed from the inactive test account first promoted; no credentials or full identifiers were read or recorded.
+- In one conditional transaction, restored the unrelated inactive account to MEMBER and promoted the unique fictional member account with active sessions to ADMINISTRATOR. Verified four sessions and its member profile, one booking, and one waitlist entry remained unchanged.
+- Role resolution reloads the user from PostgreSQL on each protected request. The user can refresh `/admin`; authenticated browser acceptance is not yet verified.
+- Details: [[wiki/logs/2026-10-07-issue-12-admin-test-account]].
+
+## 2026-10-07 — Issue #12 admin shell and account routing
+
+- Consolidated admin navigation into one focused header: Overview, Sessions, My Account, and Public site. Removed the public marketing nav/Join Now and duplicate operations subnav from admin routes.
+- `/portal/login` now resolves a valid Better Auth session server-side, honoring an allowlisted destination only if permitted for the current role; otherwise member-profile accounts go to `/app`, and staff-only accounts go to their role workspace.
+- Updated draw.io source, Mermaid route/admin flows, FitOps project and Sprint 5 notes, delivery mirror, and this log. API-contract test passes 7/7; targeted ESLint, TypeScript, production build (33 routes), UX structural validator, and anonymous login/admin redirect HTTP checks pass. Initial concurrent test attempt hit local DB transaction timeouts; isolated rerun passed. Mermaid CLI package resolution stalled, so SVG previews remain stale. Authenticated browser acceptance remains outstanding.
+- Details: [[wiki/logs/2026-10-07-issue-12-admin-shell-account-routing]]; [[wiki/tasks/Sprint 5]].
+
+## 2026-10-07 — Issue #12 acceptance follow-up
+
+- User confirmed the newly requested local account was fictional. Read-only inspection showed it already held ADMINISTRATOR; its existing member profile, sessions, bookings, and waitlist records were left unchanged. The address is intentionally not copied to project notes.
+- A repeated API-contract run exposed a nondeterministic test fixture: concurrent registrations were indexed by completion order. Changed lookups to stable test labels; rerun passes 7/7, including admin creation/edit/FIFO/cutoff and role-boundary contracts. ESLint and TypeScript pass; prior production build remains green.
+- Mermaid CLI package execution stalled twice (including a pinned-version attempt); SVG previews remain stale. Authenticated browser UI acceptance remains open because no user browser tab/session is exposed to the local browser-control surface.
+- Details: [[wiki/logs/2026-10-07-issue-12-admin-shell-account-routing]]; [[wiki/tasks/Sprint 5]].
+
+## 2026-10-07 — Mermaid previews regenerated after renderer recovery
+
+- Installed Mermaid CLI 12.0.0 into an isolated temporary npm cache with install scripts disabled; configured Puppeteer to use the already-installed local Edge executable. This avoided project dependency changes and browser downloads.
+- Regenerated `docs/design/route-access-architecture.svg` and `docs/design/user-flow-admin.svg`, verified their labels against the Mermaid sources, and visually inspected both rendered previews. The earlier stalled-renderer note is superseded by this result.
+- Authenticated browser acceptance remains outstanding; the local browser-control surface exposes no signed-in user tab.
+- Details: [[wiki/logs/2026-10-07-issue-12-admin-shell-account-routing]].
+## 2026-10-07 - FitOps admin browser retry blocked by Docker engine
+
+- Resolved the local port conflict: AARC owns 3000; launched FitOps on 3001 and confirmed the admin navigation shell renders.
+- Database-backed workspace is unavailable: `npm run db:verify` returns Prisma `ECONNREFUSED`; Docker CLI cannot reach the Linux engine pipe. No Docker/WSL or database changes were made.
+- Corrected continuity notes: the fictional account requested for admin access already had ADMINISTRATOR; no role/account data changed in the read-only verification.
+- Route-access and admin Mermaid SVG previews are regenerated, XML-parse successfully, and passed visual inspection. Structural UX sync passed. Authenticated Issue #12 acceptance remains pending database recovery.
+## 2026-10-07 - FitOps second-computer local setup
+
+- Added root Docker Compose PostgreSQL 16 for local development, bound only to loopback port 5433 with a persistent named volume.
+- Added a Windows first-clone guide using committed Prisma migrations and fictional seed records; updated stale root project status and web READMEs.
+- Added optional `FITOPS_DEMO_PASSWORD` support for fresh seed runs, validated against the existing 15-128 character password policy. The private `.env` remains ignored; absent a value, seed credentials stay randomly generated.
+- No live database export, credential hashes, sessions, user account data, actual `.env` files, or Docker volume contents were added. Example environment files contain placeholders only. This is local development portability, not production deployment.
+- Docker engine is unavailable on this computer, so actual Compose startup and database verification must be performed after Docker/WSL recovery or on the home computer.
+
+## 2026-10-08 - Issue #12 acceptance completed on isolated test data
+
+- Applied all six migrations and seeded a disposable PostgreSQL database on the LAN host; `db:verify` reported six fictional users, three sessions, four confirmed bookings, and four waitlist entries.
+- API-contract integration suite passed 7/7 against PostgreSQL. Authenticated browser acceptance passed admin overview/create/edit/roster, a capacity increase from 2 to 3 with Casey Morgan FIFO-promoted ahead of Taylor Chen, and member/trainer denials on `/admin`.
+- Removed the temporary DB, local Next.js instances, browser tab, and SSH tunnels. The deployed FitOps demo database and AARC were not changed. Issue #12 remains Backlog and Draft PR #17 pending review/Sprint 6 transition.
+- Details: [[wiki/logs/2026-10-08-issue-12-acceptance]].
+
+## 2026-10-08 - Issue #12 review completed; PR ready for human review
+
+- Reviewed administrator session create/list/update and participant endpoints for same-origin enforcement, current-user administrator authorization, schema validation, scoped fictional data, and business-rule delegation. Reviewed login return-path allowlists and UI loading/error states against product requirements and ADRs 012/014. No blocking defect found in the inspected scope.
+- Confirmed GitHub PR #17 is open, head `8a6c93b7a3f14e8447d73c44b5cd9005d78f23b3`, with no configured CI checks, review requests, or submitted reviews. Marked it Ready for review; this is not a code approval or a merge.
+- GitHub Projects still records Issue #12 as Backlog / Sprint 6. No sprint start, project status change, issue closure, or deployment DB write occurred.
+- Details: [[wiki/logs/2026-10-08-issue-12-review]].

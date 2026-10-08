@@ -2,7 +2,7 @@
 
 FitOps is a fictional gym class-booking and operations product built as a software-engineering portfolio project. It combines a public marketing site with a working member experience and an administrative workflow.
 
-The project is intentionally planned before implementation. The objective is to demonstrate product thinking, business-rule design, relational data modeling, REST API design, testing, accessibility, security, CI, and deployment rather than only visual styling.
+The project demonstrates product thinking, business-rule design, relational data modeling, REST API design, testing, accessibility, security, CI, and deployment rather than only visual styling.
 
 ## Product statement
 
@@ -37,20 +37,17 @@ See [second-brain setup and safety](second-brain/README.md) and [references and 
 
 Repository-level continuity instructions live in [AGENTS.md](AGENTS.md). Codex tasks opened from this repository read the current second-brain context before project work and update it after material changes.
 
-## Proposed stack
+## Implemented stack
 
-- Next.js with React and TypeScript
-- PostgreSQL
-- Prisma ORM with explicit database constraints and transactions
-- Auth.js for authentication
-- Zod for boundary validation
-- Vitest and React Testing Library
-- Playwright for end-to-end tests
-- GitHub Actions for continuous integration
-- Vercel for the application and a managed PostgreSQL provider for the demo database
+- Next.js 16, React 19, and TypeScript
+- PostgreSQL 16 in Docker Compose
+- Prisma 7 with committed migrations and fictional seed data
+- Better Auth credentials and database sessions
+- Zod request validation
+- Node.js test runner for API, database, authentication, and concurrency contracts
 
-The provider names are deployment choices, not domain dependencies. Core booking rules must be testable without a browser, network, or live database.
+The local setup is documented in [Local development](docs/local-development.md). It recreates the schema and fictional seed on each computer; local environment files, credentials, database volumes, and user-created activity are not committed.
 
 ## Current status
 
-Planning only. No application functionality has been implemented yet. Delivery is organized through an eight-phase SDLC and one-week sprints; the current work belongs to Sprint 0.
+The public site, member booking flow, and administrator operations workspace are implemented in the repository. Issue #12 remains in progress pending authenticated browser acceptance. The app is not represented as a production deployment. Delivery follows an eight-phase SDLC and one-week sprints; consult FitOps Delivery and the current sprint notes for verified status.

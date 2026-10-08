@@ -1,7 +1,7 @@
 ---
 type: board-mirror
 project: FitOps
-updated: 2026-10-07
+updated: 2026-10-08
 ---
 
 # FitOps Delivery Board Mirror
@@ -29,10 +29,15 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
   - Implements Better Auth credentials/database sessions, server-side ownership/role authorization, `/api/v1` handlers, validation, anti-CSRF/origin behavior, and API contract tests. UI is explicitly downstream.
   - Latest evidence: auth (5), API-contract (7), PostgreSQL-constraint (2), synchronized race (10), lint, TypeScript, Prisma validation/generation, production build, and zero-finding dependency audits passed before merge. ADR 015 records the lint-toolchain tradeoff. All 17 handlers have contract evidence. PR [#15](https://github.com/AqueosHeart/fitops/pull/15) merged 2026-10-07; no Actions checks are configured.
 - [#11 [UI] Member Booking Product Slice](https://github.com/AqueosHeart/fitops/issues/11)
-- Active: **In Review**, Sprint 5, SDLC Phase 4, Feature, High risk, P1, estimate 8. Depends on Issue #10's verified API.
-  - PR [#16](https://github.com/AqueosHeart/fitops/pull/16) contains the member UI, server-side protection, reservation-aware schedule, sign-out, and additive cancellation cutoff. API-contract (7), Prisma validation, TypeScript, lint, production build (29 routes), browser registration/login/booking/waitlist/cancellation/sign-out flows, mobile 390×844 review, and scratch-db fresh/idempotent seed checks passed. No Actions checks are configured; wait for review and merge before marking Done.
+- Complete: **Done**, Sprint 5, SDLC Phase 4, Feature, High risk, P1, estimate 8. PR [#16](https://github.com/AqueosHeart/fitops/pull/16) merged 2026-10-07 at `0248913b6867708a6f5bf8e1dd44a74ac32ec313`; Issue #11 is Closed.
+  - Verified member UI, server-side protection, reservation-aware schedule, sign-out, and additive cancellation cutoff. API-contract (7), Prisma validation, TypeScript, lint, production build (29 routes), browser registration/login/booking/waitlist/cancellation/sign-out flows, mobile 390×844 review, and scratch-db fresh/idempotent seed checks passed. No Actions checks are configured.
 - [#12 [UI] Administrator Operations Product Slice](https://github.com/AqueosHeart/fitops/issues/12)
-  - Backlog: Sprint 6, SDLC Phase 4, Feature, High risk, P1, estimate 5. Depends on the secure API and member contract.
+  - UX follow-up: one focused admin header replaces duplicate/public navigation; signed-in My Account routes to `/app` for member-profile users or an authorized `returnTo`. Contract/API, lint, type, build, and UX coverage checks pass. Concurrent fixture lookup was made deterministic. The requested fictional local account already had the admin role, so no permission mutation was needed. Route-access and admin SVG previews were regenerated and visually inspected. The workstation Docker engine remains unavailable, so acceptance used an isolated disposable PostgreSQL instance on the LAN host rather than the deployed demo database.
+  - Backlog: Sprint 6, SDLC Phase 4, Feature, High risk, P1, estimate 5. Depends on the secure API and member contract. PR [#17](https://github.com/AqueosHeart/fitops/pull/17) from `codex/fitops-issue-12-admin-operations` is rebased onto `main` and Ready for human review; it includes role-aware login return paths. API/auth/constraint/race tests (24), lint, TypeScript, Prisma validation, database verification, and production build passed. Authenticated UI acceptance and focused code review passed; no blocking review defect found. The fictional admin account was already an administrator, so no role/account data changed. GitHub Project remains Backlog / Sprint 6; no status/acceptance transition is claimed.
+  - Local work-at-home setup now has a Compose PostgreSQL service and migration/seed guide. It creates a fresh fictional database per computer and does not sync current local activity. Issue #12 browser acceptance has passed; Issue #14 production/release gates remain open.
+  - 2026-10-08 LAN deployment follow-up: FitOps is running from `/home/sebastian/fitops` on `192.168.1.208:3001` with its own private PostgreSQL volume. Migrations, one-time fictional seed, DB verification, public login HTTP 200, unauthenticated admin redirect, and server-side authenticated admin HTTP 200 passed. AARC remains active on port 3000 and was untouched. The deployment is LAN-only; a high-severity audit finding in pinned Next.js 16.3.6 must be resolved before broader exposure. Interactive browser acceptance remains open.
+  - 2026-10-08 Prisma Studio: optional profile running through a companion loopback proxy at `127.0.0.1:5555`; accessed through the workstation's SSH tunnel. Studio HTML/JS return 200. It is a direct DB editor and must be stopped after use; ADR 017 records its access boundary.
+  - 2026-10-08 authenticated browser acceptance: overview, filter/empty state, seeded participants/FIFO, create/edit, and staff `/portal/login` return passed. Mobile overflow fix `58f2760` is deployed and document width matches the viewport. On disposable PostgreSQL, browser create passed; capacity 2→3 promoted Casey Morgan before Taylor Chen; member and trainer were denied `/admin`. API-contract passed 7/7 against PostgreSQL. Temporary test resources were removed; deployed demo DB untouched. Focused code review found no blocking defect; PR #17 is Ready for human review. Issue #12 remains Backlog / Sprint 6 pending its actual start and later closure review.
 - [#13 [QUALITY] System Quality and Production-Candidate Evidence](https://github.com/AqueosHeart/fitops/issues/13)
   - Backlog: Sprint 7, SDLC Phase 5, Test, High risk, P1, estimate 8. Covers E2E, accessibility, security, performance, CI, and truthful evidence.
 - [#14 [RELEASE] Deployment and Portfolio Evidence](https://github.com/AqueosHeart/fitops/issues/14)
@@ -41,6 +46,8 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
   - Closed and tracked as Done. [ADR 012](../../docs/adr/012-identity-security-baseline.md) and the [threat model](../../docs/security/threat-model-and-access-control.md) define the credential, JWT, CSRF, IDOR, rate-limit, redirect, and redaction requirements that Issue #8 needs.
 
 ## Project setup
+
+2026-10-07 Issue #12 UX follow-up: the admin shell now has one focused header (Overview, Sessions, My Account, Public site), and My Account routes valid member sessions directly to `/app` unless a role-permitted return path applies. Contract tests (7/7), focused ESLint, and TypeScript pass; authenticated browser acceptance remains open and GitHub status is unchanged.
 
 - `FitOps Delivery` is linked to `AqueosHeart/fitops`.
 - Required fields: Status, Priority, Size, Estimate, Iteration, Start date, Target date, Sprint, SDLC Phase, Work Type, and Risk. `Work Type` is the GitHub-compatible replacement for the reserved `Type` name.

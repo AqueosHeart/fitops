@@ -1,18 +1,27 @@
 import Link from "next/link";
 
-export function SiteHeader({ member = false }: { member?: boolean }) {
+type HeaderMode = "public" | "member" | "admin";
+
+export function SiteHeader({ mode = "public" }: { mode?: HeaderMode }) {
+  const member = mode === "member";
+  const admin = mode === "admin";
   return (
-    <header className={`site-header${member ? " site-header-member" : ""}`}>
-      <Link className="wordmark" href={member ? "/app" : "/"} aria-label="Practice Athletic Club home">
+    <header className={`site-header${member ? " site-header-member" : ""}${admin ? " site-header-admin" : ""}`}>
+      <Link className="wordmark" href={admin ? "/admin" : member ? "/app" : "/"} aria-label={admin ? "Practice Athletic Club operations home" : "Practice Athletic Club home"}>
         <span className="wordmark-mark" aria-hidden="true">P</span>
         <span>practice<span className="wordmark-light"> athletic club</span></span>
       </Link>
-      <nav className="site-nav" aria-label={member ? "Member navigation" : "Main navigation"}>
+      <nav className="site-nav" aria-label={admin ? "Administrator navigation" : member ? "Member navigation" : "Main navigation"}>
         {member ? (
           <>
             <Link href="/app/schedule">Schedule</Link>
             <Link href="/app/bookings">My bookings</Link>
             <Link href="/app/profile/security">Profile</Link>
+          </>
+        ) : admin ? (
+          <>
+            <Link href="/admin">Overview</Link>
+            <Link href="/admin/sessions">Sessions</Link>
           </>
         ) : (
           <>
@@ -23,7 +32,12 @@ export function SiteHeader({ member = false }: { member?: boolean }) {
         )}
       </nav>
       <div className="header-actions">
-        {member ? <Link className="button button-quiet button-small" href="/app/profile/security">My account</Link> : (
+        {member ? <Link className="button button-quiet button-small" href="/app/profile/security">My account</Link> : admin ? (
+          <>
+            <Link className="account-link" href="/portal/login">My Account</Link>
+            <Link className="button button-dark button-small" href="/">Public site</Link>
+          </>
+        ) : (
           <>
             <Link className="account-link" href="/portal/login">My Account</Link>
             <Link className="button button-dark button-small" href="/join">Join now <span aria-hidden="true">↗</span></Link>

@@ -13,7 +13,7 @@ Open the native editable diagram: [[FitOps User Flows.drawio|FitOps User Flows.d
 
 ## Native flow correction passes, 2026-09-21
 
-The editable draw.io source was corrected before its Mermaid and Penpot derivatives. The sitemap resolves a 70 px collision with the Legend card, maintains taxonomy compliance, and eliminates unauthenticated direct root edges to protected workspaces. The later access-boundary pass implements ADR 006: the public header now offers secondary `My Account` access for existing members and primary `Join Now` conversion; registration is reachable only after fictional-plan selection. Footer/system routes are grouped separately, and protected-route redirects preserve only validated internal `returnTo` state. The detailed flows include recovery for dismissed waivers, expired sessions, duplicate/conflict outcomes, retries, cancellation cutoffs, promotion visibility, forbidden staff access, failed administrator saves, registration consent, existing-email redirects, invalid credentials, and rate limits.
+The editable draw.io source was corrected before its Mermaid and Penpot derivatives. The sitemap resolves a 70 px collision with the Legend card, maintains taxonomy compliance, and eliminates unauthenticated direct root edges to protected workspaces. The later access-boundary pass implements ADR 006: public discovery uses secondary `My Account` and primary `Join Now`, while protected workspaces use role-specific shells. A valid member session visiting My Account goes directly to `/app`; administrator navigation offers Overview, Sessions, My Account, and Public site without public marketing links or Join Now. Registration is reachable only after fictional-plan selection. Footer/system routes are grouped separately, and protected-route redirects preserve only validated, role-permitted internal `returnTo` state. The detailed flows include recovery for dismissed waivers, expired sessions, duplicate/conflict outcomes, retries, cancellation cutoffs, promotion visibility, forbidden staff access, failed administrator saves, registration consent, existing-email redirects, invalid credentials, and rate limits.
 
 ## Visual language and color legend
 
@@ -124,7 +124,7 @@ flowchart TD
     Root[Practice Athletic Club]
 
     subgraph PublicSpace[Public discovery site]
-        PublicNav[Public header<br/>Primary navigation, My Account utility, and Join Now CTA]
+        PublicNav[Public header<br/>Programs, Schedule, Plans, My Account, and Join Now; public pages only]
         Home[Home /]
         Programs[Programs /programs]
         Services[Services /#services]
@@ -147,7 +147,7 @@ flowchart TD
 
     subgraph JoinAndAuth[Membership join and authentication]
         Join[Join Now /join<br/>Choose a fictional plan; no payment or card data]
-        Login[My Account /portal/login<br/>Existing-member access and demo persona switcher]
+        Login[My Account /portal/login<br/>Anonymous: sign in; valid member session: /app; restore permitted returnTo]
         Guard[Protected-route guard<br/>SYSTEM: unauthenticated to My Account with validated returnTo; wrong role denied]
         Register[Member registration /register<br/>Account form and required consent]
         Recovery[Account recovery /auth/forgot-password]
@@ -169,6 +169,7 @@ flowchart TD
     end
 
     subgraph AdminSpace[Administrator workspace: protected]
+        AdminNav[Admin shell<br/>Overview, Sessions, My Account, Public site<br/>No public marketing links or Join Now]
         AdminOverview[Operations overview /admin]
         AdminSessions[Session manager /admin/sessions]
         AdminCreate[Create session /admin/sessions/new]
@@ -179,6 +180,7 @@ flowchart TD
     Root --> PublicNav
     PublicNav -- Secondary utility: My Account --> Login
     PublicNav -- Primary CTA --> Join
+    Login -- Existing valid member session --> Workspace
     PublicSchedule --> SessionDetails
     Join --> PlanSelected["STEP: select fictional plan"] --> Register
     Register --> Created["STEP: account created and session issued"] --> Destination["Validated member intent, otherwise /app"]
@@ -188,6 +190,9 @@ flowchart TD
     Confirmed -. opens .-> CancelDialog
     TrainerAssignments --> TrainerSession
     AdminOverview --> AdminSessions
+    AdminNav --> AdminOverview & AdminSessions
+    AdminNav -- My Account --> Login
+    AdminNav -- Public site --> Root
     AdminSessions --> AdminCreate & AdminEdit & AdminParticipants
 
     classDef public fill:#F2F0E8,stroke:#111310,color:#111310;
@@ -200,7 +205,7 @@ flowchart TD
     class Join,Login,Guard,Register,Recovery join;
     class Workspace,AppSchedule,MyBookings,ProfileSec,Confirmed,Waiting member;
     class TrainerAssignments,TrainerSession trainer;
-    class AdminOverview,AdminSessions,AdminCreate,AdminEdit,AdminParticipants admin;
+    class AdminNav,AdminOverview,AdminSessions,AdminCreate,AdminEdit,AdminParticipants admin;
     class SessionDetails public;
     class CancelDialog overlay;
 ```
@@ -322,7 +327,7 @@ flowchart TD
 flowchart TD
     Start([User signs in]) --> Role{Administrator role verified in server session?}
     Role -- No --> Forbidden["Access denied (403)<br/>Security event logged; return to permitted experience"]
-    Role -- Yes --> Overview["Operations overview<br/>Session occupancy and waitlist counts"] --> Sessions[Open session manager]
+    Role -- Yes --> Shell["Administrator shell<br/>Overview, Sessions, My Account, Public site<br/>Hide public marketing links and Join Now"] --> Overview["Operations overview<br/>Session occupancy and waitlist counts"] --> Sessions[Open session manager]
     Sessions --> LoadState{Session-list result}
     LoadState -- Loading --> Loading[Show table loading state] --> LoadState
     LoadState -- Failure --> Retry["Show request ID and retry"] --> Sessions
@@ -356,7 +361,7 @@ flowchart TD
     EntryRedirect([Booking intent redirect with returnTo]) --> AuthCheck
     EntryDirect([Direct URL: /portal/login or /join]) --> AuthCheck
 
-    AuthCheck -- Yes --> AlreadyAuth["Redirect to role dashboard or restore returnTo"]:::success --> RBACRoute
+    AuthCheck -- Yes --> AlreadyAuth["Restore allowed returnTo; otherwise member profile → /app or staff role home"]:::success --> RBACRoute
     AuthCheck -- No --> ChooseIntent{Choose path}
 
     %% Path A: Register
