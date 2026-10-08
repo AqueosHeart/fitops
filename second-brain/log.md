@@ -474,3 +474,10 @@ updated: 2026-09-21
 - API-contract integration suite passed 7/7 against PostgreSQL. Authenticated browser acceptance passed admin overview/create/edit/roster, a capacity increase from 2 to 3 with Casey Morgan FIFO-promoted ahead of Taylor Chen, and member/trainer denials on `/admin`.
 - Removed the temporary DB, local Next.js instances, browser tab, and SSH tunnels. The deployed FitOps demo database and AARC were not changed. Issue #12 remains Backlog and Draft PR #17 pending review/Sprint 6 transition.
 - Details: [[wiki/logs/2026-10-08-issue-12-acceptance]].
+
+## 2026-10-08 - Issue #12 review completed; PR ready for human review
+
+- Reviewed administrator session create/list/update and participant endpoints for same-origin enforcement, current-user administrator authorization, schema validation, scoped fictional data, and business-rule delegation. Reviewed login return-path allowlists and UI loading/error states against product requirements and ADRs 012/014. No blocking defect found in the inspected scope.
+- Confirmed GitHub PR #17 is open, head `8a6c93b7a3f14e8447d73c44b5cd9005d78f23b3`, with no configured CI checks, review requests, or submitted reviews. Marked it Ready for review; this is not a code approval or a merge.
+- GitHub Projects still records Issue #12 as Backlog / Sprint 6. No sprint start, project status change, issue closure, or deployment DB write occurred.
+- Details: [[wiki/logs/2026-10-08-issue-12-review]].
