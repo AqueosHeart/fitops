@@ -38,6 +38,7 @@ Build a reproducible, truthful quality gate for the FitOps production candidate.
 
 - Issue #19 moved to In Progress in the GitHub Delivery project while PR #18 awaits human review; Sprint 7's goal and acceptance remain Issue #13 only.
 - Its implementation is on `codex/fitops-issue-19-trainer-workspace`. Local lint, TypeScript, UX sync, E2E discovery, and production build pass. The DB-backed API suite was attempted but blocked at setup by `ECONNREFUSED` to local PostgreSQL `127.0.0.1:5432`; no DB/server was changed. Isolated GitHub CI/browser verification remains necessary.
+- Isolated CI run [37852249660](https://github.com/AqueosHeart/fitops/actions/runs/37852249660) passed migrations/seed, DB contracts, lint/typecheck, audit, and build. The E2E journey stopped at a strict `getByRole("alert")` selector because Next's route announcer is also an alert; the test now targets the exact denial copy and is being rerun.
 
 ## Environment boundary
 

@@ -511,4 +511,5 @@ updated: 2026-09-21
 - Updated the editable draw.io trainer flow, wireframe coverage, and API contract.
 - Local ESLint, TypeScript, UX synchronization, E2E discovery, and production build pass. DB contract suite was attempted but blocked by `ECONNREFUSED` on local PostgreSQL port 5432; no production/LAN database was changed.
 - Added manual dispatch to the existing quality workflow so the stacked branch can run the isolated PostgreSQL/browser gate before PR #18 merges.
-- Next: push as a stacked PR based on PR #18, dispatch quality CI for its head SHA, then correct any failures before checking Issue #19 acceptance.
+- First isolated run [37852249660](https://github.com/AqueosHeart/fitops/actions/runs/37852249660) passed DB contracts, lint/typecheck, audit, and build. E2E stopped at a strict alert locator because the Next route announcer is also an alert; changed assertions to exact copy.
+- Next: push the correction and rerun quality CI for the stacked PR before checking Issue #19 acceptance.

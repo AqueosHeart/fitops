@@ -73,7 +73,7 @@ test("member booking/waitlist/cancel-promotion and administrator authorization j
   await expect(rosters.nth(1)).toContainText("Quality Test Member");
   await expectAccessible(admin);
   await admin.goto("/trainer/sessions");
-  await expect(admin.getByRole("alert")).toContainText("Trainer access is required");
+  await expect(admin.getByText("Trainer access is required for this workspace.")).toBeVisible();
 
   const otherMemberContext = await browser.newContext();
   const otherMember = await otherMemberContext.newPage();
@@ -93,7 +93,7 @@ test("member booking/waitlist/cancel-promotion and administrator authorization j
   await member.goto("/admin");
   await expect(member.getByText("Administrator access is required for this workspace.")).toBeVisible();
   await member.goto("/trainer/sessions");
-  await expect(member.getByRole("alert")).toContainText("Trainer access is required");
+  await expect(member.getByText("Trainer access is required for this workspace.")).toBeVisible();
   const trainerContext = await browser.newContext();
   const trainer = await trainerContext.newPage();
   captureRuntimeErrors(trainer, runtimeErrors);
