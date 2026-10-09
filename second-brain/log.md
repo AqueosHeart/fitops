@@ -523,3 +523,8 @@ updated: 2026-09-21
 - Retargeted PR #20 from `codex/fitops-issue-13-quality` to `main`; the changed-file inventory now contains the trainer workspace and its associated docs/tests.
 - Ran the quality workflow against the trainer branch after retarget: [37956221861](https://github.com/AqueosHeart/fitops/actions/runs/37956221861) passed isolated PostgreSQL migration/seed/API suites, lint/typecheck, audit, production build, Chromium journey, and accessibility checks. Only GitHub runner/action deprecation/future-image annotations were reported.
 - Issue #19 remains In Review and PR #20 remains open for review. No deployment, live database, or Linux service was changed. Issue #14 release work remains gated on its documented HTTPS/HSTS and trusted-proxy requirements.
+
+## 2026-10-09 - Issue #19 trainer workspace merged
+
+- With explicit user authorization, merged PR #20 into `main` at `674f2b4b0f68d4ca8eb193949913f24221e8fb52`. Quality run [37956811965](https://github.com/AqueosHeart/fitops/actions/runs/37956811965) passed the isolated DB/API, audit, lint/typecheck, build, Chromium, and accessibility checks.
+- Updated Issue #19 acceptance evidence and closed the issue; FitOps Delivery status is Done. No deployment or live database was changed. Issue #14 remains the release follow-up with TLS/HSTS and trusted-proxy gates.
