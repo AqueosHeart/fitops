@@ -50,4 +50,4 @@ The local setup is documented in [Local development](docs/local-development.md).
 
 ## Current status
 
-The public site, member booking flow, and administrator operations workspace are implemented in the repository. Issue #12 remains in progress pending authenticated browser acceptance. The app is not represented as a production deployment. Delivery follows an eight-phase SDLC and one-week sprints; consult FitOps Delivery and the current sprint notes for verified status.
+The public discovery, member booking, trainer sessions, and administrator operations workflows are implemented and covered by the repository's quality CI. The Linux demo is intended for private LAN use only. Its last documented deployment runs Next.js 16.3.6; the repository's current `main` is on 16.3.8, and a new server release has not yet been verified. Public HTTPS/HSTS and a trusted proxy are not configured, so this is not a public or production deployment. See the [release readiness record](docs/release/issue-14-readiness.md) for evidence and remaining gates.

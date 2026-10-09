@@ -1,7 +1,7 @@
 ---
 type: decision-index
 project: FitOps
-updated: 2026-10-08
+updated: 2026-10-09
 ---
 
 # FitOps Decision Index
@@ -23,5 +23,6 @@ updated: 2026-10-08
 - [ADR 015 Replace the vulnerable Next ESLint config with direct lint plugins](../../../docs/adr/015-replace-vulnerable-next-eslint-config.md)
 - [ADR 016 Run FitOps as an isolated LAN-only Linux Compose project](../../../docs/adr/016-lan-only-linux-fitops-deployment.md)
 - [ADR 017 Provide on-demand Prisma Studio over an SSH tunnel](../../../docs/adr/017-prisma-studio-over-ssh-tunnel.md)
+- [ADR 018 Upgrade the FitOps framework pin for release security](../../../docs/adr/018-upgrade-next-for-release-security.md)
 
 New material architecture decisions receive a new ADR. Accepted historical decisions are not silently rewritten; a later ADR may supersede them.

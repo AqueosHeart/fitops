@@ -1,7 +1,7 @@
 ---
 type: activity-log
 project: FitOps
-updated: 2026-09-21
+updated: 2026-10-09
 ---
 
 # FitOps Activity Log
@@ -528,3 +528,13 @@ updated: 2026-09-21
 
 - With explicit user authorization, merged PR #20 into `main` at `674f2b4b0f68d4ca8eb193949913f24221e8fb52`. Quality run [37956811965](https://github.com/AqueosHeart/fitops/actions/runs/37956811965) passed the isolated DB/API, audit, lint/typecheck, build, Chromium, and accessibility checks.
 - Updated Issue #19 acceptance evidence and closed the issue; FitOps Delivery status is Done. No deployment or live database was changed. Issue #14 remains the release follow-up with TLS/HSTS and trusted-proxy gates.
+
+## 2026-10-09 — Issue #14 LAN release preparation
+
+- Started Sprint 8 / Issue #14 release work after Sprint 7 completed. User selected private LAN-only operation and confirmed `TRUST_PROXY` remains disabled.
+- Added ADR 018 to supersede ADR 015 only for the Next.js framework pin, a release-readiness record, corrected default-branch clone guidance, and a backup-first reset/restore runbook for the fictional FitOps DB.
+- Added a CI-only migration reset, explicit seed, and `db:verify` after E2E on the disposable PostgreSQL service. This does not touch the LAN DB.
+- The repo candidate is Next.js 16.3.8; the last server note records 16.3.6. SSH batch-key authentication was rejected; the current server checkout/runtime and backup are unverified. HTTP 200 establishes reachability only.
+- No server, database, AARC service, public edge, DNS, or firewall was changed. Next safe step is secure SSH access, then read-only inspection before any deployment or reset.
+- PR [#22](https://github.com/AqueosHeart/fitops/pull/22) is open; CI run [37959917619](https://github.com/AqueosHeart/fitops/actions/runs/37959917619) passed the full workflow, including isolated DB reset, explicit seed, and `db:verify`.
+- Details: [[wiki/logs/2026-10-09-issue-14-lan-release-preparation]].

@@ -12,7 +12,7 @@ updated: 2026-10-09
 - [[SOUL|Project identity]]
 - [[CRITICAL_FACTS|Critical facts]]
 - [[wiki/projects/FitOps|FitOps project memory]]
-- [[wiki/tasks/Sprint 7|Current sprint]]
+- [[wiki/tasks/Sprint 8|Current sprint]]
 - [[boards/FitOps Delivery|Delivery board mirror]]
 
 ## Product and engineering
@@ -20,6 +20,7 @@ updated: 2026-10-09
 - [Project overview](../README.md)
 - [Local development on another computer](../docs/local-development.md)
 - [LAN-only Linux server deployment](../docs/linux-server-deployment.md)
+- [Issue #14 release readiness](../docs/release/issue-14-readiness.md)
 - [Product requirements](../docs/product-requirements.md)
 - [UX plan](../docs/ux-plan.md)
 - [Complete wireframe coverage](../docs/design/wireframe-coverage.md)
@@ -43,6 +44,7 @@ updated: 2026-10-09
 - [SDLC and sprint plan](../docs/delivery-plan.md)
 - [Issue #13 quality and production-candidate evidence](../docs/quality/issue-13-evidence.md)
 - [Issue #13 focused security review](../docs/reviews/issue-13-security-review.md)
+- [ADR 018 release framework pin](../docs/adr/018-upgrade-next-for-release-security.md)
 - [[wiki/logs/2026-10-08-issue-19-trainer-workspace-start|Issue #19 trainer workspace continuation]]
 - [Sprint 0 exit review](../docs/reviews/sprint-0-exit-review.md)
 - [Tooling and workflow](../docs/tooling-and-workflow.md)
@@ -62,6 +64,7 @@ updated: 2026-10-09
 - [[wiki/logs/2026-10-08-issue-13-quality-start|Issue #13 quality gate implementation and verification boundary]]
 - [[wiki/logs/2026-10-08-issue-13-accessibility-fix|Issue #13 CI accessibility findings and local fixes]]
 - [[wiki/logs/2026-10-09-issue-13-merge-and-pr20-main|Issue #13 merge and trainer PR retarget verification]]
+- [[wiki/logs/2026-10-09-issue-14-lan-release-preparation|Issue #14 LAN release preparation]]
 - [[wiki/logs/2026-10-09-issue-19-merged|Issue #19 trainer workspace merged and closed]]
 - [[wiki/tasks/Sprint 5|Completed Sprint 5 member booking slice]]
 - [[wiki/logs/2026-10-07-issue-12-admin-test-account|Issue #12 fictional admin test account enabled]]
