@@ -516,3 +516,10 @@ updated: 2026-09-21
 - Third isolated run [37853306547](https://github.com/AqueosHeart/fitops/actions/runs/37853306547) passed DB, type, audit, and build gates and reached the simulated API failure; its final broad alert locator hit the Next route announcer. Changed it to target the trainer-state error element.
 - Fourth manual run and PR check [37853588577](https://github.com/AqueosHeart/fitops/actions/runs/37853588577) and [37853584276](https://github.com/AqueosHeart/fitops/actions/runs/37853584276) passed all DB/API, audit, lint/typecheck, build, browser, and accessibility stages. Opened PR #20 against PR #18, moved Issue #19 to In Review, and linked the issue to the PR without merging or deploying.
 - Next: await review and merge PR #18 first; then retarget/rebase PR #20 to main and merge after its dependency lands.
+
+## 2026-10-09 - Issue #13 merged; Issue #19 retargeted and reverified
+
+- With explicit user authorization, merged PR #18 into `main` using a merge commit: `20eea7710d77fb7002b01f57d85acf1900a0fa39`. GitHub records Issue #13 Closed / Done.
+- Retargeted PR #20 from `codex/fitops-issue-13-quality` to `main`; the changed-file inventory now contains the trainer workspace and its associated docs/tests.
+- Ran the quality workflow against the trainer branch after retarget: [37956221861](https://github.com/AqueosHeart/fitops/actions/runs/37956221861) passed isolated PostgreSQL migration/seed/API suites, lint/typecheck, audit, production build, Chromium journey, and accessibility checks. Only GitHub runner/action deprecation/future-image annotations were reported.
+- Issue #19 remains In Review and PR #20 remains open for review. No deployment, live database, or Linux service was changed. Issue #14 release work remains gated on its documented HTTPS/HSTS and trusted-proxy requirements.

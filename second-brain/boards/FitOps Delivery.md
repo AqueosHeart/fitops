@@ -1,7 +1,7 @@
 ---
 type: board-mirror
 project: FitOps
-updated: 2026-10-08
+updated: 2026-10-09
 ---
 
 # FitOps Delivery Board Mirror
@@ -39,11 +39,11 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
   - 2026-10-08 Prisma Studio: optional profile running through a companion loopback proxy at `127.0.0.1:5555`; accessed through the workstation's SSH tunnel. Studio HTML/JS return 200. It is a direct DB editor and must be stopped after use; ADR 017 records its access boundary.
   - 2026-10-08 authenticated browser acceptance and focused code review passed; PR #17 merged. Browser acceptance covered overview, filter/empty state, seeded participants/FIFO, create/edit, staff `/portal/login` return, mobile width, capacity promotion, and member/trainer denial. API-contract passed 7/7 against isolated PostgreSQL. Temporary resources were removed and deployed demo data stayed unchanged.
 - [#13 [QUALITY] System Quality and Production-Candidate Evidence](https://github.com/AqueosHeart/fitops/issues/13)
-  - In Progress: Sprint 7, SDLC Phase 5, Test, High risk, P1, estimate 8. PR [#18](https://github.com/AqueosHeart/fitops/pull/18) is ready for review. CI run [37847213151](https://github.com/AqueosHeart/fitops/actions/runs/37847213151) passes PostgreSQL migrations/seed/integration, lint/typecheck, dependency audit, production build, critical Playwright journey, all axe scans, and desktop/mobile LCP/CLS lab budgets. Focused security review is recorded in `docs/reviews/issue-13-security-review.md`; its deployment-only HTTPS/HSTS and trusted-proxy conditions are tracked in Issue #14. Issue #13 acceptance criteria are checked; issue remains open pending PR review/merge.
+  - Done: Sprint 7, SDLC Phase 5, Test, High risk, P1, estimate 8. PR [#18](https://github.com/AqueosHeart/fitops/pull/18) merged to `main` on 2026-10-09 at `20eea7710d77fb7002b01f57d85acf1900a0fa39`; Issue #13 is Closed / Done. CI passed PostgreSQL migrations/seed/integration, lint/typecheck, dependency audit, production build, critical Playwright journey, axe scans, and desktop/mobile synthetic LCP/CLS budgets. Security review is recorded in `docs/reviews/issue-13-security-review.md`; HTTPS/HSTS and trusted-proxy conditions remain tracked in Issue #14.
 - [#14 [RELEASE] Deployment and Portfolio Evidence](https://github.com/AqueosHeart/fitops/issues/14)
   - Backlog: Sprint 8, SDLC Phase 6, Maintenance, Medium risk, P2, estimate 5. Depends on Issue #13 quality evidence. Acceptance now explicitly requires HTTPS/HSTS before public exposure and a sanitized, trusted proxy boundary before IP-based login throttling is enabled.
 - [#19 [UI] Trainer Assigned Sessions Workspace](https://github.com/AqueosHeart/fitops/issues/19)
-  - In Review in GitHub Project (2026-10-08), Phase 4 / P1 / Feature. PR [#20](https://github.com/AqueosHeart/fitops/pull/20), stacked on PR #18, adds protected assigned-session list/detail, aggregate-only counts, safe trainer return paths, and implementation evidence. PR check [37853584276](https://github.com/AqueosHeart/fitops/actions/runs/37853584276) passes isolated PostgreSQL, audit, type/build, and browser/accessibility gates. Not added to Sprint 7, whose goal remains Issue #13; merge #20 after #18 is reviewed and merged.
+  - In Review in GitHub Project (2026-10-09), Phase 4 / P1 / Feature. PR [#20](https://github.com/AqueosHeart/fitops/pull/20) now targets `main` after #18 merged; it adds protected assigned-session list/detail, aggregate-only counts, safe trainer return paths, and implementation evidence. Fresh run [37956221861](https://github.com/AqueosHeart/fitops/actions/runs/37956221861) passes isolated PostgreSQL, audit, type/build, and browser/accessibility gates. Not added to Sprint 7; await review of #20. No deployment occurred.
 - [#9 [SEC] Threat Model & Server-Side Access Control Specification](https://github.com/AqueosHeart/fitops/issues/9)
   - Closed and tracked as Done. [ADR 012](../../docs/adr/012-identity-security-baseline.md) and the [threat model](../../docs/security/threat-model-and-access-control.md) define the credential, JWT, CSRF, IDOR, rate-limit, redirect, and redaction requirements that Issue #8 needs.
 
