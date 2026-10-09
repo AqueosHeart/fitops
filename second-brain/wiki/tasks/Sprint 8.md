@@ -28,6 +28,7 @@ Complete the Issue #14 release evidence for the private LAN demo without expandi
 - Current repository candidate is Next.js 16.3.8 and passed Issue #13 CI audit/build; last recorded Linux deployment is 16.3.6.
 - HTTP login endpoint returned 200, but route reachability does not prove deployed version or commit.
 - Compose syntax was checked with the example environment file; this is static validation and did not start containers.
+- PR [#22](https://github.com/AqueosHeart/fitops/pull/22) is open; quality run [37959917619](https://github.com/AqueosHeart/fitops/actions/runs/37959917619) passed the full workflow, including the isolated reset/reseed/verify step.
 - SSH batch-key authentication was rejected, so current host checkout/runtime/database cannot be inspected or changed yet.
 - Release evidence: [Issue #14 readiness](../../../docs/release/issue-14-readiness.md).
 

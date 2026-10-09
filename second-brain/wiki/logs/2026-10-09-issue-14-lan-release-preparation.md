@@ -24,6 +24,7 @@ Continue FitOps after PRs #18, #20, and #21 merged. Issue #14 is the active Spri
 - Repository candidate is Next.js 16.3.8 with Issue #13 quality CI evidence; last recorded Linux deployment used 16.3.6.
 - LAN login endpoint returned HTTP 200, which verifies route reachability only.
 - Compose validation used the example env file and did not start a container.
+- PR [#22](https://github.com/AqueosHeart/fitops/pull/22) is open and quality run [37959917619](https://github.com/AqueosHeart/fitops/actions/runs/37959917619) passed, including the new disposable-DB reset/reseed/verify stage.
 - SSH batch-key authentication was rejected; current checkout, running version, DB migration/data state, backup health, and deployment status remain unknown. No server or database was changed.
 - Public TLS/HSTS and trusted proxy are deferred for the LAN-only scope. `TRUST_PROXY` remains false.
 

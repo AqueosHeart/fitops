@@ -5,6 +5,7 @@ This record separates repository evidence from the state of the LAN server. The 
 ## Verified
 
 - Issue #13 is closed. Its merged `main` candidate pins Next.js 16.3.8; CI passed the full dependency audit and production build, plus database, API, browser, accessibility, and synthetic performance suites.
+- PR [#22](https://github.com/AqueosHeart/fitops/pull/22) carries the current LAN release-prep changes. CI run [37959917619](https://github.com/AqueosHeart/fitops/actions/runs/37959917619) passed on 2026-10-09, including the new reset → explicit seed → `db:verify` sequence against disposable PostgreSQL. The PR remains open; this branch's result is not yet a merged `main` release.
 - The Linux deployment guide describes a separate FitOps Compose project, PostgreSQL volume, private DB network, LAN-bound port 3001, and no AARC service/database changes.
 - The LAN login URL responded HTTP 200 during the Oct 9 reachability check. This does not identify the deployed commit or framework version.
 - Compose syntax was checked with the example environment file; this is static validation and did not start containers.

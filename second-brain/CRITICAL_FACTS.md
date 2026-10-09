@@ -6,7 +6,7 @@ updated: 2026-10-09
 
 # FitOps Critical Facts
 
-- Status (2026-10-09): Issues #8, #10, #11, #12, #13, and #19 are closed and Done in `FitOps Delivery`; Issue #14 is In Progress in Sprint 8. PRs #18, #20, and #21 are merged. The user chose LAN-only and confirmed `TRUST_PROXY` remains disabled, preserving email-keyed login limiting. Last documented Linux runtime is Next.js 16.3.6; repo candidate is 16.3.8. SSH batch-key access was rejected, so current server commit/runtime/DB and any update are unverified. Public TLS/HSTS is deferred; no deployed database or Linux service was changed by this work.
+- Status (2026-10-09): Issues #8, #10, #11, #12, #13, and #19 are closed and Done in `FitOps Delivery`; Issue #14 is In Progress in Sprint 8. PRs #18, #20, and #21 are merged; PR #22 is open with quality run 37959917619 passing. The user chose LAN-only and confirmed `TRUST_PROXY` remains disabled, preserving email-keyed login limiting. Last documented Linux runtime is Next.js 16.3.6; repo candidate is 16.3.8. SSH batch-key access was rejected, so current server commit/runtime/DB and any update are unverified. Public TLS/HSTS is deferred; no deployed database or Linux service was changed by this work.
 - Working public name: `Practice Athletic Club`; `FitOps` remains the repository and internal project codename.
 - Branding scope is identity only for the current stage; no website or application implementation is authorized by the branding work.
 - Brand status: not defined or approved. Quiet Strength, the Mona Sans lime-bar wordmark, and the palette/type system are exploratory candidates that may be retained, revised, or replaced after the brand-definition process.
