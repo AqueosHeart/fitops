@@ -481,3 +481,25 @@ updated: 2026-09-21
 - Confirmed GitHub PR #17 is open, head `8a6c93b7a3f14e8447d73c44b5cd9005d78f23b3`, with no configured CI checks, review requests, or submitted reviews. Marked it Ready for review; this is not a code approval or a merge.
 - GitHub Projects still records Issue #12 as Backlog / Sprint 6. No sprint start, project status change, issue closure, or deployment DB write occurred.
 - Details: [[wiki/logs/2026-10-08-issue-12-review]].
+
+## 2026-10-08 - Issue #13 quality gate started
+
+- PR #17 merged to `main` at `08fbdd894c27436de2a52d8efe5c722c2e43dc56`; Issue #12 is Closed / Done / Sprint 6. Issue #13 was moved from Backlog to In Progress in Sprint 7, preserving its existing assignment.
+- Branch `codex/fitops-issue-13-quality` updates Next.js to 16.3.8, adds Playwright/axe critical-journey coverage, a PostgreSQL-backed GitHub Actions quality workflow, ignored test-output paths, and an evidence report.
+- Verified locally: zero full lockfile audit findings, lint, TypeScript, Prisma Client generation, production build (42 routes / 33 static page entries), Playwright discovery, and build artifact-size measurements. The deployed Linux app was not changed.
+- Branch was pushed and draft PR #18 opened. The first Actions attempt exposed missing generated Next.js route types before `tsc` and unmasked ephemeral test values in job metadata; workflow now runs `next typegen` first and masks generated values before export. Rerun is pending.
+- Pending: passing GitHub Actions, DB-backed integration/concurrency tests, browser E2E and axe results, and browser runtime performance measurement. The local Docker Linux engine did not respond to `docker info`; no live or deployed database was used.
+- Details: [[wiki/logs/2026-10-08-issue-13-quality-start]].
+
+## 2026-10-08 - Issue #13 CI accessibility findings corrected locally
+
+- CI run 37841999623 passed isolated PostgreSQL migration/seed, database/API/constraint/concurrency suites, lint/type-check, full audit, and production build. The browser run stopped at the landing-page axe scan.
+- Axe identified muted text at 4.43–4.45:1 against two soft backgrounds and ARIA labels/busy state on generic loading-grid divs without a semantic role. Darkened the shared muted token to `#62655b` (calculated 4.86:1 or higher on affected backgrounds) and assigned `role="status"` to named loading regions. Local lint and TypeScript pass.
+- CI rerun, complete E2E flow, remaining axe scans, and browser runtime performance review remain pending. No live database or server was modified.
+- Details: [[wiki/logs/2026-10-08-issue-13-accessibility-fix]].
+- Follow-up run 37842824345 passed the landing axe scan and exposed that the generic E2E `getByRole("status")` selector matched both the success alert and loading status. Scoped the assertion to the success notice. Full flow and remaining scans are pending another CI run.
+- Run 37843355892 then surfaced an unsupported trainer `returnTo` target and retry contamination from a state-mutating scenario. The test now uses the supported default and verifies `GET /api/v1/trainer/sessions`; auto-retries are disabled pending a fresh CI job. Playwright trace capture is disabled because trace archives include authenticated request headers/cookies, and previous failed-run trace artifacts were deleted.
+- The underlying documented trainer pages are absent while `GET /api/v1/trainer/sessions` exists and authenticated trainer routing targets `/trainer/sessions`. Tracked this scope gap as Issue [#19](https://github.com/AqueosHeart/fitops/issues/19), added it to FitOps Delivery as a Phase 4 / P1 Feature in Backlog; Issue #13's E2E only claims API-role and admin-denial coverage.
+- CI run 37846080789 on `fff390b` passed the full quality gate, including all three axe scans and desktop/mobile synthetic LCP/CLS budgets. The Playwright report has raw metric JSON attachments; this is not field CWV.
+- Focused security review recorded no critical/high application-code issue in the covered paths; it identified trusted-proxy/IP-throttling and TLS/HSTS deployment gates, explicitly left safe defaults unchanged, and assigned these to Issue #14.
+- Final CI run 37847213151 passed against `fbe6d5f`. Issue #13 acceptance criteria were checked against evidence, and PR #18 is ready for review; Issue #13 remains open until review and merge. No PR was merged and no deployment or database was changed.

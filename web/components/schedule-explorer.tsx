@@ -31,7 +31,7 @@ export function FeaturedSessions() {
     void api<SessionsResponse>(`/api/v1/sessions?${query}`).then((result) => setSessions(result.sessions.slice(0, 3))).catch((cause) => setError(friendlyError(cause))).finally(() => setLoading(false));
   }, []);
   if (error) return <div className="schedule-state state-error" role="alert">{error}</div>;
-  if (loading) return <div className="session-grid" aria-label="Loading upcoming sessions" aria-busy="true">{[1, 2, 3].map((item) => <div className="skeleton" key={item} />)}</div>;
+  if (loading) return <div className="session-grid" role="status" aria-label="Loading upcoming sessions" aria-busy="true">{[1, 2, 3].map((item) => <div className="skeleton" key={item} />)}</div>;
   if (!sessions.length) return <div className="schedule-state"><strong>No upcoming sessions are scheduled in this demo yet.</strong><p>The public catalog will update when the next fictional class is scheduled.</p></div>;
   return <div className="session-grid">{sessions.map((session) => <SessionCard key={session.sessionId} session={session} action={<Link className="button button-outline button-small" href={`/sessions/${session.sessionId}`}>View session</Link>} />)}</div>;
 }
@@ -184,7 +184,7 @@ export function ScheduleExplorer({ member = false, initialSessionId }: { member?
         {status && <p className="schedule-state state-success" role="status">{status} <Link className="inline-link" href="/app/bookings">View My bookings</Link></p>}
         {error && <div className="schedule-state state-error" role="alert">{error}<div style={{ marginTop: 12 }}><button className="button button-outline" type="button" onClick={() => { setLoading(true); setRetryCount((count) => count + 1); }}>Try again</button></div></div>}
       </div>
-      {loading ? <div className="session-grid" aria-label="Loading schedule" aria-busy="true">{[1, 2, 3].map((item) => <div className="skeleton" key={item} />)}</div> : visibleSessions.length ? (
+      {loading ? <div className="session-grid" role="status" aria-label="Loading schedule" aria-busy="true">{[1, 2, 3].map((item) => <div className="skeleton" key={item} />)}</div> : visibleSessions.length ? (
         <div className="session-grid">{visibleSessions.map((session) => <SessionCard key={session.sessionId} session={session} action={member ? (
           <div className="booking-actions">{participationLoading ? <button className="button button-outline button-small" type="button" disabled>Checking reservation…</button> : participation[session.sessionId] ? <><button className="button button-dark button-small" type="button" disabled>{participation[session.sessionId] === "booked" ? "Booked" : "On waitlist"}</button><Link className="button button-outline button-small" href="/app/bookings">My bookings</Link></> : <><button className="button button-dark button-small" type="button" disabled={busyId === session.sessionId || session.availability === "full"} onClick={() => void sendAction(session.sessionId, "book")}>{busyId === session.sessionId ? "Working…" : session.availability === "full" ? "Session full" : "Book session"}</button>{session.availability === "full" && <button className="button button-outline button-small" type="button" disabled={busyId === session.sessionId} onClick={() => void sendAction(session.sessionId, "waitlist")}>Join waitlist</button>}</>}</div>
         ) : <Link className="button button-outline button-small" href={`/sessions/${session.sessionId}`}>View session</Link>} />)}</div>
