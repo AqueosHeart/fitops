@@ -2,7 +2,7 @@
 type: index
 project: FitOps
 status: active
-updated: 2026-10-08
+updated: 2026-10-09
 ---
 
 # FitOps Knowledge Index
@@ -43,6 +43,7 @@ updated: 2026-10-08
 - [SDLC and sprint plan](../docs/delivery-plan.md)
 - [Issue #13 quality and production-candidate evidence](../docs/quality/issue-13-evidence.md)
 - [Issue #13 focused security review](../docs/reviews/issue-13-security-review.md)
+- [[wiki/logs/2026-10-08-issue-19-trainer-workspace-start|Issue #19 trainer workspace continuation]]
 - [Sprint 0 exit review](../docs/reviews/sprint-0-exit-review.md)
 - [Tooling and workflow](../docs/tooling-and-workflow.md)
 
@@ -60,6 +61,7 @@ updated: 2026-10-08
 
 - [[wiki/logs/2026-10-08-issue-13-quality-start|Issue #13 quality gate implementation and verification boundary]]
 - [[wiki/logs/2026-10-08-issue-13-accessibility-fix|Issue #13 CI accessibility findings and local fixes]]
+- [[wiki/logs/2026-10-09-issue-13-merge-and-pr20-main|Issue #13 merge and trainer PR retarget verification]]
 - [[wiki/tasks/Sprint 5|Completed Sprint 5 member booking slice]]
 - [[wiki/logs/2026-10-07-issue-12-admin-test-account|Issue #12 fictional admin test account enabled]]
 - [[wiki/logs/2026-10-07-issue-12-admin-shell-account-routing|Issue #12 admin shell and signed-in My Account routing]]

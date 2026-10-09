@@ -1,8 +1,9 @@
 name: FitOps quality gate
 
 on:
+  workflow_dispatch:
   pull_request:
-    branches: [main]
+    branches: [main, codex/fitops-issue-13-quality]
   push:
     branches: [main]
 

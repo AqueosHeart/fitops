@@ -1,4 +1,4 @@
-import { parseAdminReturnTo, parseReturnTo } from "@/lib/server/auth/return-to";
+import { parseAdminReturnTo, parseReturnTo, parseTrainerReturnTo } from "@/lib/server/auth/return-to";
 
 type PortalUser = {
   role: "MEMBER" | "TRAINER" | "ADMINISTRATOR";
@@ -11,6 +11,9 @@ export function getPortalDestination(user: PortalUser, requestedReturnTo: unknow
 
   const memberDestination = parseReturnTo(requestedReturnTo);
   if (memberDestination && user.memberProfile) return memberDestination;
+
+  const trainerDestination = parseTrainerReturnTo(requestedReturnTo);
+  if (trainerDestination && user.role === "TRAINER") return trainerDestination;
 
   if (user.memberProfile) return "/app";
   if (user.role === "ADMINISTRATOR") return "/admin";

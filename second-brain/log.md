@@ -503,3 +503,23 @@ updated: 2026-09-21
 - CI run 37846080789 on `fff390b` passed the full quality gate, including all three axe scans and desktop/mobile synthetic LCP/CLS budgets. The Playwright report has raw metric JSON attachments; this is not field CWV.
 - Focused security review recorded no critical/high application-code issue in the covered paths; it identified trusted-proxy/IP-throttling and TLS/HSTS deployment gates, explicitly left safe defaults unchanged, and assigned these to Issue #14.
 - Final CI run 37847213151 passed against `fbe6d5f`. Issue #13 acceptance criteria were checked against evidence, and PR #18 is ready for review; Issue #13 remains open until review and merge. No PR was merged and no deployment or database was changed.
+
+## 2026-10-08 - Issue #19 trainer workspace started
+
+- Moved Issue #19 to In Progress in FitOps Delivery while keeping it outside Sprint 7's Issue #13 goal.
+- Implemented protected trainer session list/detail routes and APIs; detail queries are scoped by both session and current trainer and return aggregate counts only. Added safe trainer login return paths and My Account routing.
+- Updated the editable draw.io trainer flow, wireframe coverage, and API contract.
+- Local ESLint, TypeScript, UX synchronization, E2E discovery, and production build pass. DB contract suite was attempted but blocked by `ECONNREFUSED` on local PostgreSQL port 5432; no production/LAN database was changed.
+- Added manual dispatch to the existing quality workflow so the stacked branch can run the isolated PostgreSQL/browser gate before PR #18 merges.
+- First isolated run [37852249660](https://github.com/AqueosHeart/fitops/actions/runs/37852249660) passed DB contracts, lint/typecheck, audit, and build. E2E stopped at a strict alert locator because the Next route announcer is also an alert; changed assertions to exact copy.
+- Second isolated run [37852930865](https://github.com/AqueosHeart/fitops/actions/runs/37852930865) passed those same suites and reached trainer detail, exposing the post-promotion 4/4 fixture count rather than 2/4; corrected the stale assertion.
+- Third isolated run [37853306547](https://github.com/AqueosHeart/fitops/actions/runs/37853306547) passed DB, type, audit, and build gates and reached the simulated API failure; its final broad alert locator hit the Next route announcer. Changed it to target the trainer-state error element.
+- Fourth manual run and PR check [37853588577](https://github.com/AqueosHeart/fitops/actions/runs/37853588577) and [37853584276](https://github.com/AqueosHeart/fitops/actions/runs/37853584276) passed all DB/API, audit, lint/typecheck, build, browser, and accessibility stages. Opened PR #20 against PR #18, moved Issue #19 to In Review, and linked the issue to the PR without merging or deploying.
+- Next: await review and merge PR #18 first; then retarget/rebase PR #20 to main and merge after its dependency lands.
+
+## 2026-10-09 - Issue #13 merged; Issue #19 retargeted and reverified
+
+- With explicit user authorization, merged PR #18 into `main` using a merge commit: `20eea7710d77fb7002b01f57d85acf1900a0fa39`. GitHub records Issue #13 Closed / Done.
+- Retargeted PR #20 from `codex/fitops-issue-13-quality` to `main`; the changed-file inventory now contains the trainer workspace and its associated docs/tests.
+- Ran the quality workflow against the trainer branch after retarget: [37956221861](https://github.com/AqueosHeart/fitops/actions/runs/37956221861) passed isolated PostgreSQL migration/seed/API suites, lint/typecheck, audit, production build, Chromium journey, and accessibility checks. Only GitHub runner/action deprecation/future-image annotations were reported.
+- Issue #19 remains In Review and PR #20 remains open for review. No deployment, live database, or Linux service was changed. Issue #14 release work remains gated on its documented HTTPS/HSTS and trusted-proxy requirements.

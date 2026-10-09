@@ -2,8 +2,8 @@
 type: project
 status: active
 phase: development
-sprint: Sprint 7 active
-updated: 2026-10-08
+sprint: Sprint 7 complete
+updated: 2026-10-09
 ---
 
 # FitOps
@@ -14,11 +14,15 @@ FitOps is the repository and internal project codename. The public-facing fictio
 
 2026-10-08 authenticated administrator acceptance and focused review passed, then PR #17 merged to `main` at `08fbdd894c27436de2a52d8efe5c722c2e43dc56`. GitHub records Issue #12 Closed / Done / Sprint 6. The deployed demo DB was not changed by acceptance.
 
-Issue #13 quality work is underway on `codex/fitops-issue-13-quality` and GitHub records it Open / In Progress / Sprint 7. CI run 37846080789 on `fff390b` passed DB suites, lint/typecheck, audit, production build, complete member/admin/trainer-API journey, all axe scans, and desktop/mobile synthetic LCP/CLS budgets; raw metric JSON is in the run's Playwright report artifact. Focused security review is recorded in [the review report](../../../docs/reviews/issue-13-security-review.md). No critical/high application-code issue was found in covered paths; direct-LAN deployment still needs a trusted-proxy decision for IP throttling and TLS/HSTS before public exposure, retained under Issue #14. This does not represent field CWV. Stateful E2E auto-retries remain disabled, trace retention is disabled, and earlier failed-run trace artifacts were deleted. Missing trainer UI, despite its API and route target, is tracked as [Issue #19](https://github.com/AqueosHeart/fitops/issues/19) in FitOps Delivery Backlog. No live/deployed DB was modified.
+On 2026-10-08, continuation moved the already-tracked trainer workspace Issue #19 from Backlog to In Progress without changing Sprint 7's Issue #13 quality goal. Branch `codex/fitops-issue-19-trainer-workspace` implements the protected, read-only assigned-session list/detail and trainer login return routing. Local lint, TypeScript, UX synchronization, E2E discovery, and production build pass; DB-backed contract tests cannot run locally because PostgreSQL on `127.0.0.1:5432` refuses connections. No deployed DB or Linux service was changed. See [[../logs/2026-10-08-issue-19-trainer-workspace-start|Issue #19 trainer workspace continuation]].
 
-The [Sprint 0 exit review](../../../docs/reviews/sprint-0-exit-review.md) passed on 2026-09-25. `FitOps Delivery` is linked to the repository and has the required fields and views. Issues #8, #10, #11, and #12 are closed and Done after database, API/access-control, member, and administrator evidence. PR #17 merged on 2026-10-08 at `08fbdd894c27436de2a52d8efe5c722c2e43dc56`. Issue #13 remains Open / Backlog / Sprint 7; its in-progress quality evidence does not yet satisfy the acceptance gate.
+Issue #19 is In Review. PR [#20](https://github.com/AqueosHeart/fitops/pull/20) now targets `main` after PR #18 merged, and fresh quality run [37956221861](https://github.com/AqueosHeart/fitops/actions/runs/37956221861) passes disposable PostgreSQL migration/seed and API suites, lint/type-check, audit, production build, and the critical Chromium/accessibility journey. PR #20 remains open for review; no LAN deployment or live database changed.
 
-The 2026-09-28 follow-up test report is a historical checkpoint with nine integration scenarios. The final Issue #10 acceptance review added the documented domain edges and unsafe-write no-state-change evidence; PR #15 merged on 2026-10-07 and Issue #10 is Closed/Done. The dependency-ordered roadmap has Issues #11 (Sprint 5 member slice) and #12 (Sprint 6 administrator slice) closed; Issue #13 quality work is In Progress in Sprint 7; Issue #14 release evidence remains Backlog in Sprint 8.
+On 2026-10-09, PR [#18](https://github.com/AqueosHeart/fitops/pull/18) merged into `main` at `20eea7710d77fb7002b01f57d85acf1900a0fa39`; GitHub records Issue #13 Closed / Done. Sprint 7's quality objective is complete. Its security review retains Issue #14's HTTPS/HSTS and trusted-proxy release gates; this merge does not authorize public exposure or deployment.
+
+The [Sprint 0 exit review](../../../docs/reviews/sprint-0-exit-review.md) passed on 2026-09-25. `FitOps Delivery` is linked to the repository and has the required fields and views. Issues #8, #10, #11, #12, and #13 are closed and Done after database, API/access-control, member, administrator, and quality evidence. PR #17 merged on 2026-10-08 at `08fbdd894c27436de2a52d8efe5c722c2e43dc56`; PR #18 merged on 2026-10-09 at `20eea7710d77fb7002b01f57d85acf1900a0fa39`. Issue #14 release evidence remains Backlog in Sprint 8, dependent on Issue #13.
+
+The 2026-09-28 follow-up test report is a historical checkpoint with nine integration scenarios. The final Issue #10 acceptance review added the documented domain edges and unsafe-write no-state-change evidence; PR #15 merged on 2026-10-07 and Issue #10 is Closed/Done. Issues #11 (Sprint 5 member slice), #12 (Sprint 6 administrator slice), and #13 (Sprint 7 quality evidence) are now closed; Issue #14 release evidence remains Backlog in Sprint 8.
 
 Historical checkpoint (2026-10-07, superseded): Issue #12 implementation began on branch `codex/fitops-issue-12-admin-operations`, was rebased onto `main`, then completed and merged as PR #17 on 2026-10-08. The local FitOps app's older Docker/WSL outage and use of port 3001 were environment-specific; no Docker/WSL changes were made.
 

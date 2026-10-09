@@ -1,12 +1,12 @@
 ---
 type: critical-facts
 project: FitOps
-updated: 2026-10-08
+updated: 2026-10-09
 ---
 
 # FitOps Critical Facts
 
-- Status: Issues #8, #10, #11, and #12 are closed and Done in `FitOps Delivery`; PR #17 merged to `main` at `08fbdd894c27436de2a52d8efe5c722c2e43dc56` on 2026-10-08. Issue #13 is Open / In Progress / Sprint 7; PR #18 is ready for review. CI run 37847213151 on `fbe6d5f` passes DB suites, audit, build, critical E2E, all three axe scans, and desktop/mobile LCP/CLS lab budgets (3 samples each; LCP ≤2500 ms, CLS ≤0.1). Raw values are attached to the Playwright report; this is not field CWV. Focused security review is recorded; TLS/HSTS and trusted-proxy/IP-throttle conditions are explicit release gates in Issue #14. Auto-retries remain disabled for the stateful journey. Trace artifacts from failed runs were deleted and trace capture remains disabled. Missing trainer workspace is tracked as Issue #19 in FitOps Delivery Backlog.
+- Status (2026-10-09): Issues #8, #10, #11, #12, and #13 are closed and Done in `FitOps Delivery`. PR #18 merged to `main` at `20eea7710d77fb7002b01f57d85acf1900a0fa39`; its latest quality CI passed DB suites, audit, build, critical E2E, axe scans, and synthetic desktop/mobile LCP/CLS budgets. Measurements are lab data, not field CWV. Issue #14 release gates still require TLS/HSTS before public exposure and trusted-proxy configuration before IP-based throttling. Issue #19 remains In Review: PR [#20](https://github.com/AqueosHeart/fitops/pull/20) now targets `main`; CI run [37956221861](https://github.com/AqueosHeart/fitops/actions/runs/37956221861) passes isolated migration/seed, DB/API, audit, lint/typecheck, build, Chromium journey, and accessibility checks. No deployed database or Linux service was changed.
 - Working public name: `Practice Athletic Club`; `FitOps` remains the repository and internal project codename.
 - Branding scope is identity only for the current stage; no website or application implementation is authorized by the branding work.
 - Brand status: not defined or approved. Quiet Strength, the Mona Sans lime-bar wordmark, and the palette/type system are exploratory candidates that may be retained, revised, or replaced after the brand-definition process.

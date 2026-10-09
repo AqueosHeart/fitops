@@ -138,6 +138,10 @@ Returns only sessions assigned to the authenticated trainer profile, with schedu
 
 Each item contains `sessionId`, program name, `startsAt`, `endsAt`, session status, `capacity`, and `confirmedCount`. The member list remains available only through the administrator participants endpoint in the MVP.
 
+### `GET /api/v1/trainer/sessions/{sessionId}`
+
+Returns schedule, status, capacity, and confirmed attendee count only when the session is assigned to the authenticated trainer profile. A session assigned to another trainer and an unknown session both return `404 SESSION_NOT_FOUND`. Members, administrators, and users without a trainer profile receive `403 FORBIDDEN`; anonymous requests receive `401 UNAUTHENTICATED`. No participant names or contact data are returned.
+
 ## Administrator endpoints
 
 ### `GET /api/v1/admin/sessions`

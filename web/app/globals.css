@@ -142,6 +142,33 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .join-existing p { margin: 0; color: #d3d4cb; font-size: 13px; }
 .join-existing .button { background: var(--accent); color: var(--dark); }
 .member-main { max-width: 1300px; margin: 0 auto; padding: 48px clamp(18px, 4vw, 58px) 90px; }
+.trainer-main { min-height: calc(100vh - 78px); }
+.site-header-trainer .site-nav a[aria-current="page"] { color: var(--accent-deep); font-weight: 700; }
+.trainer-content { max-width: 1120px; margin: 0 auto; padding: 52px clamp(18px, 4vw, 44px) 86px; }
+.trainer-heading { display: flex; align-items: end; justify-content: space-between; gap: 22px; margin-bottom: 28px; }
+.trainer-heading h1 { margin: 0; font-family: var(--serif); font-size: clamp(40px, 5vw, 58px); font-weight: 400; letter-spacing: -.04em; line-height: 1; }
+.trainer-heading p:not(.eyebrow) { margin: 10px 0 0; color: var(--muted); }
+.trainer-panel { padding: clamp(18px, 3vw, 26px); border: 1px solid var(--line); background: var(--surface); }
+.trainer-panel-heading { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin-bottom: 18px; }
+.trainer-panel-heading h2, .trainer-state h2 { margin: 0; font-family: var(--serif); font-size: 27px; font-weight: 400; }
+.trainer-panel-heading p, .trainer-state p { margin: 5px 0 0; color: var(--muted); font-size: 12px; }
+.trainer-session-list { display: grid; gap: 10px; }
+.trainer-session-card { display: grid; grid-template-columns: minmax(0,1fr) auto auto; align-items: center; gap: 22px; padding: 18px; border: 1px solid var(--line); background: #fff; }
+.trainer-session-card .eyebrow { margin-bottom: 5px; }
+.trainer-session-card h2, .trainer-session-detail h2 { margin: 0; font-family: var(--serif); font-size: 25px; font-weight: 400; }
+.trainer-session-time { margin: 5px 0 0; color: var(--muted); font-size: 12px; }
+.trainer-session-meta { display: grid; justify-items: end; gap: 8px; color: #55584f; font-size: 12px; }
+.trainer-state { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; min-height: 125px; color: var(--muted); }
+.trainer-state h2, .trainer-state p { flex-basis: 100%; }
+.trainer-state-error { color: #8e3226; }
+.trainer-state-error .button { color: var(--foreground); }
+.trainer-note { margin: 14px 0 0; color: var(--muted); font-size: 11px; }
+.trainer-session-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.trainer-session-detail > .trainer-panel { min-height: 210px; }
+.trainer-session-detail p:not(.eyebrow) { color: var(--muted); }
+.trainer-attendance strong { display: block; margin: 20px 0 8px; font-family: var(--serif); font-size: 48px; font-weight: 400; line-height: 1; }
+.trainer-attendance strong span { color: var(--muted); font-size: 25px; }
+.trainer-skeleton { min-height: 106px; background: linear-gradient(90deg,#e7e7e0 25%,#f2f2eb 40%,#e7e7e0 60%); background-size: 400% 100%; animation: shimmer 1.5s ease infinite; }
 .member-welcome { display: flex; align-items: end; justify-content: space-between; gap: 22px; margin-bottom: 30px; }
 .member-welcome h1 { margin: 0; font-family: var(--serif); font-size: clamp(38px, 5vw, 60px); font-weight: 400; letter-spacing: -.04em; line-height: 1; }
 .member-welcome p { margin: 10px 0 0; color: var(--muted); }
@@ -303,6 +330,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .admin-person-row { align-items: flex-start; flex-direction: column; gap: 4px; }
   .admin-person-row > span { text-align: left; }
   .admin-roster-actions { align-items: flex-start; flex-direction: column; gap: 6px; }
+  .trainer-content { padding: 37px 17px 64px; }
+  .trainer-heading, .trainer-panel-heading { align-items: flex-start; flex-direction: column; }
+  .trainer-session-card { grid-template-columns: 1fr; align-items: start; gap: 14px; }
+  .trainer-session-meta { justify-items: start; }
+  .trainer-session-detail { grid-template-columns: 1fr; }
+  .trainer-session-card .button { width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
