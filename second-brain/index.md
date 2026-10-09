@@ -62,6 +62,7 @@ updated: 2026-10-09
 - [[wiki/logs/2026-10-08-issue-13-quality-start|Issue #13 quality gate implementation and verification boundary]]
 - [[wiki/logs/2026-10-08-issue-13-accessibility-fix|Issue #13 CI accessibility findings and local fixes]]
 - [[wiki/logs/2026-10-09-issue-13-merge-and-pr20-main|Issue #13 merge and trainer PR retarget verification]]
+- [[wiki/logs/2026-10-09-issue-19-merged|Issue #19 trainer workspace merged and closed]]
 - [[wiki/tasks/Sprint 5|Completed Sprint 5 member booking slice]]
 - [[wiki/logs/2026-10-07-issue-12-admin-test-account|Issue #12 fictional admin test account enabled]]
 - [[wiki/logs/2026-10-07-issue-12-admin-shell-account-routing|Issue #12 admin shell and signed-in My Account routing]]
