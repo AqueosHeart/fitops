@@ -2,7 +2,7 @@
 type: project
 status: active
 phase: development
-sprint: Sprint 7 complete
+sprint: Sprint 8 active
 updated: 2026-10-09
 ---
 
@@ -20,9 +20,11 @@ Issue #19 is Closed / Done. PR [#20](https://github.com/AqueosHeart/fitops/pull/
 
 On 2026-10-09, PR [#18](https://github.com/AqueosHeart/fitops/pull/18) merged into `main` at `20eea7710d77fb7002b01f57d85acf1900a0fa39`; GitHub records Issue #13 Closed / Done. Sprint 7's quality objective is complete. Its security review retains Issue #14's HTTPS/HSTS and trusted-proxy release gates; this merge does not authorize public exposure or deployment.
 
-The [Sprint 0 exit review](../../../docs/reviews/sprint-0-exit-review.md) passed on 2026-09-25. `FitOps Delivery` is linked to the repository and has the required fields and views. Issues #8, #10, #11, #12, and #13 are closed and Done after database, API/access-control, member, administrator, and quality evidence. PR #17 merged on 2026-10-08 at `08fbdd894c27436de2a52d8efe5c722c2e43dc56`; PR #18 merged on 2026-10-09 at `20eea7710d77fb7002b01f57d85acf1900a0fa39`. Issue #14 release evidence remains Backlog in Sprint 8, dependent on Issue #13.
+Sprint 8 is active for Issue #14. The user selected LAN-only operation and explicitly confirmed `TRUST_PROXY` stays disabled. Repository CI verifies Next.js 16.3.8, while the last documented Linux deployment used 16.3.6. An SSH batch-key attempt was denied, so the current server checkout/runtime/database have not been inspected or changed; HTTP 200 proves reachability only. See [[../tasks/Sprint 8|Sprint 8]] and [Issue #14 readiness](../../../docs/release/issue-14-readiness.md). No public exposure is planned.
 
-The 2026-09-28 follow-up test report is a historical checkpoint with nine integration scenarios. The final Issue #10 acceptance review added the documented domain edges and unsafe-write no-state-change evidence; PR #15 merged on 2026-10-07 and Issue #10 is Closed/Done. Issues #11 (Sprint 5 member slice), #12 (Sprint 6 administrator slice), and #13 (Sprint 7 quality evidence) are now closed; Issue #14 release evidence remains Backlog in Sprint 8.
+The [Sprint 0 exit review](../../../docs/reviews/sprint-0-exit-review.md) passed on 2026-09-25. `FitOps Delivery` is linked to the repository and has the required fields and views. Issues #8, #10, #11, #12, #13, and #19 are closed and Done after database, API/access-control, member, administrator, quality, and trainer evidence. PR #17 merged on 2026-10-08 at `08fbdd894c27436de2a52d8efe5c722c2e43dc56`; PR #18 merged on 2026-10-09 at `20eea7710d77fb7002b01f57d85acf1900a0fa39`. Issue #14 release evidence is In Progress in Sprint 8, dependent on Issue #13.
+
+The 2026-09-28 follow-up test report is a historical checkpoint with nine integration scenarios. The final Issue #10 acceptance review added the documented domain edges and unsafe-write no-state-change evidence; PR #15 merged on 2026-10-07 and Issue #10 is Closed/Done. Issues #11 (Sprint 5 member slice), #12 (Sprint 6 administrator slice), and #13 (Sprint 7 quality evidence) are now closed; Issue #14 release evidence is in progress in Sprint 8.
 
 Historical checkpoint (2026-10-07, superseded): Issue #12 implementation began on branch `codex/fitops-issue-12-admin-operations`, was rebased onto `main`, then completed and merged as PR #17 on 2026-10-08. The local FitOps app's older Docker/WSL outage and use of port 3001 were environment-specific; no Docker/WSL changes were made.
 
@@ -66,18 +68,18 @@ Visitor discovers the club, uses primary Join Now to choose a fictional plan or 
 - Transactional enforcement of capacity and waitlist promotion
 - Public demo and repository claims must be verifiable
 
-## Current deployment status (2026-10-08)
+## Deployment status (last recorded 2026-10-08; current host version unverified)
 
-Deployed from branch `codex/fitops-issue-12-admin-operations` (app source at commit `8951e16`) to `/home/sebastian/fitops` on the LAN at port 3001, with a separate PostgreSQL 16 volume and private database network. All six migrations applied; one fictional seed and `db:verify` passed (6 users, 3 sessions, 4 confirmed bookings, 4 waitlist entries). From the Windows workstation, the login page returns 200 and anonymous `/admin` redirects to `/portal/login?returnTo=%2Fadmin`. A server-side seeded-admin login and protected `/admin` request both returned 200. AARC remains active on port 3000 and was not modified. The deployed app is still LAN-only, without TLS, and still runs Next.js 16.3.6; the local update to 16.3.8 has not been deployed. Do not expose publicly until the quality and release gates are complete. Issues #13 and #14 remain open.
+Last verified deployment (2026-10-08): branch `codex/fitops-issue-12-admin-operations` (app source at commit `8951e16`) at `/home/sebastian/fitops`, LAN port 3001, separate PostgreSQL 16 volume/private DB network. All six migrations applied; one fictional seed and `db:verify` passed (6 users, 3 sessions, 4 confirmed bookings, 4 waitlist entries). From the Windows workstation, the login page returned 200 and anonymous `/admin` redirected to `/portal/login?returnTo=%2Fadmin`; a server-side seeded-admin login and protected `/admin` request returned 200. AARC remained active on port 3000 and was not modified. This last verified app used Next.js 16.3.6, was LAN-only, and had no TLS. Current host state is unverified after SSH authentication failed. Issue #13 is closed; Issue #14 is In Progress. The user's current scope remains LAN-only.
 
 Deployment topology is recorded in [ADR 016](../../../docs/adr/016-lan-only-linux-fitops-deployment.md); operational instructions are in [the LAN deployment guide](../../../docs/linux-server-deployment.md).
 
-Prisma Studio is running on demand in its `studio` Compose profile, published only at server loopback `127.0.0.1:5555`. An SSH tunnel from the Windows workstation is active and the UI HTML/JS asset return HTTP 200 at local `http://127.0.0.1:5555`. Studio writes bypass application invariants; see [ADR 017](../../../docs/adr/017-prisma-studio-over-ssh-tunnel.md). Close the Studio container and tunnel after use.
+Prisma Studio was running on demand in its `studio` Compose profile, published only at server loopback `127.0.0.1:5555`. The last recorded Windows SSH local forwarding returned HTTP 200 for its UI and JS asset. Current tunnel/container state is unverified. Studio writes bypass application invariants; see [ADR 017](../../../docs/adr/017-prisma-studio-over-ssh-tunnel.md). Close the Studio container and tunnel after use.
 
 ## Connections
 
 - [[../../CRITICAL_FACTS]]
-- [[../tasks/Sprint 7|Current sprint]]
+- [[../tasks/Sprint 8|Current sprint]]
 - [[../tasks/Sprint 5|Completed Sprint 5]]
 - [[../tasks/Sprint 0]]
 - [[../concepts/Modular Monolith]]

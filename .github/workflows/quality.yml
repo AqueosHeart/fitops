@@ -90,6 +90,12 @@ jobs:
       - name: Run critical journey and accessibility E2E
         working-directory: web
         run: npm run test:e2e
+      - name: Verify documented database reset and reseed procedure
+        working-directory: web
+        run: |
+          npx prisma migrate reset --force
+          npm run prisma:seed
+          npm run db:verify
       - uses: actions/upload-artifact@v5
         if: ${{ !cancelled() }}
         with:

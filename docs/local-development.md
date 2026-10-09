@@ -13,7 +13,7 @@ This guide recreates FitOps on a second Windows computer using the committed Pos
 From PowerShell, clone the repository, prepare the private Compose environment, then start PostgreSQL 16:
 
 ```powershell
-git clone --branch codex/fitops-issue-12-admin-operations https://github.com/AqueosHeart/fitops.git
+git clone https://github.com/AqueosHeart/fitops.git
 cd fitops
 Copy-Item .env.example .env
 node -e "console.log(require('node:crypto').randomBytes(32).toString('base64url'))"
