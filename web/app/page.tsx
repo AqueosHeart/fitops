@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { PublicLayout } from "@/components/site-shell";
 import { FeaturedSessions } from "@/components/schedule-explorer";
@@ -14,7 +15,18 @@ export default async function Home({ searchParams }: PageProps<"/">) {
         <p>Thoughtful coaching, small-group classes, and room to build a rhythm that feels like yours. Start with one session.</p>
         <div className="hero-actions"><Link className="button button-accent" href="/schedule">Explore the schedule <span aria-hidden="true">↗</span></Link><Link className="hero-link" href="/join">New here? Join the club</Link></div>
       </div>
-      <div className="hero-art" role="img" aria-label="Abstract olive-toned athletic studio illustration"><div className="hero-art-label"><span>Train for your own reasons</span><span>Practice Athletic Club</span></div></div>
+      <div className="hero-art">
+        <Image
+          className="hero-photo"
+          src="/images/club-session-editorial-v2.webp"
+          alt="A coach guides members through a small-group strength class in a bright studio."
+          width={1440}
+          height={960}
+          sizes="(max-width: 650px) 100vw, 50vw"
+          preload
+        />
+        <div className="hero-art-label"><span>Train for your own reasons</span><span>Practice Athletic Club</span></div>
+      </div>
     </section>
     <div className="ticker"><span>Small group by design</span><span>Coaching that meets you here</span><span>Progress at your pace</span></div>
     <section className="section" id="programs">

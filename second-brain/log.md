@@ -543,3 +543,10 @@ updated: 2026-10-10
 
 - With explicit user authorization, merged PR #20 into `main` at `674f2b4b0f68d4ca8eb193949913f24221e8fb52`. Quality run [37956811965](https://github.com/AqueosHeart/fitops/actions/runs/37956811965) passed the isolated DB/API, audit, lint/typecheck, build, Chromium, and accessibility checks.
 - Updated Issue #19 acceptance evidence and closed the issue; FitOps Delivery status is Done. No deployment or live database was changed. Issue #14 remains the release follow-up with TLS/HSTS and trusted-proxy gates.
+
+## 2026-10-10 - Local homepage visual review
+
+- Reviewed the current homepage and the member-login screenshot against product requirements and the unapproved exploratory brand state. GitHub currently lists only Issue #14 as open; its release gates remain unchanged.
+- Replaced the abstract CSS hero figure with a compressed fictional editorial training image and adjusted the 950 px header behavior. Local browser review at 870 px showed the revised hero and a single-row header.
+- The local portal login origin is configured as `http://127.0.0.1:3000`, matching the open app origin. The browser's existing admin session redirected `/portal/login` to `/admin`; no credentials were entered and no session/database data was changed.
+- No build, test suite, GitHub issue, public deployment, or LAN service was changed. Brand identity remains exploratory.
