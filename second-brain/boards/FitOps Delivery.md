@@ -1,7 +1,7 @@
 ---
 type: board-mirror
 project: FitOps
-updated: 2026-10-09
+updated: 2026-10-10
 ---
 
 # FitOps Delivery Board Mirror
@@ -54,6 +54,7 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 - `FitOps Delivery` is linked to `AqueosHeart/fitops`.
 - Required fields: Status, Priority, Size, Estimate, Iteration, Start date, Target date, Sprint, SDLC Phase, Work Type, and Risk. `Work Type` is the GitHub-compatible replacement for the reserved `Type` name.
 - Views: Current Sprint, Product Backlog, SDLC Roadmap, and Bugs and Debt.
+- 2026-10-10 local developer setup: fresh Windows PostgreSQL 16 volume and loopback Next.js dev server are running from synced `main`; this is environment setup only and does not change any GitHub issue status or Issue #14 release gates.
 
 ## Done (Sprint 0 Completed)
 

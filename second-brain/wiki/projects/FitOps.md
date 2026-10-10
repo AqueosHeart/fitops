@@ -3,7 +3,7 @@ type: project
 status: active
 phase: development
 sprint: Sprint 7 complete
-updated: 2026-10-09
+updated: 2026-10-10
 ---
 
 # FitOps
@@ -19,6 +19,8 @@ On 2026-10-08, continuation moved the already-tracked trainer workspace Issue #1
 Issue #19 is Closed / Done. PR [#20](https://github.com/AqueosHeart/fitops/pull/20) merged into `main` on 2026-10-09 at `674f2b4b0f68d4ca8eb193949913f24221e8fb52`; quality run [37956811965](https://github.com/AqueosHeart/fitops/actions/runs/37956811965) passed disposable PostgreSQL migration/seed and API suites, lint/type-check, audit, production build, and the critical Chromium/accessibility journey. No LAN deployment or live database changed.
 
 On 2026-10-09, PR [#18](https://github.com/AqueosHeart/fitops/pull/18) merged into `main` at `20eea7710d77fb7002b01f57d85acf1900a0fa39`; GitHub records Issue #13 Closed / Done. Sprint 7's quality objective is complete. Its security review retains Issue #14's HTTPS/HSTS and trusted-proxy release gates; this merge does not authorize public exposure or deployment.
+
+On 2026-10-10, a fresh Windows local-development instance was started from synced `main`. Docker Desktop 29.6.2 runs isolated PostgreSQL 16 on loopback port 5433; all six migrations applied and the fictional seed verified (6 users, 3 sessions, 4 confirmed bookings, 4 waitlist entries). Next.js 16.3.8 dev server is bound to `127.0.0.1:3000`; `/` and `/portal/login` returned 200. Configuration is in ignored `.env` files and the database is in a dedicated local Docker volume. No LAN server or deployed database was touched. The root README now reflects current implementation/release status, and the local guide clones `main`.
 
 The [Sprint 0 exit review](../../../docs/reviews/sprint-0-exit-review.md) passed on 2026-09-25. `FitOps Delivery` is linked to the repository and has the required fields and views. Issues #8, #10, #11, #12, and #13 are closed and Done after database, API/access-control, member, administrator, and quality evidence. PR #17 merged on 2026-10-08 at `08fbdd894c27436de2a52d8efe5c722c2e43dc56`; PR #18 merged on 2026-10-09 at `20eea7710d77fb7002b01f57d85acf1900a0fa39`. Issue #14 release evidence remains Backlog in Sprint 8, dependent on Issue #13.
 

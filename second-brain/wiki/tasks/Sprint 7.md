@@ -3,7 +3,7 @@ type: sprint
 project: FitOps
 sprint: Sprint 7
 status: complete
-updated: 2026-10-09
+updated: 2026-10-10
 ---
 
 # Sprint 7 — System Quality and Production-Candidate Evidence
@@ -45,4 +45,4 @@ Build a reproducible, truthful quality gate for the FitOps production candidate.
 
 ## Environment boundary
 
-The Windows Docker Linux engine did not respond to `docker info`, so local database-backed verification was not attempted. Do not use the deployed demo database for automated tests. The GitHub workflow creates a disposable PostgreSQL 16 database with fictional seed data. The Linux deployment remains on Next.js 16.3.6 and LAN-only; this sprint has not deployed or altered that server.
+The Windows Docker Linux engine did not respond to `docker info` during Sprint 7, so database-backed verification then relied on isolated CI. On 2026-10-10, Docker Desktop started successfully for a separate local-development setup: a fresh PostgreSQL 16 volume, migrations, fictional seed, and database verification passed. The local Next.js dev server runs only on loopback. This post-sprint setup does not change Sprint 7 completion or Issue #14 release status. Do not use the deployed demo database for automated tests. The Linux deployment remains LAN-only and has not been changed.

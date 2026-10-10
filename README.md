@@ -50,4 +50,4 @@ The local setup is documented in [Local development](docs/local-development.md).
 
 ## Current status
 
-The public site, member booking flow, and administrator operations workspace are implemented in the repository. Issue #12 remains in progress pending authenticated browser acceptance. The app is not represented as a production deployment. Delivery follows an eight-phase SDLC and one-week sprints; consult FitOps Delivery and the current sprint notes for verified status.
+The public site, member booking flow, trainer workspace, and administrator operations workspace are implemented. The Issue #13 quality gate passed in CI. Issue #14 still tracks release and portfolio evidence, including HTTPS/HSTS and trusted-proxy gates before any public exposure. The documented LAN setup is private and is not a public production deployment. For a fresh local Windows setup, follow [Local development](docs/local-development.md). Delivery follows an eight-phase SDLC and one-week sprints; consult FitOps Delivery and the current sprint notes for verified status.

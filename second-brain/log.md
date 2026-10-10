@@ -1,10 +1,17 @@
 ---
 type: activity-log
 project: FitOps
-updated: 2026-09-21
+updated: 2026-10-10
 ---
 
 # FitOps Activity Log
+
+## 2026-10-10 - Windows local development deployment
+
+- Started Docker Desktop and created a new local PostgreSQL 16 volume using the repository's loopback-only Compose setup. Applied all six migrations, seeded fictional data once, and verified the database contents.
+- Installed locked dependencies with Node 24.15.0/npm 11.12.1; npm reported engine warnings because the repository documents 24.14.x/11.9.x. Install and app startup succeeded.
+- Started Next.js 16.3.8 on `127.0.0.1:3000`; `/` and `/portal/login` returned 200. Private config remains in ignored `.env` files. No LAN deployment, production data, or project source code was changed.
+- Updated the root README to reflect the completed trainer/admin work and open Issue #14 release gates. Updated the local-development guide to clone `main` rather than an obsolete feature branch.
 
 ## 2026-10-08 — FitOps LAN deployment continuation
 

@@ -2,7 +2,7 @@
 type: index
 project: FitOps
 status: active
-updated: 2026-10-09
+updated: 2026-10-10
 ---
 
 # FitOps Knowledge Index
@@ -124,4 +124,5 @@ updated: 2026-10-09
 - [[wiki/logs/2026-10-07-issue-10-eslint-advisory-resolution|Issue #10 lint advisory resolution]]
 - [[wiki/logs/2026-10-07-issue-11-member-product-slice|Issue #11 member product slice and PR #16 review handoff]]
 - [[wiki/logs/2026-10-07-issue-12-admin-operations-start|Issue #12 administrator operations started as dependent work]]
+- [[wiki/logs/2026-10-10-local-windows-development-run|Windows local development run]]
 - [[wiki/tasks/Sprint 5|Sprint 5 Member Booking Product Slice]]
