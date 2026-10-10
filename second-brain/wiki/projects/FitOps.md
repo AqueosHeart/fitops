@@ -22,9 +22,11 @@ On 2026-10-09, PR [#18](https://github.com/AqueosHeart/fitops/pull/18) merged in
 
 On 2026-10-10, a fresh Windows local-development instance was started from synced `main`. Docker Desktop 29.6.2 runs isolated PostgreSQL 16 on loopback port 5433; all six migrations applied and the fictional seed verified (6 users, 3 sessions, 4 confirmed bookings, 4 waitlist entries). Next.js 16.3.8 dev server is bound to `127.0.0.1:3000`; `/` and `/portal/login` returned 200. Configuration is in ignored `.env` files and the database is in a dedicated local Docker volume. No LAN server or deployed database was touched. The root README now reflects current implementation/release status, and the local guide clones `main`.
 
-The [Sprint 0 exit review](../../../docs/reviews/sprint-0-exit-review.md) passed on 2026-09-25. `FitOps Delivery` is linked to the repository and has the required fields and views. Issues #8, #10, #11, #12, and #13 are closed and Done after database, API/access-control, member, administrator, and quality evidence. PR #17 merged on 2026-10-08 at `08fbdd894c27436de2a52d8efe5c722c2e43dc56`; PR #18 merged on 2026-10-09 at `20eea7710d77fb7002b01f57d85acf1900a0fa39`. Issue #14 release evidence remains Backlog in Sprint 8, dependent on Issue #13.
+Issue #14 readiness review (2026-10-10) added a guarded private-demo volume reset to the LAN guide and a [case-study draft](../../../docs/portfolio-case-study.md). The repo now separates verified CI/local evidence from the missing public release. The documented Linux service is stale relative to `main` and remains HTTP-only/private. GitHub shows Issue #14 Open with no assignee, labels, or project item; the earlier Sprint 8 mirror is unverified. Public smoke, TLS/HSTS, trusted-proxy configuration, and release review remain open.
 
-The 2026-09-28 follow-up test report is a historical checkpoint with nine integration scenarios. The final Issue #10 acceptance review added the documented domain edges and unsafe-write no-state-change evidence; PR #15 merged on 2026-10-07 and Issue #10 is Closed/Done. Issues #11 (Sprint 5 member slice), #12 (Sprint 6 administrator slice), and #13 (Sprint 7 quality evidence) are now closed; Issue #14 release evidence remains Backlog in Sprint 8.
+The [Sprint 0 exit review](../../../docs/reviews/sprint-0-exit-review.md) passed on 2026-09-25. `FitOps Delivery` was linked to the repository and its fields/views were established. Issues #8, #10, #11, #12, and #13 are closed and Done after database, API/access-control, member, administrator, and quality evidence. PR #17 merged on 2026-10-08 at `08fbdd894c27436de2a52d8efe5c722c2e43dc56`; PR #18 merged on 2026-10-09 at `20eea7710d77fb7002b01f57d85acf1900a0fa39`. Issue #14 is Open; current GitHub issue metadata returns no assignee, labels, or linked project, so its previously documented Sprint 8 assignment is unverified.
+
+The 2026-09-28 follow-up test report is a historical checkpoint with nine integration scenarios. The final Issue #10 acceptance review added the documented domain edges and unsafe-write no-state-change evidence; PR #15 merged on 2026-10-07 and Issue #10 is Closed/Done. Issues #11 (Sprint 5 member slice), #12 (Sprint 6 administrator slice), and #13 (Sprint 7 quality evidence) are now closed; Issue #14 remains open, with its GitHub Project assignment to be reconciled.
 
 Historical checkpoint (2026-10-07, superseded): Issue #12 implementation began on branch `codex/fitops-issue-12-admin-operations`, was rebased onto `main`, then completed and merged as PR #17 on 2026-10-08. The local FitOps app's older Docker/WSL outage and use of port 3001 were environment-specific; no Docker/WSL changes were made.
 
@@ -86,6 +88,7 @@ Prisma Studio is running on demand in its `studio` Compose profile, published on
 - [[../concepts/Database Source of Truth]]
 - [[../decisions/Decision Index]]
 - [Product requirements](../../../docs/product-requirements.md)
+- [Portfolio case study draft](../../../docs/portfolio-case-study.md)
 - [Brand foundation](../../../docs/brand/brand-foundation.md)
 - [Brand definition guide](../../../docs/brand/brand-definition-guide.md)
 - [Visual territories](../../../docs/brand/visual-territories.md)

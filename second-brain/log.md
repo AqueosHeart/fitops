@@ -6,6 +6,14 @@ updated: 2026-10-10
 
 # FitOps Activity Log
 
+## 2026-10-10 - Issue #14 release-readiness review
+
+- Reviewed open GitHub Issue #14 and Sprint 8 / Phase 6 plans against deployment, security, quality, and architecture evidence.
+- Added a guarded database-volume reset procedure for the private Linux demo; corrected deployment instructions to use current `main` and recorded the older deployed commit/version accurately.
+- Added a draft case study linked from the README. It distinguishes CI and local evidence from public production evidence and records uncompleted gates.
+- GitHub reports Issue #14 Open with no assignee, labels, or linked project item. The previous Sprint 8 assignment in the second brain is not confirmed; CLI project-list access lacks `read:project` scope.
+- Public URL smoke test and HTTPS/HSTS/proxy proof remain blocked on a public hostname and safe edge configuration. The private LAN and local demo were not modified or exposed.
+
 ## 2026-10-10 - Windows local development deployment
 
 - Started Docker Desktop and created a new local PostgreSQL 16 volume using the repository's loopback-only Compose setup. Applied all six migrations, seeded fictional data once, and verified the database contents.

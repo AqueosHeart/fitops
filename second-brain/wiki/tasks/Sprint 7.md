@@ -32,7 +32,7 @@ Build a reproducible, truthful quality gate for the FitOps production candidate.
 
 ## Completion
 
-- Issue #13 acceptance criteria are complete and GitHub records it Closed / Done. Release and portfolio evidence remains Issue #14 in Sprint 8; its HTTPS/HSTS and trusted-proxy gates are not cleared by this sprint.
+- Issue #13 acceptance criteria are complete and GitHub records it Closed / Done. Release and portfolio evidence remains open in Issue #14; its HTTPS/HSTS and trusted-proxy gates are not cleared by this sprint. GitHub issue metadata no longer confirms a Sprint 8/project assignment.
 
 ## Parallel tracked follow-up (outside Sprint 7 scope)
 

@@ -21,6 +21,7 @@ A recruiter should be able to verify that the author can take a product from an 
 - [Conceptual database schema](docs/database/fitops.dbml)
 - [REST API contract](docs/api.md)
 - [Eight-phase SDLC and sprint plan](docs/delivery-plan.md)
+- [FitOps case study draft](docs/portfolio-case-study.md)
 - [Engineering tooling and workflow](docs/tooling-and-workflow.md)
 - [ADR 001 Modular monolith](docs/adr/001-modular-monolith.md)
 - [ADR 002 Repository centered planning and design tools](docs/adr/002-project-and-design-tooling.md)
