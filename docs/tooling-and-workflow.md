@@ -6,7 +6,7 @@ FitOps will keep project execution and engineering evidence close to the code. G
 
 Design artifacts will use the format that best matches their purpose:
 
-- Penpot for low-fidelity and high-fidelity interface design
+- Figma for FitOps foundations, components, wireframes, prototypes, and visual review
 - draw.io for editable UX flow and sitemap diagrams, with Mermaid review exports stored in Markdown
 - DBML for the reviewed conceptual database diagram
 - Prisma schema and committed migrations for the executable database definition
@@ -60,18 +60,15 @@ Create these views:
 
 ### System
 
-Use the connected Penpot file named `FitOps Design System`.
+Use the linked [FitOpsWireframing Figma file](https://www.figma.com/design/8O6NvazN4Alxk1G1TmRYoV/FitOpsWireframing?node-id=7110-73). It currently contains separate `FitOps · Foundations` and `FitOps · Components` pages. The FitOps foundations are exploratory and align to the user-linked [Practice Athletic Club brand guidelines](https://www.figma.com/design/tOe3cyDw9VLbHhgYOC3Nnn/Branding-Guidelines-Presentation-Template--Community-?m=auto&t=t6aPLJ1Mqct9jYKB-6). Existing AARC reference pages remain preserved and are not FitOps specifications.
 
-### Penpot pages
+### Wireframe recovery
 
-1. `Design Tokens`
-2. `Icons — Lucide`
-3. `01 · Public · Home — Wireframes` through `20 · Admin · Participants — Wireframes`
-4. Future high-fidelity and handoff pages, added only after the low-fidelity review
+The former Penpot wireframe set is historical. Rebuild the active Figma wireframes from `second-brain/wiki/design/FitOps User Flows.drawio`, draw.io Page 08, and the repository's scenario/generator sources. Compare the output against the current requirements before presenting it as current. The Penpot canvas is not directly copied by the connected Figma tools.
 
 ### Repository evidence
 
-Penpot is the working visual-design environment, but important decisions must remain reviewable from the repository. `second-brain/wiki/design/FitOps User Flows.drawio` is the editable source of truth for UX navigation and flow architecture: change it before updating derived Mermaid exports or Penpot boards. The derived work must preserve the approved public-discovery, Join, and protected-workspace boundary. Export approved review evidence into `docs/design/` when useful.
+Figma is the working visual-design environment, but important decisions must remain reviewable from the repository. `second-brain/wiki/design/FitOps User Flows.drawio` is the editable source of truth for UX navigation and flow architecture: change it before updating derived Mermaid exports or Figma wireframes. The derived work must preserve the approved public-discovery, Join, and protected-workspace boundary. Export approved review evidence into `docs/design/` when useful.
 
 No screenshot is treated as a specification by itself. States, rules, and acceptance criteria remain in version-controlled documents and issues.
 
@@ -141,7 +138,7 @@ OpenAPI is authoritative for paths, methods, parameters, request bodies, respons
 |---|---|---|
 | Sprint and backlog | GitHub Projects | GitHub Issues and linked pull requests |
 | UX flow and navigation architecture | draw.io | `second-brain/wiki/design/FitOps User Flows.drawio` |
-| UX visual design and prototypes | Penpot | Approved boards derived from draw.io plus UX requirements |
+| UX visual design and prototypes | Figma | Approved boards derived from draw.io plus UX requirements |
 | Architecture diagrams | Mermaid | Markdown files under `docs/` |
 | Conceptual database model | dbdiagram.io or editor with DBML | `docs/database/fitops.dbml` |
 | Physical database model | Prisma | `prisma/schema.prisma` and migrations |
@@ -154,6 +151,6 @@ OpenAPI is authoritative for paths, methods, parameters, request bodies, respons
 1. Create the GitHub repository.
 2. Create the `FitOps Delivery` GitHub Project and its fields and views.
 3. Convert the existing Sprint 0 requirements into GitHub Issues.
-4. Create the Penpot file and low-fidelity pages.
+4. Create the Figma file and low-fidelity pages.
 5. Add the initial DBML file from the reviewed data model.
 6. Review the Sprint 0 exit gate before beginning Sprint 1.

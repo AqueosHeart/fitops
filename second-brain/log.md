@@ -550,3 +550,11 @@ updated: 2026-10-10
 - Replaced the abstract CSS hero figure with a compressed fictional editorial training image and adjusted the 950 px header behavior. Local browser review at 870 px showed the revised hero and a single-row header.
 - The local portal login origin is configured as `http://127.0.0.1:3000`, matching the open app origin. The browser's existing admin session redirected `/portal/login` to `/admin`; no credentials were entered and no session/database data was changed.
 - No build, test suite, GitHub issue, public deployment, or LAN service was changed. Brand identity remains exploratory.
+
+## 2026-10-10 - Figma visual-tool decision and FitOps foundations
+
+- Accepted ADR 018, superseding ADR 013's Penpot tool decision. Figma is the active visual-design workspace; draw.io remains the UX flow source.
+- Added separate FitOps Foundations and Components pages to the linked FitOpsWireframing file while preserving its AARC pages. Foundations and four component families are exploratory; the brand is not approved.
+- Confirmed the former Penpot wireframe inventory is not lost: 163 scenarios per device are recoverable from draw.io Page 08 and repository generator sources. The connected tools did not support direct canvas transfer, so Figma wireframe recreation remains outstanding.
+- Updated repository workflow, UX, delivery mirror, project facts, and decision records. No app code, routes, GitHub issue status, or deployment changed. No tests/build were run; only the documentation claim in the UX sync script was updated.
+- Next: recreate the Figma wireframes from validated scenario sources and review route/state coverage before claiming migration complete.

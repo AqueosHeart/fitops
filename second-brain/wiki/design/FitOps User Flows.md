@@ -36,7 +36,7 @@ Every color in the diagrams has a precise architectural meaning derived from the
 
 ## Complete wireframe coverage
 
-Penpot is the active visual-review surface under ADR 013. Its canonical set has 20 numbered `— Wireframes` pages with 163 desktop and 163 mobile boards. It maps the 26 page routes and separate 404 fallback from draw.io Page 08; the legacy Figma generator is not an approval gate.
+Figma is the active visual-design environment under ADR 018. The FitOps foundations and components live on dedicated pages in [FitOpsWireframing](https://www.figma.com/design/8O6NvazN4Alxk1G1TmRYoV/FitOpsWireframing?node-id=7110-73); the existing AARC pages remain preserved reference material. The former Penpot set contains 20 pages and 326 static desktop/mobile boards, but it is historical. Its scenario inventory is recoverable from draw.io Page 08 and repository sources; rebuilding the wireframes in Figma remains outstanding.
 
 [Route, section, and state matrix](../../../docs/design/wireframe-coverage.md).
 

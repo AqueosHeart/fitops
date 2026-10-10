@@ -74,4 +74,4 @@ if (missing.length > 0) {
   process.exit(1);
 }
 
-console.log(`UX synchronization passed: ${expectedRoutes.length} page routes, a separate 404 screen, and ${routes.reduce((n, r) => n + 1 + r.states.length, 0)} scenarios per device match the Penpot coverage source and draw.io. This is structural coverage, not Penpot visual-review evidence.`);
+console.log(`UX synchronization passed: ${expectedRoutes.length} page routes, a separate 404 screen, and ${routes.reduce((n, r) => n + 1 + r.states.length, 0)} scenarios per device match the wireframe scenario source and draw.io. This is structural coverage, not Figma visual-review evidence.`);

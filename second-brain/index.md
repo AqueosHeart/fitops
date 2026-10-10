@@ -128,3 +128,7 @@ updated: 2026-10-10
 - [[wiki/logs/2026-10-10-issue-14-readiness-review|Issue #14 release-readiness review]]
 - [[wiki/logs/2026-10-10-local-homepage-visual-review|Local homepage visual review]]
 - [[wiki/tasks/Sprint 5|Sprint 5 Member Booking Product Slice]]
+
+- [ADR 018: Figma for FitOps visual design](../docs/adr/018-use-figma-for-fitops-visual-design.md)
+
+- [[wiki/logs/2026-10-10-fitops-figma-design-foundations|Figma visual-tool decision and FitOps foundations/components]]

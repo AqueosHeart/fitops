@@ -46,3 +46,9 @@ Build a reproducible, truthful quality gate for the FitOps production candidate.
 ## Environment boundary
 
 The Windows Docker Linux engine did not respond to `docker info` during Sprint 7, so database-backed verification then relied on isolated CI. On 2026-10-10, Docker Desktop started successfully for a separate local-development setup: a fresh PostgreSQL 16 volume, migrations, fictional seed, and database verification passed. The local Next.js dev server runs only on loopback. This post-sprint setup does not change Sprint 7 completion or Issue #14 release status. Do not use the deployed demo database for automated tests. The Linux deployment remains LAN-only and has not been changed.
+
+## Post-sprint design follow-up (2026-10-10)
+
+- ADR 018 supersedes ADR 013's visual-tool choice; Figma is now the active FitOps design workspace. This follow-up is outside Sprint 7's completed Issue #13 goal and does not imply a Sprint 8 assignment.
+- In the separate FitOps pages of the existing `FitOpsWireframing` file, created exploratory foundations (color, semantic color modes, spacing, radius, type and elevation styles) and reusable components: 12 button variants, 4 form-field states, 5 status badges, and 2 session-card variants. AARC reference pages were preserved.
+- The former Penpot wireframes remain historical; the 163 scenarios per device are recoverable from repository sources. Their Figma recreation and visual review are still pending. The Practice brand remains unapproved.

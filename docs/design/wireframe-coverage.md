@@ -1,6 +1,6 @@
 # Wireframe coverage
 
-Derived from draw.io Page 08. Each scenario is represented in Penpot at 1440 px desktop and 390 px mobile. The canonical file uses 20 named `— Wireframes` pages. Legal & Misc groups Terms, Privacy, Waiver, Cookie preferences, and 404; Club information, Account access, and Trainer screens are grouped by workflow. The boards are static editable SVG-vector mockups with preset fictional content, not live application functions.
+Derived from draw.io Page 08 and the repository's wireframe scenario definitions. The historical Penpot snapshot had 20 named `— Wireframes` pages and 326 static SVG-vector boards (163 scenarios each at 1440 px desktop and 390 px mobile). Figma is now the active visual-design source, but this wireframe inventory has not yet been rebuilt there. The scenarios are recoverable from repository sources; direct transfer of the Penpot canvas through the connected tools is unavailable. The boards are mockups with fictional content, not live application functions.
 
 | Route | Sections | Additional states |
 | --- | --- | --- |
@@ -32,4 +32,4 @@ Derived from draw.io Page 08. Each scenario is represented in Penpot at 1440 px 
 | `/admin/sessions/:id/participants` | Session summary; Confirmed members; Ordered waitlist; Session actions | loading, empty, error, pace |
 | `/404` | Find your way back | None |
 
-Trainer workspace implementation evidence is tracked by Issue #19. The Page 05 trainer flow remains the editable authority for assignment checks and read-only behavior; its detail now explicitly excludes attendee names and identifies the count as aggregate-only. Penpot boards remain static reference boards; the interface implements the mapped routes and states without adding routes or write actions.
+Trainer workspace implementation evidence is tracked by Issue #19. The Page 05 trainer flow remains the editable authority for assignment checks and read-only behavior; its detail now explicitly excludes attendee names and identifies the count as aggregate-only. The former Penpot boards are a static historical snapshot; the interface implements the mapped routes and states without adding routes or write actions. Figma migration remains outstanding.

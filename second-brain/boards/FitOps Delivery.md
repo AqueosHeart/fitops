@@ -15,9 +15,9 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 ## Ready for Sprint 1
 
 - [#6 [DESIGN] Low-Fidelity Desktop & Mobile Booking Flow Wireframes](https://github.com/AqueosHeart/fitops/issues/6)
-  - Closed on GitHub. ADR 013 replaces the obsolete native Figma requirement with Penpot as the visual-design tool.
+  - Closed on GitHub. ADR 013 replaced the earlier Figma requirement with Penpot for the completed historical review. ADR 018 now makes Figma the active visual-design tool; Issue #6's closure is not evidence of Figma wireframe migration.
   - draw.io is the editable UX source of truth. The Mermaid route/access architecture and English-only scenario definitions align on 29 routes and anchors through `node scripts/validate-ux-sync.mjs`, including secondary `My Account`, primary `Join Now`, legal, cookies, 404, and the protected member workspace.
-  - Penpot has one canonical 20-page wireframe set: 163 scenarios / 326 desktop-mobile boards. Live screen names match all 26 draw.io page routes, the 404 fallback, and every scenario on each device. No Figma execution is required.
+  - The historical Penpot snapshot had 20 pages: 163 scenarios / 326 desktop-mobile boards. Figma FitOps foundations and components now exist on separate pages; recreating the route wireframes there is still outstanding. The scenario source remains recoverable from draw.io and repository tooling.
   - Review hub: [[../wiki/design/FitOps User Flows]]
   - Editable diagram: [[../wiki/design/FitOps User Flows.drawio]]
 - [#7 [ARCH] Domain Boundary & Use-Case Specification](https://github.com/AqueosHeart/fitops/issues/7)
@@ -62,7 +62,7 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 - [#1 [DOCS] Define Product Requirements and Core Booking Rules](https://github.com/AqueosHeart/fitops/issues/1)
 - [#2 [ARCH] Modular Monolith Architecture & Technology Selection](https://github.com/AqueosHeart/fitops/issues/2)
 - [#3 [BRAND] Practice Athletic Club Brand Identity & Design System Guidelines](https://github.com/AqueosHeart/fitops/issues/3)
-  - The connected Penpot file has a `Design Tokens` review page. Documented color/type candidates and proposed spacing/grid values are clearly distinguished; the page does not approve the brand. The latest catalog read reports `Practice Exploratory` active and `FitOps Layout Proposal` inactive.
+  - Historical Penpot `Design Tokens` page records color/type candidates and proposed spacing/grid values; this does not approve the brand. Current exploratory FitOps foundations and components are in the separate Figma pages linked from the project note.
   - Lucide is the selected UI icon family; a separate Penpot page documents 20 upstream SVGs and proposed sizing/usage rules. Brand approval remains pending.
 - [#4 [DATA] Conceptual Data Model & Entity Relationships (DBML)](https://github.com/AqueosHeart/fitops/issues/4)
 - [#5 [API] Initial REST Contract & Response Shapes](https://github.com/AqueosHeart/fitops/issues/5)
