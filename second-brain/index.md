@@ -132,3 +132,4 @@ updated: 2026-10-10
 - [ADR 018: Figma for FitOps visual design](../docs/adr/018-use-figma-for-fitops-visual-design.md)
 
 - [[wiki/logs/2026-10-10-fitops-figma-design-foundations|Figma visual-tool decision and FitOps foundations/components]]
+- [[wiki/logs/2026-10-10-fitops-figma-landing-page|FitOps desktop landing page concept and motion handoff]]

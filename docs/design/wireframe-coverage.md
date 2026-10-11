@@ -1,6 +1,6 @@
 # Wireframe coverage
 
-Derived from draw.io Page 08 and the repository's wireframe scenario definitions. The historical Penpot snapshot had 20 named `— Wireframes` pages and 326 static SVG-vector boards (163 scenarios each at 1440 px desktop and 390 px mobile). Figma is now the active visual-design source, but this wireframe inventory has not yet been rebuilt there. The scenarios are recoverable from repository sources; direct transfer of the Penpot canvas through the connected tools is unavailable. The boards are mockups with fictional content, not live application functions.
+Derived from draw.io Page 08 and the repository's wireframe scenario definitions. The historical Penpot snapshot had 20 named `— Wireframes` pages and 326 static SVG-vector boards (163 scenarios each at 1440 px desktop and 390 px mobile). Figma is now the active visual-design source, but this wireframe inventory has not yet been rebuilt there. A separate desktop landing concept exists; it is not the full route/state migration. The scenarios are recoverable from repository sources; direct transfer of the Penpot canvas through the connected tools is unavailable. The boards are mockups with fictional content, not live application functions.
 
 | Route | Sections | Additional states |
 | --- | --- | --- |

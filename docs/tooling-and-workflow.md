@@ -60,7 +60,7 @@ Create these views:
 
 ### System
 
-Use the linked [FitOpsWireframing Figma file](https://www.figma.com/design/8O6NvazN4Alxk1G1TmRYoV/FitOpsWireframing?node-id=7110-73). It currently contains separate `FitOps · Foundations` and `FitOps · Components` pages. The FitOps foundations are exploratory and align to the user-linked [Practice Athletic Club brand guidelines](https://www.figma.com/design/tOe3cyDw9VLbHhgYOC3Nnn/Branding-Guidelines-Presentation-Template--Community-?m=auto&t=t6aPLJ1Mqct9jYKB-6). Existing AARC reference pages remain preserved and are not FitOps specifications.
+Use the linked [FitOpsWireframing Figma file](https://www.figma.com/design/8O6NvazN4Alxk1G1TmRYoV/FitOpsWireframing?node-id=7110-73). It contains separate `FitOps · Foundations`, `FitOps · Components`, and [FitOps · Landing](https://www.figma.com/design/8O6NvazN4Alxk1G1TmRYoV/FitOpsWireframing?node-id=7120-4) pages. The FitOps foundations are exploratory and align to the user-linked [Practice Athletic Club brand guidelines](https://www.figma.com/design/tOe3cyDw9VLbHhgYOC3Nnn/Branding-Guidelines-Presentation-Template--Community-?m=auto&t=t6aPLJ1Mqct9jYKB-6). Existing AARC reference pages remain preserved and are not FitOps specifications. The landing page includes a separate scroll-motion handoff note; its Figma artwork is not itself a scroll-linked animation.
 
 ### Wireframe recovery
 

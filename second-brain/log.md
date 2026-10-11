@@ -558,3 +558,12 @@ updated: 2026-10-10
 - Confirmed the former Penpot wireframe inventory is not lost: 163 scenarios per device are recoverable from draw.io Page 08 and repository generator sources. The connected tools did not support direct canvas transfer, so Figma wireframe recreation remains outstanding.
 - Updated repository workflow, UX, delivery mirror, project facts, and decision records. No app code, routes, GitHub issue status, or deployment changed. No tests/build were run; only the documentation claim in the UX sync script was updated.
 - Next: recreate the Figma wireframes from validated scenario sources and review route/state coverage before claiming migration complete.
+
+## 2026-10-10 - FitOps desktop landing page in Figma
+
+- Created the separate `FitOps · Landing` Figma page with an editable 1440 px full-page desktop design: full-bleed photograph/hero, public navigation, principles, seeded Strength Foundations offer, sample schedule states, club positioning, schedule CTA, and demo/legal footer.
+- Reused local FitOps button and session-card components. Public session preview actions say `View session`, preserving the public-to-member booking boundary. Sample card content is labeled as design-review data; live app dates/availability remain dynamic.
+- Added an adjacent web-motion handoff for restrained hero parallax, scroll-entry reveals, fixed progress indication, and `prefers-reduced-motion`. Figma does not implement continuous scroll-linked parallax here.
+- Used the current local homepage image as an image fill, then removed the temporary capture frame and capture script. No persistent app code, routes, or deployment changed.
+- The concept is exploratory; the brand remains unapproved. Mobile layout and full Figma wireframe migration remain outstanding. No tests or builds were run.
+- Figma: https://www.figma.com/design/8O6NvazN4Alxk1G1TmRYoV/FitOpsWireframing?node-id=7120-4

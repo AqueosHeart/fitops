@@ -18,6 +18,7 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
   - Closed on GitHub. ADR 013 replaced the earlier Figma requirement with Penpot for the completed historical review. ADR 018 now makes Figma the active visual-design tool; Issue #6's closure is not evidence of Figma wireframe migration.
   - draw.io is the editable UX source of truth. The Mermaid route/access architecture and English-only scenario definitions align on 29 routes and anchors through `node scripts/validate-ux-sync.mjs`, including secondary `My Account`, primary `Join Now`, legal, cookies, 404, and the protected member workspace.
   - The historical Penpot snapshot had 20 pages: 163 scenarios / 326 desktop-mobile boards. Figma FitOps foundations and components now exist on separate pages; recreating the route wireframes there is still outstanding. The scenario source remains recoverable from draw.io and repository tooling.
+  - 2026-10-10: a separate [desktop landing concept](https://www.figma.com/design/8O6NvazN4Alxk1G1TmRYoV/FitOpsWireframing?node-id=7120-4) now reuses FitOps button/session-card components and includes a web-motion handoff. It is not completion of Issue #6's wireframe migration; mobile is not yet composed.
   - Review hub: [[../wiki/design/FitOps User Flows]]
   - Editable diagram: [[../wiki/design/FitOps User Flows.drawio]]
 - [#7 [ARCH] Domain Boundary & Use-Case Specification](https://github.com/AqueosHeart/fitops/issues/7)
