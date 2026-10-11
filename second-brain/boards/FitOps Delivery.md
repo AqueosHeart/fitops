@@ -75,3 +75,5 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 2026-10-10 Figma-only follow-up: the desktop landing concept now includes a reviewed facilities carousel with four illustrative generated photos and a motion handoff. This is outside completed Sprint 7 scope; no issue or sprint status changed.
 
 2026-10-10 design follow-up: the Figma landing now follows Main → Facilities → Activities → Plans → Team → Start now. Activities, fictional plan previews, team imagery, and closing CTA were composed and reviewed. Outside completed Sprint 7; GitHub execution status is unchanged.
+
+2026-10-10 Figma motion follow-up: staff, activities, and facilities carousels now have configured prototype controls. Moving text and headline reveal have native keyframes, with a reviewed 10-second export. No issue or sprint status changed; scroll-linked production motion remains future work.

@@ -60,3 +60,5 @@ The Windows Docker Linux engine did not respond to `docker info` during Sprint 7
 - Follow-up (2026-10-10, outside Sprint 7 scope): added and visually reviewed a Figma-only facilities carousel on the desktop landing concept. Four generated illustrative scenes, card-peek layout, progress/arrows, and future motion/reduced-motion handoff; no app code or verified amenity claims.
 
 - Follow-up (2026-10-10, outside Sprint 7 scope): reorganized the Figma-only landing as Main → Facilities → Activities → Plans → Team → Start now. Added editorial activity cards, current fictional plan names without prices, generated team portrait, and photographic final CTA. Final render reviewed; 1440 × 5014. No issue/sprint status or application code changed.
+
+- Figma motion follow-up (2026-10-10, outside Sprint 7): added individual fictional staff portraits/carousel, animated marquees and progressive headline reveal; configured six carousel arrow reactions. The native 10-second study export passed six-phase visual review. Scroll-linked web behavior is still outstanding; no application or GitHub status changed.

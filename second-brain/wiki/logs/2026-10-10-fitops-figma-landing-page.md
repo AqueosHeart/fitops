@@ -41,3 +41,6 @@ Create the first professional landing-page design in the active FitOps Figma fil
 
 ## Outstanding
 Create a mobile composition and, separately, rebuild the full 163-per-device scenario set in Figma from draw.io and repository sources. Continuous parallax/reveal behavior requires later web implementation. No build or test run was requested or performed.
+
+
+Living Figma follow-up (2026-10-10): inspected MeuFit's moving outlined text and individual staff cards. Replaced the group portrait with three generated fictional coach profiles (Maya, Jordan, Lena) in a reusable Staff Card carousel. Added moving marquees and progressive word reveal to the headline; Facilities, Activities, and Staff have horizontal overflow plus six native SCROLL_TO arrow reactions (560 ms). The landing is 1440 × 5478. Native timelines now animate the visual treatment, with a separate 10-second motion study (`7160:96`) exported as MP4 and reviewed at six phases. Fixed headline spacing, portrait crops, and marquee clipping. The preview is time-based; real scroll binding, continuous loops/pause, interaction-driven progress sync, parallax, and reduced-motion behavior remain web handoff. Application code, issue/sprint status, and deployment were unchanged.
