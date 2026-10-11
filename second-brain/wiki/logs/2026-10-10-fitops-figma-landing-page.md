@@ -16,10 +16,11 @@ Create the first professional landing-page design in the active FitOps Figma fil
 - Reused FitOps button and session-card components. The AARC pages and the FitOps foundations/components pages remain separate.
 - Added a separate scroll-motion handoff: clipped/overscanned image drifting ~70 px through the hero, 20 px reveal lift and 460 ms fade, 80 ms card stagger, fixed 3 px progress bar, and a reduced-motion fallback. This is a web implementation specification; Figma remains static for continuous scroll-linked parallax.
 - A temporary Figma capture of the existing local page supplied the image fill. Its temporary capture frame and injected script were removed after the image was reused.
+- Follow-up visual pass: replaced the hero with a generated editorial training image; added generated gym-interior and coach/member images to the featured program card and club-story section. Added a lime-backed, ink-text hero label reading `PRACTICE ATHLETIC CLUB / NEIGHBORHOOD TRAINING` and consistent lime dash markers for section eyebrows. The generated images were uploaded directly into Figma and are not application assets.
 
 ## Evidence and boundaries
 - Figma node: [Landing / Desktop / Full page](https://www.figma.com/design/8O6NvazN4Alxk1G1TmRYoV/FitOpsWireframing?node-id=7120-4); motion note node `7120:128`.
-- Reviewed the hero at full resolution and the program, schedule, club, and full-page compositions. Corrected bound-overlay opacity so the source photograph remains visible beneath the typography.
+- Reviewed the hero, featured program, and club-story renders after the image and label updates. Corrected bound-overlay opacity so the hero photograph remains visible beneath the typography.
 - The copy and public navigation follow `web/app/page.tsx`, `web/components/site-shell.tsx`, current public-route rules, and the fiction-only seed catalog. Sample session card data is labeled; app dates/availability remain dynamic.
 - Brand values remain exploratory and unapproved. This Figma concept does not modify code or approve Issue #6's historical wireframe evidence.
 
