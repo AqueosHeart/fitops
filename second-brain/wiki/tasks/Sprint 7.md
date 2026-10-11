@@ -58,3 +58,5 @@ The Windows Docker Linux engine did not respond to `docker info` during Sprint 7
 - Refined the desktop hero with a stronger left-heavy dark gradient and reused the FitOps Outline / Large button for `Explore programs`, removing the emoji link treatment. Rechecked the hero render and preserved its label and bottom cues.
 
 - Follow-up (2026-10-10, outside Sprint 7 scope): added and visually reviewed a Figma-only facilities carousel on the desktop landing concept. Four generated illustrative scenes, card-peek layout, progress/arrows, and future motion/reduced-motion handoff; no app code or verified amenity claims.
+
+- Follow-up (2026-10-10, outside Sprint 7 scope): reorganized the Figma-only landing as Main → Facilities → Activities → Plans → Team → Start now. Added editorial activity cards, current fictional plan names without prices, generated team portrait, and photographic final CTA. Final render reviewed; 1440 × 5014. No issue/sprint status or application code changed.

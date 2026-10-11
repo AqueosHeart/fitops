@@ -577,3 +577,9 @@ updated: 2026-10-10
 - Added a facilities carousel below the club-story section and before the closing CTA in the FitOps desktop landing page. Four generated illustrative images show strength, small-group, movement, and conditioning spaces.
 - The editable layout includes three full cards plus a visible peek of the next card, progress indicator, and previous/next controls. Render review confirmed legible intro copy, captions, and controls.
 - Added motion handoff for scroll reveal, drag/swipe, one-card snapping, eased image settling, synchronized progress, no autoplay, and reduced-motion behavior. Figma remains static for these continuous interactions; no app code changed. Images are concept art and do not verify club inventory.
+
+
+## 2026-10-10 - Figma landing sequence and complete sections
+
+
+Landing reorganization (2026-10-10): followed the user-requested Main → Facilities → Activities → Plans → Team → Start now order, using MeuFit Vigo as a visual/content-sequence reference. Added three photo-led activity cards, fictional Base/Complete/Training Plus comparisons without invented pricing, a generated three-coach portrait, and a full-photo closing invitation. Three new generated images were placed into Figma; existing photographic assets were reused. Reusable Activity Card and Standard/Emphasized Plan Card components use existing Practice tokens and styles. Archived earlier intermediary sections beside the artboard. Reviewed the 1440 × 5014 composition and corrected final-heading contrast plus the missing hero label. No application code, routes, GitHub issue status, or deployment changed; brand approval, mobile composition, and actual motion implementation remain outstanding.
