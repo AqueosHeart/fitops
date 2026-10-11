@@ -98,3 +98,6 @@ Prisma Studio is running on demand in its `studio` Compose profile, published on
 - [Visual territories](../../../docs/brand/visual-territories.md)
 - [Logo system](../../../docs/brand/logo-system.md)
 - [Color and type system](../../../docs/brand/color-and-type-system.md)
+
+
+Landing follow-up (2026-10-10): added an installations carousel below the club story and before the closing CTA. Four generated illustrative photos cover strength, small-group, movement, and conditioning spaces. The static Figma design shows a partial next card, progress track, and arrow controls; a motion note specifies drag/swipe, snap transitions, image settling, no autoplay, and reduced-motion behavior. These images do not document verified club facilities. See [[../logs/2026-10-10-fitops-figma-landing-page|Figma landing page concept and motion handoff]].

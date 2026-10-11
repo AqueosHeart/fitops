@@ -71,3 +71,5 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 - [#5 [API] Initial REST Contract & Response Shapes](https://github.com/AqueosHeart/fitops/issues/5)
 - Public repository and second-brain setup
 - Generated 8 vector presentation slide SVGs in `docs/brand/figma/`
+
+2026-10-10 Figma-only follow-up: the desktop landing concept now includes a reviewed facilities carousel with four illustrative generated photos and a motion handoff. This is outside completed Sprint 7 scope; no issue or sprint status changed.

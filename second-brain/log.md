@@ -570,3 +570,10 @@ updated: 2026-10-10
 - Follow-up visual pass: generated three fictional Practice training/club photographs and inserted them as Figma image fills in the hero, Strength Foundations card, and club-story panel. Tightened the bright lime hero label and applied matching lime dash accents to the other section eyebrows. Reviewed hero, program, and club renders. No source image was added to application code; Figma only.
 - Refined the club-story crop to 420 × 280 so both coach and member are visible; extended that section and moved the closing CTA/footer down to preserve spacing. The full desktop artboard is now 1440 × 3887.
 - Hero refinement: strengthened the dark overlay toward the left edge while keeping the generated photo visible, and replaced the plain `Explore programs` text link with a reusable transparent white-outline FitOps button. Render review confirmed the lime label, hero footer cues, and both CTA styles remain legible.
+
+
+## 2026-10-10 - Figma facilities carousel
+
+- Added a facilities carousel below the club-story section and before the closing CTA in the FitOps desktop landing page. Four generated illustrative images show strength, small-group, movement, and conditioning spaces.
+- The editable layout includes three full cards plus a visible peek of the next card, progress indicator, and previous/next controls. Render review confirmed legible intro copy, captions, and controls.
+- Added motion handoff for scroll reveal, drag/swipe, one-card snapping, eased image settling, synchronized progress, no autoplay, and reduced-motion behavior. Figma remains static for these continuous interactions; no app code changed. Images are concept art and do not verify club inventory.
