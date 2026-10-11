@@ -17,6 +17,7 @@ Create the first professional landing-page design in the active FitOps Figma fil
 - Added a separate scroll-motion handoff: clipped/overscanned image drifting ~70 px through the hero, 20 px reveal lift and 460 ms fade, 80 ms card stagger, fixed 3 px progress bar, and a reduced-motion fallback. This is a web implementation specification; Figma remains static for continuous scroll-linked parallax.
 - A temporary Figma capture of the existing local page supplied the image fill. Its temporary capture frame and injected script were removed after the image was reused.
 - Follow-up visual pass: replaced the hero with a generated editorial training image; added generated gym-interior and coach/member images to the featured program card and club-story section. Added a lime-backed, ink-text hero label reading `PRACTICE ATHLETIC CLUB / NEIGHBORHOOD TRAINING` and consistent lime dash markers for section eyebrows. The generated images were uploaded directly into Figma and are not application assets.
+- Final crop pass: made the club-story coaching photo 420 × 280 to retain both people’s faces, expanded the story section, and shifted the closing CTA/footer down to preserve section spacing. The desktop artboard is now 1440 × 3887.
 
 ## Evidence and boundaries
 - Figma node: [Landing / Desktop / Full page](https://www.figma.com/design/8O6NvazN4Alxk1G1TmRYoV/FitOpsWireframing?node-id=7120-4); motion note node `7120:128`.

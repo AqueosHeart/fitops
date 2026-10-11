@@ -568,3 +568,4 @@ updated: 2026-10-10
 - The concept is exploratory; the brand remains unapproved. Mobile layout and full Figma wireframe migration remain outstanding. No tests or builds were run.
 - Figma: https://www.figma.com/design/8O6NvazN4Alxk1G1TmRYoV/FitOpsWireframing?node-id=7120-4
 - Follow-up visual pass: generated three fictional Practice training/club photographs and inserted them as Figma image fills in the hero, Strength Foundations card, and club-story panel. Tightened the bright lime hero label and applied matching lime dash accents to the other section eyebrows. Reviewed hero, program, and club renders. No source image was added to application code; Figma only.
+- Refined the club-story crop to 420 × 280 so both coach and member are visible; extended that section and moved the closing CTA/footer down to preserve spacing. The full desktop artboard is now 1440 × 3887.
