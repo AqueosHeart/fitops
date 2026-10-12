@@ -61,3 +61,5 @@ updated: 2026-10-11
 - Continuity rule: tasks opened from this repository must follow `AGENTS.md`, read the second brain before work, and update material project context before completion.
 
 - Scroll heading motion (2026-10-11): five shared section headings now sharpen progressively by word as their position moves from 90% to 60% of viewport height; scroll reversal restores blur. Replaces timed team word reveal. Reduced motion/no JavaScript show static clear text. Builds, lint/typecheck, UX sync and six focused browser tests pass; no route/data/deployment change.
+
+- Landing label cleanup (2026-10-11): user requested removal of small decorative labels shown in screenshots. Shared sections no longer show eyebrow/accent labels, repeated concept/demo notes, card micro-labels or carousel count captions. Main content, progress/control accessibility, legal links and fictional data retained. Builds, lint, UX sync and six existing UI tests pass; no data/deployment change.

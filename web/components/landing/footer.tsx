@@ -27,9 +27,6 @@ export function LandingFooter() {
           {footerLinks.map(({ label, href, kind }) => <Link key={label} className={`landing-footer-link landing-footer-link-${kind}`} href={href}>{label}</Link>)}
         </nav>
       </div>
-      <div className="landing-footer-bottom">
-        <p>Fictional portfolio demo <span aria-hidden="true">·</span> No payment or real membership is collected</p>
-      </div>
     </div>
   </footer>;
 }

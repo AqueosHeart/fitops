@@ -15,7 +15,7 @@
 .landing-facilities-heading { position: relative; z-index: 1; }
 .landing-facilities-ghost {
   position: absolute;
-  top: 8px;
+  top: -48px;
   right: -20px;
   color: transparent;
   font-size: clamp(100px, 12vw, 174px);
@@ -26,11 +26,8 @@
   pointer-events: none;
   user-select: none;
 }
-.landing-facilities-eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 24px; color: var(--facilities-lime); font-size: 11px; font-weight: 600; line-height: 15px; letter-spacing: .14em; }
-.landing-facilities-eyebrow > span { width: 18px; height: 3px; background: var(--facilities-lime); }
 .landing-facilities-heading h2 { margin: 0; font-size: 40px; font-weight: 600; line-height: 1.2; letter-spacing: -.025em; }
 .landing-facilities-intro { margin: 24px 0 0; color: var(--facilities-muted); font-size: 16px; line-height: 24px; }
-.landing-facilities-disclaimer { margin: 8px 0 0; color: var(--facilities-muted); font-size: 12px; line-height: 18px; }
 .landing-facilities-carousel { margin-top: 35px; }
 .landing-facilities-track {
   display: flex;
@@ -62,9 +59,6 @@
 .landing-facilities-card > img { z-index: -2; object-fit: cover; transition: transform 450ms ease; }
 .landing-facilities-image-wash { position: absolute; z-index: -1; inset: 0; background: rgb(17 19 16 / 20%); }
 .landing-facilities-caption-wash { position: absolute; z-index: -1; inset: auto 0 0; height: 129px; background: rgb(17 19 16 / 72%); }
-.landing-facilities-category, .landing-facilities-number { position: absolute; top: 22px; font-size: 11px; font-weight: 600; line-height: 15px; letter-spacing: .12em; }
-.landing-facilities-category { left: 23px; color: var(--facilities-lime); }
-.landing-facilities-number { right: 22px; color: var(--facilities-white); font-size: 10px; letter-spacing: .08em; }
 .landing-facilities-card-copy { position: absolute; right: 23px; bottom: 36px; left: 23px; display: grid; gap: 8px; }
 .landing-facilities-card-title { color: var(--facilities-white); font-size: 24px; font-weight: 600; line-height: 29px; letter-spacing: -.003em; }
 .landing-facilities-card-description { max-width: 312px; color: var(--facilities-muted); font-size: 14px; line-height: 20px; }
@@ -72,8 +66,6 @@
 .landing-facilities-progress-wrap { display: flex; align-items: center; gap: 20px; min-width: 0; }
 .landing-facilities-progress { position: relative; width: min(520px, 42vw); height: 3px; background: var(--facilities-border); }
 .landing-facilities-progress > span { position: absolute; top: -1px; left: 0; height: 5px; background: var(--facilities-lime); transition: width 180ms ease-out; }
-.landing-facilities-count { flex: none; margin: 0; color: var(--facilities-muted); font-size: 10px; font-weight: 600; line-height: 14px; letter-spacing: .11em; }
-.landing-facilities-count span { margin-inline: 7px; }
 .landing-facilities-arrows { display: flex; gap: 12px; }
 .landing-facilities-arrows button { display: grid; width: 48px; height: 48px; place-items: center; border: 1px solid var(--facilities-white); border-radius: 2px; background: transparent; color: var(--facilities-white); font: inherit; font-size: 23px; line-height: 1; cursor: pointer; transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease; }
 .landing-facilities-arrows button:last-child { border-color: var(--facilities-lime); color: var(--facilities-lime); }
@@ -81,8 +73,6 @@
 .landing-facilities-arrows button:last-child:hover:not(:disabled) { background: rgb(199 241 52 / 10%); }
 .landing-facilities-arrows button:focus-visible { outline: 2px solid var(--facilities-lime); outline-offset: 4px; }
 .landing-facilities-arrows button:disabled { border-color: var(--facilities-border); color: #777970; cursor: default; }
-.landing-facilities-hint { margin: 2px 0 0; color: var(--facilities-muted); font-size: 9px; font-weight: 600; line-height: 14px; letter-spacing: .1em; }
-.landing-facilities-hint span { margin-inline: 7px; color: var(--facilities-lime); }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .landing-facilities-card:hover > img { transform: scale(1.025); }
@@ -97,10 +87,8 @@
 @media (max-width: 650px) {
   .landing-facilities { padding-block: 120px 36px; }
   .landing-facilities-ghost { top: -100px; right: -8px; font-size: 72px; }
-  .landing-facilities-eyebrow { margin-bottom: 20px; font-size: 10px; }
   .landing-facilities-heading h2 { max-width: 280px; font-size: 34px; line-height: 1.12; }
   .landing-facilities-intro { max-width: 320px; margin-top: 14px; font-size: 15px; line-height: 23px; }
-  .landing-facilities-disclaimer { max-width: 315px; font-size: 11px; }
   .landing-facilities-carousel { margin-top: 26px; }
   .landing-facilities-track { gap: 16px; }
   .landing-facilities-card { flex-basis: min(86vw, 360px); height: 320px; }
@@ -112,7 +100,6 @@
   .landing-facilities-progress { width: 100%; }
   .landing-facilities-arrows { gap: 8px; }
   .landing-facilities-arrows button { width: 42px; height: 42px; }
-  .landing-facilities-hint { max-width: 280px; margin-top: 16px; font-size: 8px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

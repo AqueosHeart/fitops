@@ -75,3 +75,5 @@ The Windows Docker Linux engine did not respond to `docker info` during Sprint 7
 - User-authorized integration follow-up: all reviewed sections and landing footer now render in Home through shared composition. Four production/Storybook/browser-navigation tests, builds, lint/typecheck and UX sync pass; production captures reviewed. Performance and DB journeys were not rerun; sprint/GitHub state unchanged. See [[../logs/2026-10-11-complete-landing-integration]].
 
 Post-sprint scroll motion (2026-10-11): user-authorized progressive heading focus in five sections implemented and verified in production/Storybook; six browser tests and builds pass. Sprint completion/GitHub state unchanged. See [[../logs/2026-10-11-scroll-heading-focus]].
+
+Post-sprint label cleanup (2026-10-11): removed user-identified landing labels in shared production/Storybook components. Builds and six UI tests pass; sprint/GitHub state unchanged. See [[../logs/2026-10-11-landing-label-cleanup]].

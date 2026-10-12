@@ -120,7 +120,6 @@ export function LandingTeam() {
     </div>
 
     <div className="landing-team-inner">
-      <p className="landing-team-eyebrow"><span aria-hidden="true" />People behind your progress</p>
       <ScrollHeading className="landing-team-title" id="landing-team-title" lines={["Good coaching.", "A human connection."]} />
       <p className="landing-team-intro">Coaches who know your name. Guidance that feels personal.</p>
 
@@ -146,14 +145,11 @@ export function LandingTeam() {
           </div>
         </div>
       </div>
-
-      <p className="landing-team-disclaimer">Fictional coach profiles · Practice concept</p>
       <div className="landing-team-footer">
         <div className="landing-team-controls">
           <div className="landing-team-progress" role="progressbar" aria-label="Coach carousel position" aria-valuemin={1} aria-valuemax={coaches.length} aria-valuenow={activeIndex + 1}>
             <span style={{ transform: `translateX(${activeIndex * 100}%)` }} />
           </div>
-          <p className="landing-team-count" aria-live="polite">{String(activeIndex + 1).padStart(2, "0")} / {String(coaches.length).padStart(2, "0")} <span>· Meet your coaches</span></p>
           {!reducedMotion && <button
             type="button"
             className="landing-team-motion-control"

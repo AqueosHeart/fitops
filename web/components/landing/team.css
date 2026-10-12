@@ -33,20 +33,7 @@
 }
 .landing-team-marquee > span { flex: none; white-space: nowrap; }
 
-.landing-team-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 0 0 27px;
-  color: var(--landing-lime, #c7f134);
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 16px;
-  letter-spacing: .14px;
-  text-transform: uppercase;
-}
 
-.landing-team-eyebrow > span { width: 18px; height: 3px; background: var(--landing-lime, #c7f134); }
 .landing-team-title { display: grid; gap: 0; margin: 0 0 12px; font-size: clamp(34px, 3.9vw, 56px); font-weight: 700; line-height: 1.18; letter-spacing: -.035em; }
 
 .landing-team-intro { margin: 14px 0 44px; color: var(--landing-muted, #c3c0b6); font-size: 18px; line-height: 1.35; }
@@ -70,13 +57,10 @@
 .landing-team-caption { min-height: 100px; padding: 15px 20px 12px; }
 .landing-team-caption h3 { margin: 0 0 7px; color: var(--landing-white, #fffefa); font-size: 26px; font-weight: 600; line-height: 1; }
 .landing-team-caption p { margin: 0; color: var(--landing-muted, #c3c0b6); font-size: 16px; line-height: 1.25; }
-.landing-team-disclaimer { margin: 13px 0 0; color: var(--landing-muted, #c3c0b6); font-size: 11px; font-weight: 500; line-height: 15px; text-transform: uppercase; }
 .landing-team-footer { margin-top: 23px; }
 .landing-team-controls { display: flex; align-items: center; gap: 24px; }
-.landing-team-progress { position: relative; flex: 0 1 420px; height: 3px; background: var(--team-border); }
+.landing-team-progress { position: relative; flex: 1; height: 3px; background: var(--team-border); }
 .landing-team-progress > span { position: absolute; top: -1px; left: 0; width: 33.333%; height: 5px; background: var(--landing-lime, #c7f134); transition: transform 180ms ease-out; }
-.landing-team-count { flex: 1; margin: 0; color: var(--landing-muted, #c3c0b6); font-size: 10px; font-weight: 600; line-height: 14px; letter-spacing: .08em; text-transform: uppercase; }
-.landing-team-count span { margin-left: 8px; letter-spacing: .03em; }
 .landing-team-motion-control { padding: 8px 4px; border: 0; background: transparent; color: var(--landing-muted, #c3c0b6); cursor: pointer; font: inherit; font-size: 10px; line-height: 16px; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
 .landing-team-motion-control:hover { color: var(--landing-white, #fffefa); }
 .landing-team-motion-control:focus-visible { outline: 2px solid var(--landing-lime, #c7f134); outline-offset: 2px; }
@@ -103,7 +87,6 @@
   .landing-team { padding: 118px 0 36px; }
   .landing-team-inner { width: calc(100% - 40px); }
   .landing-team-marquee { font-size: 48px; }
-  .landing-team-eyebrow { margin-bottom: 21px; font-size: 10px; }
   .landing-team-title { gap: 1px; margin-bottom: 10px; font-size: clamp(30px, 8vw, 38px); line-height: 1.16; letter-spacing: -.04em; }
   .landing-team-intro { max-width: 330px; margin: 12px 0 26px; font-size: 15px; line-height: 1.45; }
   .landing-team-track { gap: 16px; }
@@ -111,12 +94,9 @@
   .landing-team-caption { min-height: 88px; padding: 13px 16px 10px; }
   .landing-team-caption h3 { font-size: 22px; }
   .landing-team-caption p { font-size: 14px; }
-  .landing-team-disclaimer { margin-top: 10px; font-size: 9px; }
   .landing-team-footer { margin-top: 17px; }
   .landing-team-controls { flex-wrap: wrap; gap: 11px 14px; }
   .landing-team-progress { flex: 1 1 85px; }
-  .landing-team-count { flex: 1 1 120px; font-size: 9px; }
-  .landing-team-count span { margin-left: 4px; }
   .landing-team-motion-control { padding-inline: 0; font-size: 9px; }
   .landing-team-arrows { gap: 8px; }
   .landing-team-arrows button { width: 42px; height: 42px; }

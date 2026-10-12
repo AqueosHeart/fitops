@@ -49,3 +49,7 @@ Next.js and Storybook builds, lint, TypeScript and structural UX sync pass. Four
 ## Scroll-driven heading focus (2026-10-11)
 
 Shared ScrollHeading controls the five section titles, replacing the team timeline reveal. Words sharpen progressively as heading top moves from 90% to 60% of viewport height and blur again on reverse scroll. requestAnimationFrame batches passive scroll/resize updates; all listeners and pending frames are cleaned up. No opacity fade; text/heading semantics and line breaks remain. Reduced motion and no JavaScript render clear text immediately. Builds, lint/typecheck, UX sync and six Chromium tests pass, including all five headings at desktop/mobile, scroll reversal and reduced motion. Intermediate/final captures and no-JavaScript output reviewed. No new dependency, route/data change or performance-budget claim.
+
+## Decorative label cleanup (2026-10-11)
+
+User screenshot examples supersede the prior eyebrow/annotation styling: removed small section labels/accent bars, repeated concept/demo notes, card category/index/plan micro-labels, carousel text captions/instructions and footer micro-note. Main headings/body/card names, principles/marquees, functional controls and legal links remain. Progress values/names remain accessible. Unused styles removed and spacing aligned after deletion. Builds, lint/typecheck, UX sync and six existing UI tests pass; desktop/mobile captures reviewed. Fictional data remains unchanged; no new route or deployment.

@@ -36,9 +36,6 @@
 .landing-footer-link-section { color: var(--landing-white, #fffefa); font-weight: 600; }
 .landing-footer-link:hover { color: var(--landing-lime, #c7f134); }
 
-.landing-footer-bottom { border-top: 1px solid #4a4d45; padding-top: 16px; }
-.landing-footer-bottom p { margin: 0; color: var(--landing-muted, #c3c0b6); font-size: 9px; font-weight: 600; line-height: 14px; letter-spacing: .09em; text-transform: uppercase; }
-.landing-footer-bottom p span { padding-inline: 4px; }
 
 @media (max-width: 900px) {
   .landing-footer-top { flex-direction: column; gap: 28px; }
@@ -51,5 +48,4 @@
   .landing-footer-description { margin-top: 20px; }
   .landing-footer-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; gap: 18px 16px; }
   .landing-footer-link { white-space: normal; }
-  .landing-footer-bottom p { max-width: 34ch; line-height: 16px; }
 }

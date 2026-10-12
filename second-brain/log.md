@@ -609,3 +609,7 @@ User's MeuFit reference/screenshots informed shared CSS word-by-word blur-to-sha
 ## 2026-10-11 - Scroll heading focus
 
 User-requested progressive blur-to-sharp effect now follows scroll position for five shared section headings, replacing timed team word reveal. Builds, lint/typecheck, UX sync and six browser tests pass; desktop/mobile phases and no-JavaScript fallback reviewed. No route, data, sprint/GitHub or deployment change. See [[wiki/logs/2026-10-11-scroll-heading-focus]].
+
+## 2026-10-11 - Landing label cleanup
+
+Removed user-identified section eyebrows, concept notes and card/carousel micro-labels across shared landing. Spacing adjusted, accessible controls preserved. Builds, lint, UX sync and six existing UI tests pass; captures reviewed. No route/data/GitHub/sprint/deployment change. See [[wiki/logs/2026-10-11-landing-label-cleanup]].

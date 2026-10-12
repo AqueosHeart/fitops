@@ -8,28 +8,24 @@ import { ScrollHeading } from "./scroll-heading";
 
 const spaces = [
   {
-    category: "STRENGTH",
     title: "Strength floor",
     description: "A steady place to build your base.",
     image: "/images/landing/facilities/strength-floor.webp",
     alt: "Illustrative strength training space with racks and free weights.",
   },
   {
-    category: "SMALL GROUP",
     title: "Small-group studio",
     description: "Shared energy, room to focus.",
     image: "/images/landing/facilities/small-group-studio.webp",
     alt: "Illustrative studio arranged for small-group training.",
   },
   {
-    category: "MOVEMENT",
     title: "Movement studio",
     description: "Space to stretch, reset and move.",
     image: "/images/landing/facilities/movement-studio.webp",
     alt: "Illustrative open movement studio with mats and equipment.",
   },
   {
-    category: "CONDITIONING",
     title: "Conditioning floor",
     description: "Find a rhythm that feels like yours.",
     image: "/images/landing/facilities/conditioning-floor.webp",
@@ -79,10 +75,8 @@ export function LandingFacilities() {
       <div className="landing-facilities-inner">
         <span className="landing-facilities-ghost" aria-hidden="true">SPACES</span>
         <div className="landing-facilities-heading">
-          <p className="landing-facilities-eyebrow"><span aria-hidden="true" />A LOOK INSIDE PRACTICE</p>
           <ScrollHeading id="landing-facilities-title" lines={["Find your space."]} />
           <p className="landing-facilities-intro">A closer look at the rooms behind your next session.</p>
-          <p className="landing-facilities-disclaimer">Illustrative concept imagery; specific club facilities are unverified.</p>
         </div>
 
         <div className="landing-facilities-carousel" role="region" aria-roledescription="carousel" aria-label="Illustrative training spaces">
@@ -98,8 +92,6 @@ export function LandingFacilities() {
                 <Image src={space.image} alt={space.alt} fill sizes="(max-width: 650px) 86vw, (max-width: 980px) 43vw, 360px" />
                 <span className="landing-facilities-image-wash" aria-hidden="true" />
                 <span className="landing-facilities-caption-wash" aria-hidden="true" />
-                <span className="landing-facilities-category">{space.category}</span>
-                <span className="landing-facilities-number">{String(index + 1).padStart(2, "0")} / 04</span>
                 <span className="landing-facilities-card-copy">
                   <span className="landing-facilities-card-title">{space.title}</span>
                   <span className="landing-facilities-card-description">{space.description}</span>
@@ -114,14 +106,12 @@ export function LandingFacilities() {
             <div className="landing-facilities-progress" role="progressbar" aria-label="Carousel position" aria-valuemin={1} aria-valuemax={spaces.length} aria-valuenow={activeIndex + 1}>
               <span style={{ width: `${progressPercent}%` }} />
             </div>
-            <p className="landing-facilities-count" aria-live="polite">{String(activeIndex + 1).padStart(2, "0")} <span>/</span> {String(spaces.length).padStart(2, "0")} SPACES</p>
           </div>
           <div className="landing-facilities-arrows">
             <button type="button" aria-label="Previous space" onClick={() => move(-1)} disabled={atStart}>←</button>
             <button type="button" aria-label="Next space" onClick={() => move(1)} disabled={atEnd}>→</button>
           </div>
         </div>
-          <p className="landing-facilities-hint">SWIPE OR SCROLL <span aria-hidden="true">·</span> USE ARROWS TO MOVE BETWEEN SPACES</p>
       </div>
     </section>
   );

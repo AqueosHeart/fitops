@@ -64,7 +64,6 @@ export function LandingClosingInvitation() {
     </div>
 
     <div className="landing-closing-inner">
-      <p className="landing-closing-eyebrow"><span aria-hidden="true" />Your next chapter</p>
       <ScrollHeading id="landing-closing-title" lines={["You have the place.", "Now make it yours."]} />
       <ActionLink className="landing-closing-action" href="/join">Start now</ActionLink>
       <div className="landing-closing-caption">

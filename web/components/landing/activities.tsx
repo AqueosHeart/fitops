@@ -95,7 +95,6 @@ export function LandingActivities() {
 
     <div className="landing-activities-heading">
       <div className="landing-activities-copy">
-        <p className="landing-activities-eyebrow"><span aria-hidden="true" />A practice for every pace</p>
         <ScrollHeading id="landing-activities-title" lines={["Move your way."]} />
         <p className="landing-activities-description">Build strength. Find energy. Make room to reset.<br className="landing-activities-desktop-break" /> Start with the way you want to feel.</p>
       </div>
@@ -105,12 +104,11 @@ export function LandingActivities() {
     <div className="landing-activities-carousel" role="region" aria-label="Activities">
       <div className="landing-activities-viewport" ref={viewportRef} onScroll={updatePosition} tabIndex={0} aria-label="Activity cards. Scroll horizontally to explore.">
         <div className="landing-activities-track">
-          {activities.map((activity, index) => <article className="landing-activity-card" key={activity.title}>
+          {activities.map((activity) => <article className="landing-activity-card" key={activity.title}>
             <a className="landing-activity-image-link" href="/programs" aria-label={`Explore ${activity.title} programs`}>
               <Image src={activity.image} alt={activity.alt} width={920} height={792} />
             </a>
             <div className="landing-activity-caption">
-              <p className="landing-activity-index" aria-hidden="true">0{index + 1} / 03</p>
               <h3>{activity.title}</h3>
               <p>{activity.description}</p>
             </div>
@@ -120,7 +118,6 @@ export function LandingActivities() {
     </div>
 
     <div className="landing-activities-footer">
-      <p>Coached · Purposeful · At your pace</p>
       <div className="landing-activities-controls">
         <div className="landing-activities-progress" role="progressbar" aria-label="Carousel position" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(progress * 100)}>
           <span style={{ transform: `scaleX(${Math.max(0.08, progress)})` }} />

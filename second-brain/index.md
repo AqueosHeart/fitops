@@ -143,3 +143,5 @@ updated: 2026-10-11
 - [[wiki/logs/2026-10-11-complete-landing-integration|Complete landing integrated into Home]]
 
 - [[wiki/logs/2026-10-11-scroll-heading-focus|Reversible scroll-progress heading focus]]
+
+- [[wiki/logs/2026-10-11-landing-label-cleanup|Landing decorative label removal]]

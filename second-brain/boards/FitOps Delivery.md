@@ -87,3 +87,5 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 2026-10-11 hero motion follow-up: user-requested blur-to-sharp stagger on refresh implemented in shared hero; builds, lint/typecheck, UX sync and five focused browser tests pass. No GitHub/sprint/deployment change. See [[../wiki/logs/2026-10-11-hero-focus-entrance]].
 
 2026-10-11 scroll heading focus: five reviewed headings now track scroll position with reversible blur; builds and six browser tests pass, including static reduced-motion/no-JavaScript fallback. No GitHub/sprint change. See [[../wiki/logs/2026-10-11-scroll-heading-focus]].
+
+2026-10-11 landing label cleanup: section eyebrows, repeated notes and card/carousel micro-labels removed at user request; builds and six existing UI tests pass. No GitHub/sprint change. See [[../wiki/logs/2026-10-11-landing-label-cleanup]].
