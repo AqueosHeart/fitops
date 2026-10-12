@@ -593,3 +593,7 @@ Living Figma follow-up (2026-10-10): inspected MeuFit's moving outlined text and
 ## 2026-10-11 — First landing web slice
 
 The user agreed to shared Storybook and Next.js implementation. Navigation, action links and the Figma hero now share React components/CSS with licensed Mona Sans and original local assets. Builds, lint, TypeScript, zero-finding audit, UX synchronization and focused Chromium desktop/mobile/axe/reduced-motion checks pass. The remaining sections and motion remain pending. Docker's Linux engine/local DB was unavailable; no database or deployed service changed. ADR 019 and [[wiki/logs/2026-10-11-landing-storybook-first-section|session record]] contain the scope and evidence. No GitHub execution status or completed sprint changed.
+
+## 2026-10-11 — Viewport hero and remaining Storybook sections
+
+Removed the hero badge and made the production hero fill the viewport with fluid gutters. Seven user-requested Luna agents implemented remaining shared sections and stories; parent composed/reviewed the full preview, compressed original Figma photographs, corrected contrast/mobile overlaps, and verified carousel keyboard controls and marquee pause/reduced motion. Builds, lint/typecheck, audit, UX sync and focused Chromium/axe checks pass. Lower production integration and performance budgets remain pending. No DB, deployment, GitHub status or sprint assignment changed. See [[wiki/logs/2026-10-11-landing-viewport-and-storybook-sections]].

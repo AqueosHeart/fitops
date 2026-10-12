@@ -67,3 +67,5 @@ The Windows Docker Linux engine did not respond to `docker info` during Sprint 7
 
 - User-authorized shared Storybook/Next.js navigation, buttons and hero implemented from Figma. ADR 019 records the workflow; builds, lint/typecheck, zero-finding audit, UX sync and focused Chromium desktop/mobile/axe/reduced-motion checks pass.
 - Remaining landing sections/motion and mobile Figma composition are pending. Docker Linux engine was unavailable; no DB or deployed service changed. This does not reopen Sprint 7 or claim a Sprint 8/GitHub assignment. See [[../logs/2026-10-11-landing-storybook-first-section]].
+
+- Subsequent user-authorized follow-up: viewport-height production hero without identity badge; seven Luna agents delivered remaining shared Storybook sections plus full-page preview. Parent code/visual review, focused browser/axe/keyboard/pause/reduced-motion checks, builds, lint/typecheck, audit and UX sync pass. Lower production integration and full-page performance remain pending. Sprint/GitHub status is unchanged; see [[../logs/2026-10-11-landing-viewport-and-storybook-sections]].

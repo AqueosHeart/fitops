@@ -1,0 +1,158 @@
+.landing-closing {
+  position: relative;
+  isolation: isolate;
+  min-height: 540px;
+  overflow: hidden;
+  padding: 98px 0 72px;
+  background: #080a08;
+  color: var(--landing-white, #fffefa);
+}
+
+.landing-closing-photo,
+.landing-closing-wash {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+}
+
+.landing-closing-photo img {
+  object-fit: cover;
+  object-position: center 48%;
+}
+
+.landing-closing-wash {
+  z-index: -1;
+  background: linear-gradient(90deg, rgb(8 10 8 / 96%), rgb(8 10 8 / 55%));
+}
+
+.landing-closing-marquee {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 78px;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.landing-closing-marquee-track {
+  display: flex;
+  width: max-content;
+  color: transparent;
+  font-size: clamp(38px, 4.17vw, 60px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -.035em;
+  -webkit-text-stroke: 1px rgb(255 254 250 / 26%);
+  animation: landing-closing-marquee 22s linear infinite;
+  animation-play-state: paused;
+}
+
+.landing-closing-marquee span { flex: none; white-space: nowrap; }
+.landing-closing[data-marquee-paused="false"] .landing-closing-marquee-track { animation-play-state: running; }
+
+.landing-closing-inner {
+  position: relative;
+  width: min(1248px, calc(100% - (2 * var(--landing-gutter, 24px))));
+  margin-inline: auto;
+}
+
+.landing-closing-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  color: var(--landing-lime, #c7f134);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: .012em;
+  text-transform: uppercase;
+}
+
+.landing-closing-eyebrow > span {
+  width: 18px;
+  height: 3px;
+  background: var(--landing-lime, #c7f134);
+}
+
+.landing-closing h2 {
+  display: grid;
+  margin: 39px 0 0 -4px;
+  font-size: clamp(48px, 4.45vw, 64px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -.025em;
+}
+
+.landing-closing h2 span { display: block; }
+
+.landing-closing-action {
+  width: min(236px, 100%);
+  margin-top: 83px;
+  text-align: center;
+}
+
+.landing-closing-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 19px;
+}
+
+.landing-closing-caption > p {
+  margin: 0;
+  color: var(--landing-muted, #c3c0b6);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 19px;
+}
+
+.landing-closing-motion-control {
+  flex: none;
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  color: var(--landing-muted, #c3c0b6);
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  line-height: 19px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.landing-closing-motion-control:hover { color: var(--landing-white, #fffefa); }
+.landing-closing-motion-control:focus-visible { outline: 2px solid var(--landing-lime, #c7f134); outline-offset: 4px; }
+
+@keyframes landing-closing-marquee {
+  to { transform: translateX(-50%); }
+}
+
+@media (max-width: 980px) {
+  .landing-closing { min-height: 500px; padding-top: 90px; padding-bottom: 60px; }
+  .landing-closing h2 { margin-top: 34px; }
+  .landing-closing-action { margin-top: 58px; }
+}
+
+@media (max-width: 650px) {
+  .landing-closing { min-height: 500px; padding: 86px 0 44px; }
+  .landing-closing-inner { width: calc(100% - 40px); }
+  .landing-closing-marquee { height: 58px; }
+  .landing-closing-marquee-track { font-size: 36px; }
+  .landing-closing-eyebrow { gap: 8px; font-size: 10px; }
+  .landing-closing h2 { margin: 31px 0 0 -2px; font-size: clamp(32px, 9.2vw, 38px); line-height: 1.14; letter-spacing: -.035em; }
+  .landing-closing-action { margin-top: 40px; }
+  .landing-closing-caption { align-items: flex-start; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .landing-closing-caption > p { font-size: 12px; }
+  .landing-closing-motion-control { font-size: 10px; }
+  .landing-closing-photo img { object-position: 57% center; }
+  .landing-closing-wash { background: linear-gradient(90deg, rgb(8 10 8 / 90%), rgb(8 10 8 / 66%)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-closing-marquee-track { animation: none; transform: none; }
+}

@@ -1,4 +1,4 @@
-# Landing implementation — first section
+# Landing implementation and Storybook review
 
 The first Figma-to-code slice implements navigation, action links, and the hero from [Figma node 7120:5](https://www.figma.com/design/8O6NvazN4Alxk1G1TmRYoV/FitOpsWireframing?node-id=7120-5). [ADR 019](../adr/019-storybook-and-shared-landing-components.md) records the shared component workflow.
 
@@ -10,6 +10,8 @@ npm run build-storybook
 npm run build
 npm run start -- --hostname 127.0.0.1
 npx playwright test tests/e2e/landing-first-section.spec.ts
+$env:FITOPS_STORYBOOK_URL = 'http://127.0.0.1:6006'
+npx playwright test tests/e2e/landing-stories.spec.ts
 ```
 
 Storybook runs on loopback port 6006. `Landing/First section` contains Hero, Navigation, NavigationAndHero, and Actions stories. Resize the preview for responsive review; use the accessibility panel for isolated checks. The composed story's router is mocked, so click destinations must also be checked in the real app on port 3000. The production page uses `PublicLayout landing`; other public and protected shells keep their current header.
@@ -23,3 +25,15 @@ The original fictional editorial photograph from Figma is compressed into `web/p
 ## Verification boundary
 
 2026-10-11: production Next.js and Storybook builds, TypeScript, lint, UX structural synchronization, and full dependency audit passed. Chromium checked desktop/mobile links, loaded hero image, native mobile disclosure, no horizontal overflow, zero axe violations in the first section, no runtime exceptions, and reduced-motion styles. Desktop 1440 × 960 and mobile 390 × 844 renders were inspected against the desktop Figma target and for mobile fit. This is first-section evidence; the lower page still uses the existing sections. Full landing performance budgets and remaining Figma animations have not been revalidated or implemented.
+
+## Viewport correction and complete preview
+
+The subsequent user request overrides the fixed desktop artboard sizing: hero `min-height: 100svh`, fluid horizontal gutters, top-aligned photo crop, and complete removal of the green identity badge. At 1440 × 960, 390 × 844 and 2552 × 957, the hero occupies the first viewport and lower sections begin after scrolling.
+
+Seven user-requested `gpt-6-luna` agents implemented principles, facilities, activities, plans, team, closing invitation and footer. Each has an individual story; `Landing/Complete preview` (`landing-complete-preview--full-page`) composes them with the shared header/hero. These lower components are currently Storybook previews; the production page retains its prior lower sections. Storybook mocks Next navigation, so full destination journeys remain a production-integration check.
+
+Original photos from the existing Figma landing are stored locally as WebP quality 88: facilities (four 1448 × 1086 photos), activities (two 1122 × 1402 portraits and one 1448 × 1086 landscape), and team (three 1122 × 1402 portraits). Closing reuses the strength-floor photo. Relevant source nodes include principles 7120:29, facilities 7143:24, plans 7151:117, team 7151:165, closing 7120:107 and footer 7120:113 in the same Figma file. Imagery/coaches remain illustrative and fictional; plan prices/inclusions are undefined and links use existing plan codes.
+
+Native horizontal carousels support touch, keyboard focus, arrows, resize updates and disabled bounds. Marquees include pause controls, offscreen/document-visibility suspension and reduced-motion fallbacks. Team words reveal on entry; this is an application adaptation of timeline motion, not a claim of exact Figma scroll binding. Parent review corrected initial title contrast, mobile decoration overlap, narrow controls and static principle visibility.
+
+Final local verification: Next.js/Storybook builds, lint/typecheck, audit (zero vulnerabilities), UX sync, and two focused Chromium tests passed. Composed axe and document-overflow checks cover 1440 × 960, 390 × 844, 320 × 844 and 2552 × 957; keyboard/arrow movement and all four motion-pause controls were exercised. Captures were inspected at desktop and mobile. Authenticated DB journeys and full-page performance budgets were not rerun. The unavailable local DB affects the existing production discovery sections; this work does not change its data or deployment.

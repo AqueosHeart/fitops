@@ -7,6 +7,8 @@ test("landing discovery works on desktop and mobile with accessible, reduced-mot
   await page.setViewportSize({ width: 1440, height: 960 });
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Progress isa practice.");
+  await expect(page.getByText("NEIGHBORHOOD TRAINING", { exact: false })).toHaveCount(0);
+  expect(await page.locator(".landing-hero").evaluate((element) => element.getBoundingClientRect().height)).toBe(960);
   const heroImage = page.locator(".landing-hero-image img");
   await expect(heroImage).toBeVisible();
   await expect.poll(() => heroImage.evaluate((element) => (element as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
@@ -20,6 +22,7 @@ test("landing discovery works on desktop and mobile with accessible, reduced-mot
 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
+  expect(await page.locator(".landing-hero").evaluate((element) => element.getBoundingClientRect().height)).toBe(844);
   await page.locator(".landing-mobile-menu summary").click();
   const navigation = page.getByRole("navigation", { name: "Mobile navigation" });
   await expect(navigation.getByRole("link", { name: "My Account" })).toBeVisible();
