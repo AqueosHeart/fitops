@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LandingHeader } from "./landing/header";
 
 type HeaderMode = "public" | "member" | "admin" | "trainer";
 
@@ -66,8 +67,8 @@ export function SiteFooter() {
   );
 }
 
-export function PublicLayout({ children }: { children: React.ReactNode }) {
-  return <><SiteHeader /><main className="public-main">{children}</main><SiteFooter /></>;
+export function PublicLayout({ children, landing = false }: { children: React.ReactNode; landing?: boolean }) {
+  return <div className={landing ? "landing-theme landing-page" : undefined}>{landing ? <LandingHeader /> : <SiteHeader />}<main className="public-main">{children}</main><SiteFooter /></div>;
 }
 
 export function PageIntro({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) {

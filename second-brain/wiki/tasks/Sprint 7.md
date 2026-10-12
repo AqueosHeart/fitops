@@ -3,7 +3,7 @@ type: sprint
 project: FitOps
 sprint: Sprint 7
 status: complete
-updated: 2026-10-10
+updated: 2026-10-11
 ---
 
 # Sprint 7 — System Quality and Production-Candidate Evidence
@@ -62,3 +62,8 @@ The Windows Docker Linux engine did not respond to `docker info` during Sprint 7
 - Follow-up (2026-10-10, outside Sprint 7 scope): reorganized the Figma-only landing as Main → Facilities → Activities → Plans → Team → Start now. Added editorial activity cards, current fictional plan names without prices, generated team portrait, and photographic final CTA. Final render reviewed; 1440 × 5014. No issue/sprint status or application code changed.
 
 - Figma motion follow-up (2026-10-10, outside Sprint 7): added individual fictional staff portraits/carousel, animated marquees and progressive headline reveal; configured six carousel arrow reactions. The native 10-second study export passed six-phase visual review. Scroll-linked web behavior is still outstanding; no application or GitHub status changed.
+
+## Post-sprint first landing implementation (2026-10-11)
+
+- User-authorized shared Storybook/Next.js navigation, buttons and hero implemented from Figma. ADR 019 records the workflow; builds, lint/typecheck, zero-finding audit, UX sync and focused Chromium desktop/mobile/axe/reduced-motion checks pass.
+- Remaining landing sections/motion and mobile Figma composition are pending. Docker Linux engine was unavailable; no DB or deployed service changed. This does not reopen Sprint 7 or claim a Sprint 8/GitHub assignment. See [[../logs/2026-10-11-landing-storybook-first-section]].

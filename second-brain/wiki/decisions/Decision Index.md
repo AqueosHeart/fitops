@@ -1,7 +1,7 @@
 ---
 type: decision-index
 project: FitOps
-updated: 2026-10-08
+updated: 2026-10-11
 ---
 
 # FitOps Decision Index
@@ -26,3 +26,5 @@ updated: 2026-10-08
 - [ADR 018 Use Figma for FitOps visual design and components](../../../docs/adr/018-use-figma-for-fitops-visual-design.md)
 
 New material architecture decisions receive a new ADR. Accepted historical decisions are not silently rewritten; a later ADR may supersede them.
+
+- [ADR 019 Use Storybook alongside the Next.js landing](../../../docs/adr/019-storybook-and-shared-landing-components.md)

@@ -1,15 +1,17 @@
 ---
 type: critical-facts
 project: FitOps
-updated: 2026-10-10
+updated: 2026-10-11
 ---
 
 # FitOps Critical Facts
 
+- First landing slice (2026-10-11): shared Figma navigation/actions/hero are implemented locally with Storybook 10.6.1, Vite 8.3.4, original local assets and Mona Sans. Builds, lint/typecheck, full audit (zero findings), UX sync and focused Chromium desktop/mobile/accessibility/reduced-motion checks pass. ADR 019 records the workflow. Remaining sections/motion and Figma mobile composition are pending. Docker Linux engine/local PostgreSQL was unavailable during UI review; no DB or deployment changed.
+
 - Status (2026-10-09): Issues #8, #10, #11, #12, #13, and #19 are closed and Done in `FitOps Delivery`. PR #18 merged to `main` at `20eea7710d77fb7002b01f57d85acf1900a0fa39`; PR #20 merged at `674f2b4b0f68d4ca8eb193949913f24221e8fb52`. Their quality CI passed isolated DB, audit, build, browser, and accessibility suites. Synthetic desktop/mobile performance measurements are lab data, not field CWV. Issue #14 release gates still require TLS/HSTS before public exposure and trusted-proxy configuration before IP-based throttling. No deployed database or Linux service was changed.
 - GitHub review (2026-10-10): Issue #14 is Open; `gh issue view` returns no assignee, labels, or project items. Do not treat the second-brain Sprint 8 assignment as confirmed until the GitHub Project is read and synchronized.
 - Working public name: `Practice Athletic Club`; `FitOps` remains the repository and internal project codename.
-- Branding scope is identity only for the current stage; no website or application implementation is authorized by the branding work.
+- Web implementation authorization (2026-10-11): the user agreed to Storybook plus shared navigation, buttons and hero integrated into Next.js. This authorizes the first landing slice; the exploratory brand remains unapproved.
 - Brand status: not defined or approved. Quiet Strength, the Mona Sans lime-bar wordmark, and the palette/type system are exploratory candidates that may be retained, revised, or replaced after the brand-definition process.
 - Penpot's former `FitOps Design System` tokens and Lucide icon page are historical references. Figma is now the active visual-design tool under ADR 018; its FitOps foundations/components remain exploratory and do not approve the brand.
 - The `FitOps · Landing` Figma desktop concept is 1440 × 5478 and follows Main → Facilities → Activities → Plans → Team → Start now, then footer. It has twelve photo fills and three horizontal carousel viewports (facilities, activities, staff) with six configured arrow reactions. Native timeline animation covers moving text, word reveal, and carousel motion; a 10-second staff study was exported and visually reviewed at six phases. Scroll-progress binding and production looping/pause/reduced-motion behavior remain future web work. Fictional plans have no prices; brand approval, mobile composition, and 163-scenario wireframe migration remain outstanding.

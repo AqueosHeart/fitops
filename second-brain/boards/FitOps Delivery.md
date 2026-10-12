@@ -1,7 +1,7 @@
 ---
 type: board-mirror
 project: FitOps
-updated: 2026-10-10
+updated: 2026-10-11
 ---
 
 # FitOps Delivery Board Mirror
@@ -77,3 +77,5 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 2026-10-10 design follow-up: the Figma landing now follows Main → Facilities → Activities → Plans → Team → Start now. Activities, fictional plan previews, team imagery, and closing CTA were composed and reviewed. Outside completed Sprint 7; GitHub execution status is unchanged.
 
 2026-10-10 Figma motion follow-up: staff, activities, and facilities carousels now have configured prototype controls. Moving text and headline reveal have native keyframes, with a reviewed 10-second export. No issue or sprint status changed; scroll-linked production motion remains future work.
+
+2026-10-11 first landing web slice: shared navigation/actions/hero and Storybook implemented locally; focused UI/axe/reduced-motion verification and builds pass. Remaining Figma sections/motion are pending. GitHub issue/project statuses and Sprint 7 completion are unchanged; subsequent landing work still needs execution tracking. See [[../wiki/logs/2026-10-11-landing-storybook-first-section]].

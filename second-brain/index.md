@@ -2,7 +2,7 @@
 type: index
 project: FitOps
 status: active
-updated: 2026-10-10
+updated: 2026-10-11
 ---
 
 # FitOps Knowledge Index
@@ -133,3 +133,7 @@ updated: 2026-10-10
 
 - [[wiki/logs/2026-10-10-fitops-figma-design-foundations|Figma visual-tool decision and FitOps foundations/components]]
 - [[wiki/logs/2026-10-10-fitops-figma-landing-page|FitOps desktop landing page concept and motion handoff]]
+
+- [ADR 019: Storybook and shared landing components](../docs/adr/019-storybook-and-shared-landing-components.md)
+- [Landing implementation and verification](../docs/design/landing-implementation.md)
+- [[wiki/logs/2026-10-11-landing-storybook-first-section|Storybook and first landing web slice]]

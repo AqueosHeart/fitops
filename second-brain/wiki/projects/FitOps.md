@@ -3,7 +3,7 @@ type: project
 status: active
 phase: development
 sprint: Sprint 7 complete
-updated: 2026-10-10
+updated: 2026-10-11
 ---
 
 # FitOps
@@ -107,3 +107,7 @@ Landing reorganization (2026-10-10): followed the user-requested Main → Facili
 
 
 Living Figma follow-up (2026-10-10): inspected MeuFit's moving outlined text and individual staff cards. Replaced the group portrait with three generated fictional coach profiles (Maya, Jordan, Lena) in a reusable Staff Card carousel. Added moving marquees and progressive word reveal to the headline; Facilities, Activities, and Staff have horizontal overflow plus six native SCROLL_TO arrow reactions (560 ms). The landing is 1440 × 5478. Native timelines now animate the visual treatment, with a separate 10-second motion study (`7160:96`) exported as MP4 and reviewed at six phases. Fixed headline spacing, portrait crops, and marquee clipping. The preview is time-based; real scroll binding, continuous loops/pause, interaction-driven progress sync, parallax, and reduced-motion behavior remain web handoff. Application code, issue/sprint status, and deployment were unchanged.
+
+## First landing implementation (2026-10-11)
+
+The user authorized the first Figma-to-web slice: shared navigation/buttons/hero in Storybook and Next.js. ADR 019 establishes the component-review workflow. Local builds, lint/typecheck, audit, UX sync and focused Chromium desktop/mobile/axe/reduced-motion checks pass. Other landing sections and their motion are pending; mobile implementation is an adaptation, not an approved Figma composition. Docker's Linux engine was unavailable during UI review; no database or deployment changed. See [[../logs/2026-10-11-landing-storybook-first-section|session record]] and [implementation evidence](../../../docs/design/landing-implementation.md). Sprint 7 remains complete; this work has no claimed new sprint assignment.
