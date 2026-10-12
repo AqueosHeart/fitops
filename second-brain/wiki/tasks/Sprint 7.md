@@ -8,6 +8,8 @@ updated: 2026-10-11
 
 # Sprint 7 — System Quality and Production-Candidate Evidence
 
+Post-sprint hero motion (2026-10-11): user-authorized staggered blur-to-sharp entrance on refresh; production/Storybook shared CSS, static reduced-motion fallback. Builds, lint/typecheck, UX sync and five focused browser tests pass. Sprint completion and GitHub state unchanged; see [[../logs/2026-10-11-hero-focus-entrance]].
+
 ## Goal
 
 Build a reproducible, truthful quality gate for the FitOps production candidate. The one-week sprint is planned for 2026-10-08 through 2026-10-15; GitHub Issue #13 is the execution source of truth.

@@ -601,3 +601,7 @@ Removed the hero badge and made the production hero fill the viewport with fluid
 ## 2026-10-11 — Complete landing integration
 
 User requested integration of the reviewed Storybook sections. Home and Storybook now share `LandingContent`; landing footer replaces the prior footer only on Home. Signed-out feedback and existing destinations remain. Live catalog/availability remain on their dedicated pages. Four Chromium tests, full-page accessibility/overflow/interactions, real routing, desktop/mobile capture review, builds, lint/typecheck and UX sync pass. DB journeys and performance budgets not rerun; no GitHub/sprint/data/deployment changes. See [[wiki/logs/2026-10-11-complete-landing-integration]].
+
+## 2026-10-11 - Hero focus entrance
+
+User's MeuFit reference/screenshots informed shared CSS word-by-word blur-to-sharp hero entrance on refresh, with description/button sequence and immediate reduced-motion fallback. Builds, lint/typecheck, UX sync and five focused browser tests pass; desktop phases reviewed. No other section, data, sprint/GitHub or deployment change. See [[wiki/logs/2026-10-11-hero-focus-entrance]].

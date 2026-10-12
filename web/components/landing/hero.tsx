@@ -6,7 +6,7 @@ export function LandingHero() {
     <div className="landing-hero-image"><Image src="/images/landing/hero.webp" alt="A fictional coach guides a member lifting a barbell in the Practice studio." fill sizes="100vw" preload /></div>
     <div className="landing-hero-wash" aria-hidden="true" />
     <div className="landing-hero-content">
-      <h1 id="landing-title">Progress is<br />a practice.</h1>
+      <h1 id="landing-title"><span className="landing-hero-word">Progress</span>{" "}<span className="landing-hero-word">is</span><br /><span className="landing-hero-word">a</span>{" "}<span className="landing-hero-word">practice.</span></h1>
       <p className="landing-hero-description">Thoughtful coaching, small-group classes, and room to build a rhythm that feels like yours. Start with one session.</p>
       <div className="landing-hero-actions"><ActionLink href="/#programs">Explore activities</ActionLink><ActionLink href="/#facilities" variant="outline">Explore the club</ActionLink></div>
     </div>

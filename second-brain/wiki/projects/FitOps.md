@@ -8,6 +8,8 @@ updated: 2026-10-11
 
 # FitOps
 
+Hero motion follow-up (2026-10-11): user requested the blur-to-sharp text entrance seen in MeuFit. Implemented staggered word reveal on page load/refresh in the shared hero, followed by description/button entry with static reduced-motion fallback. Builds, lint/typecheck, UX sync and five focused browser tests pass; no sprint/GitHub/data/deployment change. See [[../logs/2026-10-11-hero-focus-entrance]].
+
 FitOps is the repository and internal project codename. The public-facing fictional gym is **Practice Athletic Club**, which helps members discover and reserve classes while giving staff a dependable way to manage schedules, capacity, cancellations, and waitlists.
 
 ## Current outcome

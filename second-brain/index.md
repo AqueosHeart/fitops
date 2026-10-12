@@ -7,6 +7,8 @@ updated: 2026-10-11
 
 # FitOps Knowledge Index
 
+- [[wiki/logs/2026-10-11-hero-focus-entrance|Hero blur-to-sharp entrance on refresh]]
+
 ## Start here
 
 - [[SOUL|Project identity]]

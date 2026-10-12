@@ -83,3 +83,5 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 2026-10-11 landing follow-up: viewport-height hero and badge removal in production; all seven remaining sections implemented/reviewed in individual and composed Storybook previews using user-requested Luna agents. Focused browser/axe/keyboard/motion checks and builds pass. Lower production integration and full-page performance are pending. GitHub status and completed Sprint 7 are unchanged. See [[../wiki/logs/2026-10-11-landing-viewport-and-storybook-sections]].
 
 2026-10-11 complete landing integration: reviewed sections/footer now share composition between production Home and Storybook. Four browser tests, builds, lint/typecheck, UX sync and production visual review pass. Performance budgets and DB journeys not rerun; no GitHub/sprint/deployment change. See [[../wiki/logs/2026-10-11-complete-landing-integration]].
+
+2026-10-11 hero motion follow-up: user-requested blur-to-sharp stagger on refresh implemented in shared hero; builds, lint/typecheck, UX sync and five focused browser tests pass. No GitHub/sprint/deployment change. See [[../wiki/logs/2026-10-11-hero-focus-entrance]].

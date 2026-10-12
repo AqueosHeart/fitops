@@ -1,5 +1,7 @@
 # Landing implementation and Storybook review
 
+Latest hero motion (2026-10-11): user's MeuFit reference and screenshots inform a staggered blur-to-sharp entrance for `Progress is a practice.` Four word spans animate for 850 ms with delays 100/240/380/520 ms; description follows at 500 ms, while buttons slide at 700 ms without fading. CSS runs once per page load/refresh, retains semantic heading text, and is absent under reduced motion. No external assets or animation dependency were added. Five focused Chromium tests include deterministic animation-phase comparison, refresh replay and reduced-motion fallback; builds/lint/typecheck/UX sync pass. Desktop phases were visually inspected. This is a matching visual treatment, not a claim to reproduce MeuFit's exact timing or implementation.
+
 The first Figma-to-code slice implements navigation, action links, and the hero from [Figma node 7120:5](https://www.figma.com/design/8O6NvazN4Alxk1G1TmRYoV/FitOpsWireframing?node-id=7120-5). [ADR 019](../adr/019-storybook-and-shared-landing-components.md) records the shared component workflow.
 
 From `web/`:
