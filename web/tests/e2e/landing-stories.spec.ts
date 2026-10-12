@@ -3,14 +3,15 @@ import AxeBuilder from "@axe-core/playwright";
 
 const storybookURL = process.env.FITOPS_STORYBOOK_URL;
 
-test("composed landing stories are accessible, responsive and interactive", async ({ page }) => {
-  test.skip(!storybookURL, "Set FITOPS_STORYBOOK_URL to the loopback Storybook server.");
+for (const target of ["production", "storybook"] as const) {
+test(`${target} landing is accessible, responsive and interactive`, async ({ page }) => {
+  test.skip(target === "storybook" && !storybookURL, "Set FITOPS_STORYBOOK_URL to the loopback Storybook server.");
   test.setTimeout(90_000);
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.setViewportSize({ width: 1440, height: 960 });
-  await page.goto(`${storybookURL}/iframe.html?id=landing-complete-preview--full-page&viewMode=story`);
+  await page.goto(target === "production" ? "/" : `${storybookURL}/iframe.html?id=landing-complete-preview--full-page&viewMode=story`);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Progress isa practice.");
   await expect(page.getByRole("heading", { name: "Find your space." })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Move your way." })).toBeVisible();
@@ -57,4 +58,25 @@ test("composed landing stories are accessible, responsive and interactive", asyn
     await expect.poll(() => page.locator(motion.track).evaluate((element) => getComputedStyle(element).animationPlayState)).toBe("paused");
   }
   expect(errors).toEqual([]);
+});
+}
+
+test("homepage links use real Next.js destinations and one landing shell", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByRole("banner")).toHaveCount(1);
+  await expect(page.getByRole("contentinfo")).toHaveCount(1);
+  await page.getByRole("link", { name: "Explore the club", exact: true }).click();
+  await expect(page).toHaveURL(/\/#facilities$/);
+  await expect(page.locator("#facilities")).toBeInViewport();
+  await page.getByRole("link", { name: "Choose Training Plus" }).click();
+  await expect(page).toHaveURL(/\/join\?plan=training_plus$/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Find your way into the club.");
+  await page.goto("/");
+  await page.getByRole("link", { name: "View the schedule", exact: true }).click();
+  await expect(page).toHaveURL(/\/schedule$/);
+  await page.goto("/");
+  await page.getByRole("link", { name: "Privacy", exact: true }).click();
+  await expect(page).toHaveURL(/\/privacy$/);
+  await expect(page.locator(".site-header")).toHaveCount(1);
+  await expect(page.locator(".site-footer")).toHaveCount(1);
 });

@@ -1,11 +1,5 @@
 import { LandingHeader } from "./header";
-import { LandingHero } from "./hero";
-import { LandingPrinciples } from "./principles";
-import { LandingFacilities } from "./facilities";
-import { LandingActivities } from "./activities";
-import { LandingPlans } from "./plans";
-import { LandingTeam } from "./team";
-import { LandingClosingInvitation } from "./closing";
+import { LandingContent } from "./content";
 import { LandingFooter } from "./footer";
 
 /** Composed design review; individual sections use the same production-ready components. */
@@ -13,13 +7,7 @@ export function LandingCompletePreview() {
   return <div className="landing-page">
     <LandingHeader />
     <main>
-      <LandingHero />
-      <LandingPrinciples />
-      <LandingFacilities />
-      <LandingActivities />
-      <LandingPlans />
-      <LandingTeam />
-      <LandingClosingInvitation />
+      <LandingContent />
     </main>
     <LandingFooter />
   </div>;

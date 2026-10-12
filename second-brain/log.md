@@ -597,3 +597,7 @@ The user agreed to shared Storybook and Next.js implementation. Navigation, acti
 ## 2026-10-11 — Viewport hero and remaining Storybook sections
 
 Removed the hero badge and made the production hero fill the viewport with fluid gutters. Seven user-requested Luna agents implemented remaining shared sections and stories; parent composed/reviewed the full preview, compressed original Figma photographs, corrected contrast/mobile overlaps, and verified carousel keyboard controls and marquee pause/reduced motion. Builds, lint/typecheck, audit, UX sync and focused Chromium/axe checks pass. Lower production integration and performance budgets remain pending. No DB, deployment, GitHub status or sprint assignment changed. See [[wiki/logs/2026-10-11-landing-viewport-and-storybook-sections]].
+
+## 2026-10-11 — Complete landing integration
+
+User requested integration of the reviewed Storybook sections. Home and Storybook now share `LandingContent`; landing footer replaces the prior footer only on Home. Signed-out feedback and existing destinations remain. Live catalog/availability remain on their dedicated pages. Four Chromium tests, full-page accessibility/overflow/interactions, real routing, desktop/mobile capture review, builds, lint/typecheck and UX sync pass. DB journeys and performance budgets not rerun; no GitHub/sprint/data/deployment changes. See [[wiki/logs/2026-10-11-complete-landing-integration]].
