@@ -1,0 +1,8 @@
+.landing-scroll-line { display: block; }
+.landing-scroll-word, .landing-closing h2 .landing-scroll-word { display: inline-block; }
+@media (prefers-reduced-motion: no-preference) {
+  [data-scroll-reveal="true"] .landing-scroll-word {
+    filter: blur(calc(8px * (1 - var(--landing-word-focus, 1))));
+    transform: translateY(calc(8px * (1 - var(--landing-word-focus, 1))));
+  }
+}

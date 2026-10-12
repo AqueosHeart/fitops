@@ -4,6 +4,7 @@
 import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from "react";
 import Image from "next/image";
 import "./team.css";
+import { ScrollHeading } from "./scroll-heading";
 
 const coaches = [
   {
@@ -120,18 +121,7 @@ export function LandingTeam() {
 
     <div className="landing-team-inner">
       <p className="landing-team-eyebrow"><span aria-hidden="true" />People behind your progress</p>
-      <h2 className="landing-team-title" id="landing-team-title">
-        <span className="landing-team-title-line" aria-hidden="true">
-          <span className="landing-team-word" data-word="Good" data-node-id="7158:67">Good</span>
-          <span className="landing-team-word" data-word="coaching." data-node-id="7158:73">coaching.</span>
-        </span>
-        <span className="landing-team-title-line" aria-hidden="true">
-          <span className="landing-team-word" data-word="A" data-node-id="7158:79">A</span>
-          <span className="landing-team-word" data-word="human" data-node-id="7158:85">human</span>
-          <span className="landing-team-word" data-word="connection." data-node-id="7158:91">connection.</span>
-        </span>
-        <span className="landing-team-visually-hidden">Good coaching. A human connection.</span>
-      </h2>
+      <ScrollHeading className="landing-team-title" id="landing-team-title" lines={["Good coaching.", "A human connection."]} />
       <p className="landing-team-intro">Coaches who know your name. Guidance that feels personal.</p>
 
       <div className="landing-team-carousel" role="region" aria-label="Fictional coach profiles">

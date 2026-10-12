@@ -69,3 +69,30 @@ test("hero focus reveal staggers words, replays on refresh and respects reduced 
     return style.animationName === "none" && style.filter === "none" && style.opacity === "1";
   }))).toBe(true);
 });
+
+test("section words sharpen with scroll and reverse without a timed replay", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/");
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 960 });
+    for (const id of ["landing-facilities-title", "landing-activities-title", "landing-plans-title", "landing-team-title", "landing-closing-title"]) {
+      const heading = page.locator(`#${id}`);
+      const words = heading.locator(".landing-scroll-word");
+      const position = async (fraction: number) => heading.evaluate((element, part) => {
+        window.scrollTo({ top: window.scrollY + element.getBoundingClientRect().top - innerHeight * part, behavior: "instant" });
+      }, fraction);
+      const blur = () => words.last().evaluate((element) => Number(getComputedStyle(element).filter.match(/[\d.]+/)?.[0] ?? 0));
+      await position(.85);
+      await expect.poll(blur).toBeGreaterThan(7);
+      await position(.75);
+      await expect.poll(blur).toBeLessThan(7);
+      expect(await words.first().evaluate((element) => Number(getComputedStyle(element).filter.match(/[\d.]+/)?.[0] ?? 0))).toBeLessThan(await blur());
+      await position(.5);
+      await expect.poll(blur).toBe(0);
+      await position(.85);
+      await expect.poll(blur).toBeGreaterThan(7);
+    }
+  }
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect.poll(() => page.locator(".landing-scroll-word").evaluateAll((elements) => elements.every((element) => getComputedStyle(element).filter === "none"))).toBe(true);
+});

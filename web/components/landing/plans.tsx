@@ -1,5 +1,6 @@
 import { ActionLink } from "./action-link";
 import "./plans.css";
+import { ScrollHeading } from "./scroll-heading";
 
 const plans = [
   {
@@ -29,7 +30,7 @@ export function LandingPlans() {
         <span className="landing-plans-accent" aria-hidden="true" />
         <p className="landing-plans-eyebrow">Make it part of your week</p>
       </div>
-      <h2 id="landing-plans-title">Find your rhythm.</h2>
+      <ScrollHeading id="landing-plans-title" lines={["Find your rhythm."]} />
       <p className="landing-plans-intro">Three ways into Practice. Choose your starting point.</p>
 
       <div className="landing-plans-grid">

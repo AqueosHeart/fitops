@@ -6,6 +6,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { ActionLink } from "./action-link";
 import "./activities.css";
+import { ScrollHeading } from "./scroll-heading";
 
 const activities = [
   {
@@ -95,7 +96,7 @@ export function LandingActivities() {
     <div className="landing-activities-heading">
       <div className="landing-activities-copy">
         <p className="landing-activities-eyebrow"><span aria-hidden="true" />A practice for every pace</p>
-        <h2 id="landing-activities-title">Move your way.</h2>
+        <ScrollHeading id="landing-activities-title" lines={["Move your way."]} />
         <p className="landing-activities-description">Build strength. Find energy. Make room to reset.<br className="landing-activities-desktop-break" /> Start with the way you want to feel.</p>
       </div>
       <ActionLink className="landing-activities-schedule" href="/schedule" variant="outline">View the schedule</ActionLink>

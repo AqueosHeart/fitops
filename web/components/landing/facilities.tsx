@@ -4,6 +4,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import "./facilities.css";
+import { ScrollHeading } from "./scroll-heading";
 
 const spaces = [
   {
@@ -79,7 +80,7 @@ export function LandingFacilities() {
         <span className="landing-facilities-ghost" aria-hidden="true">SPACES</span>
         <div className="landing-facilities-heading">
           <p className="landing-facilities-eyebrow"><span aria-hidden="true" />A LOOK INSIDE PRACTICE</p>
-          <h2 id="landing-facilities-title">Find your space.</h2>
+          <ScrollHeading id="landing-facilities-title" lines={["Find your space."]} />
           <p className="landing-facilities-intro">A closer look at the rooms behind your next session.</p>
           <p className="landing-facilities-disclaimer">Illustrative concept imagery; specific club facilities are unverified.</p>
         </div>

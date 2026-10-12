@@ -605,3 +605,7 @@ User requested integration of the reviewed Storybook sections. Home and Storyboo
 ## 2026-10-11 - Hero focus entrance
 
 User's MeuFit reference/screenshots informed shared CSS word-by-word blur-to-sharp hero entrance on refresh, with description/button sequence and immediate reduced-motion fallback. Builds, lint/typecheck, UX sync and five focused browser tests pass; desktop phases reviewed. No other section, data, sprint/GitHub or deployment change. See [[wiki/logs/2026-10-11-hero-focus-entrance]].
+
+## 2026-10-11 - Scroll heading focus
+
+User-requested progressive blur-to-sharp effect now follows scroll position for five shared section headings, replacing timed team word reveal. Builds, lint/typecheck, UX sync and six browser tests pass; desktop/mobile phases and no-JavaScript fallback reviewed. No route, data, sprint/GitHub or deployment change. See [[wiki/logs/2026-10-11-scroll-heading-focus]].

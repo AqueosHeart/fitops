@@ -141,3 +141,5 @@ updated: 2026-10-11
 - [[wiki/logs/2026-10-11-landing-storybook-first-section|Storybook and first landing web slice]]
 - [[wiki/logs/2026-10-11-landing-viewport-and-storybook-sections|Viewport hero and complete landing Storybook preview]]
 - [[wiki/logs/2026-10-11-complete-landing-integration|Complete landing integrated into Home]]
+
+- [[wiki/logs/2026-10-11-scroll-heading-focus|Reversible scroll-progress heading focus]]

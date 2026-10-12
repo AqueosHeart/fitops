@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { ActionLink } from "./action-link";
 import "./closing.css";
+import { ScrollHeading } from "./scroll-heading";
 
 const marqueeText = "BEGIN YOUR PRACTICE · BEGIN YOUR PRACTICE · BEGIN YOUR PRACTICE · BEGIN YOUR PRACTICE · BEGIN YOUR PRACTICE · ";
 
@@ -64,10 +65,7 @@ export function LandingClosingInvitation() {
 
     <div className="landing-closing-inner">
       <p className="landing-closing-eyebrow"><span aria-hidden="true" />Your next chapter</p>
-      <h2 id="landing-closing-title">
-        <span>You have the place.</span>
-        <span>Now make it yours.</span>
-      </h2>
+      <ScrollHeading id="landing-closing-title" lines={["You have the place.", "Now make it yours."]} />
       <ActionLink className="landing-closing-action" href="/join">Start now</ActionLink>
       <div className="landing-closing-caption">
         <p>Choose your plan. Begin your Practice.</p>
