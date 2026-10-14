@@ -6,7 +6,7 @@ updated: 2026-10-13
 
 # FitOps Critical Facts
 
-- Vercel demo (2026-10-13): public Production is https://fitops-sebastian11.vercel.app, hosted by Vercel with Neon Free (`free_v3`). HTTPS/HSTS, complete critical member/admin journey, and live client-IP login throttle (including spoofed X-Forwarded-For rejection) passed. The public demo DB was restored to its six fictional accounts and four bookings/four waitlist entries. Preview is protected; Preview and Production still share that DB. See [deployment runbook](../docs/vercel-deployment.md) and ADR 020. GitHub Issue #14 is still Open pending recording/review of the completed evidence.
+- Vercel demo (2026-10-13): public Production is https://fitops-sebastian11.vercel.app, hosted by Vercel with Neon Free (`free_v3`). HTTPS/HSTS, complete critical member/admin journey, and live client-IP login throttle (including spoofed X-Forwarded-For rejection) passed. The public demo DB was restored to its six fictional accounts and four bookings/four waitlist entries. Preview is protected; Preview and Production still share that DB. PR #23 merged to main at `81aff98137553d802cdf849484fb53bc0da7ecb1`; Issue #14 is Closed. See [deployment runbook](../docs/vercel-deployment.md) and ADR 020.
 
 - Hero motion follow-up (2026-10-11): user requested MeuFit-style entrance on refresh. Shared hero now reveals four words from blur to sharp with 140 ms stagger, followed by description and a fully legible button slide. CSS only, replay on page load, immediate static reduced-motion fallback. Builds, lint/typecheck and five focused browser tests pass; no other section, route or data behavior changed.
 
