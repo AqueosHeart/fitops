@@ -61,7 +61,7 @@ async function measureLandingPage(page: Page): Promise<LabMetrics> {
   expect(response?.status()).toBe(200);
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Strength Foundations" }).first()).toBeVisible();
-  await expect(page.getByRole("link", { name: "View session" }).first()).toBeVisible();
+  await expect(page.getByRole("link", { name: "View the schedule", exact: true })).toBeVisible();
   await page.evaluate(() => document.fonts.ready.then(() => true));
 
   return page.evaluate(() => {
