@@ -2,10 +2,17 @@
 type: index
 project: FitOps
 status: active
-updated: 2026-10-09
+updated: 2026-10-13
 ---
 
 # FitOps Knowledge Index
+
+- [[wiki/logs/2026-10-13-vercel-deployment|Vercel demo deployment and release gates]]
+- [Vercel deployment runbook](../docs/vercel-deployment.md)
+- [Portfolio case study](../docs/portfolio-case-study.md)
+- [ADR 020: Vercel and Neon demo deployment](../docs/adr/020-vercel-neon-demo-deployment.md)
+
+- [[wiki/logs/2026-10-11-hero-focus-entrance|Hero blur-to-sharp entrance on refresh]]
 
 ## Start here
 
@@ -124,4 +131,22 @@ updated: 2026-10-09
 - [[wiki/logs/2026-10-07-issue-10-eslint-advisory-resolution|Issue #10 lint advisory resolution]]
 - [[wiki/logs/2026-10-07-issue-11-member-product-slice|Issue #11 member product slice and PR #16 review handoff]]
 - [[wiki/logs/2026-10-07-issue-12-admin-operations-start|Issue #12 administrator operations started as dependent work]]
+- [[wiki/logs/2026-10-10-local-windows-development-run|Windows local development run]]
+- [[wiki/logs/2026-10-10-issue-14-readiness-review|Issue #14 release-readiness review]]
+- [[wiki/logs/2026-10-10-local-homepage-visual-review|Local homepage visual review]]
 - [[wiki/tasks/Sprint 5|Sprint 5 Member Booking Product Slice]]
+
+- [ADR 018: Figma for FitOps visual design](../docs/adr/018-use-figma-for-fitops-visual-design.md)
+
+- [[wiki/logs/2026-10-10-fitops-figma-design-foundations|Figma visual-tool decision and FitOps foundations/components]]
+- [[wiki/logs/2026-10-10-fitops-figma-landing-page|FitOps desktop landing page concept and motion handoff]]
+
+- [ADR 019: Storybook and shared landing components](../docs/adr/019-storybook-and-shared-landing-components.md)
+- [Landing implementation and verification](../docs/design/landing-implementation.md)
+- [[wiki/logs/2026-10-11-landing-storybook-first-section|Storybook and first landing web slice]]
+- [[wiki/logs/2026-10-11-landing-viewport-and-storybook-sections|Viewport hero and complete landing Storybook preview]]
+- [[wiki/logs/2026-10-11-complete-landing-integration|Complete landing integrated into Home]]
+
+- [[wiki/logs/2026-10-11-scroll-heading-focus|Reversible scroll-progress heading focus]]
+
+- [[wiki/logs/2026-10-11-landing-label-cleanup|Landing decorative label removal]]

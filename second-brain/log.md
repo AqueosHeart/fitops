@@ -1,10 +1,38 @@
 ---
 type: activity-log
 project: FitOps
-updated: 2026-09-21
+updated: 2026-10-13
 ---
 
 # FitOps Activity Log
+
+## 2026-10-13 - Vercel demo deployment
+
+- Deployed the Next.js demo to Vercel Production with a fresh Neon Free database, six migrations, and fictional seed data. Recorded settings and safe operating notes in `docs/vercel-deployment.md`; ADR 020 captures the platform/security decision.
+- Verified public routes, HSTS, database contents, and a fictional admin sign-in, admin API response, and sign-out. Preview access is protected; Production is public.
+- Preview and Production share one demo database. Issue #14 remains Open pending full member booking E2E and deployed IP-rate-limit evidence. Sprint 7 remains complete; no verified Sprint 8 assignment was found. No GitHub issue mutation was made.
+
+## 2026-10-13 - Live release acceptance evidence
+
+- Ran the existing critical Playwright journey against Vercel Production. Registration, waitlist, capacity increase, FIFO promotion, cancellation/promotion, admin flows, role denials, accessibility, and runtime-error checks passed.
+- Removed the temporary fictional test account and reran the seed on the remote database. Final verification restored six users, three sessions, four confirmed bookings, and four waiting entries.
+- Added a guarded production IP-limit verifier. Twenty unique spoofed forwarding addresses were followed by a valid admin login, which was denied at the client-IP threshold. Vercel effectively overwrote spoofed `X-Forwarded-For`; the verifier restored login attempt state.
+- Updated the deployment runbook, case study, README, and security review. Issue #14 now has complete local evidence but remains Open pending source-of-truth review/synchronization. Preview and Production still share one demo database.
+
+## 2026-10-10 - Issue #14 release-readiness review
+
+- Reviewed open GitHub Issue #14 and Sprint 8 / Phase 6 plans against deployment, security, quality, and architecture evidence.
+- Added a guarded database-volume reset procedure for the private Linux demo; corrected deployment instructions to use current `main` and recorded the older deployed commit/version accurately.
+- Added a draft case study linked from the README. It distinguishes CI and local evidence from public production evidence and records uncompleted gates.
+- GitHub reports Issue #14 Open with no assignee, labels, or linked project item. The previous Sprint 8 assignment in the second brain is not confirmed; CLI project-list access lacks `read:project` scope.
+- Public URL smoke test and HTTPS/HSTS/proxy proof remain blocked on a public hostname and safe edge configuration. The private LAN and local demo were not modified or exposed.
+
+## 2026-10-10 - Windows local development deployment
+
+- Started Docker Desktop and created a new local PostgreSQL 16 volume using the repository's loopback-only Compose setup. Applied all six migrations, seeded fictional data once, and verified the database contents.
+- Installed locked dependencies with Node 24.15.0/npm 11.12.1; npm reported engine warnings because the repository documents 24.14.x/11.9.x. Install and app startup succeeded.
+- Started Next.js 16.3.8 on `127.0.0.1:3000`; `/` and `/portal/login` returned 200. Private config remains in ignored `.env` files. No LAN deployment, production data, or project source code was changed.
+- Updated the root README to reflect the completed trainer/admin work and open Issue #14 release gates. Updated the local-development guide to clone `main` rather than an obsolete feature branch.
 
 ## 2026-10-08 — FitOps LAN deployment continuation
 
@@ -528,3 +556,73 @@ updated: 2026-09-21
 
 - With explicit user authorization, merged PR #20 into `main` at `674f2b4b0f68d4ca8eb193949913f24221e8fb52`. Quality run [37956811965](https://github.com/AqueosHeart/fitops/actions/runs/37956811965) passed the isolated DB/API, audit, lint/typecheck, build, Chromium, and accessibility checks.
 - Updated Issue #19 acceptance evidence and closed the issue; FitOps Delivery status is Done. No deployment or live database was changed. Issue #14 remains the release follow-up with TLS/HSTS and trusted-proxy gates.
+
+## 2026-10-10 - Local homepage visual review
+
+- Reviewed the current homepage and the member-login screenshot against product requirements and the unapproved exploratory brand state. GitHub currently lists only Issue #14 as open; its release gates remain unchanged.
+- Replaced the abstract CSS hero figure with a compressed fictional editorial training image and adjusted the 950 px header behavior. Local browser review at 870 px showed the revised hero and a single-row header.
+- The local portal login origin is configured as `http://127.0.0.1:3000`, matching the open app origin. The browser's existing admin session redirected `/portal/login` to `/admin`; no credentials were entered and no session/database data was changed.
+- No build, test suite, GitHub issue, public deployment, or LAN service was changed. Brand identity remains exploratory.
+
+## 2026-10-10 - Figma visual-tool decision and FitOps foundations
+
+- Accepted ADR 018, superseding ADR 013's Penpot tool decision. Figma is the active visual-design workspace; draw.io remains the UX flow source.
+- Added separate FitOps Foundations and Components pages to the linked FitOpsWireframing file while preserving its AARC pages. Foundations and four component families are exploratory; the brand is not approved.
+- Confirmed the former Penpot wireframe inventory is not lost: 163 scenarios per device are recoverable from draw.io Page 08 and repository generator sources. The connected tools did not support direct canvas transfer, so Figma wireframe recreation remains outstanding.
+- Updated repository workflow, UX, delivery mirror, project facts, and decision records. No app code, routes, GitHub issue status, or deployment changed. No tests/build were run; only the documentation claim in the UX sync script was updated.
+- Next: recreate the Figma wireframes from validated scenario sources and review route/state coverage before claiming migration complete.
+
+## 2026-10-10 - FitOps desktop landing page in Figma
+
+- Created the separate `FitOps · Landing` Figma page with an editable 1440 px full-page desktop design: full-bleed photograph/hero, public navigation, principles, seeded Strength Foundations offer, sample schedule states, club positioning, schedule CTA, and demo/legal footer.
+- Reused local FitOps button and session-card components. Public session preview actions say `View session`, preserving the public-to-member booking boundary. Sample card content is labeled as design-review data; live app dates/availability remain dynamic.
+- Added an adjacent web-motion handoff for restrained hero parallax, scroll-entry reveals, fixed progress indication, and `prefers-reduced-motion`. Figma does not implement continuous scroll-linked parallax here.
+- Used the current local homepage image as an image fill, then removed the temporary capture frame and capture script. No persistent app code, routes, or deployment changed.
+- The concept is exploratory; the brand remains unapproved. Mobile layout and full Figma wireframe migration remain outstanding. No tests or builds were run.
+- Figma: https://www.figma.com/design/8O6NvazN4Alxk1G1TmRYoV/FitOpsWireframing?node-id=7120-4
+- Follow-up visual pass: generated three fictional Practice training/club photographs and inserted them as Figma image fills in the hero, Strength Foundations card, and club-story panel. Tightened the bright lime hero label and applied matching lime dash accents to the other section eyebrows. Reviewed hero, program, and club renders. No source image was added to application code; Figma only.
+- Refined the club-story crop to 420 × 280 so both coach and member are visible; extended that section and moved the closing CTA/footer down to preserve spacing. The full desktop artboard is now 1440 × 3887.
+- Hero refinement: strengthened the dark overlay toward the left edge while keeping the generated photo visible, and replaced the plain `Explore programs` text link with a reusable transparent white-outline FitOps button. Render review confirmed the lime label, hero footer cues, and both CTA styles remain legible.
+
+
+## 2026-10-10 - Figma facilities carousel
+
+- Added a facilities carousel below the club-story section and before the closing CTA in the FitOps desktop landing page. Four generated illustrative images show strength, small-group, movement, and conditioning spaces.
+- The editable layout includes three full cards plus a visible peek of the next card, progress indicator, and previous/next controls. Render review confirmed legible intro copy, captions, and controls.
+- Added motion handoff for scroll reveal, drag/swipe, one-card snapping, eased image settling, synchronized progress, no autoplay, and reduced-motion behavior. Figma remains static for these continuous interactions; no app code changed. Images are concept art and do not verify club inventory.
+
+
+## 2026-10-10 - Figma landing sequence and complete sections
+
+
+Landing reorganization (2026-10-10): followed the user-requested Main → Facilities → Activities → Plans → Team → Start now order, using MeuFit Vigo as a visual/content-sequence reference. Added three photo-led activity cards, fictional Base/Complete/Training Plus comparisons without invented pricing, a generated three-coach portrait, and a full-photo closing invitation. Three new generated images were placed into Figma; existing photographic assets were reused. Reusable Activity Card and Standard/Emphasized Plan Card components use existing Practice tokens and styles. Archived earlier intermediary sections beside the artboard. Reviewed the 1440 × 5014 composition and corrected final-heading contrast plus the missing hero label. No application code, routes, GitHub issue status, or deployment changed; brand approval, mobile composition, and actual motion implementation remain outstanding.
+
+
+## 2026-10-10 - Living typography and staff motion in Figma
+
+
+Living Figma follow-up (2026-10-10): inspected MeuFit's moving outlined text and individual staff cards. Replaced the group portrait with three generated fictional coach profiles (Maya, Jordan, Lena) in a reusable Staff Card carousel. Added moving marquees and progressive word reveal to the headline; Facilities, Activities, and Staff have horizontal overflow plus six native SCROLL_TO arrow reactions (560 ms). The landing is 1440 × 5478. Native timelines now animate the visual treatment, with a separate 10-second motion study (`7160:96`) exported as MP4 and reviewed at six phases. Fixed headline spacing, portrait crops, and marquee clipping. The preview is time-based; real scroll binding, continuous loops/pause, interaction-driven progress sync, parallax, and reduced-motion behavior remain web handoff. Application code, issue/sprint status, and deployment were unchanged.
+
+## 2026-10-11 — First landing web slice
+
+The user agreed to shared Storybook and Next.js implementation. Navigation, action links and the Figma hero now share React components/CSS with licensed Mona Sans and original local assets. Builds, lint, TypeScript, zero-finding audit, UX synchronization and focused Chromium desktop/mobile/axe/reduced-motion checks pass. The remaining sections and motion remain pending. Docker's Linux engine/local DB was unavailable; no database or deployed service changed. ADR 019 and [[wiki/logs/2026-10-11-landing-storybook-first-section|session record]] contain the scope and evidence. No GitHub execution status or completed sprint changed.
+
+## 2026-10-11 — Viewport hero and remaining Storybook sections
+
+Removed the hero badge and made the production hero fill the viewport with fluid gutters. Seven user-requested Luna agents implemented remaining shared sections and stories; parent composed/reviewed the full preview, compressed original Figma photographs, corrected contrast/mobile overlaps, and verified carousel keyboard controls and marquee pause/reduced motion. Builds, lint/typecheck, audit, UX sync and focused Chromium/axe checks pass. Lower production integration and performance budgets remain pending. No DB, deployment, GitHub status or sprint assignment changed. See [[wiki/logs/2026-10-11-landing-viewport-and-storybook-sections]].
+
+## 2026-10-11 — Complete landing integration
+
+User requested integration of the reviewed Storybook sections. Home and Storybook now share `LandingContent`; landing footer replaces the prior footer only on Home. Signed-out feedback and existing destinations remain. Live catalog/availability remain on their dedicated pages. Four Chromium tests, full-page accessibility/overflow/interactions, real routing, desktop/mobile capture review, builds, lint/typecheck and UX sync pass. DB journeys and performance budgets not rerun; no GitHub/sprint/data/deployment changes. See [[wiki/logs/2026-10-11-complete-landing-integration]].
+
+## 2026-10-11 - Hero focus entrance
+
+User's MeuFit reference/screenshots informed shared CSS word-by-word blur-to-sharp hero entrance on refresh, with description/button sequence and immediate reduced-motion fallback. Builds, lint/typecheck, UX sync and five focused browser tests pass; desktop phases reviewed. No other section, data, sprint/GitHub or deployment change. See [[wiki/logs/2026-10-11-hero-focus-entrance]].
+
+## 2026-10-11 - Scroll heading focus
+
+User-requested progressive blur-to-sharp effect now follows scroll position for five shared section headings, replacing timed team word reveal. Builds, lint/typecheck, UX sync and six browser tests pass; desktop/mobile phases and no-JavaScript fallback reviewed. No route, data, sprint/GitHub or deployment change. See [[wiki/logs/2026-10-11-scroll-heading-focus]].
+
+## 2026-10-11 - Landing label cleanup
+
+Removed user-identified section eyebrows, concept notes and card/carousel micro-labels across shared landing. Spacing adjusted, accessible controls preserved. Builds, lint, UX sync and six existing UI tests pass; captures reviewed. No route/data/GitHub/sprint/deployment change. See [[wiki/logs/2026-10-11-landing-label-cleanup]].

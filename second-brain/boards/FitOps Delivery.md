@@ -1,7 +1,7 @@
 ---
 type: board-mirror
 project: FitOps
-updated: 2026-10-09
+updated: 2026-10-13
 ---
 
 # FitOps Delivery Board Mirror
@@ -15,9 +15,12 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 ## Ready for Sprint 1
 
 - [#6 [DESIGN] Low-Fidelity Desktop & Mobile Booking Flow Wireframes](https://github.com/AqueosHeart/fitops/issues/6)
-  - Closed on GitHub. ADR 013 replaces the obsolete native Figma requirement with Penpot as the visual-design tool.
+  - Closed on GitHub. ADR 013 replaced the earlier Figma requirement with Penpot for the completed historical review. ADR 018 now makes Figma the active visual-design tool; Issue #6's closure is not evidence of Figma wireframe migration.
   - draw.io is the editable UX source of truth. The Mermaid route/access architecture and English-only scenario definitions align on 29 routes and anchors through `node scripts/validate-ux-sync.mjs`, including secondary `My Account`, primary `Join Now`, legal, cookies, 404, and the protected member workspace.
-  - Penpot has one canonical 20-page wireframe set: 163 scenarios / 326 desktop-mobile boards. Live screen names match all 26 draw.io page routes, the 404 fallback, and every scenario on each device. No Figma execution is required.
+  - The historical Penpot snapshot had 20 pages: 163 scenarios / 326 desktop-mobile boards. Figma FitOps foundations and components now exist on separate pages; recreating the route wireframes there is still outstanding. The scenario source remains recoverable from draw.io and repository tooling.
+  - 2026-10-10: a separate [desktop landing concept](https://www.figma.com/design/8O6NvazN4Alxk1G1TmRYoV/FitOpsWireframing?node-id=7120-4) now reuses FitOps button/session-card components and includes a web-motion handoff. It is not completion of Issue #6's wireframe migration; mobile is not yet composed.
+  - 2026-10-10 visual pass: added three generated photo fills, the green Practice Athletic Club / Neighborhood Training label, and consistent lime section accents. Figma-only; no app implementation.
+  - 2026-10-10 hero refinement: increased the left-side dark fade and replaced the plain `Explore programs` link with the reusable transparent white-outline FitOps CTA. The hero label and footer cues remain visible.
   - Review hub: [[../wiki/design/FitOps User Flows]]
   - Editable diagram: [[../wiki/design/FitOps User Flows.drawio]]
 - [#7 [ARCH] Domain Boundary & Use-Case Specification](https://github.com/AqueosHeart/fitops/issues/7)
@@ -41,7 +44,10 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 - [#13 [QUALITY] System Quality and Production-Candidate Evidence](https://github.com/AqueosHeart/fitops/issues/13)
   - Done: Sprint 7, SDLC Phase 5, Test, High risk, P1, estimate 8. PR [#18](https://github.com/AqueosHeart/fitops/pull/18) merged to `main` on 2026-10-09 at `20eea7710d77fb7002b01f57d85acf1900a0fa39`; Issue #13 is Closed / Done. CI passed PostgreSQL migrations/seed/integration, lint/typecheck, dependency audit, production build, critical Playwright journey, axe scans, and desktop/mobile synthetic LCP/CLS budgets. Security review is recorded in `docs/reviews/issue-13-security-review.md`; HTTPS/HSTS and trusted-proxy conditions remain tracked in Issue #14.
 - [#14 [RELEASE] Deployment and Portfolio Evidence](https://github.com/AqueosHeart/fitops/issues/14)
-  - Backlog: Sprint 8, SDLC Phase 6, Maintenance, Medium risk, P2, estimate 5. Depends on Issue #13 quality evidence. Acceptance now explicitly requires HTTPS/HSTS before public exposure and a sanitized, trusted proxy boundary before IP-based login throttling is enabled.
+  - Open on GitHub. Current issue metadata shows no assignee, labels, or linked project, so the earlier Sprint 8/project-field mirror is not verified. Acceptance depends on Issue #13 and requires HTTPS/HSTS before public exposure plus a trusted proxy boundary before IP-based throttling is enabled.
+  - 2026-10-10 repository work added a guarded, volume-specific private demo reset procedure and a clearly labeled case-study draft. Public URL smoke test, current-main Linux redeployment, TLS/HSTS, and any trusted-proxy deployment remain incomplete.
+  - 2026-10-13 Vercel demo deployed at https://fitops-sebastian11.vercel.app on Neon Free; public routes, HSTS, and fictional admin sign-in/API/sign-out smoke passed. Preview is protected. Preview and Production share the demo DB. Issue remains Open pending full member booking journey and deployed IP-throttle proof; no Sprint 8 assignment is confirmed.
+  - 2026-10-13 release evidence now passes on Production: critical member/admin Playwright journey and effective IP throttle with spoofed `X-Forwarded-For` attempts. Temporary test account was removed, seeded fictional data and rate-limit counters restored. Deployment runbook and portfolio case study updated. GitHub Issue #14 remains Open until evidence is reviewed and status synchronized; Preview and Production still share one demo DB.
 - [#19 [UI] Trainer Assigned Sessions Workspace](https://github.com/AqueosHeart/fitops/issues/19)
   - Done / Closed in GitHub (2026-10-09), Phase 4 / P1 / Feature. PR [#20](https://github.com/AqueosHeart/fitops/pull/20) merged to `main` at `674f2b4b0f68d4ca8eb193949913f24221e8fb52`. Its protected assigned-session list/detail, aggregate-only counts, trainer return routing, UX/API evidence, and authorization states passed quality run [37956811965](https://github.com/AqueosHeart/fitops/actions/runs/37956811965). No deployment occurred.
 - [#9 [SEC] Threat Model & Server-Side Access Control Specification](https://github.com/AqueosHeart/fitops/issues/9)
@@ -54,15 +60,34 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
 - `FitOps Delivery` is linked to `AqueosHeart/fitops`.
 - Required fields: Status, Priority, Size, Estimate, Iteration, Start date, Target date, Sprint, SDLC Phase, Work Type, and Risk. `Work Type` is the GitHub-compatible replacement for the reserved `Type` name.
 - Views: Current Sprint, Product Backlog, SDLC Roadmap, and Bugs and Debt.
+- 2026-10-10 local developer setup: fresh Windows PostgreSQL 16 volume and loopback Next.js dev server are running from synced `main`; this is environment setup only and does not change any GitHub issue status or Issue #14 release gates.
 
 ## Done (Sprint 0 Completed)
 
 - [#1 [DOCS] Define Product Requirements and Core Booking Rules](https://github.com/AqueosHeart/fitops/issues/1)
 - [#2 [ARCH] Modular Monolith Architecture & Technology Selection](https://github.com/AqueosHeart/fitops/issues/2)
 - [#3 [BRAND] Practice Athletic Club Brand Identity & Design System Guidelines](https://github.com/AqueosHeart/fitops/issues/3)
-  - The connected Penpot file has a `Design Tokens` review page. Documented color/type candidates and proposed spacing/grid values are clearly distinguished; the page does not approve the brand. The latest catalog read reports `Practice Exploratory` active and `FitOps Layout Proposal` inactive.
+  - Historical Penpot `Design Tokens` page records color/type candidates and proposed spacing/grid values; this does not approve the brand. Current exploratory FitOps foundations and components are in the separate Figma pages linked from the project note.
   - Lucide is the selected UI icon family; a separate Penpot page documents 20 upstream SVGs and proposed sizing/usage rules. Brand approval remains pending.
 - [#4 [DATA] Conceptual Data Model & Entity Relationships (DBML)](https://github.com/AqueosHeart/fitops/issues/4)
 - [#5 [API] Initial REST Contract & Response Shapes](https://github.com/AqueosHeart/fitops/issues/5)
 - Public repository and second-brain setup
 - Generated 8 vector presentation slide SVGs in `docs/brand/figma/`
+
+2026-10-10 Figma-only follow-up: the desktop landing concept now includes a reviewed facilities carousel with four illustrative generated photos and a motion handoff. This is outside completed Sprint 7 scope; no issue or sprint status changed.
+
+2026-10-10 design follow-up: the Figma landing now follows Main → Facilities → Activities → Plans → Team → Start now. Activities, fictional plan previews, team imagery, and closing CTA were composed and reviewed. Outside completed Sprint 7; GitHub execution status is unchanged.
+
+2026-10-10 Figma motion follow-up: staff, activities, and facilities carousels now have configured prototype controls. Moving text and headline reveal have native keyframes, with a reviewed 10-second export. No issue or sprint status changed; scroll-linked production motion remains future work.
+
+2026-10-11 first landing web slice: shared navigation/actions/hero and Storybook implemented locally; focused UI/axe/reduced-motion verification and builds pass. Remaining Figma sections/motion are pending. GitHub issue/project statuses and Sprint 7 completion are unchanged; subsequent landing work still needs execution tracking. See [[../wiki/logs/2026-10-11-landing-storybook-first-section]].
+
+2026-10-11 landing follow-up: viewport-height hero and badge removal in production; all seven remaining sections implemented/reviewed in individual and composed Storybook previews using user-requested Luna agents. Focused browser/axe/keyboard/motion checks and builds pass. Lower production integration and full-page performance are pending. GitHub status and completed Sprint 7 are unchanged. See [[../wiki/logs/2026-10-11-landing-viewport-and-storybook-sections]].
+
+2026-10-11 complete landing integration: reviewed sections/footer now share composition between production Home and Storybook. Four browser tests, builds, lint/typecheck, UX sync and production visual review pass. Performance budgets and DB journeys not rerun; no GitHub/sprint/deployment change. See [[../wiki/logs/2026-10-11-complete-landing-integration]].
+
+2026-10-11 hero motion follow-up: user-requested blur-to-sharp stagger on refresh implemented in shared hero; builds, lint/typecheck, UX sync and five focused browser tests pass. No GitHub/sprint/deployment change. See [[../wiki/logs/2026-10-11-hero-focus-entrance]].
+
+2026-10-11 scroll heading focus: five reviewed headings now track scroll position with reversible blur; builds and six browser tests pass, including static reduced-motion/no-JavaScript fallback. No GitHub/sprint change. See [[../wiki/logs/2026-10-11-scroll-heading-focus]].
+
+2026-10-11 landing label cleanup: section eyebrows, repeated notes and card/carousel micro-labels removed at user request; builds and six existing UI tests pass. No GitHub/sprint change. See [[../wiki/logs/2026-10-11-landing-label-cleanup]].

@@ -1,0 +1,124 @@
+.landing-plans {
+  padding: 72px var(--landing-gutter, 24px) 72px;
+  overflow: clip;
+  background: var(--landing-bone, #f2f0e8);
+  color: var(--landing-ink, #111310);
+}
+
+.landing-plans-inner {
+  width: 100%;
+}
+
+
+
+
+.landing-plans h2 {
+  margin: 0 0 8px -4px;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -1.12px;
+}
+
+.landing-plans-intro {
+  margin: 0;
+  color: #5c6159;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.landing-plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 43px;
+}
+
+.landing-plan-card {
+  display: flex;
+  min-width: 0;
+  min-height: 352px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 24px;
+  padding: 32px;
+  border: 1px solid #c9c7bd;
+  background: var(--landing-white, #fffefa);
+}
+
+.landing-plan-card-featured {
+  padding: 31px;
+  border: 2px solid var(--landing-lime, #c7f134);
+  background: var(--landing-ink, #111310);
+  color: var(--landing-white, #fffefa);
+}
+
+
+
+.landing-plan-card h3 {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 34px;
+  letter-spacing: -.5px;
+}
+
+.landing-plan-subheading {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.landing-plan-description {
+  max-width: 330px;
+  margin: 0;
+  color: #5c6159;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.landing-plan-card-featured .landing-plan-description {
+  color: var(--landing-muted, #c3c0b6);
+}
+
+.landing-plan-divider {
+  height: 1px;
+  flex: 0 0 auto;
+  background: #d9d7ce;
+}
+
+.landing-plan-card-featured .landing-plan-divider {
+  background: #4a4d45;
+}
+
+.landing-plans .landing-plan-action {
+  display: flex;
+  width: 100%;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 12px;
+  text-align: center;
+}
+
+
+@media (max-width: 900px) {
+  .landing-plans { min-height: 0; padding-block: 64px; }
+  .landing-plans-grid { grid-template-columns: 1fr; max-width: 560px; }
+  .landing-plan-card { min-height: 352px; }
+}
+
+@media (max-width: 600px) {
+  .landing-plans { padding: 56px 20px 48px; }
+  .landing-plans h2 { margin-top: 23px; font-size: clamp(38px, 10vw, 48px); letter-spacing: -.04em; }
+  .landing-plans-intro { max-width: 330px; font-size: 16px; line-height: 1.5; }
+  .landing-plans-grid { gap: 16px; margin-top: 30px; }
+  .landing-plan-card, .landing-plan-card-featured { min-height: 0; padding: 24px; }
+  .landing-plan-card h3 { font-size: 30px; }
+  .landing-plan-description { margin-bottom: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-plans .landing-plan-action { transition: none; }
+}

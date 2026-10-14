@@ -1,6 +1,6 @@
 # Practice Athletic Club Master Toolkit (legacy Figma tooling)
 
-This local Figma development plugin is retained as historical source tooling for the Penpot wireframe import. Under ADR 013, Penpot is FitOps' active visual-design tool; running this plugin is optional and is not an approval or delivery gate.
+This local Figma development plugin is retained as scenario-generation tooling for FitOps wireframe recovery. Under ADR 018, Figma is the active visual-design tool and draw.io remains the UX source of truth. The plugin is a possible means to rebuild derived Figma wireframes; its historical structural test is not visual-review evidence.
 
 ## Output
 
@@ -39,7 +39,7 @@ git diff --check
 - `code.js`: generated bundle; do not edit directly.
 - `ui.html`: primary action, progress, completion, and error feedback.
 
-The structural test executes the historical generator with a Plugin API double. It verifies route/state pairs, action destinations, horizontal bounds, blocked-state behavior, role-denied privacy, preserved user work, kit reuse, and safe reruns. It is not Penpot visual-review evidence.
+The structural test executes the generator with a Plugin API double. It verifies route/state pairs, action destinations, horizontal bounds, blocked-state behavior, role-denied privacy, preserved user work, kit reuse, and safe reruns. It is not Figma visual-review evidence.
 
 ## Run in Figma
 

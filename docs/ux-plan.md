@@ -6,7 +6,7 @@ The experience must make the next action obvious, expose current product state, 
 
 ## Canonical UX-flow artifact and derived views
 
-`second-brain/wiki/design/FitOps User Flows.drawio` is the editable, canonical UX information architecture and flow artifact. Its nine pages are updated first for every navigation, screen, or flow change. The Mermaid files in `docs/design/` are version-controlled review exports, and the Penpot boards are the derived visual-design view; neither may introduce a route, screen, or state absent from the draw.io file. The local Figma generator remains historical source tooling for the existing Penpot import, not the active visual-design system.
+`second-brain/wiki/design/FitOps User Flows.drawio` is the editable, canonical UX information architecture and flow artifact. Its nine pages are updated first for every navigation, screen, or flow change. The Mermaid files in `docs/design/` are version-controlled review exports, and Figma boards are the derived visual-design view; neither may introduce a route, screen, or state absent from the draw.io file. Figma is now the active visual-design source under ADR 018.
 
 | Artifact | Purpose |
 | --- | --- |
@@ -94,9 +94,17 @@ Every interactive page or overlay must account for:
 | Server-side authorization | Booking, trainer, and administrator flows |
 | Loading, empty, conflict, failure, and success states | All role-specific flows and required-state inventory |
 
-## Penpot wireframe set
+## Figma visual-design workspace
 
-The connected Penpot file contains 20 canonical numbered `— Wireframes` pages. It covers 26 page routes plus the separate 404 fallback with 163 scenarios at each 1440 px desktop and 390 px mobile size, for 326 boards. Screen names match the draw.io Page 08 inventory; the static SVG-vector boards omit prototype reactions and icons. The earlier local Figma plugin is retained as historical generation tooling, but Penpot is the active review surface.
+The active [FitOpsWireframing file](https://www.figma.com/design/8O6NvazN4Alxk1G1TmRYoV/FitOpsWireframing?node-id=7110-73) now contains exploratory `FitOps · Foundations` and `FitOps · Components` pages. The foundation set includes 53 color, spacing, and radius variables, Mona Sans text styles, and an elevation style. The component page contains 12 button variants, four field states, five status badges, and two session-card states. The AARC reference pages are preserved separately and are not FitOps product specifications. The candidate palette and typography are not approved and are not synchronized to application CSS.
+
+The exploratory desktop concept on the separate [FitOps · Landing page](https://www.figma.com/design/8O6NvazN4Alxk1G1TmRYoV/FitOpsWireframing?node-id=7120-4) now follows the user-directed sequence: **Main → Facilities → Activities → Plans → Team → Start now**, then the legal/footer utilities. The 1440 × 5478 page uses a full-bleed training hero with a left-heavy dark fade and lime Practice label; a four-space photo carousel; three editorial activity cards; Base, Complete, and Training Plus plan previews; three fictional coach portraits in a staff carousel; and a photographic closing invitation. Header links mirror Facilities, Activities, Plans, and Team. The previous introduction, featured program, schedule-preview, and club-story sections are retained in an adjacent archive frame, outside the current composition.
+
+[MeuFit Vigo](https://www.meufit.gal/centros/meufit-vigo) informed the content sequence, photography-led activities, plan comparison, team presentation, and closing invitation; its pricing, staff, amenities, and copy were not transferred to Practice. Plan names match the current FitOps catalog; prices and inclusions are undefined, and the cards retain the fictional-demo boundary. Activities, spaces, and team imagery are visual concept material. Existing FitOps buttons are reused, with local landing Activity Card and Plan Card components linked to Practice color/spacing tokens and typography styles.
+
+The landing now includes native Figma timeline tracks for moving typography, progressive headline word brightness, and carousel translation. Facilities, Activities, and Staff have clipped horizontal overflow and six configured previous/next SCROLL_TO prototype reactions with 560 ms easing. A separate [10-second staff motion study](https://www.figma.com/design/8O6NvazN4Alxk1G1TmRYoV/FitOpsWireframing?node-id=7160-96) demonstrates marquee travel, headline reveal, and deliberate next/back motion; its exported MP4 was reviewed at six phases. Timelines are time-based previews. Actual scroll-progress binding, continuous marquee looping/pause, synchronized interaction-driven progress, parallax, and reduced-motion behavior remain web implementation requirements. The palette remains exploratory and unapproved; mobile composition and full Figma wireframe recreation are outstanding.
+
+The previous Penpot file held 20 numbered `— Wireframes` pages covering 26 routes plus the separate 404 fallback, with 163 desktop and 163 mobile scenarios (326 static boards). This is historical coverage, not the current Figma wireframe inventory. The scenarios remain recoverable from draw.io Page 08 and the repository's wireframe generator/content definitions; direct transfer of the Penpot canvas is not available through the connected Figma tools. Rebuilding the wireframes in Figma remains outstanding. See [wireframe coverage](design/wireframe-coverage.md).
 
 The user authorized the complete plugin expansion on 2026-09-21; this does not mark the flows approved or Issue #6 done. [Wireframe coverage](design/wireframe-coverage.md) is the derived inventory. Long pages use content-driven height; mobile tables become record cards. Forms use preset fictional examples, and recovery does not send email. No payment, subscription, trainer editing, or session deletion has been added.
 
@@ -110,9 +118,9 @@ For every add, delete, or modification:
 
 1. Update and review `FitOps User Flows.drawio` first.
 2. Update the affected Mermaid review export(s) and run `node scripts/validate-ux-sync.mjs`.
-3. Refresh the affected Penpot boards through the documented import workflow when the scenario source changed, preserving the one canonical 20-page inventory.
-4. Visually inspect the affected Penpot desktop and mobile boards before saying the visual-design state is synchronized.
+3. Refresh the affected Figma wireframes from the validated scenario source when it changes; retain the approved route and state coverage.
+4. Visually inspect the affected Figma desktop and mobile boards before saying the visual-design state is synchronized.
 
 `Services`, `Facilities`, and `Contact` are public in-page landing destinations (`/#services`, `/#facilities`, and `/#contact`), not new protected product capabilities. `About Us`, Cookie Preferences, and Not Found are explicit public routes (`/about`, `/cookie-settings`, and `/404`). Pricing, Terms of Service, Privacy Policy, and the Liability Waiver are also represented as distinct public destinations. `/join` is the only public membership-entry CTA. The public header exposes `/portal/login` as a secondary `My Account` utility for existing members and protected redirects, while `Join Now` remains visually and semantically primary.
 
-`node scripts/validate-ux-sync.mjs` checks the mapped public, legal, cookie, Join, authentication, member-workspace, trainer, and administrator destinations across draw.io, the Mermaid route/access architecture, and the English-only scenario definitions used for Penpot coverage. It separately verifies the 26 page URLs in the draw.io and Mermaid sitemap, the 404 fallback, and scenario counts in draw.io Page 08. It also rejects a Landing-header Sign In action.
+`node scripts/validate-ux-sync.mjs` checks the mapped public, legal, cookie, Join, authentication, member-workspace, trainer, and administrator destinations across draw.io, the Mermaid route/access architecture, and the English-only scenario definitions used for Figma wireframe generation. It separately verifies the 26 page URLs in the draw.io and Mermaid sitemap, the 404 fallback, and scenario counts in draw.io Page 08. It also rejects a Landing-header Sign In action.

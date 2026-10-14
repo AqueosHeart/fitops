@@ -21,6 +21,7 @@ A recruiter should be able to verify that the author can take a product from an 
 - [Conceptual database schema](docs/database/fitops.dbml)
 - [REST API contract](docs/api.md)
 - [Eight-phase SDLC and sprint plan](docs/delivery-plan.md)
+- [FitOps case study draft](docs/portfolio-case-study.md)
 - [Engineering tooling and workflow](docs/tooling-and-workflow.md)
 - [ADR 001 Modular monolith](docs/adr/001-modular-monolith.md)
 - [ADR 002 Repository centered planning and design tools](docs/adr/002-project-and-design-tooling.md)
@@ -50,4 +51,4 @@ The local setup is documented in [Local development](docs/local-development.md).
 
 ## Current status
 
-The public site, member booking flow, and administrator operations workspace are implemented in the repository. Issue #12 remains in progress pending authenticated browser acceptance. The app is not represented as a production deployment. Delivery follows an eight-phase SDLC and one-week sprints; consult FitOps Delivery and the current sprint notes for verified status.
+The public site, member booking flow, trainer workspace, and administrator operations workspace are implemented. The Issue #13 quality gate passed in CI. The fictional portfolio demo is deployed at <https://fitops-sebastian11.vercel.app>; HTTPS/HSTS, the live critical member/admin journey, and trusted-IP login throttling have been verified. Release evidence and guarded production-demo recovery/verification scripts are in [the Vercel deployment runbook](docs/vercel-deployment.md) and tracked by [Issue #14](https://github.com/AqueosHeart/fitops/issues/14). Preview and Production currently share the fictional demo database. The separate Linux setup remains LAN-only. For local Windows development, follow [Local development](docs/local-development.md). Delivery follows an eight-phase SDLC and one-week sprints; consult FitOps Delivery and sprint notes for verified status.

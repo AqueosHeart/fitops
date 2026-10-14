@@ -10,8 +10,10 @@ import { defineConfig, globalIgnores } from "eslint/config";
 const eslintConfig = defineConfig([
   globalIgnores([
     ".next/**",
+    ".codex/**",
     "out/**",
     "build/**",
+    "storybook-static/**",
     "next-env.d.ts",
   ]),
   js.configs.recommended,
