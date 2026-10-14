@@ -29,5 +29,11 @@ No change to trust behavior was made during this review. In particular, blindly 
 
 ## Remaining limits
 
-- No external penetration test, internet-facing TLS test, production proxy test, or browser field-metrics collection was performed.
+- The original 2026-10-08 review had no internet-facing TLS or production proxy evidence. The Vercel follow-up below verifies those two deployment controls for the fictional demo. No external penetration test or browser field-metrics collection has been performed.
 - The green CI suite proves only the covered behavior against its isolated PostgreSQL service. It does not certify production operations or the LAN deployment.
+
+## Vercel demo follow-up (2026-10-13)
+
+The separate Vercel Production deployment now serves over HTTPS and returned HSTS `max-age=63072000; includeSubDomains; preload`. Preview requires Vercel Authentication. The public critical member/admin browser journey passed against fictional seeded records. A guarded live check supplied twenty distinct spoofed `X-Forwarded-For` values and confirmed a subsequent valid admin login was throttled, demonstrating the Vercel edge overwrites the client-supplied forwarding header before the application reads it. The script restores affected rate-limit rows. See [Vercel deployment runbook](../vercel-deployment.md).
+
+These results resolve the deployment gates for this fictional portfolio demo only. The separate direct-bound Linux LAN service still has `TRUST_PROXY` disabled and HTTP-only transport; keep it private. This review is still not a penetration test or production certification.

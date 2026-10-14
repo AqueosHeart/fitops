@@ -1,6 +1,6 @@
 # Practice Athletic Club — FitOps case study
 
-**Status:** Draft, dated 2026-10-10. The public release gates in [GitHub Issue #14](https://github.com/AqueosHeart/fitops/issues/14) are still open. This document describes verified implementation and evidence; it does not claim a public production launch.
+**Status:** Portfolio demo, updated 2026-10-13. The fictional demo is publicly deployed; it is not a commercial service or production gym system. Release evidence is tracked in [GitHub Issue #14](https://github.com/AqueosHeart/fitops/issues/14).
 
 ## The problem
 
@@ -22,16 +22,16 @@ The application is a Next.js and TypeScript modular monolith with PostgreSQL, Pr
 - The trainer workspace passed isolated database/API, build, browser, and accessibility checks in [GitHub Actions run 37956811965](https://github.com/AqueosHeart/fitops/actions/runs/37956811965).
 - The database integration suite includes ten synchronized PostgreSQL race and rollback cases. These verify selected booking, waitlist, cancellation, capacity, and promotion interleavings; they are not a proof that every possible production failure is handled.
 - On 2026-10-10, a fresh Windows local setup applied all six migrations and verified fictional data (6 users, 3 sessions, 4 confirmed bookings, 4 waitlist entries). The local home and login pages returned HTTP 200. This verifies local startup only.
+- On 2026-10-13, the deployed Vercel critical browser journey passed member registration, waitlist join, administrator capacity increase, FIFO promotion, cancellation/promotion, and member/trainer access controls. The temporary account and test data were removed/restored to the six-user fictional seed afterward.
+- Live login throttling passed with twenty distinct spoofed forwarding addresses; Vercel's request boundary kept them under the actual client IP and blocked the next valid demo-admin login at the configured threshold. The guarded verification script restored the counters. This is a focused proxy-boundary check, not a penetration test.
 
 ## Deployment and release status
 
-The documented Linux demo is bound to the private LAN and uses plain HTTP. Its last recorded deployment check was 2026-10-08 on commit `8951e16` with Next.js 16.3.6; current repository `main` is newer. The local Windows instance runs only on loopback and is not the public demo.
-
-There is no verified public URL or public smoke test yet. HTTPS/HSTS, a trusted proxy boundary before enabling IP-based rate limiting, an updated Linux deployment, public critical-flow smoke checks, and final release review remain open. Do not expose the current direct-bound HTTP service to the internet.
+The public fictional demo runs at <https://fitops-sebastian11.vercel.app> on Vercel with a Neon Free database. Public routes and HTTPS/HSTS were verified. Preview deployments require Vercel authentication; Preview and Production currently share the demo database. The existing Linux demo remains separately bound to the private LAN and uses plain HTTP; it is not the public demo.
 
 ## Scope and limits
 
 - Fictional data only; no real club, members, payments, or production records.
 - CI browser and performance results are automated evidence, not human usability research or field measurements.
-- No public availability, external penetration-test, backup/restore exercise, operational monitoring, or production readiness claim is made here.
+- No external penetration test, backup/restore exercise, operational monitoring, or commercial-production readiness claim is made here. Vercel Hobby is intended for personal, non-commercial use; confirm plan terms before any business use.
 - Release evidence and remaining acceptance criteria are tracked in [GitHub Issue #14](https://github.com/AqueosHeart/fitops/issues/14).

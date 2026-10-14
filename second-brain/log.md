@@ -1,7 +1,7 @@
 ---
 type: activity-log
 project: FitOps
-updated: 2026-10-10
+updated: 2026-10-13
 ---
 
 # FitOps Activity Log
@@ -11,6 +11,13 @@ updated: 2026-10-10
 - Deployed the Next.js demo to Vercel Production with a fresh Neon Free database, six migrations, and fictional seed data. Recorded settings and safe operating notes in `docs/vercel-deployment.md`; ADR 020 captures the platform/security decision.
 - Verified public routes, HSTS, database contents, and a fictional admin sign-in, admin API response, and sign-out. Preview access is protected; Production is public.
 - Preview and Production share one demo database. Issue #14 remains Open pending full member booking E2E and deployed IP-rate-limit evidence. Sprint 7 remains complete; no verified Sprint 8 assignment was found. No GitHub issue mutation was made.
+
+## 2026-10-13 - Live release acceptance evidence
+
+- Ran the existing critical Playwright journey against Vercel Production. Registration, waitlist, capacity increase, FIFO promotion, cancellation/promotion, admin flows, role denials, accessibility, and runtime-error checks passed.
+- Removed the temporary fictional test account and reran the seed on the remote database. Final verification restored six users, three sessions, four confirmed bookings, and four waiting entries.
+- Added a guarded production IP-limit verifier. Twenty unique spoofed forwarding addresses were followed by a valid admin login, which was denied at the client-IP threshold. Vercel effectively overwrote spoofed `X-Forwarded-For`; the verifier restored login attempt state.
+- Updated the deployment runbook, case study, README, and security review. Issue #14 now has complete local evidence but remains Open pending source-of-truth review/synchronization. Preview and Production still share one demo database.
 
 ## 2026-10-10 - Issue #14 release-readiness review
 

@@ -9,6 +9,7 @@ updated: 2026-10-13
 
 - [[wiki/logs/2026-10-13-vercel-deployment|Vercel demo deployment and release gates]]
 - [Vercel deployment runbook](../docs/vercel-deployment.md)
+- [Portfolio case study](../docs/portfolio-case-study.md)
 - [ADR 020: Vercel and Neon demo deployment](../docs/adr/020-vercel-neon-demo-deployment.md)
 
 - [[wiki/logs/2026-10-11-hero-focus-entrance|Hero blur-to-sharp entrance on refresh]]

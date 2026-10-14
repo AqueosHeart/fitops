@@ -1,7 +1,7 @@
 ---
 type: board-mirror
 project: FitOps
-updated: 2026-10-11
+updated: 2026-10-13
 ---
 
 # FitOps Delivery Board Mirror
@@ -47,6 +47,7 @@ GitHub Projects becomes the execution source of truth after setup. This note is 
   - Open on GitHub. Current issue metadata shows no assignee, labels, or linked project, so the earlier Sprint 8/project-field mirror is not verified. Acceptance depends on Issue #13 and requires HTTPS/HSTS before public exposure plus a trusted proxy boundary before IP-based throttling is enabled.
   - 2026-10-10 repository work added a guarded, volume-specific private demo reset procedure and a clearly labeled case-study draft. Public URL smoke test, current-main Linux redeployment, TLS/HSTS, and any trusted-proxy deployment remain incomplete.
   - 2026-10-13 Vercel demo deployed at https://fitops-sebastian11.vercel.app on Neon Free; public routes, HSTS, and fictional admin sign-in/API/sign-out smoke passed. Preview is protected. Preview and Production share the demo DB. Issue remains Open pending full member booking journey and deployed IP-throttle proof; no Sprint 8 assignment is confirmed.
+  - 2026-10-13 release evidence now passes on Production: critical member/admin Playwright journey and effective IP throttle with spoofed `X-Forwarded-For` attempts. Temporary test account was removed, seeded fictional data and rate-limit counters restored. Deployment runbook and portfolio case study updated. GitHub Issue #14 remains Open until evidence is reviewed and status synchronized; Preview and Production still share one demo DB.
 - [#19 [UI] Trainer Assigned Sessions Workspace](https://github.com/AqueosHeart/fitops/issues/19)
   - Done / Closed in GitHub (2026-10-09), Phase 4 / P1 / Feature. PR [#20](https://github.com/AqueosHeart/fitops/pull/20) merged to `main` at `674f2b4b0f68d4ca8eb193949913f24221e8fb52`. Its protected assigned-session list/detail, aggregate-only counts, trainer return routing, UX/API evidence, and authorization states passed quality run [37956811965](https://github.com/AqueosHeart/fitops/actions/runs/37956811965). No deployment occurred.
 - [#9 [SEC] Threat Model & Server-Side Access Control Specification](https://github.com/AqueosHeart/fitops/issues/9)
