@@ -19,6 +19,12 @@ updated: 2026-10-13
 - Added a guarded production IP-limit verifier. Twenty unique spoofed forwarding addresses were followed by a valid admin login, which was denied at the client-IP threshold. Vercel effectively overwrote spoofed `X-Forwarded-For`; the verifier restored login attempt state.
 - Updated the deployment runbook, case study, README, and security review. Issue #14 now has complete local evidence but remains Open pending source-of-truth review/synchronization. Preview and Production still share one demo database.
 
+## 2026-10-13 - Release evidence merged
+
+- PR #23 merged the complete landing/release package into `main` at `81aff98137553d802cdf849484fb53bc0da7ecb1`. Its quality CI and Vercel Preview deployment passed. The subsequent Vercel Production build from `main` completed and became Ready; public routes and HSTS returned successfully.
+- GitHub Issue #14 closed from PR acceptance. Obsolete LAN-only preparation PR #22 was closed as superseded; the separate Linux service remains LAN-only.
+- Preview and Production still share the fictional Neon DB. No verified Sprint 8 assignment exists; Sprint 7 remains complete.
+
 ## 2026-10-10 - Issue #14 release-readiness review
 
 - Reviewed open GitHub Issue #14 and Sprint 8 / Phase 6 plans against deployment, security, quality, and architecture evidence.

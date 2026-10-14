@@ -17,6 +17,8 @@ On 2026-10-13, the deployed critical browser journey passed: a fictional member 
 
 The live IP-throttle check also passed. Twenty failed logins supplied twenty different, spoofed `X-Forwarded-For` addresses; the following valid fictional admin sign-in was denied at the configured 20-attempt client-IP threshold. The verification script restores affected login-attempt rows to their pre-check values even if the check fails. This verifies the Vercel edge boundary and application behavior together; it is a focused release check, not a penetration test.
 
+After merge, Vercel Production deployed `main` commit `81aff98137553d802cdf849484fb53bc0da7ecb1` successfully. The canonical public routes returned HTTP 200 and HSTS after that deployment. GitHub Issue #14 is Closed after PR [#23](https://github.com/AqueosHeart/fitops/pull/23) merged with its quality and Vercel Preview checks passing.
+
 Only fictional demo data was used. Seed credentials are generated locally and stored in ignored `web/.env.demo.local`; never commit or publish that file. The Vercel environment files are also local-only and excluded from deployment uploads.
 
 ## Security and release gates
@@ -45,7 +47,7 @@ Only fictional demo data was used. Seed credentials are generated locally and st
   npx vercel env run --environment production --project fitops -- node scripts/reset-production-demo.mjs
   Remove-Item Env:FITOPS_DEMO_PASSWORD, Env:FITOPS_RESET_PRODUCTION_DEMO, Env:BETTER_AUTH_URL, Env:TRUST_PROXY
   ```
-- Issue #14 acceptance evidence is now complete for the live demo: HTTPS/HSTS, the critical member/admin journey, and effective trusted-IP throttling passed. The GitHub issue remains open until this recorded evidence is posted and reviewed there.
+- Issue #14 acceptance evidence is complete and recorded in GitHub; it closed when PR #23 merged to `main` at `81aff98137553d802cdf849484fb53bc0da7ecb1`. The separate LAN deployment remains private and unchanged.
 - Neon Free has service limits; it is suitable for this fictional demo, not evidence of production capacity or an SLA.
 - The deployment build completed on Node `24.21.0` / npm `11.19.0`, while `web/package.json` pins Node `24.14.x` / npm `11.9.x`. Vercel also reported install-script and engine warnings; reconcile the runtime pin and confirm a clean build as follow-up work.
 
