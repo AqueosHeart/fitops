@@ -2,10 +2,14 @@
 type: index
 project: FitOps
 status: active
-updated: 2026-10-11
+updated: 2026-10-13
 ---
 
 # FitOps Knowledge Index
+
+- [[wiki/logs/2026-10-13-vercel-deployment|Vercel demo deployment and release gates]]
+- [Vercel deployment runbook](../docs/vercel-deployment.md)
+- [ADR 020: Vercel and Neon demo deployment](../docs/adr/020-vercel-neon-demo-deployment.md)
 
 - [[wiki/logs/2026-10-11-hero-focus-entrance|Hero blur-to-sharp entrance on refresh]]
 

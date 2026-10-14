@@ -1,0 +1,7 @@
+/second-brain/
+/docs/
+/.github/
+/.env*
+/web/.env*
+/web/.agents/
+/web/skills-lock.json

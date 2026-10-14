@@ -3,7 +3,7 @@ type: project
 status: active
 phase: development
 sprint: Sprint 7 complete
-updated: 2026-10-11
+updated: 2026-10-13
 ---
 
 # FitOps
@@ -121,5 +121,9 @@ The user's follow-up removes the hero badge and replaces fixed artboard dimensio
 Subsequent integration (2026-10-11): user authorized implementation of all reviewed sections in Home. Production and Storybook share `LandingContent`, with the landing footer and preserved signed-out notice. Four browser tests, complete-page axe/overflow/carousel/pause checks at four sizes, actual destination navigation, visual desktop/mobile review, builds, lint/typecheck and UX sync pass. Live discovery remains on `/programs` and `/schedule`. Performance budgets/mobile Figma approval remain pending; GitHub/sprint/DB/deployment unchanged. See [[../logs/2026-10-11-complete-landing-integration]].
 
 Scroll motion follow-up (2026-10-11): user requested blur-to-sharp headings while scrolling. Five sections now use shared ScrollHeading, replacing timed team reveal with reversible scroll-progress focus. Builds, lint/typecheck, UX sync and six focused browser tests pass; reduced-motion/no-JavaScript fallback verified. No GitHub/sprint/deployment change. See [[../logs/2026-10-11-scroll-heading-focus]].
+
+## Vercel demo deployment (2026-10-13)
+
+User selected Neon Free ($0) and authorized Vercel deployment. Production is live at [fitops-sebastian11.vercel.app](https://fitops-sebastian11.vercel.app); Preview requires Vercel authentication. The fresh Neon DB has six migrations and fictional seed data; `db:verify` passed. Public routes and HSTS passed; a fictional admin login reached the sessions manager, its API returned 200, and sign-out succeeded. Preview and Production currently share the same database. Issue #14 remains Open: complete member booking E2E and deployed IP-throttle proof are outstanding. Sprint 7 is complete and no verified Sprint 8 assignment exists. See [runbook](../../../docs/vercel-deployment.md), [ADR 020](../../../docs/adr/020-vercel-neon-demo-deployment.md), and [[../logs/2026-10-13-vercel-deployment]].
 
 Landing label cleanup (2026-10-11): removed user-identified decorative micro-labels and repeated concept notes throughout shared landing components; adjusted spacing/control alignment. Existing builds and six UI tests pass. GitHub/sprint/data/deployment unchanged. See [[../logs/2026-10-11-landing-label-cleanup]].

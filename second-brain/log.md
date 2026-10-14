@@ -6,6 +6,12 @@ updated: 2026-10-10
 
 # FitOps Activity Log
 
+## 2026-10-13 - Vercel demo deployment
+
+- Deployed the Next.js demo to Vercel Production with a fresh Neon Free database, six migrations, and fictional seed data. Recorded settings and safe operating notes in `docs/vercel-deployment.md`; ADR 020 captures the platform/security decision.
+- Verified public routes, HSTS, database contents, and a fictional admin sign-in, admin API response, and sign-out. Preview access is protected; Production is public.
+- Preview and Production share one demo database. Issue #14 remains Open pending full member booking E2E and deployed IP-rate-limit evidence. Sprint 7 remains complete; no verified Sprint 8 assignment was found. No GitHub issue mutation was made.
+
 ## 2026-10-10 - Issue #14 release-readiness review
 
 - Reviewed open GitHub Issue #14 and Sprint 8 / Phase 6 plans against deployment, security, quality, and architecture evidence.
